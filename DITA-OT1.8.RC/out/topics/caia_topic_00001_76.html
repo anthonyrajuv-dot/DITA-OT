@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="nl-nl" lang="nl-nl">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="kpe-concept"/>
+<meta name="DC.Title" content="Sampling and Testing Issues"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="caia_topic_00001_76"/>
+<meta name="DC.Language" content="nl-NL"/>
+<link rel="stylesheet" type="text/css" href="..%5Ccommonltr.css"/>
+<title>Sampling and Testing Issues</title>
+</head>
+<body id="caia_topic_00001_76">
+
+<h1 class="title topictitle1">Sampling and Testing Issues</h1>
+<div class="body conbody kpe-conceptBody"><p class="p">LO 8.8: Demonstrate knowledge of sampling and testing problems.</p>
+<p class="p">For example:</p>
+<ul class="ul"><li class="li">Recognize the characteristics of unrepresentative data sets (e.g., selection bias, self-selection bias, survivorship bias) and their effects on test results.</li>
+<li class="li">Discuss data mining and data dredging, and recognize their effects on test results.</li>
+<li class="li">Discuss backtesting and backfilling, and recognize their effects on test results.</li>
+<li class="li">Discuss cherry-picking and chumming, and recognize their effects on test results.</li>
+</ul>
+<p class="p">In the previous section, we discussed common misinterpretations of hypothesis tests. In this section, we define and recognize the effects of erroneous sampling. </p>
+<div class="section"><h2 class="title sectiontitle">Unrepresentative Data Sets</h2><p class="p">The validity of a statistical analysis relies not only on the robustness of the statistical test, but also on the extent to which the sample represents the entire population that the analyst is testing. Statistical tests are unreliable when samples are biased. For example, <strong class="ph b">selection bias</strong> refers to the exclusion of certain observations from the sample, causing distortions in the relevant characteristics of the population. </p>
+<p class="p">A particular type of selection bias, known as <strong class="ph b">survivorship bias</strong>, occurs when funds or companies that are no longer in existence are excluded from the sample. Only the funds or companies that have survived are included in the database. </p>
+<p class="p">Another related bias is called <strong class="ph b">self-selection bias</strong>, in which fund managers voluntarily decide to report or not report performance. Poor-performing funds may tend not to report performance. As a result of survivorship bias and self-selection bias, most hedge fund and private equity databases underrepresent poorer-performing funds. Tests of performance using these databases tend to exhibit an upward performance bias. </p>
+</div>
+<div class="section"><h2 class="title sectiontitle">Data Mining and Data Dredging</h2><p class="p"><strong class="ph b">Data mining</strong> refers to the practice of vigorously testing data until valid relationships are found. The premise is that vigorous testing is justified to identify previously uncovered relationships. <strong class="ph b">Data dredging</strong>, also known as <em class="ph i">data snooping</em>, refers to the practice of overusing statistical tests (e.g., running hundreds of tests) to identify significant relationships with little regard for underlying economic rationale. The main problem with data dredging relates to the failure to take the number of tests into account when examining the results (i.e., placing too much confidence in the results). </p>
+</div>
+<div class="section"><h2 class="title sectiontitle">Backtesting and Backfilling</h2><p class="p"><strong class="ph b">Backtesting</strong> is the process of applying models on historical data to determine how well the models would have explained the actual results. Backtesting offers a way to assess the models before putting them to use going forward, and it is generally a good practice. However, backtesting, when combined with data dredging, implies that too many hypothetical strategies are tested, which can lead to false predictions. Backtesting is dangerous when performed with overfitted models. <strong class="ph b">Overfitting</strong> occurs when many parameters are used to fit a model to historical data. Models with fewer parameters tend to fit future data better than models that are overfitted.</p>
+<p class="p"><strong class="ph b">Backfilling</strong> refers to updating databases by inserting returns that pre-date the date of entry in the database. For example, consider the addition of a private equity fund’s performance to a database in 2015. Backfilling occurs if the fund’s performance prior to 2015 also is added to the database. The danger with backfilling is <strong class="ph b">backfill bias</strong>, also known as <em class="ph i">instant history bias</em>, which occurs when funds and strategies added to the database are not representative of the population. In this case, backfilling creates an upward performance bias because it is more likely that successful funds will backfill. Backfill bias is similar to selection bias, which was discussed earlier. </p>
+</div>
+<div class="section"><h2 class="title sectiontitle">Cherry-Picking and Chumming </h2><p class="p"><strong class="ph b">Cherry-picking</strong> is the process of selectively reporting results, biasing the reporting toward results that support a particular view. For example, a fund manager who oversees 10 funds will likely experience prolonged success in at least one of the 10 funds, merely by chance. The fund manager is cherry-picking by advertising and promoting the one fund that experienced prolonged success while ignoring the performance of the other funds. </p>
+<p class="p"><strong class="ph b">Chumming</strong> originally was used to describe the process of luring big fish by scattering pieces of inexpensive fish as bait. In the world of finance, an unscrupulous advisor chums when scattering investment advice, luring unsuspecting investors. For instance, consider the unscrupulous advisor who mails various newsletters with different predictions to millions of readers. If enough predictions are made, some will be correct and might be used to lure investors. To correctly determine if the successful prediction was merely a random event, we must evaluate the correct prediction relative to the number of predictions being made. </p>
+</div>
+</div>
+
+</body>
+</html>

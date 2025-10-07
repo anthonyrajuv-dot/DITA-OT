@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="nl-nl" lang="nl-nl">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="kpe-concept"/>
+<meta name="DC.Title" content="Unsmoothing Prices"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="caia_topic_00088_14"/>
+<meta name="DC.Language" content="nl-NL"/>
+<link rel="stylesheet" type="text/css" href="..%5Ccommonltr.css"/>
+<title>Unsmoothing Prices</title>
+</head>
+<body id="caia_topic_00088_14">
+
+<h1 class="title topictitle1">Unsmoothing Prices </h1>
+<div class="body conbody kpe-conceptBody"><p class="p">The model described above can easily be applied to price changes. The steps are:</p>
+<p class="p"><span class="ph">Step 1: </span>Use a cumulative wealth index (including compounding) to convert returns to a price index.</p>
+<p class="p"><span class="ph">Step 2: </span>Use subtraction to convert the index to a series of price changes.</p>
+<p class="p"><span class="ph">Step 3: </span>Estimate the correlation coefficient () using the following equation:</p>
+<p class="p"><span class="ph">Step 4: </span>Estimate true price changes using the following equation (with price changes rather than returns):</p>
+<p class="p"><span class="ph">Step 5: </span>Use true (unsmoothed) price changes to form a price index.</p>
+<p class="p"><span class="ph">Step 6: </span>Convert the true (unsmoothed) price index back to returns.</p>
+<p class="p">In some cases, returns may be related to more than just the immediately preceding return. There can be more than one (up to <em class="ph i">k</em> periods) lagged effect. The following equation illustrates this:</p>
+<p class="p">The effect of the true (unsmoothed) return on the reported (smoothed) return is captured by the intercept, , and the error term, , because the true returns are assumed to be uncorrelated with preceding true returns. Note that this equation is more general than the one we used previously in that it allows for multiple lagged effects, not just one. If k =1, then  is the first-order autocorrelation coefficient ().</p>
+</div>
+
+</body>
+</html>

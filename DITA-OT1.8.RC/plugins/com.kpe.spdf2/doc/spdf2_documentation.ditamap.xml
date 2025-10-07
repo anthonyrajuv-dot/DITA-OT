@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE bookmap PUBLIC "-//OASIS//DTD DITA BookMap//EN" "bookmap.dtd">
+<bookmap>
+    <booktitle>
+        <mainbooktitle>About the Scriptorium PDF plugin (spdf2)</mainbooktitle>
+    </booktitle>
+    <bookmeta>
+        <authorinformation>
+            <organizationinfo>
+                <namedetails>
+                    <organizationnamedetails>
+                        <organizationname>Scriptorium Publishing Services, Inc.</organizationname>
+                    </organizationnamedetails>
+                </namedetails>
+                <addressdetails><thoroughfare>PO Box 12761</thoroughfare>
+                    <locality><localityname>Research Triangle Park</localityname><postalcode>
+                            27709-2761</postalcode></locality>
+                    <administrativearea>NC</administrativearea><country>USA</country><data
+                        name="attn">Scriptorium Press</data></addressdetails>
+                <emailaddresses>
+                    <emailaddress>books@scriptorium.com</emailaddress>
+                </emailaddresses>
+                <urls>
+                    <url>www.scriptorium.com/books</url>
+                </urls>
+            </organizationinfo>
+        </authorinformation>
+        <bookid>
+            <edition>September, 2012</edition>
+        </bookid>
+        <bookrights>
+            <copyrfirst>
+                <year>2008</year>
+            </copyrfirst>
+            <copyrlast>
+                <year>2012</year>
+            </copyrlast>
+            <bookowner>
+                <organization>Scriptorium Publishing Services, Inc.</organization>
+            </bookowner>
+        </bookrights>
+    </bookmeta>
+    <chapter navtitle="Introduction" href="c_intro.dita">
+        <topicref href="r_enhancements_summary.dita"/>
+        <topicref href="r_formatting_controls.dita"/>
+    </chapter>
+    <chapter navtitle="Configuring">
+        <topicref href="t_installing.dita"/>
+        <topicref href="r_configuration_files.dita"/>
+        <topicref href="r_fo_processors.dita"/>
+    </chapter>
+</bookmap>

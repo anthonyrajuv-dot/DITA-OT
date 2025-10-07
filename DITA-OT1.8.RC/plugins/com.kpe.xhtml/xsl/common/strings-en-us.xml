@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This file is part of the DITA Open Toolkit project hosted on 
+ Sourceforge.net. See the accompanying license.txt file for 
+ applicable licenses.-->
+<!-- (c) Copyright IBM Corp. 2004, 2005 All Rights Reserved. -->
+
+<!-- NOTE TO TRANSLATORS:
+   When translating, you must change the xml:lang attribute of the <strings> element to the ISO codes for 
+   the target language and country.  
+   
+   Also, translate ONLY the text between > and < in the <str> elements.  Thus, in the line:
+   <str name="locator_sample">Sample Text</str>
+   You would translate the string "Sample Text", but NOT the string "locator_sample".   
+-->
+<strings xml:lang="en-us">        <!-- US English -->
+
+<!-- various labels (not author controlled) -->
+<str name="Home">Home</str>
+<str name="CustomerLogin">Customer login</str>
+<str name="Units_SI">Display SI Units</str> 
+<str name="Units_US">Display US Customary Units</str> 
+<str name="PDFs">View PDF</str>
+<str name="PDF_icon">images/pdficon_large.png</str>
+<str name="EPUBs">Download EPUB</str>
+<str name="EPUB_icon">images/epubicon_large.png</str>
+
+<!-- Breadcrumb separator.  -->
+<!-- Make sure the spaces appear on either side of the character. Do not use non-breaking 
+     spaces, because that would affect the responsive design. -->
+<str name="breadcrumb_separator"> > </str>
+   
+<!-- Navigation component strings and image files. -->
+   <str name="collapse_string">Click to collapse</str>   
+   <str name="expand_string">Click to expand</str>   
+   
+   
+<!-- Search form. -->
+<!-- This string appears in the search field. -->
+<str name="search">search</str>
+<!-- This is the Search button text. -->
+<str name="Search_button">Search</str>
+
+<str name="this_doc">In this document</str>
+<str name="all_docs">In all documents</str>
+   
+<!-- Previous and next -->
+<str name="prev_string">prev</str>   
+<str name="next_string">next</str>   
+<str name="sep_string"> | </str>   
+   
+<!-- Copyright -->
+<str name="copyright">Copyright © 2015 Scriptorium Publishing Services. All rights reserved.</str>
+
+<!-- Utility strings for changing case. -->
+<str name="alpha_uc">ABCDEFGHIJKLMNOPQRSTUVWXYZ</str>
+<str name="alpha_lc">abcdefghijklmnopqrstuvwxyz</str>
+   
+<!-- Text to introduce a list of child links on an HTML page. -->   
+<str name="child_link_intro">Section contents:</str>
+   
+<!-- Revision history strings. -->
+<str name="revision_history_title">Revision history</str>
+<str name="revision_history_table">Table of Revisions</str>
+<!-- These next four elements are used as column headers for the revision history table. -->    
+<str name="revision_history_date">Date</str>   
+<str name="revision_history_page">Page</str>   
+<str name="revision_history_changed">Changed</str>   
+<str name="revision_history_rev">Rev</str>   
+
+<!-- Images and icons: DO NOT TRANSLATE. -->   
+<!--   <str name="terminal_icon">./images/terminal.png</str>   -->
+<!--<str name="terminal_icon">./images/triangle_terminal.png</str>-->   
+<!--   <str name="collapsed_icon">./images/collapsed.png</str>   -->
+<!--<str name="collapsed_icon">./images/triangle_collapsed.png</str>-->   
+<!--   <str name="expanded_icon">./images/expanded.png</str>   -->
+<!--<str name="expanded_icon">./images/triangle_expanded.png</str>-->     
+
+<str name="Caution_note">images/Caution_Note.png</str>
+<str name="Warning_note">images/Warning_Note.png</str>
+<str name="Note_note">images/Note_Note.png</str>
+   
+
+
+</strings>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="nl-nl" lang="nl-nl">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="kpe-concept"/>
+<meta name="DC.Title" content="Portfolios with Options"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="caia_topic_00002_122"/>
+<meta name="DC.Language" content="nl-NL"/>
+<link rel="stylesheet" type="text/css" href="..%5Ccommonltr.css"/>
+<title>Portfolios with Options</title>
+</head>
+<body id="caia_topic_00002_122">
+
+<h1 class="title topictitle1"><strong class="ph b">Portfolios with Options</strong></h1>
+<div class="body conbody kpe-conceptBody"><p class="p">LO 30.6: Demonstrate knowledge of methods for controlling the risk of portfolios with options.</p>
+<p class="p">For example:</p>
+<ul class="ul"><li class="li">Describe how put-call parity can be applied to hedge a position.</li>
+<li class="li">Discuss how option sensitivities can be used to analyze and hedge a position or portfolio. </li>
+<li class="li">Discuss how options can be used as a bet on volatility.</li>
+</ul>
+<div class="section"><h2 class="title sectiontitle">Put-Call Parity and Hedging </h2><p class="p">The combination of a put, a call, and an underlying asset can create a hedge in the form of a riskless bond. This <strong class="ph b">put-call parity </strong>relationship is expressed in the following equation:</p>
+<div class="eqn-block ">put – call + stock = riskless bond</div><p class="p">That is, a long position in a put, a short position in a call, and a long position in an underlying stock removes risk. The long put removes the downside risk exposure from the long stock position. The short call gives up the profit from potential increases in the underlying stock. Assumptions include no dividend payments and options that may only be exercised at expiration (i.e., they are European options). Also, the expiration date and strike price must be the same for the put and the call. The result is a riskless cash flow equal to the strike price at expiration.</p>
+<p class="p">Why does this relationship hold? It holds due to the following potential scenarios:</p>
+<ul class="ul"><li class="li">If stock price &gt; exercise price, the short call is exercised, the put option is worthless and the stock is sold for the strike price.</li>
+<li class="li">If stock price &lt; exercise price, the long put is exercised, the call option is worthless and the stock is sold for the strike price.</li>
+<li class="li">If the stock price = exercise price, both options are worthless and the stock is sold for the strike price.</li>
+</ul>
+<p class="p">The bond is a riskless asset with a face value equal to the strike price of the options and a maturity date equal to the expiration date of the options.</p>
+</div>
+<div class="section"><h2 class="title sectiontitle">Using Option Sensitivities to Hedge</h2><p class="p">The <em class="ph i">Greeks</em> provide a way to measure the sensitivity of option values to quantitative factors, such as the change in the price of the underlying asset. A summary of the Greeks is as follows.</p>
+<ul class="ul"><li class="li"><strong class="ph b">Delta</strong> measures the sensitivity of the option’s theoretical value to a change in the price of the underlying asset.</li>
+<li class="li"><strong class="ph b">Gamma</strong> measures the rate of change in the delta for each one-point increase in the price of the underlying asset.</li>
+<li class="li"><strong class="ph b">Vega</strong> measures the sensitivity of the price of an option to changes in volatility.</li>
+</ul>
+<p class="p">The following figure summarizes the sensitivities assuming that strike prices and expirations dates are equal for puts and calls.</p>
+<div class="fig fignone"><span class="figcap">Figuur 1. Figure 1: Option Sensitivities</span></div>
+
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><tbody class="tbody"><tr class="row"><td class="entry" valign="top" width="15.560640732265446%"> </td>
+<td class="entry" valign="top" width="19.59382151029748%"><p class="p"><em class="ph i">+ Put</em></p>
+</td>
+<td class="entry" valign="top" width="19.751144164759726%"><p class="p"><em class="ph i">+ Call</em></p>
+</td>
+<td class="entry" valign="top" width="19.136155606407325%"><p class="p"><em class="ph i">+ Stock</em></p>
+</td>
+<td class="entry" valign="top" width="25.95823798627002%"><p class="p"><em class="ph i">+ Put – Call + Stock</em></p>
+</td>
+</tr>
+<tr class="row"><td class="entry" valign="top" width="15.560640732265446%"><p class="p">Delta</p>
+</td>
+<td class="entry" valign="top" width="19.59382151029748%"><p class="p"> – 1</p>
+</td>
+<td class="entry" valign="top" width="19.751144164759726%"><p class="p"></p>
+</td>
+<td class="entry" valign="top" width="19.136155606407325%"><p class="p">1</p>
+</td>
+<td class="entry" valign="top" width="25.95823798627002%"><p class="p">0</p>
+</td>
+</tr>
+<tr class="row"><td class="entry" valign="top" width="15.560640732265446%"><p class="p">Gamma</p>
+</td>
+<td class="entry" valign="top" width="19.59382151029748%"><p class="p"></p>
+</td>
+<td class="entry" valign="top" width="19.751144164759726%"><p class="p"></p>
+</td>
+<td class="entry" valign="top" width="19.136155606407325%"><p class="p">0</p>
+</td>
+<td class="entry" valign="top" width="25.95823798627002%"><p class="p">0</p>
+</td>
+</tr>
+<tr class="row"><td class="entry" valign="top" width="15.560640732265446%"><p class="p">Vega</p>
+</td>
+<td class="entry" valign="top" width="19.59382151029748%"><p class="p"></p>
+</td>
+<td class="entry" valign="top" width="19.751144164759726%"><p class="p"></p>
+</td>
+<td class="entry" valign="top" width="19.136155606407325%"><p class="p">0</p>
+</td>
+<td class="entry" valign="top" width="25.95823798627002%"><p class="p">0</p>
+</td>
+</tr>
+<tr class="row"><td class="entry" valign="top" width="15.560640732265446%"><p class="p">*Where  = delta of a call option,  = gamma of a call option,  = vega of a call option</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p">Note that gamma and vega are the same for puts and calls with identical strike prices and expiration dates because a long put and a short call must be gamma and vega neutral. The delta risk of puts and calls with identical strike prices and expiration dates have opposite signs and differ by one. Also note that the delta, gamma, and vega are zero in the above put-call parity example. Thus, for (put – call + stock), delta, gamma, and vega are zero (i.e., delta, gamma, and vega neutral).</p>
+</div>
+<div class="section"><h2 class="title sectiontitle">Delta Neutral Portfolios</h2><p class="p">A long call, short put position, or short call, long put position, is hedged with respect to gamma and vega risk. However, based on Figure 1, it is apparent that a long call, short put position will have a delta exposure of +1 and a long put, short call position will have a delta exposure of –1 (both positions will neutralize gamma and vega risk, however). To eliminate the delta risk, the trader would take either a long position in the underlying stock (to add delta = +1) or a short position in the underlying stock (to add delta = –1). This creates the delta neutral position represented by put-call parity.</p>
+<p class="p">If options do not have identical strike prices or expiration dates, traders can manage gamma and vega by taking long positions in calls or puts (buying gamma and/or vega) or taking short positions in calls or a puts (shorting gamma and/or vega).</p>
+</div>
+<div class="section"><h2 class="title sectiontitle">Options as Volatility Bets</h2><p class="p">Traders often bet on volatility and use the position in the underlying asset to hedge. They view the underlying asset as a slack variable. A <strong class="ph b">slack variable </strong>does not affect the value of an objective function (in this case the underlying asset does not directly contribute to alpha or affect gamma and vega) but can take on whatever value is necessary to allow for optimization. In this case, the position in the underlying asset protects the portfolio from directional movements in the market. In other words, the underlying asset controls the delta in a bet on volatility.</p>
+<p class="p">Traders take long positions in options to place directional bets on underlying assets. Options have limited downside risk as well as positive skew. They also provide leverage. This is attractive to sophisticated, aggressive traders who believe that the underlying assets are mispriced.</p>
+<p class="p">Traders use short positions in options when they perceive that volatility is mispriced in the market. Since the trader maintains a delta-neutral position, traders view the mispriced options as bets on volatility.</p>
+<div class="note sample note profnote"><span class="notetitle">sample:</span> <p class="p"><em class="ph i">Professor’s Note: Consider the use of options in placing bets on volatility. If volatility is overpriced, the option premium is too high. The trader sells the option, receiving the overvalued option premium. Because the trader maintains delta neutrality, he is able to generate alpha based solely on the mispriced call or put (i.e., the mispriced volatility).</em></p>
+</div>
+</div>
+</div>
+
+</body>
+</html>

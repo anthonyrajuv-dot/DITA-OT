@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Scriptorium XHTML creation.  -->
+
+<project name="kpe_xhtml" basedir="." default="kpe_xhtml">
+
+    <basename file="${args.input}" property="log.name" suffix=".ditamap"/>    
+
+    <!--<record name="${output.dir}${file.separator}${log.name}-log.txt" action="start" description="output.dir MUST exist first!"/>-->
+
+    <property name="kpe_xhtml.plugin.dir" value="${dita.plugin.com.kpe.xhtml.dir}"/>
+
+<!--    <property name="css.source.dir"
+        value="${kpe_xhtml.plugin.dir}${file.separator}resource${file.separator}css"/>-->
+
+    <property name="includes.source.dir"
+        value="${kpe_xhtml.plugin.dir}${file.separator}xsl${file.separator}xslhtml${file.separator}includes"/>
+
+<!--    <property name="args.copycss" value="yes"
+        description="args.copycss = whether to copy the CSS file to the output directory."/>
+    <property name="args.css" value="${css.source.dir}${file.separator}kpe_style.css"
+        description="args.css = where to find the CSS file on the local file system."/>
+    <property name="args.css.file" value="kpe_style.css"/>
+    <property name="args.csspath" value="css"
+        description="args.csspath = the path relative to the output directory; in
+        this case, the CSS will be in out/css"/>-->
+
+    <!-- [SP] 8-Mar-2013: Ensure that xref links use the figure and table titles. -->
+      <property name="args.figurelink.style" value="TITLE"/>
+      <property name="args.tablelink.style" value="TITLE"/>
+
+
+    <available property="out.dir" file="${output.dir}"/>
+    
+    <property file="${kpe.temp.dir}${file.separator}dita.list"/>
+
+    <!--<property name="clean.temp" value="no"/>-->
+    <property name="dita.dir" value="${env.DITA_DIR}"/>
+
+    <property name="output.dir" value="${output.dir}"/>
+
+    <!-- Some handy file extensions. -->
+    <property name="js.ext" value=".js"/>
+    <property name="xml.ext" value=".xml"/>
+    <property name="text.ext" value=".txt"/>
+    <property name="json.ext" value=".js"
+        description="This was .json, but it seems some web servers don't like the .json extension."/>
+    <property name="html.ext" value=".html"/>
+
+    <property name="args.outext" value=".html"/>
+    
+    <!-- [SP] Force XSL to substitute .png extensions for .svg images. --> 
+    <property name="force.pngs" value="true"/>         
+    
+    <target name="check.outdir" depends="dir.check, outdir.missing" if="dir.exists">
+        <!--<echo>${output.dir} exists</echo>-->
+        <record name="${output.dir}${file.separator}${log.name}-log.txt" action="start" description="output.dir MUST exist first!"/>
+    </target>
+    
+    <target name="outdir.missing" depends="dir.check" unless="dir.exists">
+        <!--<echo>${output.dir} missing</echo>-->
+        <mkdir dir="${output.dir}"/>
+        <record name="${output.dir}${file.separator}${log.name}-log.txt" action="start" description="output.dir MUST exist first!"/>
+    </target>
+    
+    <target name="dir.check">
+        <condition property="dir.exists">
+            <available file="${output.dir}" type="dir"/>
+        </condition>
+    </target>
+    
+    <!--<target name="start.logger">
+        <record name="${output.dir}${file.separator}${log.name}-log.txt" action="start" description="output.dir MUST exist first!"/>
+    </target>-->
+    
+
+    <target name="dita2kpe_xhtml"
+        depends="check.outdir, clean-output-dir, kpe.build.xhtml, copy.resources, copy.pngs, clean-up">
+        <record name="${output.dir}${file.separator}${log.name}-log.txt" action="stop"/>
+
+    </target>
+
+    <target name="kpe.build.xhtml"
+        depends="build-init, preprocess, kpe.locale.props, dita.map.xhtml, copy-revflag, 
+        copy-css, kpe.topic.list, dita.topics.xhtml, dita.inner.topics.xhtml, dita.outer.topics.xhtml"
+        description="Largely stolen from dita2xhtml. Mostly there to insert kpe.topic.list, which we need sometimes to check xrefs.">         
+    </target>
+
+    <target name="kpe.topic.list" unless="noMap" description="Build the topic_list.xml file.">
+        <echo>Generating topic_list.xml with BASE_DIR = ${dita.temp.dir}${file.separator}</echo>
+        <xslt processor="trax" basedir="${dita.temp.dir}" destdir="${dita.temp.dir}" force="true"
+            in="${dita.temp.dir}${file.separator}${user.input.file}"
+            out="${dita.temp.dir}${file.separator}topic_list.xml"
+            style="${kpe_xhtml.plugin.dir}${file.separator}xsl${file.separator}map2topic_list.xsl">
+            <param name="BASE_DIR" expression="${dita.temp.dir}${file.separator}"/>
+            <param name="TOPICS_DIR" expression="${user.input.file}"/>
+            <param name="file.separator" expression="${file.separator}"/>
+
+        </xslt>
+    </target>
+
+    <target name="kpe.locale.props"
+        description="Load the local language strings into properties.">
+        <echo>Generating locale.list.xml file.</echo>
+        <xslt processor="trax" basedir="${dita.temp.dir}" destdir="${dita.temp.dir}" force="true"
+            in="${dita.temp.dir}${file.separator}${user.input.file}"
+            out="${dita.temp.dir}${file.separator}locale.list.xml"
+            style="${kpe_xhtml.plugin.dir}${file.separator}xsl${file.separator}map2locale_list.xsl">
+            <param name="BASE_DIR" expression="${dita.temp.dir}${file.separator}"/>
+        </xslt>
+        <xmlproperty file="${dita.temp.dir}${file.separator}locale.list.xml"
+            description="Make the locale properties available."/>
+    </target>
+
+    <target name="clean-output-dir" if="out.dir">
+        <delete includeemptydirs="true">
+            <fileset dir="${output.dir}">
+                <include name="**/*"/>
+                <exclude name="*.xml"/>
+                <exclude name="*.dita"/>
+                <exclude name="*.ditamap"/>
+                <exclude name="${log.name}-log.txt"/>
+            </fileset>
+        </delete>        
+    </target>
+
+    <!--<target name="copy.includes">
+        <echo>Copying HTML includes...</echo>
+        <copy todir="${output.dir}" overwrite="yes">
+            <fileset
+                dir="${kpe_xhtml.plugin.dir}${file.separator}xsl${file.separator}xslhtml${file.separator}includes"
+            />
+        </copy>
+        <echo>done.</echo>
+    </target>-->
+
+    <target name="copy.resources">
+        <echo>Copying CSS and images...</echo>
+        <copy todir="${output.dir}" overwrite="true">
+            <fileset dir="${kpe_xhtml.plugin.dir}${file.separator}resource${file.separator}">
+                <exclude name="**/*.js"/>
+            </fileset>
+        </copy>
+
+        <echo>Copying JavaScript...</echo>
+        <copy todir="${output.dir}" overwrite="true" encoding="UTF-8" outputencoding="UTF-8"
+            filtering="yes">
+            <fileset dir="${kpe_xhtml.plugin.dir}${file.separator}resource${file.separator}">
+                <include name="**/*.js"/>
+                <include name="nav_bar.html"/>
+            </fileset>
+            <filterchain>
+                <expandproperties/>
+            </filterchain>
+        </copy>
+        
+        <property name="toc.name" value="toc.html"/>
+        
+        <echo>Copying index.shtml as ${toc.name}...</echo>
+        <copy file="${output.dir}${file.separator}index.shtml" 
+            tofile="${output.dir}${file.separator}${toc.name}" overwrite="true">
+            <filterchain>
+                <headfilter lines="-1" skip="4"/>
+                
+            </filterchain>
+        </copy>
+        <echo>Replacing path in TOC html file...</echo>
+<!--        <replace file="${output.dir}${file.separator}toc.html" token="&lt;span class=&quot;toc_branch&quot;&gt; &lt;span&gt;&lt;a href=&quot;" 
+            value="&lt;span class=&quot;toc_branch&quot;&gt; &lt;span&gt;&lt;a href=&quot;/libraries/techpubs/${args.bookname}/"/>        -->
+        <replace file="${output.dir}${file.separator}${toc.name}" 
+            token="span&gt;&lt;a href=&quot;" 
+            value="span&gt;&lt;a href=&quot;/libraries/techpubs/${args.bookname}/"/>        
+
+        <property name="landing.page.list" value="landing_page_list.xml"/>
+        <echo>Generating ${landing.page.list} file.</echo>
+        <xslt processor="trax" basedir="${dita.temp.dir}" destdir="${dita.temp.dir}" force="true"
+            in="${dita.temp.dir}${file.separator}${user.input.file}"
+            out="${dita.temp.dir}${file.separator}${landing.page.list}"
+            style="${kpe_xhtml.plugin.dir}${file.separator}xsl${file.separator}map2landing_property.xsl">
+            <param name="bookmap_name" expression="${user.input.file}"/>
+        </xslt>
+        <xmlproperty file="${dita.temp.dir}${file.separator}${landing.page.list}"
+            description="Make the landing.page property available."/>
+        <echo>landing.page is ${landing.page}</echo>
+
+        <echo>Copying index.html, pointing to the new landing page.</echo>
+        <copy todir="${output.dir}" overwrite="true">
+            <fileset file="${kpe_xhtml.plugin.dir}${file.separator}resource${file.separator}html${file.separator}index.html"/>
+            <filterchain>
+                <replacetokens>
+                  <token key="path" value="${landing.page}"/>
+                </replacetokens>
+            </filterchain>
+        </copy>
+
+    </target>
+    <target name="copy.pngs" if="${force.pngs}">
+        <echo>Copying PNG "parallel" files. </echo>
+        <!-- Create a new list that lists the SVG files. -->
+        <copy file="${dita.temp.dir}${file.separator}image.list"
+            tofile="${dita.temp.dir}${file.separator}png.list"
+            description="Create a list of SVG images by copying and filtering the image list.">
+            <filterchain>
+                <tokenfilter>
+                    <replaceregex pattern="\.svg" replace=".png" flags="ig"/>
+                    <!--                     <replaceregex pattern="\.png" replace=".svg" flags="ig"/>-->
+                </tokenfilter>
+            </filterchain>
+        </copy>
+        
+        <!-- Copy the .png images to the output folder.
+             The image list includes the folder details.
+        -->
+        <copy todir="${output.dir}" overwrite="true" failonerror="false"
+            description="The standard OT only copies
+            image files that are referenced in the source DITA files. However, we want to provide PNG images.">
+            <fileset dir="${user.input.dir}"
+                includesfile="${dita.temp.dir}${file.separator}png.list"/>
+        </copy>
+        
+    </target>
+
+    <target name="clean-up">
+        <echo>Cleaning up unneeded files and fixing CRLFs.</echo>
+        <delete>
+            <fileset dir="${output.dir}" includes="**/dita*"/>
+            <!--<fileset dir="${output.dir}" includes="**/*_index.xml"/>-->
+            <!--<fileset dir="${output.dir}" includes="**/${args.xhtml.search}.xml"/>-->
+            <!--<fileset dir="${output.dir}" includes="index_*.html, footer.htm, header.htm"/>-->
+        </delete>
+        <fixcrlf srcdir="${output.dir}" includes="**/*.html" encoding="utf-8" eol="crlf"/>
+
+        <echo>Fixing unicode characters..... </echo>
+
+        <echo>Fixing empty namespaces...</echo>
+        <replace dir="${output.dir}" includes="**/*.shtml" token=" xmlns=&quot;&quot;" value=""
+            encoding="utf-8" description="Filter empty namespaces." summary="yes"/>
+        <echo>Fixing non-breaking space...</echo>
+        <replace dir="${output.dir}"
+             encoding="UTF-8"
+             token='&#160;' 
+             value='&amp;nbsp;' summary="yes">
+             <include name="**/*.shtml"/>
+        </replace>
+        <echo>Fixing degrees...</echo>
+        <replace dir="${output.dir}"
+             encoding="UTF-8"
+             token='&#176;'
+             value='&amp;deg;' summary="yes">
+             <include name="**/*.shtml"/>
+        </replace>
+        <echo>Fixing em-dashes...</echo>
+        <replace dir="${output.dir}"
+             encoding="UTF-8"
+             token='&#8212;'
+             value='&amp;mdash;' summary="yes">
+             <include name="**/*.shtml"/>
+        </replace>
+        <echo>Fixing en-dashes...</echo>
+        <replace dir="${output.dir}"
+             encoding="UTF-8"
+             token='&#8211;'
+             value='&amp;ndash;' summary="yes">
+             <include name="**/*.shtml"/>
+        </replace>
+        <echo>Fixing tm...</echo>
+        <replace dir="${output.dir}"
+             encoding="UTF-8"
+             token='™'
+             value='&amp;trade;' summary="yes">
+             <include name="**/*.shtml"/>
+        </replace>
+        <echo>Fixing open quote...</echo>
+        <replace dir="${output.dir}"
+             encoding="UTF-8"
+             token='&#8220;'
+             value='&amp;ldquo;' summary="yes">
+             <include name="**/*.shtml"/>
+        </replace>
+        <echo>Fixing close quote...</echo>
+        <replace dir="${output.dir}"
+             encoding="UTF-8"
+             token='&#8221;'
+             value='&amp;rdquo;' summary="yes">
+             <include name="**/*.shtml"/>
+        </replace>
+        <echo>Fixing left single quote...</echo>
+        <replace dir="${output.dir}"
+             encoding="UTF-8"
+             token='&#8217;'
+             value='&amp;lsquo;' summary="yes">
+             <include name="**/*.shtml"/>
+        </replace>
+        <echo>Fixing right single quote...</echo>
+        <replace dir="${output.dir}"
+             encoding="UTF-8"
+             token='&#8219;'
+             value='&amp;rsquo;' summary="yes">
+             <include name="**/*.shtml"/>
+        </replace>
+    </target>
+
+</project>

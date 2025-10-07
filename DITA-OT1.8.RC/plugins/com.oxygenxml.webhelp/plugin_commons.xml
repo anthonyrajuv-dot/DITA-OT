@@ -1,0 +1,16 @@
+<feature extension="package.support.name" value="Oxygen XML Editor Support"/>
+<feature extension="package.support.email" value="support@oxygenxml.com"/>
+<feature extension="package.version" value="17.1"/>
+
+<feature extension="dita.conductor.transtype.check" value="webhelp" type="txt"/>
+<feature extension="dita.conductor.transtype.check" value="webhelp-mobile" type="txt"/>
+<feature extension="dita.conductor.transtype.check" value="webhelp-feedback" type="txt"/>
+<feature extension="dita.conductor.transtype.check" value="webhelp-feedback-mobile" type="txt"/>
+
+<feature extension="depend.preprocess.move-meta-entries.pre" value="add-links"/>
+<feature extension="dita.conductor.target.relative" value="integrator.xml" type="file"/>
+<feature extension="dita.xsl.maplink" value="xsl/dita/maplinkNextPrevFullIteration.xsl" type="file"/>
+<feature extension="dita.preprocess.topicpull.param" value="insertParameters.xml" type="file"/>
+<feature extension="dita.conductor.html.param" value="insertParameters.xml" type="file"/>
+<feature extension="dita.conductor.xhtml.param" value="insertParameters.xml" type="file"/>
+<feature extension="dita.xsl.strings" file="oxygen-webhelp/resources/localization/strings.xml"/>

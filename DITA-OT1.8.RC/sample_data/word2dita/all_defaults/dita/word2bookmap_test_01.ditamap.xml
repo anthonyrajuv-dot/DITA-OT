@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE bookmap
+  PUBLIC "-//OASIS//DTD DITA BookMap//EN" "bookmap.dtd">
+<bookmap xtrc="/w:document/w:body[1]/w:p[1]" xml:lang="nl-NL"><title xtrc="/w:document/w:body[1]/w:p[1]" xtrf="file:/Users/ekimber/workspace/dita4publishers_0.9.18/sample_data/word2dita/all_defaults/word/temp/temp20120108082115675/word2bookmap_test_01/word/document.xml">Publication Title</title><chapter xtrc="/w:document/w:body[1]/w:p[8]" href="topics/topic_1.dita"><topicref xtrc="/w:document/w:body[1]/w:p[10]" href="topics/topic_1_1.dita"><topicref xtrc="/w:document/w:body[1]/w:p[12]" href="topics/topic_1_1_1.dita"><topicref xtrc="/w:document/w:body[1]/w:p[14]" href="topics/topic_1_1_1_1.dita"/></topicref></topicref></chapter><chapter xtrc="/w:document/w:body[1]/w:p[16]" href="topics/topic_2.dita"/><chapter xtrc="/w:document/w:body[1]/w:p[35]" href="topics/topic_3.dita"/></bookmap>

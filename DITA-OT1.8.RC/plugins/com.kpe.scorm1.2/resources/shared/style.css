@@ -1,0 +1,315 @@
+﻿@import url("//cloud.typography.com/6333174/784588/css/fonts.css");
+
+body 
+{
+	/* margin-left:20px; */
+}
+p,li,th,td, *
+{
+	/* font-family:verdana,helvetica,arial,sans-serif; */
+	font-family: 'Gotham SSm 4r', 'Gotham SSm A', 'Gotham SSm B';
+	font-size:12px;
+	font-weight:400;
+	font-style:normal;
+	line-height: 18px;
+	color: #333;
+}
+strong,b
+{
+	font-weight:700;
+}
+i,em 
+{
+	font-style:italic;
+}
+u
+{
+	text-decoration: underline;
+}
+img#golfimg
+{
+	float:right;
+	width:300px;
+	margin-left: 10px;
+	margin-right: 10px;
+	border: solid 1px Black;
+}
+h1, h2, h3 {
+  color: #111;
+  /* font-family: Georgia; */
+  font-family: 'Gotham SSm 7r', 'Gotham SSm A', 'Gotham SSm B'; 
+  font-weight: 700;
+}
+h1 {
+  font-size: 28px;
+  font-weight: 400;
+}
+h1#coursetitle {
+  display: table-cell;
+  margin: 0;
+  padding: 10px 20px 10px 10px;
+  height: 50px;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 24px;
+  vertical-align: middle;
+}
+h2 {
+  font-size: 20px;
+}
+h3 {
+  font-size: 16px;
+}
+div#attribution
+{
+	background-color: #F9F9F9;
+	border: double 3px #000000;
+	padding: 5px 5px 5px 5px;
+	margin: 20px 40px;
+	/* font-family: Georgia,Garamond; */
+	font-size: 10pt;
+	width:auto;
+	float:left;
+	
+}
+div.salespitch
+{
+	border-style:solid;
+	border-width: 1px;
+	border-color:#FFFFFF;
+	padding: 5px 5px 5px 5px;
+	margin: 20px 40px;
+	color: #FFFFFF;
+	/* font-family: verdana,helvetica,arial,sans-serif; */
+	font-size: 1em;
+	font-weight:bold;
+	width:400px;
+	float:left;
+	background: #DFE5EA url(background.jpg) repeat-x scroll left top;
+	
+}
+.salespitch A:link {text-decoration:underline;color: #C68D04;}
+.salespitch A:visited {text-decoration: underline;color: #C68D04;}
+.salespitch A:active {text-decoration: underline;color: #C68D04;}
+.salespitch A:hover {text-decoration: underline;color: #C68D04;}
+
+
+blockquote
+{
+	font-family:Courier,verdana,helvetica,arial,sans-serif;
+	font-size:10pt;
+}
+table 
+{
+	background:#F9F9F9;
+	border: 1px #AAAAAA solid;
+	border-collapse: collapse;
+	border-spacing: 0px;
+	margin-left: 50px;
+
+}
+
+th
+{
+	background-color: #dfdfdf;
+	text-align:center;
+	border: solid 1px #AAAAAA;
+	font-weight:bold;
+	padding: 3px 3px 3px 3px;
+}
+td
+{
+	text-align:center;
+	border: solid 1px #AAAAAA;
+	padding: 3px 3px 3px 3px;
+}
+td.rowheader
+{
+	background-color: #dfdfdf;
+	border: solid 1px #AAAAAA;
+}
+
+div.question
+{
+	/* font-family:verdana,helvetica,arial,sans-serif; */
+	font-size:12px;
+	font-weight:400;
+	font-style:normal;
+	margin-bottom: 20px;
+}
+div.answer
+{
+	/* font-family:verdana,helvetica,arial,sans-serif; */
+	font-size:12px;
+	font-weight:400;
+	font-style:normal;
+	margin-left: 30px;
+}
+div.correctAnswer
+{
+	/* font-family:verdana,helvetica,arial,sans-serif; */
+	font-size:12px;
+	font-weight:400;
+	font-style:normal;
+	margin-left: 30px;
+}
+
+/* [SP] 2016-05-11 sfb: Adding styles for TOC. */
+
+ul.toc {
+    list-style-type: none;
+    padding-inline-start: 0px;
+    /* white-space: nowrap; */
+}
+
+ul.toc ul.toc {
+    list-style-type: none;
+    padding-inline-start: 20px;
+    /* white-space: nowrap; */
+}
+
+a.toc {
+    text-decoration: none;
+    color: #005DAA;
+    pointer-events: auto;
+    -webkit-transition: all .5s ease-in-out;
+	-moz-transition: all .5s ease-in-out;
+	transition: all .5s ease-in-out;
+    /* This line is required by IE11 to make pointer-events work (stupid thing). */
+    /* display: inline; */
+    /* position: relative; */
+	}
+	a.toc:hover {
+		color: #111;
+		}
+
+a.toc_unavailable {
+    text-decoration: none;
+    color: #888888;
+    pointer-events: none;
+    /* This line is required by IE11 to make pointer-events work (stupid thing). */
+    /* display: inline-block; */
+    /* position: relative; */
+}
+
+/* TOC ADDITIONS */
+
+.section_cont > .toc {
+	padding: 0;
+	}
+	.section_cont > .toc > li {
+		margin-top: 15px;
+		}
+		.section_cont > .toc > li:first-child {
+			margin-top: 0;
+			}
+.section_cont > .toc > li {
+	font-weight: bold;
+	}
+.section_cont > .toc ul.toc {
+	width: 180px;
+	padding-left: 10px;
+	border: 0px solid #CCC;
+	}
+.section_cont > .toc ul.toc li {
+	margin: 5px 0;
+	line-height: 14px;
+	}
+	.section_cont > .toc ul.toc li::before {
+		content: '\203a\00a0';
+		margin-left: -8px;
+		color: #555;
+		}
+	.section_cont > .toc ul.toc li a {
+		font-size: 10px;
+		line-height: 14px;
+		}
+
+/* MAIN STRUCTURE */
+
+#column1 {
+	position: fixed;
+	top: 80px;
+	left: 0;
+	bottom: 45px;
+	width: 225px;
+	border-right: 1px solid #CCC;
+	overflow: hidden
+	}
+#column2 {
+	position: fixed;
+	top: 80px;
+	left: 240px;
+	bottom: 50px;
+	right: 5px;
+	border: 0 solid #666;
+
+	}
+#tocFrame {
+	width: 100%;
+	height: 100%;
+	}
+#contentFrame {
+	width: 100%;
+	height: 100%;
+}
+	
+#headerDiv {
+	position: fixed;
+	display: table-cell;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 70px;
+	background: #EEE;
+	border-top: 10px solid #CDCDCD;
+	vertical-align: center;
+	}
+	#headerDiv img {
+		float: right;
+		}
+#navDiv {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 40px;
+	background: #EEE;
+	border-bottom: 5px solid #BBB;
+	text-align: center;
+	}
+	#navDiv input[type='button'] {
+		margin: 5px 5px 0;
+		padding: 0 20px;
+		height: 30px;
+		border: 0;
+		-webkit-border-radius: 15px;
+		-moz-border-radius: 15px;
+		border-radius: 15px;
+		background: #2285d6;
+		text-transform: uppercase;
+		font-weight: 700;
+		color: #FFF;
+		-webkit-transition: all .5s ease-in-out;
+		-moz-transition: all .5s ease-in-out;
+		transition: all .5s ease-in-out;
+		}
+		#navDiv input[type='button']:hover:not(:disabled) {
+			background: #005DAA;
+			cursor: pointer;
+			}
+input:matches([type="button"], [type="submit"], [type="reset"]):disabled, button:disabled, select:disabled {
+	/* background: silver !important; */
+	/* color: gray; */
+	opacity: 0.4;
+	}
+	
+iframe {
+	border: 0;
+	}
+.coursetitle-ui {
+	display: table;
+	height: 70px;
+	}
+
+/* EOF */

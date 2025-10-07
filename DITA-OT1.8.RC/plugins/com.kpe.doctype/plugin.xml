@@ -1,0 +1,7 @@
+<plugin id="com.kpe.doctype">
+    <feature extension="dita.specialization.catalog.relative" value="catalog.xml" type="file"/>
+    <!-- 
+    <require plugin="org.oasis-open.dita.mathml.doctypes"/>
+    <require plugin="learning2Domain"/> -->
+</plugin>
+

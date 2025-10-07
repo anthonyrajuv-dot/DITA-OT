@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="nl-nl" lang="nl-nl">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="kpe-concept"/>
+<meta name="DC.Title" content="Modeling Changing Correlation"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="caia_topic_00001_83"/>
+<meta name="DC.Language" content="nl-NL"/>
+<link rel="stylesheet" type="text/css" href="..%5Ccommonltr.css"/>
+<title>Modeling Changing Correlation</title>
+</head>
+<body id="caia_topic_00001_83">
+
+<h1 class="title topictitle1"><strong class="ph b">Modeling Changing Correlation</strong></h1>
+<div class="body conbody kpe-conceptBody"><p class="p"><strong class="ph b">LO 9.4: Demonstrate knowledge of methods for modeling changing correlation.</strong></p>
+<p class="p"><strong class="ph b">For example:</strong></p>
+<ul class="ul"><li class="li"><strong class="ph b">Recognize and describe the concept of conditional correlation.</strong></li>
+<li class="li"><strong class="ph b">Describe the rolling window approach to modeling changing correlation.</strong></li>
+</ul>
+<p class="p">In many cases, alternative investment returns are <strong class="ph b">nonstationary</strong>, implying that key parameters such as means, variances, and/or correlations are not constant over time. <strong class="ph b">Conditional correlation </strong>is the correlation between two variables conditional on a specified set of circumstances (e.g., the correlation between the returns of two assets during up-markets only). Conditional correlations help explain the nature of nonlinear relationships, and are analogous to the dummy variable method used in dynamic risk exposure models discussed previously. </p>
+<p class="p">With regard to funds and markets, a <strong class="ph b">positive conditional correlation </strong>refers to situations where the correlation between a fund’s returns is the market’s returns are more positive during up-markets than during down-markets. A <strong class="ph b">negative conditional correlation </strong>refers to situations where the correlation is lower during up-markets than during down-markets. A positive conditional correlation is indicative of market timing skill. A negative conditional correlation shows that the fund is more exposed to down-markets than to up-markets, which also shows that the fund is poorly diversified.</p>
+<div class="note sample note"><span class="notetitle">sample:</span> <p class="p label"><strong class="ph b">Example: Nonstationarity and conditional correlation</strong></p>
+<p class="p">The following table provides summary statistics for quarterly returns on the S&amp;P 500 market index and three hedge funds, A, B, and C. <strong class="ph b">Explain</strong> how the data demonstrates conditional correlations.</p>
+</div>
+
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><tbody class="tbody"><tr class="row"><td class="entry" valign="top" width="19.08411214953271%"><div class="note sample note"><span class="notetitle">sample:</span> <p class="p">Periods When the Excess Return on the S&amp;P 500 is Positive</p>
+</div>
+</td>
+</tr>
+<tr class="row"><td class="entry" valign="top" width="19.08411214953271%"><div class="note sample note"><span class="notetitle">sample:</span> <p class="p">Asset</p>
+</div>
+</td>
+<td class="entry" valign="top" width="22.299065420560748%"><div class="note sample note"><span class="notetitle">sample:</span> <p class="p">Mean</p>
+</div>
+</td>
+<td class="entry" valign="top" width="25.065420560747665%"><div class="note sample note"><span class="notetitle">sample:</span> <p class="p">Variance</p>
+</div>
+</td>
+<td class="entry" valign="top" width="33.55140186915888%"><div class="note sample note"><span class="notetitle">sample:</span> <p class="p">Correlation with Market Index</p>
+</div>
+</td>
+</tr>
+<tr class="row"><td class="entry" valign="top" width="19.08411214953271%"><div class="note sample note"><span class="notetitle">sample:</span> <p class="p">S&amp;P 500</p>
+</div>
+</td>
+<td class="entry" valign="top" width="22.299065420560748%"><div class="note sample note"><span class="notetitle">sample:</span> <p class="p">0.03</p>
+</div>
+</td>
+<td class="entry" valign="top" width="25.065420560747665%"><div class="note sample note"><span class="notetitle">sample:</span> <p class="p">0.01</p>
+</div>
+</td>
+<td class="entry" valign="top" width="33.55140186915888%"><div class="note sample note"><span class="notetitle">sample:</span> <p class="p">1.00</p>
+</div>
+</td>
+</tr>
+<tr class="row"><td class="entry" valign="top" width="19.08411214953271%"><div class="note sample note"><span class="notetitle">sample:</span> <p class="p">Fund A</p>
+</div>
+</td>
+<td class="entry" valign="top" width="22.299065420560748%"><div class="note sample note"><span class="notetitle">sample:</span> <p class="p">0.06</p>
+</div>
+</td>
+<td class="entry" valign="top" width="25.065420560747665%"><div class="note sample note"><span class="notetitle">sample:</span> <p class="p">0.05</p>
+</div>
+</td>
+<td class="entry" valign="top" width="33.55140186915888%"><div class="note sample note"><span class="notetitle">sample:</span> <p class="p">0.90</p>
+</div>
+</td>
+</tr>
+<tr class="row"><td class="entry" valign="top" width="19.08411214953271%"><div class="note sample note"><span class="notetitle">sample:</span> <p class="p">Fund B</p>
+</div>
+</td>
+<td class="entry" valign="top" width="22.299065420560748%"><div class="note sample note"><span class="notetitle">sample:</span> <p class="p">0.01</p>
+</div>
+</td>
+<td class="entry" valign="top" width="25.065420560747665%"><div class="note sample note"><span class="notetitle">sample:</span> <p class="p">0.02</p>
+</div>
+</td>
+<td class="entry" valign="top" width="33.55140186915888%"><div class="note sample note"><span class="notetitle">sample:</span> <p class="p">0.40</p>
+</div>
+</td>
+</tr>
+<tr class="row"><td class="entry" valign="top" width="19.08411214953271%"><div class="note sample note"><span class="notetitle">sample:</span> <p class="p">Fund C</p>
+</div>
+</td>
+<td class="entry" valign="top" width="22.299065420560748%"><div class="note sample note"><span class="notetitle">sample:</span> <p class="p">0.04</p>
+</div>
+</td>
+<td class="entry" valign="top" width="25.065420560747665%"><div class="note sample note"><span class="notetitle">sample:</span> <p class="p">0.04</p>
+</div>
+</td>
+<td class="entry" valign="top" width="33.55140186915888%"><div class="note sample note"><span class="notetitle">sample:</span> <p class="p">0.40</p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="note sample note"><span class="notetitle">sample:</span> </div>
+
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><tbody class="tbody"><tr class="row"><td class="entry" valign="top" width="19.08411214953271%"><div class="note sample note"><span class="notetitle">sample:</span> <p class="p">Periods When the Excess Return on the S&amp;P 500 is Negative</p>
+</div>
+</td>
+</tr>
+<tr class="row"><td class="entry" valign="top" width="19.08411214953271%"><div class="note sample note"><span class="notetitle">sample:</span> <p class="p">Asset</p>
+</div>
+</td>
+<td class="entry" valign="top" width="22.299065420560748%"><div class="note sample note"><span class="notetitle">sample:</span> <p class="p">Mean</p>
+</div>
+</td>
+<td class="entry" valign="top" width="25.065420560747665%"><div class="note sample note"><span class="notetitle">sample:</span> <p class="p">Variance</p>
+</div>
+</td>
+<td class="entry" valign="top" width="33.55140186915888%"><div class="note sample note"><span class="notetitle">sample:</span> <p class="p">Correlation with Market Index</p>
+</div>
+</td>
+</tr>
+<tr class="row"><td class="entry" valign="top" width="19.08411214953271%"><div class="note sample note"><span class="notetitle">sample:</span> <p class="p">S&amp;P 500</p>
+</div>
+</td>
+<td class="entry" valign="top" width="22.299065420560748%"><div class="note sample note"><span class="notetitle">sample:</span> <p class="p">–0.02</p>
+</div>
+</td>
+<td class="entry" valign="top" width="25.065420560747665%"><div class="note sample note"><span class="notetitle">sample:</span> <p class="p">0.01</p>
+</div>
+</td>
+<td class="entry" valign="top" width="33.55140186915888%"><div class="note sample note"><span class="notetitle">sample:</span> <p class="p">1.00</p>
+</div>
+</td>
+</tr>
+<tr class="row"><td class="entry" valign="top" width="19.08411214953271%"><div class="note sample note"><span class="notetitle">sample:</span> <p class="p">Fund A</p>
+</div>
+</td>
+<td class="entry" valign="top" width="22.299065420560748%"><div class="note sample note"><span class="notetitle">sample:</span> <p class="p">–0.03</p>
+</div>
+</td>
+<td class="entry" valign="top" width="25.065420560747665%"><div class="note sample note"><span class="notetitle">sample:</span> <p class="p">0.10</p>
+</div>
+</td>
+<td class="entry" valign="top" width="33.55140186915888%"><div class="note sample note"><span class="notetitle">sample:</span> <p class="p">0.45</p>
+</div>
+</td>
+</tr>
+<tr class="row"><td class="entry" valign="top" width="19.08411214953271%"><div class="note sample note"><span class="notetitle">sample:</span> <p class="p">Fund B</p>
+</div>
+</td>
+<td class="entry" valign="top" width="22.299065420560748%"><div class="note sample note"><span class="notetitle">sample:</span> <p class="p">–0.01</p>
+</div>
+</td>
+<td class="entry" valign="top" width="25.065420560747665%"><div class="note sample note"><span class="notetitle">sample:</span> <p class="p">0.02</p>
+</div>
+</td>
+<td class="entry" valign="top" width="33.55140186915888%"><div class="note sample note"><span class="notetitle">sample:</span> <p class="p">0.40</p>
+</div>
+</td>
+</tr>
+<tr class="row"><td class="entry" valign="top" width="19.08411214953271%"><div class="note sample note"><span class="notetitle">sample:</span> <p class="p">Fund C</p>
+</div>
+</td>
+<td class="entry" valign="top" width="22.299065420560748%"><div class="note sample note"><span class="notetitle">sample:</span> <p class="p">–0.04</p>
+</div>
+</td>
+<td class="entry" valign="top" width="25.065420560747665%"><div class="note sample note"><span class="notetitle">sample:</span> <p class="p">0.06</p>
+</div>
+</td>
+<td class="entry" valign="top" width="33.55140186915888%"><div class="note sample note"><span class="notetitle">sample:</span> <p class="p">0.80</p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="note sample note"><span class="notetitle">sample:</span> <p class="p"><strong class="ph b">Answer</strong>:</p>
+<p class="p">The data show that the correlation for Fund A changes over time. The conditional correlations for Fund A and the S&amp;P 500 equal 0.90 and 0.45 during up-markets and down-markets, respectively. In contrast, the correlations are not conditional on the market circumstances for Fund B. The conditional correlations between the returns for Fund B and the S&amp;P 500 equal 0.40, regardless of market condition. </p>
+<p class="p">Fund A is an example of positive conditional correlation—its             correlation with the S&amp;P 500 is higher during up-markets             than during down-markets. Fund C is an example of negative             conditional correlation—its correlation with the S&amp;P 500 is             higher during down-markets than during up-markets.</p>
+</div>
+<p class="p">Time-varying correlations can be derived based on a <strong class="ph b">rolling window analysis</strong>, in which a moving window of time is used to derive periodic correlations. For example, correlation sample A is calculated over January 2010 through December 2014, correlation sample B is calculated over February 2010 through January 2015, correlation sample C is calculated over March 2010 through February 2015, etc. </p>
+<p class="p">Time-varying regression estimates also can be derived using a rolling window approach. For instance, using a 120-month dataset, and 30-month rolling window regressions, a total of 91 regressions can be conducted (regression 1 spans months 1–30, regression 2 spans months 2–31, and so forth, until the last regression is run which spans months 91–120). The 91 regressions produce 91 estimates of the intercept and 91 estimates of each slope. These 91 regressions are not, however, independent statistical tests as they use overlapping data. Only four statistically independent 30 month regressions could be performed with 120 months of data (months 1–30, 31–60, 61–90, 91–120).</p>
+<p class="p">The dynamic nature of the risk factor exposures of the fund can be assessed by examining the slope estimates over time. Of particular interest is the examination of style drift, which is evidenced by drifts in the slope estimates over time. </p>
+</div>
+
+</body>
+</html>

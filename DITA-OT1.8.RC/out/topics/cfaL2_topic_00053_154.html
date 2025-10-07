@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="nl-nl" lang="nl-nl">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="kpe-concept"/>
+<meta name="DC.Title" content="Types of High-frequency Trading Algorithms"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="cfaL2_topic_00053_154"/>
+<meta name="DC.Language" content="nl-NL"/>
+<link rel="stylesheet" type="text/css" href="..%5Ccommonltr.css"/>
+<title>Types of High-frequency Trading Algorithms</title>
+</head>
+<body id="cfaL2_topic_00053_154">
+
+<h1 class="title topictitle1">Types of High-frequency Trading Algorithms</h1>
+<div class="body conbody kpe-conceptBody"><p class="p">One major class of high-frequency trading algorithms are <strong class="ph b">statistical arbitrage</strong>(or “stat arb”) algorithms. Statistical arbitrage algorithms are used to identify securities that have historically moved together but have diverged recently. The algorithm will buy one security and sell the other so as to realize a profit when they eventually converge.</p>
+<p class="p">Types of statistical arbitrage algorithms include:</p>
+<ul class="ul"><li class="li"><strong class="ph b">Pairs trading</strong>When the prices of two securities diverge from their historically correlated movements, the outperforming security is shorted while the underperforming security is purchased. If the relative prices of these securities later converge, a profit will be earned.</li>
+<li class="li"><strong class="ph b">Index arbitrage</strong>These algorithms seek out temporary differences in price performance between securities and the sector to which they belong. For example, the price of McDonald’s Corporation stock should be correlated with the price of a restaurant sector index.</li>
+<li class="li"><strong class="ph b">Basket trading</strong>Basket trading is applying statistical arbitrage strategies to groups of securities, rather than to individual securities. Instead of trading one individual security against another as in pairs trading, we trade one basket of securities versus another basket.</li>
+<li class="li"><strong class="ph b">Spread trading</strong>Spread trading is a type of statistical arbitrage that takes long and short positions in two closely-related futures contracts, on the notion that the spread between the two will change. Traders use tools called <strong class="ph b">spreaders</strong>to manage these trades.</li>
+</ul>
+<p class="p indent">Types of spread trades include:</p>
+<ul class="ul"><li class="li"><strong class="ph b">Mean reversion</strong>—These algorithms are based on the idea that when the price of a security drifts away from its recent historical mean, its price will likely move back towards that mean.</li>
+<li class="li"><strong class="ph b">Delta neutral strategies</strong>—These arbitrage strategies are designed to produce a small profit regardless of whether the market goes up or down. By combining securities such as stocks and options in such a way that the total delta of all of the securities is zero, the strategy may be able to earn a profit from volatility changes or simply as the options approach maturity.</li>
+</ul>
+<p class="p">Apart from stat arbitrage, other broad uses of high-frequency algorithms include: </p>
+<ul class="ul"><li class="li"><strong class="ph b">Liquidity aggregation and smart order routing</strong>. The trading of securities has become more dispersed as the number of venues in which an individual security might be traded has proliferated. This phenomenon, known as <strong class="ph b">market fragmentation</strong>can lead to price differences across markets and a lack of liquidity within an individual market. By using a <strong class="ph b">liquidity aggregation</strong>algorithm, a trader can gain a fuller picture of liquidity over multiple trading venues. These algorithms direct each order to the market that offers the best price and liquidity. We will discuss this algorithm in more detail in the next section. </li>
+<li class="li"><strong class="ph b">Real-time pricing</strong><strong class="ph b">of securities. </strong>Traditional techniques to value securities, such as fundamental analysis, can be slow, and the results may not correspond with market values. An alternative to such methods is to use algorithmic trading to price such instruments in real time by deriving instantaneous price and liquidity information from the market. Real-time pricing information can, for example, help a dealer adjust the width of their bid-ask spread to reflect what the market will bear.</li>
+<li class="li"><strong class="ph b">Trading on news. </strong>Securities traders have always made trades based on their reaction to breaking news stories such as unusual weather reports or the release of economic data. More recently, traders have attempted to create high-frequency algorithms that execute the same types of trades, but near-instantaneously and without human intervention. These efforts have been boosted by the increasing availability of high-frequency news feeds, including feeds that contain tags that identify key statistics.</li>
+<li class="li"><strong class="ph b">Genetic tuning</strong>Genetic tuning refers to a self-evolving (“Darwinian trading”) system that tests the performance of many different strategies by feeding live market data to each. Seemingly profitable strategies are deployed in the markets while money-losers are killed off. Strategies that earn profits are allowed to continue to evolve and pursue emerging opportunities. (The holy grail of algorithmic trading is a “money machine” that will evolve and profit without human oversight.)</li>
+</ul>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Tripane Help creation.  -->
+<project name="com.kpe.sp_idml" basedir="." default="dita2idml">
+
+    <!-- Makes renaming the plugin easier. -->
+    <property name="dita2idml.plugin.dir" value="${dita.plugin.com.kpe.sp_idml.dir}"/>
+    <property name="dita2idml.temp.dir" value="${dita2idml.plugin.dir}${file.separator}temp"/>
+    
+    <!-- To implement the chunking, we'll probably have to implement a pre-processor to filter from the 
+         args.input to the temp.dir. Then we'll process from temp to output. -->
+    
+    <property name="dita2idml.supermap" value="${dita2idml.plugin.dir}${file.separator}xsl${file.separator}dita2supermap.xsl"/>
+    <!-- SP need to create parameter to swap RE and CFA in the XSL call -->
+    <condition property="dita2idml.transform" value="${dita2idml.plugin.dir}${file.separator}xsl${file.separator}flashcard.xsl"
+        else="${dita2idml.plugin.dir}${file.separator}xsl${file.separator}re.xsl">
+        <isset property="flashcard"/>
+    </condition>
+    
+    <property name="supermap.ditamap" value="supermap.ditamap"/>
+    <property name="toc.ditamap" value="toc.ditamap"/>
+    
+<!--    <target name="dita2idml"
+        depends="build-init, dita2idml.init, 
+        gen-list,debug-filter,copy-files, 
+        conrefpush,conref,move-meta-entries,keyref,coderef,mapref,mappull,chunk,maplink,move-links,
+        dita2idml.transform,
+        dita2idml.cleanup">
+    </target>
+    -->
+    <!-- Borrowed from pdf2...-->
+    <target name="dita2idml" depends="dita2pdf2.init, build-init, dita2idml.init, preprocess, map2merge,
+        dita2idml.transform,
+        dita2idml.cleanup"/>
+    
+    
+    <target name="dita2idml.init">
+        <echo>In init...</echo>
+        <echo>temp dir is ${dita.temp.dir}</echo>
+        
+        <mkdir dir="${output.dir}${file.separator}topics"/>
+        <mkdir dir="${output.dir}${file.separator}tasks"/>
+        <mkdir dir="${output.dir}${file.separator}los"/>
+        
+    </target>
+    
+    <target name="dita2idml.transform">
+
+        <!--<xslt processor="trax" 
+            basedir="${dita.temp.dir}"
+            destdir="${dita.temp.dir}" 
+            force="true"
+            in="${dita.temp.dir}${file.separator}${dita.input.filename}"
+            out="${dita.temp.dir}${file.separator}${supermap.ditamap}"
+            style="${dita2idml.supermap}"
+            >
+            <param name="BASE_DIR" expression="${dita.temp.dir}${file.separator}"/>
+            <param name="OUT_DIR" expression="${dita.temp.dir}${file.separator}"/>
+            <xmlcatalog>
+                <catalogpath path="${xml.catalog.files}"/>
+            </xmlcatalog>
+        </xslt>
+        -->
+        <echo>Transforming DITA to IDML...</echo>
+        
+        <xslt basedir="${dita.temp.dir}"
+            destdir="${output.dir}" includesfile="${dita.temp.dir}${file.separator}${fullditatopicfile}"
+            in="${dita.temp.dir.fullpath}${file.separator}${dita.map.filename.root}_MERGED.xml"
+            out="${output.dir}${file.separator}${dita.map.filename.root}.icml"
+            style="${dita2idml.transform}"
+            classpathref="dost.class.path"
+            filenameparameter="FILENAME"
+            filedirparameter="FILEDIR">
+<!--            <excludesfile name="${dita.temp.dir}${file.separator}${resourceonlyfile}" if="resourceonlyfile"/>
+            <includesfile name="${dita.temp.dir}${file.separator}${chunkedtopicfile}" if="chunkedtopicfile"/>-->
+            <param name="FLASHCARD" expression="${flashcard}" />
+            <param name="TRANSTYPE" expression="${transtype}" />
+            <param name="DITAEXT" expression="${dita.ext}" if="dita.ext" />
+            <param name="OUTEXT" expression="${out.ext}" if="out.ext" />
+            <param name="BASEDIR" expression="${basedir}"/>
+            <param name="OUTPUTDIR" expression="${output.dir}"/>
+            <param name="SEPARATOR" expression="${file.separator}"/>
+            <param name="DBG" expression="${args.debug}" if="args.debug"/>
+           <!-- <param name="CONTENTTYPE" expression = "'RE'"/>-->
+            <!-- hardcoded CFA list. Wil need to be modified to accepted parameter of CFA, RE, PDC and include corresponding styles SSO -->
+            <param name="STYLELIST" expression="${dita2idml.plugin.dir}${file.separator}styles${file.separator}CFA.xml"/>
+       <!--     <dita:extension id="dita.conductor.xhtml.param" behavior="org.dita.dost.platform.InsertAction"/>-->
+            <!--New,To generate&copy all dita files in the inputmap.dir,not all files in dita.temp.dir -->
+            <mapper type="regexp" 
+                from="^(${tempdirToinputmapdir.relative.value})(.*?)(\.(xml|dita))$$" 
+                to="\2.icml"/>
+            <xmlcatalog refid="dita.catalog"/>
+        </xslt>
+        
+        <!-- add cleanup code to move all assets to output folder -->
+        
+        <!-- 
+             Move all assets from the source folder to the new assets folder. -->
+        <!-- Get the source directory that contains assets. -->
+        <echo>dita.input.dirname is ${dita.input.dirname}.</echo>
+     
+ <!--       <property name="source.asset.path" refid="source.asset.dir"/>-->
+ <!--       <echo>source.asset.path is ${source.asset.path}.</echo>-->
+  <!--      <property name="source.asset.parent" location="${dita.input.dirname}${file.separator}${source.asset.path}/.."/>
+        <echo>source.asset.parent is ${source.asset.parent}.</echo>
+  -->      
+        <copy todir="${output.dir}" failonerror="false" overwrite="true">
+            <fileset dir="${dita.input.dirname}">
+                <patternset>
+                    <include name="**/assets/**"/>
+                </patternset>
+            </fileset>
+        </copy>   
+        
+        <copy todir="${output.dir}" failonerror="false" overwrite="true">
+            <fileset dir="${dita2idml.plugin.dir}">
+                <patternset>
+                    <include name="assets/**"/>
+                </patternset>
+            </fileset>
+        </copy>   
+        
+        
+    </target>
+    <target name="map2merge" unless="noMap">
+        <dirname property="dita.temp.dir.fullpath" file="${dita.temp.dir}${file.separator}dummy.file"></dirname>
+        <pipeline message="topicmerge" inputmap="${dita.temp.dir.fullpath}${file.separator}${user.input.file}" tempdir="${dita.temp.dir.fullpath}">
+            <module class="org.dita.dost.module.TopicMergeModule">
+                <param name="output" location="${dita.temp.dir.fullpath}${file.separator}${dita.map.filename.root}_MERGED.xml"></param>
+                <param name="style" location="${dita.plugin.org.dita.pdf2.dir}/xsl/common/topicmerge.xsl"></param>
+            </module>
+        </pipeline>
+    </target>
+    
+    
+    <target name="dita2idml.cleanup">
+        <echo>In cleanup...</echo>
+    </target>
+
+</project>

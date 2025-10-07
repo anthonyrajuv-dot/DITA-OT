@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="nl-nl" lang="nl-nl">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="kpe-concept"/>
+<meta name="DC.Title" content="LOS 46.f: Calculate and interpret the leverage ratio, the rate of return on a margin transaction, and the security price at which the investor would receive a margin call."/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="cfaL1_topic_00004_106"/>
+<meta name="DC.Language" content="nl-NL"/>
+<link rel="stylesheet" type="text/css" href="..%5Ccommonltr.css"/>
+<title>LOS 46.f: Calculate and interpret the leverage ratio, the rate of return on a margin transaction, and the security price at which the investor would receive a margin call.</title>
+</head>
+<body id="cfaL1_topic_00004_106">
+
+<h1 class="title topictitle1 los">LOS 46.f: Calculate and interpret the leverage ratio, the rate of return on a margin transaction, and the security price at which the investor would receive a margin call.</h1>
+<div class="body conbody kpe-conceptBody"><p class="p">CFA<sup class="ph sup">®</sup> Program Curriculum, Volume 5, page 41</p>
+<p class="p">The <strong class="ph b"> leverage ratio</strong> of a margin investment is the value of the asset divided by the value of the equity position. For example, an investor who satisfies an initial margin requirement of 50% equity has a 2-to-1 leverage ratio so that a 10% increase (decrease) in the price of the asset results in a 20% increase (decrease) in the investor’s equity amount.</p>
+<div class="note sample note"><span class="notetitle">sample:</span> <p class="p label"><strong class="ph b">Example: Margin transaction</strong></p>
+<p class="p">Given the following information: </p>
+<p class="p">Shares purchased 1,000</p>
+<p class="p">Purchase price per share $100</p>
+<p class="p">Annual dividend per share $2.00</p>
+<p class="p">Initial margin requirement 40%</p>
+<p class="p">Call money rate 4%</p>
+<p class="p">Commission per share $0.05</p>
+<p class="p">Stock price after one year $110</p>
+<p class="p">Calculate (1) the leverage ratio and (2) the investor’s return on the margin transaction (return on equity) if the stock is sold at the end of one year.</p>
+<p class="p"><strong class="ph b">Answer:</strong></p>
+</div>
+<ol class="ol"><li class="li">The leverage ratio = 1 / 0.40 = 2.5.</li>
+<li class="li">The total purchase price is 1,000 × $100 = $100,000. The investor must post initial margin of 40% × $100,000 = $40,000. The remaining $60,000 is borrowed. The commission on the purchase is 1,000 × $0.05 = $50. Thus, the total initial equity investment is $40,050.</li>
+</ol>
+<div class="note sample note"><span class="notetitle">sample:</span> <p class="p">At the end of one year, the stock value is 1,000 × $110 = $110,000, for a gain of $9,950. Dividends received are 1,000 × $2.00 = $2,000. Interest paid is $60,000 × 4% = $2,400. The commission on the sale is 1,000 × $0.05 = $50.</p>
+<p class="p">The gain on the transaction in one year is $9,950 + $2,000 – $2,400 – $50 = $9,500. The return on the equity investment is $9,500 / $40,050 = 23.72%. The investor’s net return is less than the asset total return (10% price appreciation + 2% dividend = 12%) multiplied by the leverage ratio (12% × 2.5 = 30%) because of the loan interest and commissions. </p>
+<p class="p">We can also solve for the return on the margin transaction with the cash flow functions on a financial calculator. The initial cash outflow is the $40,000 initial margin + $50 purchase commission = $40,050. The inflow after one year is the $110,000 stock value + $2,000 dividends – $60,000 margin repayment – $2,400 margin interest – $50 sale commission = $49,550. Using the cash flow functions: CF0 = –40,050; CF1 = 49,550; CPT IRR = 23.72%.</p>
+</div>
+<p class="p">To ensure that the loan is covered by the value of the asset, an investor must maintain a minimum equity percentage, called the <strong class="ph b"> maintenance margin requirement</strong>, in the account. This minimum is typically 25% of the current position value, but brokers may require a greater minimum equity percentage for volatile stocks.  </p>
+<p class="p">If the percentage of equity in a margin account falls below the maintenance margin requirement, the investor will receive a <strong class="ph b"> margin call</strong>, a request to bring the equity percentage in the account back up to the maintenance margin percentage. An investor can satisfy this request by depositing additional funds or depositing other unmargined securities that will bring the equity percentage up to the minimum requirement. If the investor does not meet the margin call, the broker must sell the position. </p>
+<p class="p">The stock price which results in a margin call can be calculated by using the following formula:</p>
+<p class="p">where:</p>
+<p class="p">P<sub class="ph sub">0</sub> = initial purchase price</p>
+<div class="note sample note"><span class="notetitle">sample:</span> <p class="p label"><strong class="ph b">Example: Margin call price</strong></p>
+<p class="p">If an investor purchases a stock for $40 per share with an initial margin requirement of 50% and the maintenance margin requirement is 25%, at what price will the investor get a margin call?</p>
+<p class="p"><strong class="ph b">Answer:</strong></p>
+<p class="p">A margin call is triggered at a price below $26.67.</p>
+</div>
+<p class="p">In a short sale, the investor must deposit initial margin equal to a percentage of the value of the shares sold short to protect the broker in case the share price increases. An increase in the share price can decrease the margin percentage below the maintenance margin percentage and generate a margin call.</p>
+</div>
+
+</body>
+</html>

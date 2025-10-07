@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_sbb_dr1_xf">
+  <title>Design decisions and other notes</title>
+  <body>
+    <section>
+      <title>Dividing map into "chapters"</title>
+      <p>Out of the box, the DITA OT processes the map into map-like structures (TOC, index.html,
+        and so on).  Then each of the DITA topics subordinate to the map are processed, without
+        further reference to the map. When creating the XHTML output, we want to pull all chapters
+        together and output each of them as a "whole" HTML page. So, we need a different way of
+        driving the HTML transforms. </p>
+      <p>There are several approaches to drive the creation of chapters. <ul id="ul_gql_yr1_xf">
+          <li>Create a series of sub maps from the DITA map or bookmap file, then process each in
+            turn.</li>
+          <li>Use the DITA map or bookmap file and the xsl:result-document directive.</li>
+          <li>Use the topicmerge transform from the ODT or FO transtype, then use
+            xsl:result-document when processing the merged file. </li>
+        </ul>
+      </p>
+    </section>
+    <section>
+      <title>HTML backmatter</title>
+      <p>It would be nice to be able to use the &lt;backmatter> element to semantically contain the
+        closing information in the bookmap for an XHMTL document.  However, there are several
+        factors that make that difficult.  Prime among those is the fact that the backmatter doesn't
+        allow a navtitle attribute or element. </p>
+      <p>As things stand, to have a final chapter that encloses an "About" statement, related
+        publications, trademark and copyright notices, and additional statements (such as the OEM
+        statement), is a much more workable (and localizable) solution.</p>
+    </section>
+    <section>
+      <title>Revision history in XHTML and PDF</title>
+      <p>The differences in processing XHMTL and PDF documents require two different ways of
+        specifying where to insert the revision history table.</p>
+      <p>In PDF bookmaps, the &lt;frontmatter> element should contain a &lt;trademarklist> element.
+        The href in the &lt;trademarklist> element indicates the file containing the trademark
+        information. The PDF plugin recognizes the &lt;trademarklist> element and automatically adds
+        the revision history to p.ii of the document.</p>
+      <p>In XHTML output, there are two different ways you can use to indicate where to place the
+        revision history table.<ul id="ul_mdk_pwb_hg">
+          <li>In the DITA topic containing the trademark information, assign an outputclass
+            attribute with the value "trademark" to the &lt;topic> element. The plugin will then
+            insert the revision history table at the end of this document.</li>
+          <li>If you need to insert the revision history table at a specific location in the
+            trademark topic (say between two specific paragraphs, or at the beginning of the
+            trademark topic), add an empty &lt;bodydiv/> element with outputclass="revisions" where
+            you want the plugin to insert the revision history table. </li>
+        </ul>
+      </p>
+    </section>
+    <section><title>Adding titles to notes</title>To add additional titles to &lt;note> elements,
+      the first &lt;p> in the &lt;note> should have outputclass="notetitle". </section>
+    <section>
+      <title>Development notes, todo's, and other</title>
+      <p> </p>
+    </section>
+    <section>
+      <title>Notes</title>
+      <p>I've used @otherprops in the &lt;vrm> element for the page number that changed.  However, I
+        would advise against continuing this practice (identifying the page that changed), because
+        it's meaningful only in the PDF (and possibly only meaningful in the en-us version). </p>
+    </section>
+    <section>
+      <title>Graphics</title>
+      <p>For each PNG graphic used in a deliverable, export an SVG of the same image and make it
+        available in the same folder as the PNG graphics.  If you don't want a figure to link to an
+        SVG, use outputclass="nolink" </p>
+    </section>
+  </body>
+</topic>

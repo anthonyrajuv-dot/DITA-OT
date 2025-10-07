@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="nl-nl" lang="nl-nl">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="kpe-concept"/>
+<meta name="DC.Title" content="Understanding Fixed-Income Risk and Return"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="CFAL1_topic_00046_93"/>
+<meta name="DC.Language" content="nl-NL"/>
+<link rel="stylesheet" type="text/css" href="..%5Ccommonltr.css"/>
+<title>Understanding Fixed-Income Risk and Return</title>
+</head>
+<body id="CFAL1_topic_00046_93">
+
+<h1 class="title topictitle1">Understanding Fixed-Income Risk and Return</h1>
+<div class="body conbody kpe-conceptBody"><p class="p">Cross-Reference to CFA Institute Assigned Reading #56</p>
+<p class="p">The three sources of returns from investing in a fixed-rate bond are:</p>
+<ol class="ol"><li class="li">Coupon and principal payments.</li>
+<li class="li">Interest earned on reinvested coupon payments.</li>
+<li class="li">Capital gain or loss if the bond is sold prior to maturity.</li>
+</ol>
+<p class="p">For a bond that does not default, and assuming the rate earned on reinvested coupons is equal to the YTM:</p>
+<ul class="ul"><li class="li">An investor who holds a fixed-rate bond to maturity will earn an annualized rate of return equal to the YTM of the bond when purchased.</li>
+<li class="li">An investor who sells a bond prior to maturity will earn a rate of return equal to the YTM at purchase if the bond’s YTM when sold is equal to the YTM of the bond when purchased.</li>
+</ul>
+<p class="p">If the YTM of the bond decreases (increases) shortly after issuance:</p>
+<ul class="ul"><li class="li">An investor who sells the bond in the short term will have an increased (decreased) return due to the increase (decrease) in the sale price of the bond.  </li>
+<li class="li">An investor who holds the bond to maturity (or other suitably long term) will have a decreased (increased) return due to the decreased (increased) reinvestment income earned.</li>
+</ul>
+<p class="p">These results illustrate the trade-off between <em class="ph i"> market price risk </em>(the uncertainty about price due to uncertainty about market YTM) and <em class="ph i"> reinvestment risk </em>(uncertainty about the total of coupon payments and reinvestment income on those payments due to the uncertainty about future reinvestment rates). For an investor with a short investment horizon, market price risk is greater than reinvestment risk. For an investor with a long investment horizon, reinvestment risk is greater than market price risk.</p>
+<p class="p">The investment horizon at which these risks just offset is known as a bond’s <strong class="ph b"> Macaulay duration</strong>. A bond’s annual Macaulay duration is calculated as the weighted average of the number of years until each of the bond’s promised cash flows is to be paid, where the weights are the present values of each cash flow as a percentage of the bond’s full value. For a semiannual-pay bond, Macaulay duration is calculated as a number of semiannual periods and divided by two to get the annual Macaulay duration.</p>
+<p class="p">The difference between a bond’s Macaulay duration and the bondholder’s investment horizon is referred to as a <em class="ph i"> duration gap</em>. A positive duration gap (Macaulay duration greater than the investment horizon) exposes the investor to market price risk from increasing interest rates. A negative duration gap (Macaulay duration less than the investment horizon) exposes the investor to reinvestment risk from decreasing interest rates.</p>
+<p class="p"><strong class="ph b">Modified duration </strong><em class="ph i"> </em>is calculated as Macaulay duration divided by one plus the bond’s yield to maturity. Modified duration provides an approximate percentage change in a bond’s price for a 1% change in yield to maturity. For a given change in YTM, the price change can be calculated as:</p>
+<p class="p">approximate percentage change in bond price = –modified duration × <span class="ph"></span>YTM</p>
+<p class="p">We can approximate modified duration directly using bond values for an increase and for a decrease in YTM of the same size:</p>
+<p class="p">where: </p>
+<p class="p">V<sub class="ph sub">0</sub> = the initial price</p>
+<p class="p">V<sub class="ph sub">–</sub> = the price of the bond if YTM is decreased by <span class="ph"></span>YTM</p>
+<p class="p">V<sub class="ph sub">+</sub> = the price of the bond if the YTM is increased by <span class="ph"></span>YTM</p>
+<p class="p">Modified duration is not appropriate for bonds with embedded options because their future cash flows may change depending on the level and path of interest rates. For these bonds we use <strong class="ph b"> effective duration</strong>, which uses the change in the benchmark yield curve, rather than the change in YTM, to generate V<sub class="ph sub">–</sub> and V<sub class="ph sub">+</sub>:</p>
+<p class="p">Other things equal, a bond’s interest rate risk (as measured by duration) is:</p>
+<ul class="ul"><li class="li">Usually greater with a longer maturity. We must say “usually” because there are instances where an increase in a discount coupon bond’s maturity will decrease its Macaulay duration. </li>
+<li class="li">Less with a higher coupon rate. When more of a bond’s value will be from payments received sooner, the value of the bond is less sensitive to changes in yield.</li>
+<li class="li">Less with a higher YTM. This is because the price-yield relationship is convex. At lower yields, the price-yield curve has a steeper slope, indicating that price is more sensitive to a given change in yield.</li>
+<li class="li">Less with an embedded call or put option. </li>
+</ul>
+<p class="p">The duration concept may be applied to a bond portfolio. There are two approaches to estimating<strong class="ph b"> </strong><strong class="ph b"> portfolio duration</strong>:</p>
+<ol class="ol"><li class="li">Calculate the weighted average number of periods until the portfolio’s cash flows will be received. This approach is theoretically correct but is not often used in practice, and cannot be used if some portfolio bonds have embedded options.</li>
+<li class="li">Take a weighted average of the durations of the individual bonds in the portfolio, where the weights are the full price of each bond as a proportion of the total portfolio value. A limitation of this approach is that it assumes a parallel shift in the yield curve but the effective duration of bonds with embedded options can be used.</li>
+</ol>
+<p class="p">The<strong class="ph b"> </strong><strong class="ph b"> money duration</strong><em class="ph i"> </em>(also called <em class="ph i"> dollar duration</em>) of a bond position is expressed in currency units. Multiplying the money duration of a bond times a given change in YTM will provide an estimate of the change in bond value for that change in YTM. Money duration is sometimes expressed as money duration per 100 currency units of bond par value.</p>
+<p class="p">Duration is an adequate measure of bond price risk only for parallel shifts in the yield curve. The impact of nonparallel shifts can be measured using <strong class="ph b"> key rate duration</strong>. A key rate duration is the sensitivity of the value of a bond or portfolio to changes in the spot rate for a specific maturity, holding other spot rates constant. A bond or portfolio will have a key rate duration for each maturity range on the spot rate curve.</p>
+<p class="p">The <strong class="ph b">price value of a basis point</strong><em class="ph i"> </em>(PVBP) <strong class="ph b"> </strong>is the money change in the full price of a bond when its YTM changes by one <em class="ph i"> basis point</em>, or 0.01%. We can calculate the PVBP directly by calculating the average of the decrease in the full value of a bond when its YTM increases by one basis point and the increase in the full value when its YTM decreases by one basis point.</p>
+<p class="p">Because modified duration is a linear approximation of the relationship between yield and price, duration-based estimates of a bond’s full price become increasingly poor for larger changes in YTM. Estimates of the price impact of a change in yield can be improved by including <strong class="ph b">convexity</strong>, a measure of the curvature of the price-yield relation. A bond’s convexity can be estimated as:</p>
+<p class="p"><strong class="ph b">Effective convexity </strong>, like effective duration, must be used for bonds with embedded options.</p>
+<p class="p">The estimated price change including the convexity adjustment is:</p>
+<p class="p">change in full bond price = </p>
+<p class="p">–(annual modified duration)(∆YTM) + (1/2)(annual convexity) (∆YTM)<sup class="ph sup">2</sup></p>
+<p class="p">While the convexity of any option-free bond is positive, the convexity of a callable bond can be negative at low yields. The call price puts an effective limit on increases in bond value because at low yields the bond is likely to be called. For a bond with negative convexity, the price increase from a decrease in YTM is smaller than the price decrease from an increase in YTM.</p>
+<p class="p">Bondholders prefer greater convexity, other things equal. A bond with greater convexity is more price-sensitive to decreases in YTM, and less price-sensitive to increases in YTM, than a bond with less convexity. That is, with greater convexity a bond’s price will increase more, and decrease less, in response to a given change in YTM.</p>
+<p class="p">In calculating duration and convexity, we implicitly assume the yield curve shifts in a parallel manner. In practice, this is often not the case. A shorter term bond can have more price volatility than a longer term bond with a greater duration if the volatility of the shorter term yield is greater. The <em class="ph i"> term</em> <em class="ph i">structure of yield volatility </em>refers to the relation between the volatility of bond yields and their times to maturity.</p>
+</div>
+
+</body>
+</html>

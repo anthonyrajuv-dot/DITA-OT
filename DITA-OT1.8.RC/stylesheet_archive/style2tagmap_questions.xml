@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<style2tagmap xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:public::dita4publishers.org:namespaces:word2dita:style2tagmap style2tagmap.xsd"
+  xmlns="urn:public:dita4publishers.org:namespaces:word2dita:style2tagmap"
+  
+  >
+  <title>Default Word Styles to BookMap Style-to-Tag Map</title>
+  <documentation xmlns:html="http://www.w3.org/1999/xhtml">
+    <html:div xmlns="http://www.w3.org/1999/xhtml">
+      <p>Defines a usable mapping from the built-in MS Word styles to
+      DITA markup. Generates a bookmap and topics from a single input document.</p>
+      <p>The First non-skipped paragraph in the document should styled as
+      "Title", which it mapped to &lt;title&gt; within &lt;bookmap&gt; and triggers
+      the generation of the root output map.</p>
+    </html:div>
+  </documentation>
+  <styles>
+    <output
+      name="kpe-map"
+      doctype-system="kpe-map.dtd"
+      doctype-public="-//KPE//DTD DITA KPE Map//EN"
+    />
+    <output
+      name="bookmap"
+      doctype-system="bookmap.dtd"
+      doctype-public="-//OASIS//DTD DITA BookMap//EN"
+    />
+    
+    <output
+      name="kpe-concept"
+      doctype-system="kpe-concept.dtd"
+      doctype-public="-//KPE//DTD DITA KPE Concept//EN"
+    />
+    
+    <output
+      name="kpe-task"
+      doctype-system="kpe-task.dtd"
+      doctype-public="-//KPE//DTD DITA KPE Task//EN"
+    />
+    
+    <output
+      name="kpe-question"
+      doctype-system="kpe-question.dtd"
+      doctype-public="-//KPE//DTD DITA KPE Question//EN"
+    />
+    <output
+      name="kpe-los"
+      doctype-system="kpe-los.dtd"
+      doctype-public="-//KPE//DTD DITA KPE LOS Master//EN"
+    />
+    <output
+      name="kpe-glossEntry"
+      doctype-system="kpe-glossEntry.dtd"
+      doctype-public="-//KPE//DTD DITA KPE Glossary Entry//EN"
+    />
+    <output
+      name="reference"
+      doctype-system="reference.dtd"
+      doctype-public="-//OASIS//DTD DITA Reference//EN"
+    />
+
+    <style styleName="Level 1 Title (h1)"
+      level="0"
+      format="bookmap"
+      mapType="bookmap"
+      prologType="topicmeta"
+      structureType="mapTitle"
+      tagName="title"
+    />
+ 
+    
+  <style styleName="Level 2 Title (h2)"
+      structureType="topicTitle"
+      topicDoc="yes"
+      topicType="kpe-concept"
+      bodyType="kpe-conceptBody"
+      format="concept"
+      topicrefType="chapter"
+      tagName="title"
+      level="1"
+        />  
+
+    
+
+    
+    <style 
+      styleName="Section Title (h4)"
+      structureType="section" 
+      tagName="title"
+      sectionType="section"
+      topicZone="body"
+      useAsTitle="yes"  
+    />
+    
+    <style styleName="section"
+      structureType="section"
+      tagName="p"
+      topicZone="body"
+      spectitle="#toColon"
+    />
+    
+    <style
+      styleName="Sub-section Title (h5)"
+      structureType="dt"
+      tagName="dt"
+      dlEntryType="dlentry"
+      containerType="dl"
+      topicZone="body"
+      level="1"
+    />
+    
+    <style
+      styleName="Sub-section Text"
+      structureType="dd"
+      tagName="dd"
+      dlEntryType="dlentry"
+      containerType="dl"
+      topicZone="body"
+    />
+    
+    <style
+      styleName="Sub-sub-section Title (h6)"
+      structureType="dt"
+      tagName="dt"
+      dlEntryType="dlentry"
+      containerType="dl"
+      topicZone="body"
+      level="1"
+      outputclass="sub_sub"
+    />
+    
+    <style
+      styleName="Sub-sub-section Text"
+      structureType="dd"
+      tagName="dd"
+      dlEntryType="dlentry"
+      containerType="dl"
+      topicZone="body"
+    />
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <style styleName="Example Title"
+      tagName="label"
+      containerType="sample"
+      topicZone="body"
+      level="1"
+    />
+    <style styleName="Example Text"
+      tagName="p"
+      containerType="sample"
+      topicZone="body"
+      level="1"
+    />
+    
+    <style
+      styleName="Example Bullet"
+      containerType="ul"
+      tagName="li"
+      level="2"
+      topicZone="body"
+    />
+    
+
+  
+    
+<!--  work on questions; made this level 3 so it goes under a quiz topic title  -->
+       <style styleName="Question Number"
+      structureType="topicTitle"
+      topicDoc="yes"
+      topicType="kpe-question"
+      bodyType="kpe-questionBody"
+      initialSectionType="lcInteraction"
+      format="learningAssessment"
+      topicrefType="topicref"
+      tagName="title"
+      level="1"
+    />
+
+    <style
+      styleName="Question Stem"
+          tagName="p"
+          containerType="lcQuestion2"
+    topicZone="body"
+      level="1"
+      initialSectionType="lcAnswerOptionGroup2"
+    />
+    
+    
+<style
+      styleName="Distractor"
+      tagName="lcAnswerContent2"
+      containerType="lcAnswerOptionGroup2"
+        topicZone="body"
+      level="1"
+          />
+
+    <style
+      styleName="Correct Answer"
+      tagName="lcAnswerContent2"
+      containerType="lcAnswerOptionGroup2"
+         topicZone="body"
+      level="1"
+      outputclass="correct"
+    />
+    <style
+      styleName="Question Rationale"
+      tagName="p"
+      containerType="lcFeedbackCorrect2"
+      dlEntryType="lcAnswerOptionGroup2"
+      structureZone="dd"
+      topicZone="body"
+      level="1"
+    />
+    <style
+      styleName="Question Rationale Bullets"
+      containerType="ul"
+      tagName="li"
+      level="2"
+      topicZone="body"
+      />
+<!-- figure this one out   -->
+    
+    <style
+      styleName="Normal"
+      tagName="p"
+      topicZone="body"
+      level="1"
+    />
+
+    <style
+      styleName="Superscript"
+      tagName="sup"
+        level="1"
+    />
+    <style
+      styleName="Subscript"
+      tagName="sub"
+       level="1"
+    />
+    <style
+      styleName="Underline"
+      tagName="u"
+      level="1"
+    />
+    <style
+      styleName="StrongEmphasis"
+      tagName="emphasisBold"
+       level="1"
+    />
+    <style
+      styleName="StongandItalics"
+      tagName="emphasisBold"
+      level="1"
+      outputclass="add_italics"
+    />
+    <style
+      styleName="StrongandUnderline"
+      tagName="emphasisBold"
+      level="1"
+      outputclass="add_underline"
+    />
+  <style
+      styleName="Emphasis"
+      tagName="emphasisItalics"
+      level="1"
+    />
+  
+  <!--  <style
+      styleName="DefaultParagraph Font"
+      tagName="ph"
+      topicZone="body"
+      level="1"/>
+    -->
+    <style
+      styleName="Qualifier"
+      tagName="qualifier"
+        level="1"
+    />
+    <style
+      styleName="IndexTerm"
+      tagName="indexterm" 
+      topicZone="inline"
+      level="1"
+    />
+<!--  Test index -->
+    <style
+      styleName="GlossaryPop-upTerm"
+      tagName="term"
+      level="1"
+    />
+  
+        <style
+      styleName="Bullets"
+      containerType="ul"
+      tagName="li"
+      level="1"
+      topicZone="body"/>
+    <style
+      styleName="List Paragraph"
+      containerType="ul"
+      tagName="li"
+      level="1"
+      topicZone="body"/>
+       <style
+      styleName="Bullets 2"
+      containerType="ul"
+      tagName="li"
+      level="2"
+      topicZone="body"/> 
+    
+    <style
+      styleName="Numbered List"
+      containerType="ol"
+      tagName="li"
+      level="1"
+      structureType="block"
+      topicZone="body"/>
+    <style
+      styleName="Numbered List 2"
+      containerType="ol"
+      tagName="li"
+      level="2"
+      structureType="block"
+      topicZone="body"/>
+
+    
+    <style
+      styleName="Block Text"
+      tagName="longquote"
+      topicZone="body"
+      level="1"/>
+    <style
+      styleName="Body Text"
+      tagName="p"
+      topicZone="body"
+      level="1"/>
+   
+    <style
+      styleName="List Number"
+      containerType="ol"
+      tagName="li"
+      level="1"
+      structureType="block"
+      topicZone="body"/>
+    <style
+      styleName="List Number 2"
+      containerType="ol"
+      tagName="li"
+      level="2"
+      structureType="block"
+      topicZone="body"/>
+    
+    
+
+   <style styleName="List1"
+     tagname="cmd"
+     containerType="steps"
+     dlEntryType="step"
+     structureZone="dt"
+     topicZone="body"
+     level="1"
+   />
+<!-- steps contains step, step contains cmd; list 1 is the <cmd>  -->
+   
+   
+    <style 
+      styleName="Lesson Title"
+      structureType="topicTitle"
+      initialSectionType="lcIntro"
+      topicType="learningContent"
+      bodyType="learningContentbody"
+      level="1"
+    />    
+    
+    <style
+      styleName="Figure/Image Title"
+      tagName="title"
+      containerType="fig"
+      topicZone="body"
+      level="1"
+      />
+    
+    <style
+      styleName="Figure/Image Content Box"
+      containerType="fig"
+      tagName="p"
+      level="1"
+      topicZone="body"
+      />
+      
+    <style
+      styleName="LegacyID"
+      tagName="legacyID"
+      putValueIn="valueAtt"
+      topicZone="prolog"
+      level="1"
+    />
+    
+    <style
+      styleName="Difficulty"
+      tagName="audience"
+     putValueIn="valueAtt"
+      topicZone="prolog"
+      level="1"
+    />
+  </styles>
+</style2tagmap>

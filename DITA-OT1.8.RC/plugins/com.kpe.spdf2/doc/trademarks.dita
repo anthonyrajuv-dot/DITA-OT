@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "http://docs.oasis-open.org/dita/v1.1/OS/dtd/topic.dtd">
+<topic id="trademarks" outputclass="trademarks">
+  <title>Trademarks</title>
+  <!--This page is referenced by the <trademarklist> element in the frontmatter booklists.  It is actually used in composing the title page.-->
+  <body>
+    <p>All trademarks are the property of their respective owners. Specifications are subject to
+      change without notice. Scriptorium endeavours to ensure that the information in this document
+      is correct and fairly stated, but Scriptorium is not liable for any errors or omissions.
+      Published information may not be up to date, and it is important to confirm current status
+      with Scriptorium. </p>
+    <p>This technical data may be subject to U.S. and international export, re-export or transfer
+      (export) laws. Diversion contrary to U.S. and international law is strictly prohibited. </p>
+  </body>
+</topic>

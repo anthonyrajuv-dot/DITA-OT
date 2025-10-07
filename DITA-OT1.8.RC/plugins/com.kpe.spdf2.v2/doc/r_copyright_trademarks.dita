@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="reference_k4j_kb5_kh">
+  <title>Copyright and trademarks page</title>
+  <shortdesc>Describes the metadata used to populate the copyright and trademarks page
+    (p.ii).</shortdesc>
+  <refbody>
+    <section>
+      <p>The copyright and trademarks page is usually on p ii, the back side of the cover page. </p>
+      <p>The Scriptorium PDF plugin interprets bookmap metadata and additional files to create a
+        fully-populated copyright and trademarks page. The metadata used by the copyright and
+        trademarks page is:</p>
+      <table frame="all" id="table_mzw_mrg_qc">
+        <title>Metadata elements used in the copyright and trademarks page</title>
+        <tgroup cols="6">
+          <colspec colname="c1" colnum="1" colwidth="1*"/>
+          <colspec colname="newCol2" colnum="2" colwidth="1*"/>
+          <colspec colname="newCol3" colnum="3" colwidth="1*"/>
+          <colspec colname="newCol4" colnum="4" colwidth="1*"/>
+          <colspec colname="newCol5" colnum="5" colwidth="1*"/>
+          <colspec colname="c2" colnum="6" colwidth="4*"/>
+          <thead>
+            <row>
+              <entry namest="c1" nameend="newCol5">Metadata element</entry>
+              <entry>Use</entry>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry namest="c1" nameend="newCol5">&lt;authorinformation></entry>
+              <entry/>
+            </row>
+            <row>
+              <entry/>
+              <entry namest="newCol2" nameend="newCol5">&lt;organizationinfo></entry>
+              <entry/>
+            </row>
+            <row>
+              <entry/>
+              <entry/>
+              <entry namest="newCol3" nameend="newCol5">&lt;namedetails></entry>
+              <entry/>
+            </row>
+            <row>
+              <entry/>
+              <entry/>
+              <entry/>
+              <entry namest="newCol4" nameend="newCol5">&lt;organizationnamedetails></entry>
+              <entry>Company name</entry>
+            </row>
+            <row>
+              <entry/>
+              <entry/>
+              <entry namest="newCol3" nameend="newCol5">&lt;addressdetails></entry>
+              <entry/>
+            </row>
+            <row>
+              <entry/>
+              <entry/>
+              <entry/>
+              <entry namest="newCol4" nameend="newCol5">&lt;thoroughfare></entry>
+              <entry>Street address</entry>
+            </row>
+            <row>
+              <entry/>
+              <entry/>
+              <entry/>
+              <entry namest="newCol4" nameend="newCol5">&lt;locality></entry>
+              <entry/>
+            </row>
+            <row>
+              <entry/>
+              <entry/>
+              <entry/>
+              <entry/>
+              <entry>&lt;localityname></entry>
+              <entry>City</entry>
+            </row>
+            <row>
+              <entry/>
+              <entry/>
+              <entry/>
+              <entry/>
+              <entry>&lt;postalcode></entry>
+              <entry>Zip code or postal code</entry>
+            </row>
+            <row>
+              <entry/>
+              <entry/>
+              <entry/>
+              <entry namest="newCol4" nameend="newCol5">&lt;administrativearea></entry>
+              <entry>State</entry>
+            </row>
+            <row>
+              <entry/>
+              <entry/>
+              <entry/>
+              <entry namest="newCol4" nameend="newCol5">&lt;country></entry>
+              <entry>Country</entry>
+            </row>
+            <row>
+              <entry/>
+              <entry/>
+              <entry namest="newCol3" nameend="newCol5">&lt;emailaddresses></entry>
+              <entry/>
+            </row>
+            <row>
+              <entry/>
+              <entry/>
+              <entry/>
+              <entry namest="newCol4" nameend="newCol5">&lt;emailaddress></entry>
+              <entry>e-mail address (one or more)</entry>
+            </row>
+            <row>
+              <entry/>
+              <entry/>
+              <entry namest="newCol3" nameend="newCol5">&lt;urls></entry>
+              <entry/>
+            </row>
+            <row>
+              <entry/>
+              <entry/>
+              <entry/>
+              <entry namest="newCol4" nameend="newCol5">&lt;url></entry>
+              <entry>URL (one or more)</entry>
+            </row>
+            <row>
+              <entry namest="c1" nameend="newCol5">&lt;prodinfo></entry>
+              <entry/>
+            </row>
+            <row>
+              <entry/>
+              <entry namest="newCol2" nameend="newCol5">&lt;prodname></entry>
+              <entry>Product name or number</entry>
+            </row>
+            <row>
+              <entry/>
+              <entry namest="newCol2" nameend="newCol5">&lt;vrmlist></entry>
+              <entry/>
+            </row>
+            <row>
+              <entry/>
+              <entry/>
+              <entry namest="newCol3" nameend="newCol5">&lt;vrm></entry>
+              <entry/>
+            </row>
+            <row>
+              <entry/>
+              <entry/>
+              <entry/>
+              <entry namest="newCol4" nameend="newCol5">@version</entry>
+              <entry>Release date</entry>
+            </row>
+            <row>
+              <entry namest="c1" nameend="newCol5">&lt;bookid></entry>
+              <entry/>
+            </row>
+            <row>
+              <entry/>
+              <entry namest="newCol2" nameend="newCol5">&lt;edition></entry>
+              <entry>Edition (optional)</entry>
+            </row>
+            <row>
+              <entry namest="c1" nameend="newCol5">&lt;bookrights></entry>
+              <entry/>
+            </row>
+            <row>
+              <entry/>
+              <entry namest="newCol2" nameend="newCol5">&lt;copyrfirst></entry>
+              <entry/>
+            </row>
+            <row>
+              <entry/>
+              <entry/>
+              <entry namest="newCol3" nameend="newCol5">&lt;year></entry>
+              <entry>First year of copyright range (or only year)</entry>
+            </row>
+            <row>
+              <entry/>
+              <entry namest="newCol2" nameend="newCol5">&lt;copyrlast></entry>
+              <entry/>
+            </row>
+            <row>
+              <entry/>
+              <entry/>
+              <entry namest="newCol3" nameend="newCol5">&lt;year></entry>
+              <entry>Last year of copyright range (optional)</entry>
+            </row>
+            <row>
+              <entry/>
+              <entry namest="newCol2" nameend="newCol5">&lt;bookowner></entry>
+              <entry/>
+            </row>
+            <row>
+              <entry/>
+              <entry/>
+              <entry namest="newCol3" nameend="newCol5">&lt;organization></entry>
+              <entry>Name of the copyright holder </entry>
+            </row>
+            <row>
+              <entry/>
+              <entry namest="newCol2" nameend="newCol5">&lt;bookrestriction></entry>
+              <entry/>
+            </row>
+            <row>
+              <entry/>
+              <entry/>
+              <entry namest="newCol3" nameend="newCol5">@value</entry>
+              <entry>"Proprietary" or other restriction, if necessary</entry>
+            </row>
+            <row>
+              <entry namest="c1" nameend="newCol5">&lt;data></entry>
+              <entry/>
+            </row>
+            <row>
+              <entry/>
+              <entry namest="newCol2" nameend="newCol5">&lt;image></entry>
+              <entry>Map-specific cover image (optional)</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+      <p>@ indicates an attribute of the prior element.</p>
+    </section>
+    <section>
+      <title>Trademark lists</title>
+      <p>Because trademark lists can be quite long, and may include multiple paragraphs, the
+        information is maintained in a separate topic file, generally named
+          <filepath>trademarks.dita</filepath>. This file is usually stored in the same folder as
+        the map file, but it doesn't have to be. </p>
+      <p>Put the &lt;trademarklist> element inside &lt;frontmatter>/&lt;booklists>, after the
+        &lt;toc> element. The position is really irrelevant, because it isn't used for output, only
+        for reference by the frontmatter formatter. The element has the form:</p>
+      <codeblock>&lt;trademarklist href="trademarks.dita" print="yes" toc="no"/></codeblock>
+      <p>The topic element at the root of the trademarks.dita file must specify
+          <codeph>outputclass="trademarks"</codeph>. Apart from that, the body of the topic can
+        contain one or more valid elements (p, ul, ol, note, for example) that describe the
+        trademarks.</p>
+    </section>
+  </refbody>
+</reference>

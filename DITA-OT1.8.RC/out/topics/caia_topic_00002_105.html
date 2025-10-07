@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="nl-nl" lang="nl-nl">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="kpe-concept"/>
+<meta name="DC.Title" content="Exotic Options"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="caia_topic_00002_105"/>
+<meta name="DC.Language" content="nl-NL"/>
+<link rel="stylesheet" type="text/css" href="..%5Ccommonltr.css"/>
+<title>Exotic Options</title>
+</head>
+<body id="caia_topic_00002_105">
+
+<h1 class="title topictitle1">Exotic Options</h1>
+<div class="body conbody kpe-conceptBody"><p class="p"><strong class="ph b">LO 28.3: Demonstrate knowledge of structured products with exotic option features. </strong></p>
+<p class="p">For example:</p>
+<ul class="ul"><li class="li">Compare and contrast simple options and exotic options.</li>
+<li class="li">Explain principal protected structured products.</li>
+<li class="li">Define the participation rate.</li>
+<li class="li">Illustrate how a cash-and-call strategy is related to put-call parity.</li>
+<li class="li">Identify path-dependent options and binary options.</li>
+<li class="li">Describe and apply barrier, knock-in, and active options.</li>
+<li class="li">Describe the characteristics of in versus out and up versus down barrier options.</li>
+<li class="li">Define spread options and look-back options.</li>
+<li class="li">Define a quanto option.</li>
+</ul>
+<p class="p">A <strong class="ph b">simple option</strong> (also known as a <em class="ph i">plain vanilla option</em>) has two characteristics:</p>
+<ul class="ul"><li class="li">Value of option payoff is determined by the value of a single underlying asset on a single expiration date.</li>
+<li class="li">The payoff increases linearly based on the difference between the strike price and the value of the underlying asset.</li>
+</ul>
+<p class="p">An <strong class="ph b">exotic option </strong>is any option that has features that are not included in a simple option. As a result, exotic options have payoff diagrams that deviate substantially from simple options. Examples include:</p>
+<ul class="ul"><li class="li">Payoffs prior to the option’s expiration date.</li>
+<li class="li">Payoffs that are non-linear.</li>
+</ul>
+<p class="p">Common exotic options include binary options, Asian options, barrier options, look-back options, spread options, and quanto options.</p>
+<div class="section"><h2 class="title sectiontitle"><strong class="ph b">Structured Product Features</strong></h2><p class="p">A <strong class="ph b">principal-protected structured product</strong> is an investment that is designed to have a minimum guaranteed payout, usually an amount equal to the investor’s principal. It does not contain an exotic option (i.e., it is a simple option). Depending on its structure, the guarantee may be from a private source or a public source such as the U.S. Treasury or the Federal Deposit Insurance Corporation (FDIC). Depending on the type and source of the guarantee, there may be some risk that the guarantee is not met. This is referred to as counterparty risk.</p>
+<p class="p">The <strong class="ph b">participation rate</strong> describes how much a product’s payout increases as the value of the underlying asset changes. In 100% participation, if the underlying asset increases 25%, the payout also increases 25%. A 25% participation rate means that the payout rises 1% for every 4% increase in the value of the underlying asset. In situations where leverage is employed, the participation rate can be higher than 100%.</p>
+</div>
+<div class="section"><h2 class="title sectiontitle">Relationship Between Cash-and-Call Strategy and Put-Call Parity</h2><p class="p"><strong class="ph b">Put-call parity</strong> describes the relationship between call and put prices of the same asset, strike price and expiration month and the underlying asset. It only applies to European options and does not account for dividends, transaction fees, or changes in interest rates. At put-call parity, the value of the asset less its strike price is equal to the cost of the call option less the cost of the put option as shown below:</p>
+<div class="eqn-block ">call price – put price = asset price – present value of strike price</div><p class="p">Put-call parity can be used to create a principal-protected product. One strategy is to purchase the asset and to buy a protective put (i.e., at-the-money long put position is combined with the underlying stock). If the value of the asset declines, the put can be exercised to meet the principal guarantee. If the value of the asset rises, the put expires without being exercised.</p>
+<p class="p">A similar outcome can be achieved with a cash-and-call position. In a <strong class="ph b">cash-and-call strategy </strong>(or <em class="ph i">fiduciary call</em>), the investor owns a long position in cash or a zero-coupon bond and a long position in a call option. If the asset value rises, the investor can exercise the call option and meet the principal guarantee. If the asset value falls, downside protection comes from the cash or the zero-coupon bond at maturity.</p>
+<p class="p">Figure 1 illustrates how put-call parity requires that a protective put strategy has the same payoff as a cash-and-call strategy. Note that all simple option strategies have payouts that can be diagrammed with only two line segments.</p>
+<div class="fig fignone"><span class="figcap">Figuur 1. <strong class="ph b">Figure 1: Equivalence of Two Investment Strategies</strong></span></div>
+</div>
+<div class="section"><h2 class="title sectiontitle">Asian Options</h2><p class="p"><strong class="ph b">Asian options</strong> have payoff profiles based on the average price of the security over the life of the option.  An Asian option is a considered a path-dependent option. A <strong class="ph b">path-dependent option</strong> is valued based on the price of the underlying asset at points up to and including the expiration date. The price of a path-dependent option is based on both the underlying asset’s price and the amount of time until expiration. The price of the option will change over time depending on these underlying factors. Other types of path-dependent options include binary options, barrier options, spread options, look-back options, and quanto options.</p>
+</div>
+<div class="section"><h2 class="title sectiontitle">Binary Options</h2><p class="p">A <strong class="ph b">binary option</strong> with a structured product has two outcomes depending on the price of the underlying asset relative to a specific threshold at expiration. If the asset is above the threshold, there is one payout. If it is below the threshold, there is a different (or no) payout. This type of non-linear payout is classified as a <em class="ph i">discontinuous </em>payout, which differs from the continuous payout nature of simple options. Note that binary options for structured products are European options.</p>
+</div>
+<div class="section"><h2 class="title sectiontitle">Barrier Options</h2><p class="p">A <strong class="ph b">barrier option</strong> is an option with a range of payoffs (path dependent) such that a change in payoff occurs if the underlying asset reaches a specific level during a specific time. Barrier options in structured products have two components. The first is the barrier, or the price and time at which an underlying option is activated. The second is the strike price or terms of the underlying option. For each barrier and option combination, there are four possible outcomes, as shown in Figure 2.</p>
+<div class="fig fignone"><span class="figcap">Figuur 2. <strong class="ph b">Figure 2: Barrier Options</strong></span></div>
+<p class="p">Two types of barrier options are knock-in options and knock-out options.</p>
+<p class="p">A <strong class="ph b">knock-in option</strong> is a barrier option that becomes effective if the underlying asset reaches a specific level at any point before expiration. Once the underlying asset reaches the trigger price, the knock-in option becomes an <strong class="ph b">active option</strong>. If the underlying asset fails to meet the trigger price, the option never becomes active and expires worthless. However, just because a knock-in option is active, it does not necessarily mean that the underlying option will pay out. The underlying option will only pay out if its strike price and terms are met. A knock-in option can be either a put or call, depending on how the product is structured.</p>
+<p class="p">A <strong class="ph b">knock-out option</strong> is the opposite of a knock-in option. In a knock-out option, the underlying put or call option terminates if the underlying asset reaches a particular price. If the underlying asset does not reach a specific price, the option stays active. As with a knock-in option, a knock-out option can be either a put or call, depending on how the product is structured.</p>
+<p class="p">While “in” or “out” refers to whether a barrier option becomes active (knock-in) or becomes inactive (knock-out), if the underlying reaches the barrier price, barrier options are further characterized as “up” or “down.” Up and down refer to the direction the underlying asset price would have to go to reach the barrier price. Thus, a knock-in option can be “up and in” or “down and in,” while a knock-out option can be “up and out” or “down and out.” Figure 3 shows how knock-in and knock-out options are classified.</p>
+<div class="fig fignone"><span class="figcap">Figuur 3. Figure 3: Barrier Options – In, Out, Up, and Down</span></div>
+
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><tbody class="tbody"><tr class="row"><td class="entry" valign="top" width="30.947712418300654%"> </td>
+<td class="entry" valign="top" width="35.294117647058826%"><p class="p">Underlier Below Barrier</p>
+</td>
+<td class="entry" valign="top" width="33.75816993464053%"><p class="p">Underlier Above Barrier</p>
+</td>
+</tr>
+<tr class="row"><td class="entry" valign="top" width="30.947712418300654%"><p class="p">Knock-in Option</p>
+</td>
+<td class="entry" valign="top" width="35.294117647058826%"><p class="p">Up-and-in </p>
+</td>
+<td class="entry" valign="top" width="33.75816993464053%"><p class="p">Down-and-in</p>
+</td>
+</tr>
+<tr class="row"><td class="entry" valign="top" width="30.947712418300654%"><p class="p">Knock-out Option</p>
+</td>
+<td class="entry" valign="top" width="35.294117647058826%"><p class="p">Up-and-out</p>
+</td>
+<td class="entry" valign="top" width="33.75816993464053%"><p class="p">Down-and-out</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="note sample note"><span class="notetitle">sample:</span> <p class="p label"><strong class="ph b">Example: Barrier option</strong></p>
+<p class="p">Consider a hypothetical structured product with knock-out put option. The barrier price is $100 for the underlying asset and the strike price on the put is $105. The underlying asset has moved from $110 to $85. <strong class="ph b">Identify </strong>the type of barrier option described and<strong class="ph b"> state</strong> if it is active or inactive.</p>
+<p class="p"><strong class="ph b">Answer:</strong></p>
+<p class="p">This scenario describes a down-and-out put because the option becomes inactive (out) if the underlying asset price goes down to the barrier price. At $85, the underlying asset is below the barrier price of $100, so the put is no longer active.</p>
+</div>
+</div>
+<div class="section"><h2 class="title sectiontitle">Spread Options</h2><p class="p">A <strong class="ph b">spread option</strong> is a call or put option where the payoff is the difference between two prices or rates. The amount of the payoff will be higher if there is a large difference between the two prices. It will be smaller if the difference between the two prices is less.</p>
+</div>
+<div class="section"><h2 class="title sectiontitle"><strong class="ph b">Look-Back Options</strong></h2><p class="p">A <strong class="ph b">look-back option</strong> is similar to a spread option in that its payout is determined by the difference between two prices. In a look-back option, the payout is based on either the largest (look-back call option) or smallest (look-back put option) difference between the strike price and the underlying asset price, typically over the life of the option.</p>
+</div>
+<div class="section"><h2 class="title sectiontitle">Quanto Options</h2><p class="p">A <strong class="ph b">quanto option</strong> has a payoff in one currency using the underlying asset’s value expressed in a different currency. For example, an investor owns a euro-based quanto call option on the Australian dollar-based S&amp;P/ASX 200, a measure of the 200 largest index-eligible stocks listed on the Australian stock exchange. If the strike price on the S&amp;P/ASX 200 is 5,500 and the index closes at 5,850 at the expiration date, the investor will receive €350.</p>
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+   New param to pass DITA map file name to HTML transforms.
+   ${output.dir} must include a full path. 
+   
+   [SP] add MAPFILE param SSO
+ -->
+<dummy>    
+<!--  <param name="CSS" expression="local.css"/>-->
+  <param name="MAPFILE" expression="${dita.temp.dir}${file.separator}${user.input.file}"/>
+
+ 
+</dummy>

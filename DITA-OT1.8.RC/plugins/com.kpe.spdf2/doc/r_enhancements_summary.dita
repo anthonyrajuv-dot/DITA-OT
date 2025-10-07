@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="reference_qrp_n3s_kh">
+  <title>Overview of enhancements</title>
+  <shortdesc>Summary of the spdf2 enhancements to the pdf2 plugin.</shortdesc>
+  <refbody>
+    <section>
+      <p>The spdf2 plugin adds these enhancements to the standard DITA OT pdf2 plugin:<ul
+          id="ul_fhf_b3l_1h">
+          <li>Detailed control of common layout elements</li>
+          <li>Treatment of &lt;section> elements so that their appearence is identical to that of
+            subordinate topics</li>
+          <li>Correct handling of &lt;part> elements in bookmaps and supporting unique images for
+            each part</li>
+          <li>Improved appearance of admonitions (note, caution, warning, and so on)</li>
+          <li>Repeating table titles (with “continued”) on page breaks</li>
+          <li>Improved widow and orphan handling in tables</li>
+          <li>Extensive table customization</li>
+          <li>Options for formatting definition lists (&lt;dl>) as a table or as a list</li>
+          <li>Support for two-column output of simple lists</li>
+          <li>Automatic generation of cover and copyright pages from bookmap metadata</li>
+          <li>Numerous small improvements to produce attractive-looking output</li>
+        </ul></p>
+    </section>
+  </refbody>
+</reference>

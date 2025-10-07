@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE kpe-assessmentOverview PUBLIC "-//KPE//DTD DITA KPE Assessment Overview//EN" "kpe-assessmentOverview.dtd">
+<kpe-assessmentOverview id="concept_dfm_wsf_kk">
+ <title>Test of KPE assessment overview</title>
+ <shortdesc/>
+ <prolog>
+  <metadata><distractorRandomize value="yes"/>
+  <questionRandomize value="yes"/>
+  <assessmentType value="test-exam-primary"/></metadata>
+ </prolog>
+ <kpe-assessmentOverviewBody>
+  <section>
+   <title>Instructions</title>
+   <p>Be sure to answer all the questions</p>
+  </section>
+ </kpe-assessmentOverviewBody>
+</kpe-assessmentOverview>

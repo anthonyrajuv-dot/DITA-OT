@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ============================================================= -->
+<!-- HEADER -->
+<!-- ============================================================= -->
+<!-- MODULE:    DITA Prompt Scheme Map XSD Group definition -->
+<!-- VERSION:   1.1 -->
+<!-- DATE:      March 2025 -->
+<!---->
+<!-- ============================================================= -->
+
+<!-- ============================================================= -->
+<!-- SYSTEM:     Darwin Information Typing Architecture (DITA) -->
+<!---->
+<!-- PURPOSE:    XSD to describe DITA Prompt Scheme maps -->
+<!---->
+<!-- ORIGINAL CREATION DATE: -->
+<!-- March 2025 -->
+<!---->
+<!-- (C) Copyright OASIS Open 2009. -->
+<!-- (C) Copyright IBM Corporation 2005, 2007. -->
+<!-- Kaplan, All Rights Reserved. -->
+<!---->
+<!-- UPDATES: -->
+<!-- ============================================================= -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:group name="schemeref">
+    <xs:sequence>
+      <xs:element ref="schemeref"/>
+    </xs:sequence>
+  </xs:group>
+  <xs:group name="hasNarrower">
+    <xs:sequence>
+      <xs:element ref="hasNarrower"/>
+    </xs:sequence>
+  </xs:group>
+  <xs:group name="hasKind">
+    <xs:sequence>
+      <xs:element ref="hasKind"/>
+    </xs:sequence>
+  </xs:group>
+  <xs:group name="hasPart">
+    <xs:sequence>
+      <xs:element ref="hasPart"/>
+    </xs:sequence>
+  </xs:group>
+  <xs:group name="hasInstance">
+    <xs:sequence>
+      <xs:element ref="hasInstance"/>
+    </xs:sequence>
+  </xs:group>
+  <xs:group name="hasRelated">
+    <xs:sequence>
+      <xs:element ref="hasRelated"/>
+    </xs:sequence>
+  </xs:group>
+	<xs:group name="promptdef">
+    <xs:sequence>
+    	<xs:element ref="promptdef"/>
+    </xs:sequence>
+  </xs:group>
+	<xs:group name="promptHead">
+    <xs:sequence>
+    	<xs:element ref="promptHead"/>
+    </xs:sequence>
+  </xs:group>
+	<xs:group name="promptHeadMeta">
+    <xs:sequence>
+    	<xs:element ref="promptHeadMeta"/>
+    </xs:sequence>
+  </xs:group>
+  <xs:group name="enumerationdef">
+    <xs:sequence>
+      <xs:element ref="enumerationdef"/>
+    </xs:sequence>
+  </xs:group>
+  <xs:group name="elementdef">
+    <xs:sequence>
+      <xs:element ref="elementdef"/>
+    </xs:sequence>
+  </xs:group>
+  <xs:group name="attributedef">
+    <xs:sequence>
+      <xs:element ref="attributedef"/>
+    </xs:sequence>
+  </xs:group>
+	<xs:group name="defaultPrompt">
+    <xs:sequence>
+    	<xs:element ref="defaultPrompt"/>
+    </xs:sequence>
+  </xs:group>
+	<xs:group name="relatedPrompts">
+    <xs:sequence>
+    	<xs:element ref="relatedPrompts"/>
+    </xs:sequence>
+  </xs:group>
+	<xs:group name="promptRelTable">
+    <xs:sequence>
+    	<xs:element ref="promptRelTable"/>
+    </xs:sequence>
+  </xs:group>
+	<xs:group name="promptRelHeader">
+    <xs:sequence>
+    	<xs:element ref="promptRelHeader"/>
+    </xs:sequence>
+  </xs:group>
+	<xs:group name="promptRel">
+    <xs:sequence>
+    	<xs:element ref="promptRel"/>
+    </xs:sequence>
+  </xs:group>
+	<xs:group name="promptRole">
+    <xs:sequence>
+    	<xs:element ref="promptRole"/>
+    </xs:sequence>
+  </xs:group>
+</xs:schema>

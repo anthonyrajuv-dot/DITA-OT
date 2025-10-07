@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE kpe-concept PUBLIC "-//KPE//DTD DITA KPE Concept//EN" "kpe-concept.dtd">
+<kpe-concept id="concept_dfm_wsf_kk">
+ <title>Test of KPE concept</title>
+ <shortdesc/>
+ <prolog/>
+ <kpe-conceptBody>
+  <callout>
+   <label>jfdalkjflkaj</label>
+  </callout>
+  <sample>
+   <label>jaflkjlajfldk</label>
+  </sample>
+  <p>this is the <sum>sum</sum> and this is the <total>total</total></p>
+  <p><emphasisBold>This is emphasis with Bold</emphasisBold></p>
+  <p><emphasisItalics>This is emphasis with Italics</emphasisItalics></p>
+  <p><foreignWord>This is a foreign phrase</foreignWord></p>
+ </kpe-conceptBody>
+</kpe-concept>

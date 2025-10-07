@@ -1,0 +1,87 @@
+all files
+search: xtrc="/w:document/w:body\[\d+\]/w:p\[\d+\]" xml:lang="nl-NL"
+replace: nothing
+
+search: xtrc="/w:document/w:body\[\d+\]/w:p\[\d+\]"
+replace: nothing
+
+Make sure "Wrap around" is checked
+
+search:  xtrc=""
+find: nothing
+
+
+
+LOS
+
+<title> IF there's an LOS number (like cfa)
+search: <title>
+replace: <title><ph id="los_num">
+
+search: </title>
+replace: </ph></title>
+
+search: <lcObjective> 
+replace: <lcObjective id="los"><ph id="ph_los">
+
+search: </lcObjective>
+replace: </ph></lcObjective>
+
+
+GENERAL
+search: <emphasisBold outputclass="add_italics">
+add <emphasisItalics> around phrase
+
+search: <emphasisBold outputclass="add_underline">
+add <u> around phrase
+
+
+
+QUESTIONS
+
+IF THERE IS A LEGACY ID:
+search: <prolog>
+replace: <prolog><metadata>
+
+search: </prolog>
+replace: </metadata></prolog>
+
+
+
+
+
+search: <lcInteraction>
+replace: <lcInteraction><lcSingleSelect2>
+
+search: </lcInteraction>
+replace: </lcSingleSelect2></lcInteraction>
+
+search: <lcAnswerContent2
+replace: <lcAnswerOption2><lcAnswerContent2
+
+search: </lcAnswerContent2>
+replace: </lcAnswerContent2></lcAnswerOption2>
+
+
+Correct answer
+search: <lcAnswerContent2 outputclass="correct"> (has a space at beginning)
+replace: <lcAnswerContent2><pointValue value="1"/>
+
+
+For lcCorrectResponse2
+search: ~~~</lcAnswerContent2>
+replace: </lcAnswerContent2><lcCorrectResponse2 value="lcCorrectResponse2"/>
+
+
+
+
+GLOSSARY:
+search: </glossdef>
+replace: </glossdef><kpe-glossProlog><kpe-glossMetadata><kpe-glossType value="Glossary"/></kpe-glossMetadata></kpe-glossProlog>
+
+
+
+
+
+
+

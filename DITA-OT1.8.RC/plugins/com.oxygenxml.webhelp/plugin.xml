@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Oxygen Webhelp plugin for DITA OT 2.0 or newer.
+
+Copyright (c) 1998-2015 Syncro Soft SRL, Romania.  All rights reserved.
+Licensed under the terms stated in the license file EULA_Webhelp.txt 
+available in the base directory of this Oxygen Webhelp plugin.
+
+-->
+<!DOCTYPE plugin[
+ <!ENTITY commons SYSTEM 'plugin_commons.xml'>
+]>
+<plugin id="com.oxygenxml.dita-ot.plugin.webhelp">
+  &commons;
+  <feature extension="dita.xsl.mappull" file="xsl/dita/mappullAddMetadata2.x.xsl"/>
+</plugin>

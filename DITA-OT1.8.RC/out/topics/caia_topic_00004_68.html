@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="nl-nl" lang="nl-nl">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="kpe-concept"/>
+<meta name="DC.Title" content="Risk Budgeting"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="caia_topic_00004_68"/>
+<meta name="DC.Language" content="nl-NL"/>
+<link rel="stylesheet" type="text/css" href="..%5Ccommonltr.css"/>
+<title>Risk Budgeting</title>
+</head>
+<body id="caia_topic_00004_68">
+
+<h1 class="title topictitle1"><strong class="ph b">Risk Budgeting</strong></h1>
+<div class="body conbody kpe-conceptBody"><p class="p"><strong class="ph b">LO 2.3: Demonstrate knowledge of risk budgeting.</strong></p>
+<p class="p"><strong class="ph b">For example:</strong></p>
+<ul class="ul"><li class="li"><strong class="ph b">Discuss the specifications required and not required as part of the risk budgeting process.</strong></li>
+<li class="li"><strong class="ph b">Describe the implementation of a risk budgeting approach, and calculate total risk and standard deviation for a given portfolio.</strong></li>
+<li class="li"><strong class="ph b">Apply the risk budgeting technique for a given three-asset portfolio.</strong></li>
+<li class="li"><strong class="ph b">Apply the risk budgeting approach to decompose the total risk of a portfolio using factors.</strong></li>
+</ul>
+<p class="p"><strong class="ph b">Risk budgeting </strong>is the process of selecting a maximum amount of desired total risk for a portfolio and allocating the portfolio in such a way that the combined risks of the portfolio’s individual asset classes do not exceed the selected limit. Risk can be measured in several ways, but the most common measurements include standard deviations of returns, standard deviation of tracking error against a benchmark, value at risk, and beta. As can be seen, risk can be measured in either absolute terms (standard deviation of returns and value at risk) or in relative terms (tracking error and beta). </p>
+<div class="section"><h2 class="title sectiontitle"><strong class="ph b">Implementing a Risk Budgeting Approach </strong></h2><p class="p">To implement a risk budgeting approach, one must first measure the risk of the entire portfolio. In this section, we will use the standard deviation of returns to measure risk. Recall from Level I that the variance of a portfolio’s returns is represented as:</p>
+<p class="p">Remember that ij is the covariance between assets i and j. To find the standard deviation of the portfolio, simply take the square root of the variance derived previously. The standard deviation of the portfolio can also be calculated using the following formula:</p>
+<p class="p">Here the standard deviation of the portfolio is represented as the sum of <em class="ph i">N</em> number of individual asset classes’ effects on the portfolio’s total risk. <em class="ph i">W</em> represents the asset’s weight and </p>
+<p class="p">measures the change in the portfolio’s standard deviation compared to a change in the asset’s weight in the portfolio. It is reasonable to assume that the higher the weight of an asset, the greater the effect it will have on the risk of the overall portfolio. However, it should be noted that due to asset volatility and levels of correlation between the assets, the true effect from each asset could be different than anticipated based on the assets’ weights. </p>
+</div>
+<div class="section"><h2 class="title sectiontitle"><strong class="ph b">Risk Budgeting With a Three-Asset Portfolio</strong></h2><p class="p">The figure below provides the attributes of a hypothetical three-asset portfolio. The asset variances lie on the diagonal of the variance-covariance matrix. Recall that standard deviation is the square root of variance.</p>
+<div class="fig fignone"><span class="figcap">Figuur 1. <strong class="ph b">Figure 1: Attributes of Three-Asset Portfolio</strong></span></div>
+
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><tbody class="tbody"><tr class="row"><td class="entry" valign="top" width="16.67088287376676%"><p class="p"><em class="ph i">Variance-Covariance Matrix</em></p>
+</td>
+</tr>
+<tr class="row"><td class="entry" valign="top" width="16.67088287376676%"> </td>
+<td class="entry" valign="top" width="16.65823425246648%"><p class="p"><em class="ph i">Mean</em></p>
+</td>
+<td class="entry" valign="top" width="16.67088287376676%"><p class="p"><em class="ph i">Weights</em></p>
+</td>
+<td class="entry" valign="top" width="16.65823425246648%"><p class="p"><em class="ph i">Asset 1</em></p>
+</td>
+<td class="entry" valign="top" width="16.67088287376676%"><p class="p"><em class="ph i">Asset 2</em></p>
+</td>
+<td class="entry" valign="top" width="16.67088287376676%"><p class="p"><em class="ph i">Asset 3</em></p>
+</td>
+</tr>
+<tr class="row"><td class="entry" valign="top" width="16.67088287376676%"><p class="p"><em class="ph i">Asset 1</em></p>
+</td>
+<td class="entry" valign="top" width="16.65823425246648%"><p class="p">8%</p>
+</td>
+<td class="entry" valign="top" width="16.67088287376676%"><p class="p">25%</p>
+</td>
+<td class="entry" valign="top" width="16.65823425246648%"><p class="p">0.00860</p>
+</td>
+<td class="entry" valign="top" width="16.67088287376676%"><p class="p">0.00823</p>
+</td>
+<td class="entry" valign="top" width="16.67088287376676%"><p class="p">0.00071</p>
+</td>
+</tr>
+<tr class="row"><td class="entry" valign="top" width="16.67088287376676%"><p class="p"><em class="ph i">Asset 2</em></p>
+</td>
+<td class="entry" valign="top" width="16.65823425246648%"><p class="p">10%</p>
+</td>
+<td class="entry" valign="top" width="16.67088287376676%"><p class="p">40%</p>
+</td>
+<td class="entry" valign="top" width="16.65823425246648%"><p class="p">0.00823</p>
+</td>
+<td class="entry" valign="top" width="16.67088287376676%"><p class="p">0.00972</p>
+</td>
+<td class="entry" valign="top" width="16.67088287376676%"><p class="p">–0.00313</p>
+</td>
+</tr>
+<tr class="row"><td class="entry" valign="top" width="16.67088287376676%"><p class="p"><em class="ph i">Asset 3</em></p>
+</td>
+<td class="entry" valign="top" width="16.65823425246648%"><p class="p">6%</p>
+</td>
+<td class="entry" valign="top" width="16.67088287376676%"><p class="p">35%</p>
+</td>
+<td class="entry" valign="top" width="16.65823425246648%"><p class="p">0.00071</p>
+</td>
+<td class="entry" valign="top" width="16.67088287376676%"><p class="p">–0.00313</p>
+</td>
+<td class="entry" valign="top" width="16.67088287376676%"><p class="p">0.03987</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p">The first step in calculating the risk contribution of Asset 1 is to calculate the standard deviation of the portfolio using the following equation:</p>
+<p class="p">The resulting portfolio standard deviation is equal to 8.87%. The next step in calculating the contribution of Asset 1 is to take the product of the asset’s correlation, standard deviation, and weight. If the correlation is assumed to be 0.8978, then the contribution calculation is as follows:</p>
+<p class="p">While the weight of Asset 1 is 25%, its contribution to the portfolio’s total risk is about 23% (= 2.08% / 8.87%).</p>
+<p class="p">By viewing the portfolio’s risk with respect to each asset’s contribution to it, the manager is able to get a better sense of how changes to each asset will affect the portfolio as a whole. This also allows for making allocation choices or setting constraints based on predetermined risk decisions related to the risk budget.</p>
+</div>
+<div class="section"><h2 class="title sectiontitle"><strong class="ph b">Risk Budgeting Using Factors</strong></h2><p class="p">Similar to measuring the total risk of a portfolio through the contributions of its individual asset classes, the same method can be used with risk factors. Linear regression allows an analyst to measure the effects of any number of risk factors for a portfolio. For a portfolio that has two primary risk factors, the regression model is as follows:</p>
+<div class="eqn-block ">RPt = a + b1F1t + b2F2t + t</div><p class="p">Rp is the rate of return for the portfolio, a is the intercept of the regression, b1 and b2 are the estimated effects on the portfolio from factors F1 and F2, respectively, and  represents the residual return of the regression that is not explained by either of the factors. From here, it is possible to separate the effect each risk factor has on the portfolio: </p>
+<div class="eqn-block ">P = (F1 × F1 × b1) + (F2 × F2 × b2) + ( × )</div><p class="p">F1 and F2 represent the correlations of the two factors with the return of the portfolio, and  is the correlation of the residual risk with the return of the portfolio. The segments of this equation represent the individual risk contributions of the factors (both known and unknown) and therefore simply need to be added together to determine the portfolio’s total risk. </p>
+<div class="note sample note"><span class="notetitle">sample:</span> <p class="p label"><strong class="ph b">Example: Risk budgeting</strong></p>
+<p class="p">Portfolio A has a total risk of 9%. If the correlation between changes in interest rates and the return on Portfolio A is 0.26, the standard deviation of interest rate changes is 14%, and the estimated factor effect (coefficient) on the portfolio from interest rates is 0.82, how much does the change in interest rates contribute to the portfolio’s total risk? </p>
+<p class="p"><strong class="ph b">Answer:</strong></p>
+<p class="p">interest rate contribution = 0.26 × 0.14 × 0.82 = 2.98%</p>
+<p class="p">Changes in interest rates account for 2.98%, or approximately one-third, of the portfolio’s total risk of 9%.</p>
+</div>
+</div>
+</div>
+
+</body>
+</html>

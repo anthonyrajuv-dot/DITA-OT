@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gmap:graphic-map xmlns:gmap="http://dita4publishers/namespaces/graphic-input-to-output-map"
+                  xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
+   <gmap:graphic-map-item input-url="/Users/ekimber/workspace/dita4publishers_0.9.18/docs/user_docs/d4p-users-guide/images/cover-graphic.jpg"
+                          output-url="file:/Users/ekimber/workspace/dita4publishers_0.9.18/docs/user_docs/html2/images/cover-graphic.jpg"
+                          id="d142e1"/>
+</gmap:graphic-map>
