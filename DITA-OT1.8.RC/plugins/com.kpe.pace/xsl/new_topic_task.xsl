@@ -2435,7 +2435,7 @@
                     	<xsl:message>isSPE: <xsl:value-of select="$isSPE"/></xsl:message>
                         
 			<!-- BAR Essay	 -->
-         <xsl:if test="lcOpenAnswer2/child::essaySection and not(contains(@orig_href,'.pdf.dita')) and not($offering_type='other') ">
+         <xsl:if test="(lcOpenAnswer2/child::essaySection) and not(contains(@orig_href,'.pdf.dita')) and not($offering_type='other') ">
 				<sectionGroup>
 				<xsl:for-each select="lcOpenAnswer2/essaySection">				
 				<xsl:variable name="filename" select="@href"/>
@@ -3994,6 +3994,11 @@
                     <xsl:attribute name="src">
                         <xsl:value-of select="replace(@href,'^.*/([^/]*)$','/assets/$1')"/>
                     </xsl:attribute>
+                	<xsl:if test="alt">
+                		<xsl:attribute name="alt">
+                			<xsl:value-of select="alt"/>
+                		</xsl:attribute>
+                	</xsl:if>
                     <xsl:apply-templates select="@*[not(name() = 'href')]|node()" mode="identity">
                         <xsl:with-param name="type" select="$type"/>
                     </xsl:apply-templates>
@@ -4014,6 +4019,20 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
+	
+	<!-- ARV added on 09-10-2025 -->
+	<xsl:template match="alt" mode="identity" priority="100">
+		<xsl:param name="type"/>
+		<!-- alt tag are for topic files only. For questions it should be an attribute. -->
+		<xsl:if test="$type != 'question' and $type != 'assessment' ">
+			<alt>
+				<xsl:apply-templates mode="identity">
+					<xsl:with-param name="type" select="$type"/>
+				</xsl:apply-templates>
+			</alt>
+		</xsl:if>
+	</xsl:template>
+	
 
     <xsl:template match="callout" mode="identity" priority="100">
         <xsl:param name="type"/>
@@ -5241,6 +5260,9 @@
                 </xsl:when>
                 <xsl:when test="starts-with(.,'..')">
                     <xsl:value-of select="substring-after(.,'..')"/>
+                </xsl:when>
+            	 <xsl:when test="contains(.,'/assets/')">
+            	 	<xsl:value-of select="replace(., '^.*/([^/]*)$', '/assets/$1')"/>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:value-of select="."/>
