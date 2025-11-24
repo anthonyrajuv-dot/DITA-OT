@@ -23,21 +23,24 @@ import java.util.regex.Pattern;
 /**
  * Normalize USstate attribute based on main bookmap <prodinfo><usstate>.
  *
- * Main map example:
- *   <bookmap>
- *     <bookmeta>
- *       <prodinfo>
- *         <usstate>RI</usstate>
- *       </prodinfo>
- *     </bookmeta>
- *   </bookmap>
+ * Let S = <usstate> value, NS = "NO_" + S.
  *
- * Behavior:
- *   - If @USstate value is a pipe-separated list containing <usstate>,
- *     rewrite to just <usstate>.
- *   - If it does NOT contain <usstate>, rewrite to NO_<usstate>.
+ * USstate values are in exactly one of two forms:
  *
- * Only the USstate attribute value is changed; all other markup is preserved as-is.
+ *   1) Plain codes (no NO_ at all), e.g.:
+ *        USstate="TN|AL|MD|SC|NJ|NC|..."
+ *      Rule:
+ *        - If any token == S      -> USstate="S"
+ *        - Else                  -> USstate="NO_S"
+ *
+ *   2) All NO_-prefixed codes, e.g.:
+ *        USstate="NO_TN|NO_AL|NO_MD|NO_SC|NO_NJ|..."
+ *      Rule:
+ *        - If any token == NS     -> USstate="NS"
+ *        - Else                  -> remove the USstate attribute
+ *
+ * Only the USstate attribute (value or whole attribute) is changed;
+ * all other attributes and markup are left intact.
  */
 public class USstateNormalizeModule {
 
@@ -181,11 +184,11 @@ public class USstateNormalizeModule {
     /**
      * Normalize all @USstate attributes in a file by text replacement only.
      *
-     * Rules (given mainState from <usstate>):
-     *   - If USstate value (pipe list) contains mainState → set to mainState.
-     *   - If NOT → set to "NO_" + mainState.
+     * Given mainState S from <usstate>:
+     *   - If USstate has plain codes (no NO_) -> use plain-state rules.
+     *   - If all tokens are NO_*             -> use NO_-state rules.
      *
-     * Returns true if any attribute value was changed.
+     * Returns true if any attribute value was changed or removed.
      */
     private boolean normalizeFileUSstateText(final File file, final String mainState) throws Exception {
         final String main = (mainState == null) ? "" : mainState.trim();
@@ -196,22 +199,32 @@ public class USstateNormalizeModule {
         // Java 8-compatible way to read the file as UTF-8
         String content = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
 
-        // Match USstate="...". We replace only the value, not other attributes or markup.
-        Pattern pattern = Pattern.compile("USstate\\s*=\\s*\"([^\"]*)\"");
+        // Match [space]USstate="...". We include leading whitespace so we can remove
+        // the whole attribute cleanly when needed.
+        Pattern pattern = Pattern.compile("\\s+USstate\\s*=\\s*\"([^\"]*)\"");
         Matcher m = pattern.matcher(content);
         StringBuffer sb = new StringBuffer();
         boolean changed = false;
 
         while (m.find()) {
             String oldVal = m.group(1);
-            String newVal = computeNewUSstateValue(oldVal, main);
+            String newVal = computeNewUSstateValueWithDelete(oldVal, main);
 
-            if (!newVal.equals(oldVal)) {
+            // Changed if value differs OR we remove the attribute
+            if (newVal == null || !newVal.equals(oldVal)) {
                 changed = true;
             }
 
-            String replacement = "USstate=\"" + Matcher.quoteReplacement(newVal) + "\"";
-            m.appendReplacement(sb, replacement);
+            String replacement;
+            if (newVal == null) {
+                // Remove the entire attribute (including leading whitespace)
+                replacement = "";
+            } else {
+                // Keep a single leading space and updated value
+                replacement = " USstate=\"" + newVal + "\"";
+            }
+
+            m.appendReplacement(sb, Matcher.quoteReplacement(replacement));
         }
         m.appendTail(sb);
 
@@ -224,27 +237,74 @@ public class USstateNormalizeModule {
     }
 
     /**
-     * Compute the new USstate value given the old one and main state.
+     * Compute new USstate value, or null if attribute should be removed.
      *
-     * - If old value equals main, or contains main as a |token| → return main.
-     * - Otherwise → return "NO_" + main.
+     * Let:
+     *   S  = main
+     *   NS = "NO_" + main
+     *
+     * Given oldVal "v1|v2|...":
+     *   tokens = non-empty, trimmed pieces split by '|'
+     *
+     *   allNo  = all tokens start with "NO_"
+     *
+     *   If !allNo (plain codes case):
+     *      - If any token == S  -> return S
+     *      - Else               -> return NS
+     *
+     *   If allNo (NO_ case):
+     *      - If any token == NS -> return NS
+     *      - Else               -> return null (remove attribute)
      */
-    private String computeNewUSstateValue(String oldVal, String main) {
+    private String computeNewUSstateValueWithDelete(String oldVal, String main) {
         if (oldVal == null) {
+            // No explicit rule given; treat as "no values" -> we can choose NS
             return "NO_" + main;
         }
+
         String v = oldVal.trim();
         if (v.isEmpty()) {
+            // Empty -> also treat as "no explicit values" -> NS
             return "NO_" + main;
         }
 
-        String wrappedVal  = "|" + v + "|";
-        String wrappedMain = "|" + main + "|";
+        String[] parts = v.split("\\|");
+        boolean allNo = true;
+        boolean hasState = false;
+        boolean hasNOS = false;
+        String ns = "NO_" + main;
 
-        if (v.equals(main) || wrappedVal.contains(wrappedMain)) {
-            return main;
+        for (String p : parts) {
+            String tok = p.trim();
+            if (tok.isEmpty()) {
+                continue;
+            }
+
+            if (!tok.startsWith("NO_")) {
+                allNo = false;
+            }
+            if (tok.equals(main)) {
+                hasState = true;
+            }
+            if (tok.equals(ns)) {
+                hasNOS = true;
+            }
+        }
+
+        if (!allNo) {
+            // Plain codes case
+            if (hasState) {
+                return main;
+            } else {
+                return ns;
+            }
         } else {
-            return "NO_" + main;
+            // All NO_* case
+            if (hasNOS) {
+                return ns;
+            } else {
+                return null; // remove attribute
+            }
         }
     }
 }
