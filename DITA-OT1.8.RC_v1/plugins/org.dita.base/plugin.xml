@@ -30,6 +30,7 @@
   <extension-point id="depend.preprocess.pre" name="Preprocessing pre-target"/>
   <extension-point id="depend.preprocess.clean-temp.pre" name="Clean temp pre-target"/>
   <extension-point id="depend.preprocess.gen-list.pre" name="Generate list pre-target"/>
+  <extension-point id="depend.preprocess.usstate-normalize-java.pre" name="Normalize USstate attribute"/>
   <extension-point id="depend.preprocess.debug-filter.pre" name="Debug and filter pre-target"/>
   <extension-point id="depend.preprocess.conrefpush.pre" name="Content reference push pre-target"/>
   <extension-point id="depend.preprocess.move-meta-entries.pre" name="Move meta entries pre-target"/>

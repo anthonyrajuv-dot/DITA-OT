@@ -8,7 +8,7 @@
     <not><isset property="dita.preprocess.reloadstylesheet"></isset></not>
   </condition>
 
-  <target name="preprocess" depends="gen-list,debug-filter,copy-files,conrefpush,conref,move-meta-entries,keyref,coderef,mapref,mappull,chunk,maplink,move-links,topicpull,flag-module" description="Preprocessing ended"></target>
+	<target name="preprocess" depends="gen-list,usstate-normalize-java,debug-filter,copy-files,conrefpush,conref,move-meta-entries,keyref,coderef,mapref,mappull,chunk,maplink,move-links,topicpull,flag-module" description="Preprocessing ended"></target>
 
   <!-- clean-temp
       Remove anything in the ${dita.temp.dir} directory before starting. -->
@@ -17,10 +17,11 @@
       <fileset dir="${dita.temp.dir}"></fileset>
     </delete>
   </target>
+	
 
   <!-- gen-list
       Create the manifest files listing which files are referenced by the input file (even indirectly). -->
-  <target name="gen-list" unless="preprocess.gen-list.skip" description="Generate file list">
+  <target name="gen-list" unless="preprocess.gen-list.skip" description="Generate file list">  	
     <pipeline message="Generate list." taskname="gen-list" inputmap="${args.input}" tempdir="${dita.temp.dir}">
       <module class="org.dita.dost.module.GenMapAndTopicListModule">
         <param name="inputdir" location="${args.input.dir}" if="args.input.dir"></param>
@@ -78,7 +79,25 @@
     <property name="keyreffile" value="keyref.list"></property>
     <property name="codereffile" value="coderef.list"></property>
     <property name="resourceonlyfile" value="resourceonly.list"></property>
-  </target>
+  </target>	
+	
+	
+	<!-- ARV 21/11/2025: Added to normalize USstate Ditavals -->
+	<target name="usstate-normalize-java"
+		unless="preprocess.usstate-normalize.skip">   
+		<echo message="USstateNormalizeModule: temp dir = '${dita.temp.dir}'"/>   
+		<java classname="com.kpe.usstate.USstateNormalizeModule"
+			fork="true"
+			failonerror="true">     
+			<arg value="${dita.temp.dir}"/>     
+			<classpath>
+				<fileset dir="${dita.dir}/lib">
+					<include name="**/*.jar"/>
+				</fileset>
+			</classpath>     
+		</java>   
+	</target>
+	
 
   <!-- debug-filter
       Copy input files to ${dita.temp.dir} tree.

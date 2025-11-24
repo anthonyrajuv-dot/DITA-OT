@@ -12,7 +12,7 @@
   </condition>
 
   <target name="preprocess"
-    dita:depends="{depend.preprocess.pre},gen-list,debug-filter,copy-files,conrefpush,conref,move-meta-entries,keyref,coderef,mapref,mappull,chunk,maplink,move-links,topicpull,flag-module,{depend.preprocess.post}"
+  	dita:depends="{depend.preprocess.pre},gen-list,debug-filter,copy-files,conrefpush,conref,move-meta-entries,keyref,coderef,mapref,mappull,chunk,maplink,move-links,topicpull,flag-module,{depend.preprocess.post}"
     dita:extension="depends org.dita.dost.platform.InsertDependsAction"
     description="Preprocessing ended" />
 
@@ -94,6 +94,7 @@
     <property name="codereffile" value="coderef.list"/>
     <property name="resourceonlyfile" value="resourceonly.list"/>
   </target>
+	
 
   <!-- debug-filter
       Copy input files to ${dita.temp.dir} tree.

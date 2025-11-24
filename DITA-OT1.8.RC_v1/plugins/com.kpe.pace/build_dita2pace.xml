@@ -28,7 +28,7 @@
     
     <target name="dita2pace"
         depends="dita2pace.announce,build-init, dita2pace.init, 
-        gen-list,debug-filter,dita2pace.copy-files, 
+        gen-list,usstate-normalize-java,debug-filter,dita2pace.copy-files, 
         conrefpush,conref,move-meta-entries,keyref,coderef,mapref,mappull,chunk,maplink,move-links, topicpull,
         dita2pace.transform, 
         dita2pace.cleanup, dita2pace.debug, dita2pace.donetimedate">

@@ -359,7 +359,8 @@ PUBLIC "-//OASIS//ELEMENTS DITA Metadata//EN"
                           %series; |
                           %performance; |
                           %prodsubtype; |
-                          %offering;)*)"
+                          %offering;)*,
+                          (%usstate;)?)"
 >
 <!ENTITY % prodinfo.attributes
              "%univ-atts;"
@@ -423,6 +424,18 @@ PUBLIC "-//OASIS//ELEMENTS DITA Metadata//EN"
 >
 <!ELEMENT prodsubtype    %prodsubtype.content;>
 <!ATTLIST prodsubtype    %prodsubtype.attributes;>
+
+
+
+<!--                    LONG NAME: usstate                        -->
+<!ENTITY % usstate.content
+                       "(%words.cnt;)*"
+>
+<!ENTITY % usstate.attributes
+             "%univ-atts;"
+>
+<!ELEMENT usstate    %usstate.content;>
+<!ATTLIST usstate    %usstate.attributes;>
 
 
 
@@ -609,5 +622,6 @@ PUBLIC "-//OASIS//ELEMENTS DITA Metadata//EN"
 <!ATTLIST performance %global-atts;  class CDATA "- topic/performance "  >
 <!ATTLIST offering %global-atts;  class CDATA "- topic/offering "  >
 <!ATTLIST prodsubtype %global-atts;  class CDATA "- topic/prodsubtype "  >
+<!ATTLIST usstate %global-atts;  class CDATA "- topic/usstate "  >
 
 <!-- ================== End Metadata  ================================ -->

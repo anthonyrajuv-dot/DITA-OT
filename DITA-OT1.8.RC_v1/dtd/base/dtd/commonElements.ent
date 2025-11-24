@@ -138,7 +138,8 @@ PUBLIC"-//OASIS//ENTITIES DITA Common Elements//EN"
 <!ENTITY % vrm          "vrm"                                        >
 <!ENTITY % vrmlist      "vrmlist"                                    >
 <!ENTITY % performance  "performance"                                >
-<!ENTITY % offering     "offering"                                >
-<!ENTITY % prodsubtype     "prodsubtype"                                >
+<!ENTITY % offering     "offering"                                   >
+<!ENTITY % prodsubtype     "prodsubtype"                             >
+<!ENTITY % usstate     "usstate"                                     >
 
 <!-- ================== End Common Element Entities ============== -->
