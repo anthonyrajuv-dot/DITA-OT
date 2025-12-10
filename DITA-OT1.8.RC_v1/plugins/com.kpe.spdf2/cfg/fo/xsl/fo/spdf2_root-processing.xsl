@@ -101,6 +101,17 @@ See the accompanying license.txt file for applicable licenses.
                 </xsl:if>
                 
             </xsl:if>
+        		<xsl:if test="$OUTPUT_TYPE = 'course_no_answers'">
+                
+                <xsl:call-template name="createBookmarks"/>
+                
+                <xsl:call-template name="createFrontMatter"/>
+                
+                <xsl:if test="not($retain-bookmap-order)">
+                    <xsl:call-template name="createToc"/>
+                </xsl:if>
+                
+            </xsl:if>
             
             
             <xsl:choose>
@@ -136,6 +147,13 @@ See the accompanying license.txt file for applicable licenses.
                         /*[contains(@class,' topic/topic ') and 
                         not(*[contains(@class,' kpe-assessmentOverview/kpe-assessmentOverview ')] 
                         and descendant-or-self::*[contains(@class,' kpe-commonMeta-d/lmsCategory ') and @value='test_exam_primary'] )]"/>
+                </xsl:when>
+            	
+            	<!-- [ARV: 11/12/2025] For excluding Rationale from course output  -->
+            	<xsl:when test="$OUTPUT_TYPE = 'course_no_answers'">
+                    <xsl:apply-templates select="/*[contains(@class,' bookmap/bookmap ')]
+                        /*[contains(@class,' topic/topic ') and 
+                        not(*[contains(@class,' learning2-d/lcFeedbackCorrect2 ')] )]"/>
                 </xsl:when>
                 
                 

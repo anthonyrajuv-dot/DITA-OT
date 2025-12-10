@@ -1056,6 +1056,10 @@
                             <xsl:when test="contains(@class,' kpe-assessmentOverview/kpe-assessmentOverview ') and $OUTPUT_TYPE = 'course_no_questions'">
                                 <!-- do nothing -->
                             </xsl:when>
+                            <!-- [ARV: 11/12/2025] omit Rationale -->
+                        	<xsl:when test="contains(@class,' learning2-d/lcFeedbackCorrect2 ') and $OUTPUT_TYPE = 'course_no_answers'">
+                                <!-- do nothing -->
+                            </xsl:when>
 
                             <xsl:when test="contains(@class,' concept/concept ')">
                                 <xsl:apply-templates select="." mode="processConcept"/>
