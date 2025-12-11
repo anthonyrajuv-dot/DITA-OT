@@ -6,7 +6,7 @@
     exclude-result-prefixes="m xs functx ditaarch" version="2.0">
     <xsl:import href="functx-1.0.xsl"/>
     <xsl:param name="OUT_DIR"/>
-    <xsl:strip-space elements="*"/>
+    <xsl:strip-space elements="*"/>	 
     <xsl:variable name="newline" select="'&#10;   '"/>
 	 <xsl:variable name="offering_type" select="/supermap/@offering_type"/>
 	 <xsl:variable name="performance_tracker" select="/supermap/@performance_tracker"/>	
