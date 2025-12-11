@@ -155,8 +155,6 @@ See the accompanying license.txt file for applicable licenses.
                         /*[contains(@class,' topic/topic ') and 
                         not(*[contains(@class,' learning2-d/lcFeedbackCorrect2 ')] )]"/>
                 </xsl:when>
-            	<xsl:when test="00"></xsl:when>
-                
                 
                     <xsl:when test="$OUTPUT_TYPE = 'testbank'">
                     <!-- This has to be a special case. Short-circuit the standard topic processing to create the page-sequence. -->
