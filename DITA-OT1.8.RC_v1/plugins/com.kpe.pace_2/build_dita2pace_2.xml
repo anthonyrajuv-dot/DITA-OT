@@ -421,6 +421,16 @@
             <include name="**/*.dita"/>
             <include name="**/*.xml"/>
         </replace>
+    	
+    	<!-- [ARV: 11-12-2025] To replace &#x00a0; with keyboard space -->
+    	<echo>replacing &amp;#x00a0; to Space.</echo>
+    	<replace dir="${output.dir}/ASCII"
+    		encoding="utf-8"
+    		token='&amp;#x00a0;'
+    		value=' ' summary="yes">
+    		<include name="**/*.dita"/>
+    		<include name="**/*.xml"/>
+    	</replace>
         
         
         <copy todir="${output.dir}" overwrite="true">

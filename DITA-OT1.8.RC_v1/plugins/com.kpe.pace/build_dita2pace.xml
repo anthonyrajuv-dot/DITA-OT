@@ -479,6 +479,7 @@
     		<include name="**/*.xml"/>
     	</replace>
     	
+    	<!-- [ARV: 11-12-2025] To replace &#x00a0; with keyboard space -->
     	<echo>replacing &amp;#x00a0; to Space.</echo>
     	<replace dir="${output.dir}/ASCII"
     		encoding="utf-8"
