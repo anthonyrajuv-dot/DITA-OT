@@ -147,7 +147,7 @@ See the accompanying license.txt file for applicable licenses.
                         /*[contains(@class,' topic/topic ') and 
                         not(*[contains(@class,' kpe-assessmentOverview/kpe-assessmentOverview ')] 
                         and descendant-or-self::*[contains(@class,' kpe-commonMeta-d/lmsCategory ') and @value='test_exam_primary'] )]"/>
-                </xsl:when>
+                </xsl:when>            	
             	
             	<!-- [ARV: 11/12/2025] For excluding Rationale from course output  -->
             	<xsl:when test="$OUTPUT_TYPE = 'course_no_answers'">
@@ -155,6 +155,7 @@ See the accompanying license.txt file for applicable licenses.
                         /*[contains(@class,' topic/topic ') and 
                         not(*[contains(@class,' learning2-d/lcFeedbackCorrect2 ')] )]"/>
                 </xsl:when>
+            	<xsl:when test="00"></xsl:when>
                 
                 
                     <xsl:when test="$OUTPUT_TYPE = 'testbank'">
