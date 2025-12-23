@@ -10,9 +10,10 @@
     <xsl:variable name="newline" select="'&#10;   '"/>
 	 <xsl:variable name="offering_type" select="/supermap/@offering_type"/>
 	 <xsl:variable name="performance_tracker" select="/supermap/@performance_tracker"/>	
-	 <xsl:variable name="sampleQnA-url" select="/supermap/@sampleQnA-url"/>
+	 <xsl:variable name="sampleQnA-url" select="/supermap/@sampleQnA-url"/>	 
 	 <xsl:variable name="isSPE" select="/supermap/@isSPE"/>	 
 	 <xsl:variable name="open_answer" select="/supermap/@open_answer"/>
+	 <xsl:variable name="skillcodetable" select="/supermap/@skillcode"/>
 	
 	
 	<xsl:variable name="los_summary" select="/supermap/los_summary" as="element()*"/>
@@ -827,6 +828,7 @@
 			
 			<xsl:variable name="difficulty" select="difficulty/@value"/>
 			<xsl:variable name="questionType" select="questionType/@value"/>
+			<xsl:variable name="skill-code" select="skill/@code"/>
 
 
             <!-- Create the <data> item from the nested topicsubject element. -->
@@ -836,6 +838,7 @@
             	 <xsl:with-param name="q_id_base" select="replace($file_id_base,'SAME_ESSAY_','')"/>
             	<xsl:with-param name="difficulty" select="$difficulty"/>
             	<xsl:with-param name="questionType" select="$questionType"/>
+            	<xsl:with-param name="skill-code" select="$skill-code"/>
             </xsl:apply-templates>
 			
 			
@@ -944,6 +947,7 @@
         <xsl:param name="q_id_base"/>
     	  <xsl:param name="difficulty" />
     	  <xsl:param name="questionType"/>
+    	  <xsl:param name="skill-code"/>
 
         <xsl:variable name="name_base" select="/supermap/@name_base"/>
         <!-- Find determine the los name from the keyref attribute. -->
@@ -1014,7 +1018,32 @@
 	    		</data>
 	    	</xsl:if>
     	
+    	<!-- [ARV: 12-12-2025] Added to get skill data tag -->
+    	  <xsl:if test="$skill-code != ''">    	  	
+	    		<data name="tag">
+	    			<xsl:variable name="skillVal">
+	    				<xsl:call-template name="getSkill_val">
+	    					<xsl:with-param name="skill-code" select="$skill-code"/>
+	    				</xsl:call-template>
+	    			</xsl:variable>
+	    			<xsl:attribute name="value" select="$skillVal"/>
+	    			<xsl:attribute name="datatype" select="$datatype"/>
+	    		</data>
+	    	</xsl:if>
     </xsl:template>
+	
+	<!-- [ARV: 12-12-2025] Added to get skill value from table hrefed in main bookmap -->
+	<xsl:template name="getSkill_val">
+		<xsl:param name="skill-code"/>
+		<xsl:message>[Skill Code]: <xsl:value-of select="$skill-code"/></xsl:message>
+		<xsl:variable name="skillDoc" select="document($skillcodetable)/*" as="element()*"/>
+		<xsl:variable name="skillDocTbody" select="$skillDoc//tbody"/>		
+		<xsl:for-each select="$skillDocTbody/row">
+			<xsl:if test="entry[1]=$skill-code">
+				<xsl:value-of select="concat($skill-code,': ',normalize-space(entry[2]))"/>
+			</xsl:if>			
+		</xsl:for-each>		
+	</xsl:template>
     
 	
 	
@@ -1052,8 +1081,9 @@
     
     
    
-   <!-- ARV: added for GMAT on 11/03/2025 -->
-	<xsl:template match="difficulty">
+	<!-- [ARV:11-03-2025] Added for GMAT -->
+	<!-- [ARV:19-12-2025] Removed -->
+	<!--<xsl:template match="difficulty">
 		<xsl:param name="q_number"/>
 		<xsl:message>ARV: added for GMAT on 11/03/2025</xsl:message>
 			<data name="difficulty">
@@ -1064,7 +1094,7 @@
 					<xsl:value-of select="concat('Q',$q_number)"/>
 				</xsl:attribute>
 			</data>
-	</xsl:template>
+	</xsl:template>-->
    
     
     
@@ -1183,7 +1213,7 @@
 					</xsl:attribute>
 				</data>
 			</xsl:when>
-			<xsl:when test="not(@id)">
+			<!--<xsl:when test="not(@id)">
 				<data name="difficulty">
 					<xsl:attribute name="value">
 						<xsl:value-of select="@value"/>
@@ -1192,7 +1222,7 @@
 						<xsl:value-of select="concat('Q',$q_number)"/>
 					</xsl:attribute>
 				</data>
-			</xsl:when>
+			</xsl:when>-->
 		</xsl:choose>
 	</xsl:template>
 	

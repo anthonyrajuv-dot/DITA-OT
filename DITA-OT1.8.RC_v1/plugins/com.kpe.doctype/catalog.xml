@@ -138,6 +138,9 @@
 	
 	<public publicId="-//KPE//ELEMENTS DITA KPE essayData Metadata Domain//EN" uri="dtd/kpe-essayDataMetadataDomain.ent"/>
 	<public publicId="-//KPE//ELEMENTS DITA KPE essayData Metadata Domain//EN" uri="dtd/kpe-essayDataMetadataDomain.mod"/>
+	
+	<public publicId="-//KPE//ELEMENTS DITA KPE skill Metadata Domain//EN" uri="dtd/kpe-skillMetadataDomain.ent"/>
+	<public publicId="-//KPE//ELEMENTS DITA KPE skill Metadata Domain//EN" uri="dtd/kpe-skillMetadataDomain.mod"/>
 
 	<public publicId="-//KPE//ELEMENTS DITA KPE topicprompt Metadata Domain//EN" uri="dtd/kpe-topicpromptMetadataDomain.ent"/>
 	<public publicId="-//KPE//ELEMENTS DITA KPE topicprompt Metadata Domain//EN" uri="dtd/kpe-topicpromptMetadataDomain.mod"/>

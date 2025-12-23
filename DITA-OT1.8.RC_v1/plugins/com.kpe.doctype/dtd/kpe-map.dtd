@@ -73,6 +73,11 @@ PUBLIC "-//KPE//DTD DITA KPE Map//EN"
            "kpe-essayDataMetadataDomain.ent"
 >%kpe-essayDataMeta-d-dec;
 
+<!ENTITY % kpe-skillMeta-d-dec     
+    PUBLIC "-//KPE//ENTITIES DITA KPE skill Metadata Domain//EN" 
+           "kpe-skillMetadataDomain.ent"
+>%kpe-skillMeta-d-dec;
+
 <!ENTITY % kpe-KaplanWayMeta-d-dec     
     PUBLIC "-//KPE//ENTITIES DITA KPE Kaplan Way Metadata Domain//EN" 
            "kpe-KaplanWayMetadataDomain.ent"
@@ -263,6 +268,11 @@ PUBLIC "-//KPE//DTD DITA KPE Map//EN"
     PUBLIC "-//KPE//ELEMENTS DITA KPE essayData Metadata Domain//EN" 
            "kpe-essayDataMetadataDomain.mod"
 >%kpe-essayDataMeta-d-def;
+
+<!ENTITY % kpe-skillMeta-d-def     
+    PUBLIC "-//KPE//ELEMENTS DITA KPE skill Metadata Domain//EN" 
+           "kpe-skillMetadataDomain.mod"
+>%kpe-skillMeta-d-def;
 
 <!ENTITY % kpe-KaplanWayMeta-d-def     
     PUBLIC "-//KPE//ELEMENTS DITA KPE Kaplan Way Metadata Domain//EN" 

@@ -51,6 +51,7 @@
     	<xsl:variable name="performance_tracker" select="$bookmeta/prodinfo/offering/@pt"/>
     	<xsl:variable name="isSPE" select="$bookmeta/prodinfo/offering/@spe"/>
     	<xsl:variable name="open_answer" select="$bookmeta/prodinfo/offering/@openanswer"/>
+    	<xsl:variable name="skill_code" select="$bookmeta/skillcode/@href"/>
         
         
     <xsl:variable name="all-prompts-ids" select="//lcQuestionContext2" as="element()*"/>
@@ -81,6 +82,7 @@
         	<xsl:attribute name="performance_tracker" select="$performance_tracker"/>
         	<xsl:attribute name="isSPE" select="$isSPE"/>
         	<xsl:attribute name="open_answer" select="$open_answer"/>
+        	<xsl:attribute name="skillcode" select="$skill_code"/>
             
             
             
@@ -1034,6 +1036,7 @@
             <xsl:apply-templates select="*[contains(@class,' classify-d/topicprompt ')]">
                 <xsl:with-param name="id_tree" select="$id_tree"/>
             </xsl:apply-templates>
+          <xsl:apply-templates select="skill"/>
           <xsl:apply-templates select="difficulty"/>
         	 <xsl:apply-templates select="essayData"/>
         	 <xsl:apply-templates select="sampleQuestion"/>
@@ -1153,6 +1156,14 @@
 				<xsl:value-of select="@questionnum"/>
 			</xsl:attribute>
 		</essayData>
+	</xsl:template>
+	
+	<xsl:template match="skill">
+		<skill>
+			<xsl:attribute name="code">
+				<xsl:value-of select="@code"/>
+			</xsl:attribute>			
+		</skill>
 	</xsl:template>
 	
 	<xsl:template match="sampleQuestion">

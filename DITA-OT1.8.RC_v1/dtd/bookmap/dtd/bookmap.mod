@@ -131,6 +131,7 @@ PUBLIC "-//OASIS//ELEMENTS DITA BookMap//EN"
 <!ENTITY % toc             "toc"                                     >
 <!ENTITY % volume          "volume"                                  >
 <!ENTITY % year            "year"                                    >
+<!ENTITY % skillcode       "skillcode"                               >
 
 
 <!-- ============================================================= -->
@@ -230,6 +231,7 @@ PUBLIC "-//OASIS//ELEMENTS DITA BookMap//EN"
                          (%othermeta;)*, 
                          (%resourceid;)*, 
                          (%bookid;)?,
+                         (%skillcode;)?,
                          (%bookchangehistory;)*,
                          (%bookrights;)*,
                          (%data;)*)"
@@ -368,6 +370,20 @@ PUBLIC "-//OASIS//ELEMENTS DITA BookMap//EN"
 >
 <!ELEMENT bookchangehistory    %bookchangehistory.content;>
 <!ATTLIST bookchangehistory    %bookchangehistory.attributes;>
+
+
+
+<!-- [ARV: 19-12-2025] Added to capture skill coded file for BAR -->
+<!--                    LONG NAME: Book ID                         -->
+<!ENTITY % skillcode.content
+                       "EMPTY"
+>
+<!ENTITY % skillcode.attributes
+             "href CDATA #IMPLIED"
+>
+<!ELEMENT skillcode    %skillcode.content;>
+<!ATTLIST skillcode    %skillcode.attributes;>
+
 
 
 <!--                    LONG NAME: Book ID                         -->
@@ -1244,6 +1260,8 @@ PUBLIC "-//OASIS//ELEMENTS DITA BookMap//EN"
 <!ATTLIST booklist    %global-atts; class CDATA "- map/topicref bookmap/booklist ">
 <!ATTLIST booklists   %global-atts; class CDATA "- map/topicref bookmap/booklists ">
 <!ATTLIST bookmeta    %global-atts; class CDATA "- map/topicmeta bookmap/bookmeta ">
+<!ATTLIST skillcode    %global-atts; class CDATA "- map/topicmeta bookmap/skillcode ">
+
 <!ATTLIST booknumber  %global-atts; class CDATA "- topic/data bookmap/booknumber ">
 <!ATTLIST bookowner   %global-atts; class CDATA "- topic/data bookmap/bookowner ">
 <!ATTLIST bookpartno  %global-atts; class CDATA "- topic/data bookmap/bookpartno ">

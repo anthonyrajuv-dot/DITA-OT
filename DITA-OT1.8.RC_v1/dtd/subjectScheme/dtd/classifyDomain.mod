@@ -50,6 +50,7 @@ PUBLIC "-//OASIS//ELEMENTS DITA Map Subject Classification Domain//EN"
 <!ENTITY % topicSubjectRow     "topicSubjectRow">
 <!ENTITY % topicCell           "topicCell">
 <!ENTITY % subjectCell         "subjectCell">
+<!ENTITY % skill         "skill">
 
 <!-- ============================================================= -->
 <!--                    ELEMENT DECLARATIONS                       -->
@@ -106,6 +107,57 @@ PUBLIC "-//OASIS//ELEMENTS DITA Map Subject Classification Domain//EN"
 <!ELEMENT topicprompt    %topicprompt.content;>
 <!ATTLIST topicprompt    %topicprompt.attributes;>
 
+
+<!-- [ARV:19-12-2025] Added for Capturing Skill -->
+<!--                    LONG NAME: Skill                   -->
+<!ENTITY % skill.content
+                       "EMPTY"
+>
+<!ENTITY % skill.attributes
+             "navtitle 
+                        CDATA 
+                                  #IMPLIED
+              href 
+                        CDATA 
+                                  #IMPLIED
+              keyref 
+                        CDATA 
+                                  #IMPLIED
+              keys 
+                        CDATA 
+                                  #IMPLIED
+              query 
+                        CDATA 
+                                  #IMPLIED
+              type 
+                        CDATA 
+                                  #IMPLIED
+              code 
+                        CDATA 
+                                  #IMPLIED
+              processing-role
+                        (normal |
+                         resource-only |
+                         -dita-use-conref-target)
+                                  'resource-only'
+              scope 
+                        (external | 
+                         local | 
+                         peer | 
+                         -dita-use-conref-target) 
+                                  #IMPLIED
+              format 
+                        CDATA 
+                                  #IMPLIED
+              toc 
+                        (no | 
+                         yes | 
+                         -dita-use-conref-target) 
+                                  'no'
+              %univ-atts;"
+>
+<!ELEMENT skill    %skill.content;>
+<!ATTLIST skill    %skill.attributes;>
 
 
 
@@ -384,5 +436,7 @@ PUBLIC "-//OASIS//ELEMENTS DITA Map Subject Classification Domain//EN"
     class CDATA "+ map/relcell classify-d/topicCell ">
 <!ATTLIST subjectCell %global-atts;
     class CDATA "+ map/relcell classify-d/subjectCell ">
+<!ATTLIST skill %global-atts;
+    class CDATA "+ map/skill classify-d/skill ">
 
 <!-- ================== DITA Subject Classification Domain  ====== -->
