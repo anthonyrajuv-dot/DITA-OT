@@ -63,6 +63,7 @@ PUBLIC "-//OASIS//ELEMENTS DITA Learning Base//EN"
 <!ENTITY % rules "rules">
 <!ENTITY % analysis "analysis">
 <!ENTITY % conclusion "conclusion">
+<!ENTITY % sectiondiv "sectiondiv">
 
 
 <!-- declare the structure and content models -->
@@ -424,6 +425,24 @@ PUBLIC "-//OASIS//ELEMENTS DITA Learning Base//EN"
 <!ATTLIST lcInteraction    %lcInteraction.attributes;>
 
 
+
+<!ENTITY % sectiondiv.content
+                       "(%section.cnt;)*"
+>
+<!ENTITY % sectiondiv.attributes
+             "spectitle
+                        CDATA
+                                  #IMPLIED
+              %univ-atts;
+              outputclass
+                        CDATA
+                                  #IMPLIED"
+>
+<!ELEMENT sectiondiv    %sectiondiv.content;>
+<!ATTLIST sectiondiv    %sectiondiv.attributes;>
+
+
+
 <!--specialization attributes-->
 <!ATTLIST learningBase       %global-atts; class CDATA "- topic/topic learningBase/learningBase ">
 <!ATTLIST learningBasebody   %global-atts; class CDATA "- topic/body learningBase/learningBasebody ">
@@ -448,4 +467,5 @@ PUBLIC "-//OASIS//ELEMENTS DITA Learning Base//EN"
 <!ATTLIST rules        %global-atts; class CDATA "- topic/section learningBase/rules ">
 <!ATTLIST analysis     %global-atts; class CDATA "- topic/section learningBase/analysis ">
 <!ATTLIST conclusion   %global-atts; class CDATA "- topic/section learningBase/conclusion ">
+<!ATTLIST sectiondiv   %global-atts; class CDATA "- topic/lcReview learningBase/sectiondiv ">
 

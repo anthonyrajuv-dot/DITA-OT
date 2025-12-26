@@ -616,7 +616,7 @@
         <xsl:variable name="attrSet1A" select="concat(substring-before($attrSet1,'.topic.title'),'.section.title')"/>
         <xsl:comment>attrSet1A is: <xsl:value-of select="$attrSet1A"/>.</xsl:comment>
         <xsl:variable name="attrSet2" select="concat($attrSet1, '__content')"/>
-        <xsl:comment>attrSet2 is: <xsl:value-of select="$attrSet2"/>.</xsl:comment>
+        <xsl:comment>attrSet2 is: <xsl:value-of select="$attrSet2"/>.</xsl:comment>        
 
         <fo:block>
             <xsl:call-template name="commonattributes"/>
@@ -632,7 +632,7 @@
                 </xsl:call-template>
                 <!-- For sections there is no level 1. -->
                 <xsl:if test="$level = 2">
-                    <fo:marker marker-class-name="current-h2">
+                    <fo:marker marker-class-name="current-h2">                    	
                         <xsl:apply-templates select="." mode="getTitle"/>
                     </fo:marker>
                 </xsl:if>
@@ -650,8 +650,8 @@
                 </fo:inline>
                 <!-- added by William on 2009-07-02 for indexterm bug:2815485 start-->
                 <xsl:call-template name="pullPrologIndexTerms"/>
-                <!-- added by William on 2009-07-02 for indexterm bug:2815485 end-->
-                <xsl:apply-templates select="." mode="getTitle"/>
+                <!-- added by William on 2009-07-02 for indexterm bug:2815485 end-->                
+            	<xsl:apply-templates select="." mode="getTitle"/>
             </fo:block>
         </fo:block>
     </xsl:template>
@@ -1207,7 +1207,7 @@
             <xsl:when test="parent::*[contains(@class,' topic/note ')] and count(preceding-sibling::*[contains(@class,' topic/p ')]) = 0">
                 <fo:block xsl:use-attribute-sets="note-p" id="{@id}">
                     <xsl:call-template name="commonattributes"/>
-                    <xsl:call-template name="placeNoteLabel"/>
+                			<xsl:call-template name="placeNoteLabel"/>
                     <xsl:apply-templates/>
                 </fo:block>
             </xsl:when>
@@ -1257,7 +1257,7 @@
                         <fo:table-row>
                             <fo:table-cell xsl:use-attribute-sets="note__image__entry">
                                 <fo:block>
-                                    <fo:external-graphic src="url({concat($artworkPrefix, $noteImagePath)})" xsl:use-attribute-sets="image"/>
+                                    <fo:external-graphic src="url({concat($artworkPrefix, $noteImagePath)})" content-width="65%" xsl:use-attribute-sets="image"/>
                                 </fo:block>
                             </fo:table-cell>
                             <fo:table-cell xsl:use-attribute-sets="note__text__entry">
@@ -1406,10 +1406,16 @@
                     </fo:inline>
                 </xsl:when>
             </xsl:choose>
-            <xsl:text>: </xsl:text>
+        	<fo:inline>: </fo:inline>
         </fo:inline>
-        <xsl:text>  </xsl:text>
     </xsl:template>
+	
+	<!-- [ARV: 25-12-2025] Added to make label bold -->
+	<!--<xsl:template match="*[contains(@class, ' topic/note ')]/label">
+		<fo:inline font-weight="bold">
+			<xsl:apply-templates/>
+		</fo:inline>
+	</xsl:template>-->
 
     <!-- [SP] Make figure title appear at the top of figures, rather than after. -->
     <xsl:template match="*[contains(@class,' topic/fig ')]">

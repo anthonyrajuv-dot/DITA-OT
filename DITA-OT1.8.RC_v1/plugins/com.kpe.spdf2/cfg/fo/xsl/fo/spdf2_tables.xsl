@@ -186,8 +186,10 @@ See the accompanying license.txt file for applicable licenses.
                             from="/"/>
                     </number>
                     <title>
-                        <xsl:apply-templates/>
-                        <fo:retrieve-table-marker retrieve-class-name="continued" />
+                        <fo:inline>
+                        	<xsl:apply-templates/>
+                        	<fo:retrieve-table-marker retrieve-class-name="continued" />
+                        </fo:inline>
                     </title>
                 </xsl:with-param>
             </xsl:call-template>

@@ -55,11 +55,13 @@
     <variable id="note Note Image Path"></variable>
     <!-- No image for cautions.  -->
     <variable id="caution Note Image Path"></variable>
+	
+	<variable id="profnote Note Image Path">Customization/OpenTopic/common/artwork/profnote.png</variable>
     
         <!-- Images for watermarks -->
     <variable id="draft Watermark Image Path">Customization/OpenTopic/common/artwork/draft.svg</variable>
     <variable id="beta Watermark Image Path">Customization/OpenTopic/common/artwork/Beta.svg</variable>
-    <variable id="none Watermark Image Path">Customization/OpenTopic/common/artwork/empty.png</variable>
+	<variable id="none Watermark Image Path"></variable>
 
 <!-- For indexes, lowercased the word "see". -->
     <!--string before see element-->
