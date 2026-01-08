@@ -3787,6 +3787,21 @@
         <!--        <xsl:message>Replaced characters in: <xsl:value-of select="$string_8"/>.</xsl:message>-->
         <xsl:value-of select="$string_8" disable-output-escaping="yes"/>
     </xsl:template>
+	
+	<xsl:template match="navtitle" mode="#all">
+		<xsl:variable name="string_1" select="replace(.,'&amp;','&amp;#038;')"/>
+		<xsl:variable name="string_2" select="replace($string_1,'&lt;','&amp;#060;')"/>
+		<xsl:variable name="string_3" select="replace($string_2,'&gt;','&amp;#062;')"/>
+		<xsl:variable name="string_4" select="replace($string_3,'&#34;','&amp;#034;')"/>
+		<!--MW Commented out apostrophe change-->
+		<xsl:variable name="string_5" select="replace($string_4,$apos,'&amp;#039;')"/>
+		<!--<xsl:variable name="string_6" select="replace($string_5,'-','&amp;#045;')"/>-->
+		<xsl:variable name="string_6" select="replace($string_4,'-','-')"/>
+		<xsl:variable name="string_7" select="translate($string_6,'&#10;',' ')"/>
+		<xsl:variable name="string_8" select="replace($string_7,'  *',' ')"/>
+		<!--        <xsl:message>Replaced characters in: <xsl:value-of select="$string_8"/>.</xsl:message>-->
+		<xsl:value-of select="$string_8" disable-output-escaping="yes"/>
+	</xsl:template>
 
     <!-- kpe-assessmentOverviewBody -->
     <xsl:template match="*[contains(@class,' topic/body ')]" mode="identity" priority="100">
@@ -5550,8 +5565,20 @@
             <xsl:apply-templates/>
         </u>
     </xsl:template>
+	
+	<!--MW added for Insurance additions for red color-->
+	<xsl:template match="sample [@othertype = 'please_note' or @outputclass = 'please_note']" mode="#all" priority="100">
+		<xsl:param name="type"/>
+		<div style="color:#ff0000;">
+			
+			<xsl:apply-templates mode="identity">
+				<xsl:with-param name="type" select="$type"/>
+			</xsl:apply-templates>
+			
+		</div>
+	</xsl:template>
+	
     <!--    PSB added 6/15/2017-->
-
     <xsl:template match="total" priority="100" mode="#all">
         <u style="border-bottom:1px solid">
             <xsl:apply-templates/>

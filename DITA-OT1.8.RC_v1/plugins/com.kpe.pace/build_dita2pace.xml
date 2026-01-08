@@ -478,20 +478,27 @@
     		<include name="**/*.dita"/>
     		<include name="**/*.xml"/>
     	</replace>
+    	    	
     	
-    	<!-- [ARV: 11-12-2025] To replace &#x00a0; with keyboard space -->
-    	<echo>replacing &amp;#x00a0; to Space.</echo>
+    	<!-- [ARV: 05-01-2026] To replace &#x205f; with keyboard space -->
+    	<echo>replacing medium space &amp;#x205f; to Space.</echo>
     	<replace dir="${output.dir}/ASCII"
     		encoding="utf-8"
-    		token='/&gt;&amp;#x00a0;&lt;ph'
-    		value='/&gt; &lt;ph' summary="yes">
+    		token='&amp;#x205f;'
+    		value=' ' summary="yes">
     		<include name="**/*.dita"/>
     		<include name="**/*.xml"/>
     	</replace>
-        
     	
-        
-        
+    	<!--<echo>Converting &amp;#x039; to Keyboard apostrophe => '.</echo>
+    	<replace dir="${output.dir}"
+    		encoding="utf-8"
+    		token='&amp;#039;'
+    		value="'" summary="yes">
+    		<include name="**/*.xml"/>
+    		<include name="**/*.dita"/>
+    		<include name="*.ditamap"/>
+    	</replace>-->
         
         
         

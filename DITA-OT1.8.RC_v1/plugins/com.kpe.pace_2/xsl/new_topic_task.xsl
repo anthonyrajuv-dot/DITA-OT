@@ -2100,6 +2100,20 @@
         <!--        <xsl:message>Replaced characters in: <xsl:value-of select="$string_8"/>.</xsl:message>-->
         <xsl:value-of select="$string_8" disable-output-escaping="yes"/>
     </xsl:template>
+	
+	<!--MW updated so dash remains as dash in navtitle-->
+	<xsl:template match="navtitle" mode="#all">
+		<xsl:variable name="string_1" select="replace(.,'&amp;','&amp;#038;')"/>
+		<xsl:variable name="string_2" select="replace($string_1,'&lt;','&amp;#060;')"/>
+		<xsl:variable name="string_3" select="replace($string_2,'&gt;','&amp;#062;')"/>
+		<xsl:variable name="string_4" select="replace($string_3,'&#34;','&amp;#034;')"/>
+		<xsl:variable name="string_5" select="replace($string_4,$apos,'&amp;#039;')"/>
+		<xsl:variable name="string_6" select="replace($string_5,'-','-')"/>
+		<xsl:variable name="string_7" select="translate($string_6,'&#10;',' ')"/>
+		<xsl:variable name="string_8" select="replace($string_7,'  *',' ')"/>
+		<!--        <xsl:message>Replaced characters in: <xsl:value-of select="$string_8"/>.</xsl:message>-->
+		<xsl:value-of select="$string_8" disable-output-escaping="yes"/>
+	</xsl:template>
 
     <!-- kpe-assessmentOverviewBody -->
     <xsl:template match="*[contains(@class,' topic/body ')]" mode="identity" priority="100">
