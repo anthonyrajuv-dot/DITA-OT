@@ -14,6 +14,7 @@
 	 <xsl:variable name="isSPE" select="/supermap/@isSPE"/>	 
 	 <xsl:variable name="open_answer" select="/supermap/@open_answer"/>
 	 <xsl:variable name="skillcodetable" select="/supermap/@skillcode"/>
+	 <xsl:variable name="prod_vert" select="/supermap/@prod_vert"/>
 	
 	
 	<xsl:variable name="los_summary" select="/supermap/los_summary" as="element()*"/>
@@ -4811,12 +4812,22 @@
             <xsl:apply-templates select="tbody" mode="PACE_table"/>
         </table>
     </xsl:template>
+	
     <xsl:template match="thead" mode="PACE_table vignette">
     	<!-- ARV updated on 12/06/2025: added it for Gmat but it may be applicable all the offering -->
-    	<thead>
-    		<xsl:apply-templates select="row" mode="PACE_table_head"/>
-    	</thead>
+    	<!-- ARV updated on 13/01/2026: Updated to exclude securities -->
+		<xsl:choose>
+			<xsl:when test="lower-case($prod_vert) != 'sec'">
+				<thead>
+					<xsl:apply-templates select="row" mode="PACE_table_head"/>
+				</thead>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:apply-templates select="row" mode="PACE_table_head"/>				
+			</xsl:otherwise>
+		</xsl:choose>
     </xsl:template>
+	
     <xsl:template match="row" mode="PACE_table_head vignette">
         <xsl:variable name="rowsep">
             <xsl:choose>

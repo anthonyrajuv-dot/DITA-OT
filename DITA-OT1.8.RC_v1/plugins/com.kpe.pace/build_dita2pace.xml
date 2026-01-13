@@ -417,12 +417,13 @@
             value='-' summary="yes">
             <include name="**/*.dita"/>
         </replace>
-        <replace dir="${output.dir}/ASCII"
+        <!-- [ARV: 13-01-2026] Commented out -->
+        <!--<replace dir="${output.dir}/ASCII"
             encoding="utf-8"
             token='&amp;#045;'
             value='-' summary="yes">
             <include name="**/*.xml"/>
-        </replace>
+        </replace>-->
         
         
         <!-- copy glossary       -->

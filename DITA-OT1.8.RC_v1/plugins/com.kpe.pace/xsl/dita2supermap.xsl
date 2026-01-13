@@ -52,6 +52,7 @@
     	<xsl:variable name="isSPE" select="$bookmeta/prodinfo/offering/@spe"/>
     	<xsl:variable name="open_answer" select="$bookmeta/prodinfo/offering/@openanswer"/>
     	<xsl:variable name="skill_code" select="$bookmeta/skillcode/@href"/>
+    	<xsl:variable name="prod_vert" select="$bookmeta/prodinfo/brand"/>
         
         
     <xsl:variable name="all-prompts-ids" select="//lcQuestionContext2" as="element()*"/>
@@ -73,6 +74,9 @@
             <xsl:attribute name="name_base" select="$name_base"/>
             <xsl:attribute name="course_num" select="$course_num"/>
             
+        	<!-- Hold brand abbreviation. -->
+        	<xsl:attribute name="prod_vert" select="$prod_vert"/>
+        	
         	<!-- Find the Performance in the metadata and for Essay data. -->
         	<xsl:attribute name="PT_type" select="$PT_type"/>
 
