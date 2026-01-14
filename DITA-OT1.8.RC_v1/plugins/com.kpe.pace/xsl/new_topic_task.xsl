@@ -827,8 +827,10 @@
                 Q: Do we need to replicate bloomsMap for each topicsubject also?
             -->
 			
-			<xsl:variable name="difficulty" select="difficulty/@value"/>
-			<xsl:variable name="questionType" select="questionType/@value"/>
+			<!-- [ARV 14-01-2026: Commented-out] -->
+			<!--<xsl:variable name="difficulty" select="difficulty/@value"/>-->
+			<!--<xsl:variable name="questionType" select="questionType/@value"/>-->
+			
 			<xsl:variable name="skill-code" select="skill/@code"/>
 
 
@@ -837,8 +839,26 @@
                 <xsl:with-param name="q_number" select="$q_number"/>
                 <xsl:with-param name="base_list" select="$base_list"/>
             	 <xsl:with-param name="q_id_base" select="replace($file_id_base,'SAME_ESSAY_','')"/>
-            	<xsl:with-param name="difficulty" select="$difficulty"/>
-            	<xsl:with-param name="questionType" select="$questionType"/>
+            </xsl:apply-templates>
+			
+			
+			<!-- [ARV 14-01-2026: Modified so that it doesnt depend on topicsubject] -->
+				<xsl:apply-templates select="difficulty" mode="difficulty-mode">
+					<xsl:with-param name="q_number" select="$q_number"/>
+					<xsl:with-param name="base_list" select="$base_list"/>
+					<xsl:with-param name="q_id_base" select="replace($file_id_base,'SAME_ESSAY_','')"/>
+				</xsl:apply-templates>
+				<xsl:apply-templates select="questionType" mode="questionType-mode">
+					<xsl:with-param name="q_number" select="$q_number"/>
+					<xsl:with-param name="base_list" select="$base_list"/>
+					<xsl:with-param name="q_id_base" select="replace($file_id_base,'SAME_ESSAY_','')"/>
+				</xsl:apply-templates>					
+            
+			
+				<xsl:apply-templates select="skill" mode="skill-mode">
+					<xsl:with-param name="q_number" select="$q_number"/>
+					<xsl:with-param name="base_list" select="$base_list"/>
+					<xsl:with-param name="q_id_base" select="replace($file_id_base,'SAME_ESSAY_','')"/>
             	<xsl:with-param name="skill-code" select="$skill-code"/>
             </xsl:apply-templates>
 			
@@ -1006,32 +1026,130 @@
                 </xsl:choose>
             </xsl:attribute>
         </data>
-	    	<xsl:if test="$difficulty != ''">
-	    		<data name="difficulty">
-	    			<xsl:attribute name="value" select="$difficulty"/>
-	    			<xsl:attribute name="datatype" select="$datatype"/>
-	    		</data>
-	    	</xsl:if>
-	    	<xsl:if test="$questionType != ''">
-	    		<data name="tag">
-	    			<xsl:attribute name="value" select="$questionType"/>
-	    			<xsl:attribute name="datatype" select="$datatype"/>
-	    		</data>
-	    	</xsl:if>
-    	
-    	<!-- [ARV: 12-12-2025] Added to get skill data tag -->
-    	  <xsl:if test="$skill-code != ''">    	  	
-	    		<data name="tag">
-	    			<xsl:variable name="skillVal">
-	    				<xsl:call-template name="getSkill_val">
-	    					<xsl:with-param name="skill-code" select="$skill-code"/>
-	    				</xsl:call-template>
-	    			</xsl:variable>
-	    			<xsl:attribute name="value" select="$skillVal"/>
-	    			<xsl:attribute name="datatype" select="$datatype"/>
-	    		</data>
-	    	</xsl:if>
     </xsl:template>
+	
+	
+	<xsl:template match="difficulty" mode="difficulty-mode">
+		<xsl:param name="q_number"/>
+		<xsl:param name="base_list" as="element()*"/>
+		<xsl:param name="q_id_base"/>
+		
+		<xsl:variable name="ts_base" select="@base"/>
+		
+		<!-- [ARV Copied on 14-01-2025]-->
+		<xsl:variable name="subq_number">
+			<xsl:choose>
+				<xsl:when test="count($base_list) &gt; 0">
+					<xsl:number value="$base_list[@base = $ts_base]/@subq_number" format="a"/>
+				</xsl:when>
+				<xsl:otherwise/>
+			</xsl:choose>
+		</xsl:variable>
+		
+		<!-- [ARV Copied on 14-01-2025] 2022-08-24 sfb: Creating datatype variable, because it's reference several times, now.-->
+		<xsl:variable name="datatype">
+			<xsl:choose>
+				<xsl:when test="@test_id and @test_id != ''">
+					<xsl:value-of select="concat($q_id_base,'_',@test_id)"/>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:value-of select="concat('Q',$q_number,$subq_number)"/>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
+		
+		<xsl:variable name="difficulty" select="@value"/>
+		<xsl:if test="$difficulty != ''">
+			<data name="difficulty">
+				<xsl:attribute name="value" select="$difficulty"/>
+				<xsl:attribute name="datatype" select="$datatype"/>
+			</data>
+		</xsl:if>
+	</xsl:template>
+
+
+	<xsl:template match="questionType" mode="questionType-mode">
+		<xsl:param name="q_number"/>
+		<xsl:param name="base_list" as="element()*"/>
+		<xsl:param name="q_id_base"/>
+		
+		<xsl:variable name="ts_base" select="@base"/>
+		
+		<!-- [ARV Copied on 14-01-2025]-->
+		<xsl:variable name="subq_number">
+			<xsl:choose>
+				<xsl:when test="count($base_list) &gt; 0">
+					<xsl:number value="$base_list[@base = $ts_base]/@subq_number" format="a"/>
+				</xsl:when>
+				<xsl:otherwise/>
+			</xsl:choose>
+		</xsl:variable>
+		
+		<!-- [ARV Copied on 14-01-2025] 2022-08-24 sfb: Creating datatype variable, because it's reference several times, now.-->
+		<xsl:variable name="datatype">
+			<xsl:choose>
+				<xsl:when test="@test_id and @test_id != ''">
+					<xsl:value-of select="concat($q_id_base,'_',@test_id)"/>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:value-of select="concat('Q',$q_number,$subq_number)"/>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
+		
+		<xsl:variable name="questionType" select="@value"/>
+		<xsl:if test="$questionType != ''">
+			<data name="tag">
+				<xsl:attribute name="value" select="$questionType"/>
+				<xsl:attribute name="datatype" select="$datatype"/>
+			</data>
+		</xsl:if>
+	</xsl:template>
+	
+	
+	<xsl:template match="skill" mode="skill-mode">
+		<xsl:param name="q_number"/>
+		<xsl:param name="base_list" as="element()*"/>
+		<xsl:param name="q_id_base"/>
+		<xsl:param name="skill-code"/>
+		
+		<xsl:variable name="ts_base" select="@base"/>
+		
+		<!-- [ARV Copied on 14-01-2025]-->
+		<xsl:variable name="subq_number">
+			<xsl:choose>
+				<xsl:when test="count($base_list) &gt; 0">
+					<xsl:number value="$base_list[@base = $ts_base]/@subq_number" format="a"/>
+				</xsl:when>
+				<xsl:otherwise/>
+			</xsl:choose>
+		</xsl:variable>
+		
+		<!-- [ARV Copied on 14-01-2025] 2022-08-24 sfb: Creating datatype variable, because it's reference several times, now.-->
+		<xsl:variable name="datatype">
+			<xsl:choose>
+				<xsl:when test="@test_id and @test_id != ''">
+					<xsl:value-of select="concat($q_id_base,'_',@test_id)"/>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:value-of select="concat('Q',$q_number,$subq_number)"/>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
+		
+		<!-- [ARV: 14-01-2026] Added to get skill data tag -->
+		<xsl:if test="$skill-code != ''">    	  	
+			<data name="tag">
+				<xsl:variable name="skillVal">
+					<xsl:call-template name="getSkill_val">
+						<xsl:with-param name="skill-code" select="$skill-code"/>
+					</xsl:call-template>
+				</xsl:variable>
+				<xsl:attribute name="value" select="$skillVal"/>
+				<xsl:attribute name="datatype" select="$datatype"/>
+			</data>
+		</xsl:if>
+	</xsl:template>
 	
 	<!-- [ARV: 12-12-2025] Added to get skill value from table hrefed in main bookmap -->
 	<xsl:template name="getSkill_val">
