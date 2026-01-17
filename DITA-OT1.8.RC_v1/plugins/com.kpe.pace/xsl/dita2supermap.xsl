@@ -47,15 +47,26 @@
 
     	<!-- Find the Offering type in the metadata and for Essay. -->
     	<xsl:variable name="offering_type" select="$bookmeta/prodinfo/offering/@type"/>
+    	
+    	<!-- Get hold of document with sample Prompts and Answers. -->
     	<xsl:variable name="sampleQnA-url" select="$bookmeta/prodinfo/offering/@href"/>
+    	
+    	<!-- Get hold of Offering @pt attribute. -->
     	<xsl:variable name="performance_tracker" select="$bookmeta/prodinfo/offering/@pt"/>
+    	<!-- Get hold of Offering @spe attribute. -->
     	<xsl:variable name="isSPE" select="$bookmeta/prodinfo/offering/@spe"/>
+    	<!-- Get hold of Offering @openanswer attribute. -->
     	<xsl:variable name="open_answer" select="$bookmeta/prodinfo/offering/@openanswer"/>
+    	
+    	<!-- Get hold of skillcode document. -->
     	<xsl:variable name="skill_code" select="$bookmeta/skillcode/@href"/>
+    	
+    	<!-- Get hold of Product verticle. -->
     	<xsl:variable name="prod_vert" select="$bookmeta/prodinfo/brand"/>
-        
-        
-    <xsl:variable name="all-prompts-ids" select="//lcQuestionContext2" as="element()*"/>
+    	
+    	
+    	
+    	<xsl:variable name="all-prompts-ids" select="//lcQuestionContext2" as="element()*"/>
     	
     	
     	<xsl:variable name="prod-subtype" select="$bookmeta/prodinfo/prodsubtype"/>
@@ -1047,7 +1058,8 @@
         	 <xsl:apply-templates select="sampleAnswer"/>
           <xsl:apply-templates select="bloomsMap"/> 
           <xsl:apply-templates select="sortOrder"/>
-            <xsl:apply-templates select="questionType"/>
+          <xsl:apply-templates select="questionType"/>
+        	 <xsl:apply-templates select="scoringGroup"/>
         </topicref>
     </xsl:template>
     
@@ -1127,7 +1139,7 @@
             </xsl:attribute>
         </bloomsMap>
     </xsl:template>
-    <!--Added for Bar Essays-->
+    <!-- [ARV: 17-01-2026 update] Added while Bar migration -->
     <xsl:template match="difficulty">
         <difficulty>
             <xsl:attribute name="value">
@@ -1136,11 +1148,21 @@
             <xsl:attribute name="id">
                 <xsl:value-of select="@id"/>
             </xsl:attribute>
-            <xsl:attribute name="essay">
+            <xsl:attribute name="essay"><!-- [ARV: Need to check this <= ] -->
                 <xsl:value-of select="@essay"/>
             </xsl:attribute>
         </difficulty>
     </xsl:template>
+	
+	
+	<!-- [ARV: 17-01-2026] Added as new update for BAR's Scoring Group -->
+	<xsl:template match="scoringGroup">
+		<scoringGroup>
+			<xsl:attribute name="group">
+				<xsl:value-of select="@group"/>
+			</xsl:attribute>
+		</scoringGroup>
+	</xsl:template>
 	
 	<xsl:template match="essayData">
 		<essayData>

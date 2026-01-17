@@ -18,17 +18,11 @@
 	
 	
 	<xsl:variable name="los_summary" select="/supermap/los_summary" as="element()*"/>
-    <xsl:variable name="prompts_summary" select="/supermap/prompts_summary" as="element()*"/>
-    
-	<xsl:variable name="createdDate" select="/kpe-question/prolog/critdates/created/@date" />
-	<xsl:variable name="modifiedDate" select="/kpe-question/prolog/critdates/created/@modified" />
-	<xsl:variable name="stateData" select="/kpe-question/prolog/metadata/othermeta/@state" />
-	<xsl:variable name="ContentData" select="/kpe-question/prolog/metadata/othermeta/@content" />
-	<xsl:variable name="eassyTypeData" select="/kpe-question/prolog/metadata/othermeta/@eassyType" />
+   <xsl:variable name="prompts_summary" select="/supermap/prompts_summary" as="element()*"/>
 	
 	
-	<xsl:variable name="prod-subtype" select="/supermap/@prodsubtype"/>    
-	<xsl:variable name="trunk-identifier" select="/supermap/@trunk-identifier"/>    
+	<xsl:variable name="prod-subtype" select="/supermap/@prodsubtype"/>
+	<xsl:variable name="trunk-identifier" select="/supermap/@trunk-identifier"/>
     
 	
 
@@ -471,8 +465,6 @@
             </questionGroup>
         </question>
     </xsl:template>
-
-
     
 
     <xsl:template match="topicsubject" mode="new_question">
@@ -489,24 +481,7 @@
                 />
             </xsl:attribute>
         </data>
-		<data name="questionAttribute">
-            <xsl:attribute name="key"><xsl:value-of select="{$stateData}"/></xsl:attribute>
-            <xsl:attribute name="value"><xsl:value-of select="{$ContentData}"/></xsl:attribute>
-        </data>
-		<data name="questionAttribute">
-            <xsl:attribute name="key"><xsl:value-of select="'Month'"/></xsl:attribute>
-            <xsl:attribute name="value"><xsl:value-of select="{$createdDate}"/></xsl:attribute>
-        </data>
-		<data name="questionAttribute">
-            <xsl:attribute name="key"><xsl:value-of select="'Month'"/></xsl:attribute>
-            <xsl:attribute name="value"><xsl:value-of select="{$eassyTypeData}"/></xsl:attribute>
-        </data>
     </xsl:template>
-    
-    
-    
-    
-    
 
     <!-- #### NEW EXAM MAP (question) ###################################################################### -->
     <xsl:template match="examMap" mode="new_exam_map">
@@ -832,6 +807,30 @@
 			<!--<xsl:variable name="questionType" select="questionType/@value"/>-->
 			
 			<xsl:variable name="skill-code" select="skill/@code"/>
+			
+			
+			<xsl:variable name="ts_count" select="count(topicsubject)"/>
+			
+			<xsl:variable name="has_base">
+				<xsl:choose>
+					<xsl:when test="$ts_count &gt; 1">
+						<xsl:for-each select="topicsubject">
+							<xsl:value-of select="@base"/>
+						</xsl:for-each>
+					</xsl:when>
+				</xsl:choose>
+			</xsl:variable>
+			
+			<xsl:variable name="isVignette">
+				<xsl:choose>
+					<xsl:when test=" $has_base != '' ">
+						<xsl:value-of select="'yes'"/>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:value-of select="'no'"/>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:variable>
 
 
             <!-- Create the <data> item from the nested topicsubject element. -->
@@ -839,6 +838,7 @@
                 <xsl:with-param name="q_number" select="$q_number"/>
                 <xsl:with-param name="base_list" select="$base_list"/>
             	 <xsl:with-param name="q_id_base" select="replace($file_id_base,'SAME_ESSAY_','')"/>
+            	 <xsl:with-param name="isVignette" select="$isVignette"/>
             </xsl:apply-templates>
 			
 			
@@ -847,13 +847,14 @@
 					<xsl:with-param name="q_number" select="$q_number"/>
 					<xsl:with-param name="base_list" select="$base_list"/>
 					<xsl:with-param name="q_id_base" select="replace($file_id_base,'SAME_ESSAY_','')"/>
+					<xsl:with-param name="isVignette" select="concat($isVignette,'-from-difficulty-mode')"/>
 				</xsl:apply-templates>
 				<xsl:apply-templates select="questionType" mode="questionType-mode">
 					<xsl:with-param name="q_number" select="$q_number"/>
 					<xsl:with-param name="base_list" select="$base_list"/>
 					<xsl:with-param name="q_id_base" select="replace($file_id_base,'SAME_ESSAY_','')"/>
-				</xsl:apply-templates>					
-            
+					<xsl:with-param name="isVignette" select="concat($isVignette,'-from-questionType-mode')"/>
+				</xsl:apply-templates>
 			
 				<xsl:apply-templates select="skill" mode="skill-mode">
 					<xsl:with-param name="q_number" select="$q_number"/>
@@ -862,10 +863,14 @@
             	<xsl:with-param name="skill-code" select="$skill-code"/>
             </xsl:apply-templates>
 			
-			
-				<!--<xsl:apply-templates select="difficulty">
-                <xsl:with-param name="q_number" select="$q_number"/>
-            </xsl:apply-templates>-->
+			<!-- [ARV 16-01-2026: Added as new update for BAR's Scoring Group] -->
+				<xsl:apply-templates select="scoringGroup" mode="scoringGroup-mode">
+					<xsl:with-param name="q_number" select="$q_number"/>
+					<xsl:with-param name="base_list" select="$base_list"/>
+					<xsl:with-param name="q_id_base" select="replace($file_id_base,'SAME_ESSAY_','')"/>
+					<xsl:with-param name="skill-code" select="$skill-code"/>
+				</xsl:apply-templates>
+				
 			
 				<xsl:apply-templates select="essayData">
 					<xsl:with-param name="q_number" select="$q_number"/>
@@ -966,9 +971,7 @@
         <xsl:param name="q_number"/>
         <xsl:param name="base_list" as="element()*"/>
         <xsl:param name="q_id_base"/>
-    	  <xsl:param name="difficulty" />
-    	  <xsl:param name="questionType"/>
-    	  <xsl:param name="skill-code"/>
+    	  <xsl:param name="isVignette"/>
 
         <xsl:variable name="name_base" select="/supermap/@name_base"/>
         <!-- Find determine the los name from the keyref attribute. -->
@@ -1026,6 +1029,24 @@
                 </xsl:choose>
             </xsl:attribute>
         </data>
+    	
+    	<xsl:if test="$isVignette = 'yes'">
+    		<xsl:apply-templates select="../difficulty" mode="difficulty-mode">
+    			<xsl:with-param name="q_number"/>
+    			<xsl:with-param name="base_list" select="$base_list"/>
+    			<xsl:with-param name="q_id_base" select="$q_id_base"/>
+    			<xsl:with-param name="test_id" select="@test_id"/>
+    			<xsl:with-param name="isVignette" select="$isVignette"/>
+    		</xsl:apply-templates>
+    		<xsl:apply-templates select="../questionType" mode="questionType-mode">
+    			<xsl:with-param name="q_number"/>
+    			<xsl:with-param name="base_list" select="$base_list"/>
+    			<xsl:with-param name="q_id_base" select="$q_id_base"/>
+    			<xsl:with-param name="test_id" select="@test_id"/>
+    			<xsl:with-param name="isVignette" select="$isVignette"/>
+    		</xsl:apply-templates>
+    	</xsl:if>
+    	
     </xsl:template>
 	
 	
@@ -1033,6 +1054,8 @@
 		<xsl:param name="q_number"/>
 		<xsl:param name="base_list" as="element()*"/>
 		<xsl:param name="q_id_base"/>
+		<xsl:param name="test_id"/>
+		<xsl:param name="isVignette"/>
 		
 		<xsl:variable name="ts_base" select="@base"/>
 		
@@ -1049,9 +1072,9 @@
 		<!-- [ARV Copied on 14-01-2025] 2022-08-24 sfb: Creating datatype variable, because it's reference several times, now.-->
 		<xsl:variable name="datatype">
 			<xsl:choose>
-				<xsl:when test="@test_id and @test_id != ''">
-					<xsl:value-of select="concat($q_id_base,'_',@test_id)"/>
-				</xsl:when>
+				<xsl:when test=" $isVignette = 'yes' and ($test_id and $test_id != '')">
+					<xsl:value-of select="concat($q_id_base,'_',$test_id)"/>
+				</xsl:when>				
 				<xsl:otherwise>
 					<xsl:value-of select="concat('Q',$q_number,$subq_number)"/>
 				</xsl:otherwise>
@@ -1059,12 +1082,23 @@
 		</xsl:variable>
 		
 		<xsl:variable name="difficulty" select="@value"/>
-		<xsl:if test="$difficulty != ''">
-			<data name="difficulty">
-				<xsl:attribute name="value" select="$difficulty"/>
-				<xsl:attribute name="datatype" select="$datatype"/>
-			</data>
-		</xsl:if>
+		<xsl:choose>
+			<xsl:when test="$difficulty != '' and $isVignette = 'yes'">
+				<data name="difficulty">
+					<xsl:attribute name="value" select="$difficulty"/>
+					<xsl:attribute name="datatype" select="$datatype"/>
+				</data>
+			</xsl:when>
+			<xsl:when test="$difficulty != '' and $isVignette = 'yes-from-difficulty-mode'">
+				<!-- don nothing -->
+			</xsl:when>
+			<xsl:when test="$difficulty != '' and $isVignette = 'no'">
+				<data name="difficulty">
+					<xsl:attribute name="value" select="$difficulty"/>
+					<xsl:attribute name="datatype" select="$datatype"/>
+				</data>
+			</xsl:when>
+		</xsl:choose>
 	</xsl:template>
 
 
@@ -1072,6 +1106,8 @@
 		<xsl:param name="q_number"/>
 		<xsl:param name="base_list" as="element()*"/>
 		<xsl:param name="q_id_base"/>
+		<xsl:param name="test_id"/>
+		<xsl:param name="isVignette"/>
 		
 		<xsl:variable name="ts_base" select="@base"/>
 		
@@ -1088,8 +1124,9 @@
 		<!-- [ARV Copied on 14-01-2025] 2022-08-24 sfb: Creating datatype variable, because it's reference several times, now.-->
 		<xsl:variable name="datatype">
 			<xsl:choose>
-				<xsl:when test="@test_id and @test_id != ''">
-					<xsl:value-of select="concat($q_id_base,'_',@test_id)"/>
+				<!-- Variable check -->
+				<xsl:when test=" $isVignette = 'yes' and ($test_id and $test_id != '')">
+					<xsl:value-of select="concat($q_id_base,'_',$test_id)"/>
 				</xsl:when>
 				<xsl:otherwise>
 					<xsl:value-of select="concat('Q',$q_number,$subq_number)"/>
@@ -1098,9 +1135,61 @@
 		</xsl:variable>
 		
 		<xsl:variable name="questionType" select="@value"/>
-		<xsl:if test="$questionType != ''">
-			<data name="tag">
-				<xsl:attribute name="value" select="$questionType"/>
+		<xsl:choose>
+			<xsl:when test="$questionType != '' and $isVignette = 'yes'">
+				<data name="tag">
+					<xsl:attribute name="value" select="$questionType"/>
+					<xsl:attribute name="datatype" select="$datatype"/>
+				</data>
+			</xsl:when>
+			<xsl:when test="$questionType != '' and $isVignette = 'yes-from-questionType-mode'">
+				<!-- don nothing -->
+			</xsl:when>
+			<xsl:when test="$questionType != '' and $isVignette = 'no'">
+				<data name="tag">
+					<xsl:attribute name="value" select="$questionType"/>
+					<xsl:attribute name="datatype" select="$datatype"/>
+				</data>
+			</xsl:when>
+		</xsl:choose>
+		
+	</xsl:template>
+	
+	
+	<!-- [ARV: 17-01-2026] Added as new update for BAR's Scoring Group -->
+	<xsl:template match="scoringGroup" mode="scoringGroup-mode">
+		<xsl:param name="q_number"/>
+		<xsl:param name="base_list" as="element()*"/>
+		<xsl:param name="q_id_base"/>
+		
+		<xsl:variable name="ts_base" select="@base"/>
+		
+		<!-- [ARV Copied on 14-01-2026]-->
+		<xsl:variable name="subq_number">
+			<xsl:choose>
+				<xsl:when test="count($base_list) &gt; 0">
+					<xsl:number value="$base_list[@base = $ts_base]/@subq_number" format="a"/>
+				</xsl:when>
+				<xsl:otherwise/>
+			</xsl:choose>
+		</xsl:variable>
+		
+		<!-- [ARV Copied on 14-01-2026] 2022-08-24 sfb: Creating datatype variable, because it's reference several times, now.-->
+		<xsl:variable name="datatype">
+			<xsl:choose>
+				<xsl:when test="@test_id and @test_id != ''">
+					<xsl:value-of select="concat($q_id_base,'_',@test_id)"/>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:value-of select="concat('Q',$q_number,$subq_number)"/>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
+		
+		<xsl:variable name="scoringGroupVal" select="@group"/>
+		<xsl:if test="$scoringGroupVal != ''">
+			<data name="scoringGroup">
+				<xsl:attribute name="value" select="$scoringGroupVal"/>
 				<xsl:attribute name="datatype" select="$datatype"/>
 			</data>
 		</xsl:if>
@@ -1115,7 +1204,7 @@
 		
 		<xsl:variable name="ts_base" select="@base"/>
 		
-		<!-- [ARV Copied on 14-01-2025]-->
+		<!-- [ARV Copied on 14-01-2026]-->
 		<xsl:variable name="subq_number">
 			<xsl:choose>
 				<xsl:when test="count($base_list) &gt; 0">

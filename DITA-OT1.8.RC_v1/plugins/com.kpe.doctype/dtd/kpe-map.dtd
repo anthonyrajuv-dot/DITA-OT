@@ -78,6 +78,11 @@ PUBLIC "-//KPE//DTD DITA KPE Map//EN"
            "kpe-skillMetadataDomain.ent"
 >%kpe-skillMeta-d-dec;
 
+<!ENTITY % kpe-scoringGroupMeta-d-dec     
+    PUBLIC "-//KPE//ENTITIES DITA KPE scoringGroup Metadata Domain//EN" 
+           "kpe-scoringGroupMetadataDomain.ent"
+>%kpe-scoringGroupMeta-d-dec;
+
 <!ENTITY % kpe-KaplanWayMeta-d-dec     
     PUBLIC "-//KPE//ENTITIES DITA KPE Kaplan Way Metadata Domain//EN" 
            "kpe-KaplanWayMetadataDomain.ent"
@@ -273,6 +278,13 @@ PUBLIC "-//KPE//DTD DITA KPE Map//EN"
     PUBLIC "-//KPE//ELEMENTS DITA KPE skill Metadata Domain//EN" 
            "kpe-skillMetadataDomain.mod"
 >%kpe-skillMeta-d-def;
+
+
+<!ENTITY % kpe-scoringGroupMeta-d-def     
+    PUBLIC "-//KPE//ELEMENTS DITA KPE scoringGroup Metadata Domain//EN" 
+           "kpe-scoringGroupMetadataDomain.mod"
+>%kpe-scoringGroupMeta-d-def;
+
 
 <!ENTITY % kpe-KaplanWayMeta-d-def     
     PUBLIC "-//KPE//ELEMENTS DITA KPE Kaplan Way Metadata Domain//EN" 

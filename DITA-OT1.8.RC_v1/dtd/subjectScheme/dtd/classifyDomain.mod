@@ -50,7 +50,8 @@ PUBLIC "-//OASIS//ELEMENTS DITA Map Subject Classification Domain//EN"
 <!ENTITY % topicSubjectRow     "topicSubjectRow">
 <!ENTITY % topicCell           "topicCell">
 <!ENTITY % subjectCell         "subjectCell">
-<!ENTITY % skill         "skill">
+<!ENTITY % skill         		  "skill">
+<!ENTITY % scoringGroup         "scoringGroup">
 
 <!-- ============================================================= -->
 <!--                    ELEMENT DECLARATIONS                       -->
@@ -158,6 +159,23 @@ PUBLIC "-//OASIS//ELEMENTS DITA Map Subject Classification Domain//EN"
 >
 <!ELEMENT skill    %skill.content;>
 <!ATTLIST skill    %skill.attributes;>
+
+
+
+
+<!-- [ARV:16-01-2026] Added for Capturing ScoringGroup -->
+<!--                    LONG NAME: ScoringGroup                   -->
+<!ENTITY % scoringGroup.content
+                       "EMPTY"
+>
+<!ENTITY % scoringGroup.attributes
+             "group 
+                        CDATA 
+                                  #IMPLIED
+             %univ-atts;"
+>
+<!ELEMENT scoringGroup    %scoringGroup.content;>
+<!ATTLIST scoringGroup    %scoringGroup.attributes;>
 
 
 
@@ -438,5 +456,7 @@ PUBLIC "-//OASIS//ELEMENTS DITA Map Subject Classification Domain//EN"
     class CDATA "+ map/relcell classify-d/subjectCell ">
 <!ATTLIST skill %global-atts;
     class CDATA "+ map/skill classify-d/skill ">
+<!ATTLIST scoringGroup %global-atts;
+    class CDATA "+ map/scoringGroup classify-d/scoringGroup ">
 
 <!-- ================== DITA Subject Classification Domain  ====== -->
