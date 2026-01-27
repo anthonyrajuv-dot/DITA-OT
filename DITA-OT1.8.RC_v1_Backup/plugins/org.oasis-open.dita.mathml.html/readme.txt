@@ -1,1 +1,0 @@
-Plugin for HTML support for MathML domain.

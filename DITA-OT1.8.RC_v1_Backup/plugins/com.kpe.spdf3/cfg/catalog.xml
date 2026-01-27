@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<catalog prefer="system" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
-  <uri name="cfg:fo/attrs/custom.xsl" uri="fo/attrs/spdf3_custom.xsl"/>
-  <uri name="cfg:fo/xsl/custom.xsl" uri="fo/xsl/spdf3_custom.xsl"/>
-  
-  <uri name="cfg:fo/font-mappings.xml" uri="fo/spdf3_font-mappings.xml"></uri>
-
-</catalog>

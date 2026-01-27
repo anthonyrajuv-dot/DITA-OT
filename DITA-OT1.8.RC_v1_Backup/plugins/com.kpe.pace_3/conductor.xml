@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!--
- | (C) Copyright IBM Corporation 2005 - 2006. All Rights Reserved.
- *-->
-<project>
-    <import file="${dita.plugin.com.kpe.pace_3.dir}${file.separator}build_dita2pace_3.xml"/>
-</project>

@@ -1,1 +1,0 @@
-Plugin for PDF support for MathML domain.
