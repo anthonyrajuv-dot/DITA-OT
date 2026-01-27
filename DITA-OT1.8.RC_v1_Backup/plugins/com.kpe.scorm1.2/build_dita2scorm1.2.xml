@@ -1,0 +1,662 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="com.kpe.scorm1.2" basedir="." default="dita2scorm1.2">
+
+    <property name="dita2scorm1.2.version" value="2.0.1"/>
+    <property name="dita2scorm1.2.date" value="2014-09-29"/>
+
+    <!-- Makes renaming the plugin easier. -->
+    <property name="dita2scorm1.2.plugin.dir" value="${dita.plugin.com.kpe.scorm1.2.dir}"/>
+    <property name="dita2scorm1.2.temp.dir" value="${dita2scorm1.2.plugin.dir}${file.separator}temp"/>
+    <!-- not used. -->
+
+    <!-- To implement the chunking, we'll probably have to implement a pre-processor to filter from the 
+         args.input to the temp.dir. Then we'll process from temp to output. -->
+
+    <property name="dita2pace.supermap"
+        value="${dita2pace.plugin.dir}${file.separator}xsl${file.separator}dita2supermap.xsl"/>
+    <property name="dita2pace.transform"
+        value="${dita2pace.plugin.dir}${file.separator}xsl${file.separator}dita2pace.xsl"/>
+    <property name="dita2scorm.1.2.manifest.transform"
+        value="${dita2scorm1.2.plugin.dir}${file.separator}xsl${file.separator}dita2manifest.xsl"/>
+    <property name="dita2scorm.1.2.metadata.transform"
+        value="${dita2scorm1.2.plugin.dir}${file.separator}xsl${file.separator}dita2metadata.xsl"/>
+    <property name="dita2scorm.1.2.questions.transform"
+        value="${dita2scorm1.2.plugin.dir}${file.separator}xsl${file.separator}dita2questions.xsl"/>
+    <property name="dita2scorm1.2.index.transform"
+        value="${dita2scorm1.2.plugin.dir}${file.separator}xsl${file.separator}dita2index.xsl"/>
+    <property name="dita2scorm1.2.toc.transform"
+        value="${dita2scorm1.2.plugin.dir}${file.separator}xsl${file.separator}dita2toc.xsl"/>
+    
+    <property name="supermap.ditamap" value="supermap.ditamap"/>
+    <property name="toc.ditamap" value="toc.ditamap"/>
+    <property name="imsmanifest.xml" value="imsmanifest.xml"/>
+    <property name="metadata.xml" value="metadata.xml"/>
+    <basename property="base.file" file="${args.input}" suffix="ditamap"/>
+
+    <property name="args.figurelink.style" value="TITLE"/>
+    <property name="assetfile" value="assets.list"/>
+    <property name="output.dir" value="${basedir}${file.separator}out"/>
+
+
+    <target name="dita2scorm1.2"
+        depends="dita2scorm1.2.announce,build-init,dita2scorm1.2.preclean, dita2scorm1.2.init,
+        preprocess, map2merge, dita2js.transform, kpe.locale.props, dita.map.xhtml, copy-revflag, copy-css, 
+        kpe.topic.list, dita.topics.xhtml, dita.inner.topics.xhtml, dita.outer.topics.xhtml,
+        debug-filter, dita2scorm1.2.copy-files, dita2scorm1.2.metadata, dita2scorm1.2.transform, dita2index.transform,
+        dita2scorm1.2.cleanup, dita2scorm1.2.blank.lines, copy.scorm.resources, dita2scorm1.2.manifest, clean.namespaces, dita2scorm1.2.package, dita2scorm1.2.debug, dita2scorm1.2.donetimedate"> </target>
+
+    <target name="dita2scorm1.2.preclean">
+        <echo>Deleting existing SCORM packages and stray content...</echo>
+        <delete>
+            <fileset dir="${output.dir}" includes="*.*"/>
+        </delete>
+    </target>
+
+    <target name="dita2scorm1.2.announce">
+        <echo>Running DITA2SCORM1.2 ${dita2scorm1.2.version} (${dita2scorm1.2.date}).</echo>
+    </target>
+
+    <target name="dita2scorm1.2.metadata">
+        <echo>Generating metadata file...</echo>
+
+        <xslt processor="trax" basedir="${dita.temp.dir}" destdir="${output.dir}" force="true"
+            in="${dita.temp.dir}${file.separator}${dita.input.filename}"
+            out="${output.dir}${file.separator}${metadata.xml}"
+            style="${dita2scorm.1.2.metadata.transform}">
+            <param name="BASE_DIR" expression="${dita.temp.dir}${file.separator}"/>
+            <param name="OUT_DIR" expression="${output.dir}"/>
+            <xmlcatalog>
+                <catalogpath path="${xml.catalog.files}"/>
+            </xmlcatalog>
+        </xslt>
+    </target>
+
+    <target name="dita2scorm1.2.donetimedate">
+        <tstamp>
+            <format property="donetimedate" pattern="yyyy-MM-dd KK:mm:ss"/>
+        </tstamp>
+        <echo>Finished at ${donetimedate}.</echo>
+    </target>
+
+    <!-- topicpull,flag-module, -->
+    <target name="dita2scorm1.2.init">
+        <echo>In init...</echo>
+        <echo>temp dir is ${dita.temp.dir}</echo>
+
+        <!--        <mkdir dir="${output.dir}${file.separator}topics"/>
+        <mkdir dir="${output.dir}${file.separator}tasks"/>
+        <mkdir dir="${output.dir}${file.separator}los"/>-->
+
+    </target>
+
+    <target name="dita2js.transform">
+        <echo>Transforming merged file to questions.js files</echo>
+        <mkdir dir="${output.dir}/jsquestions"/>
+
+        <xslt processor="trax" basedir="${dita.temp.dir}" destdir="${output.dir}" force="true"
+            in="${dita.temp.dir.fullpath}${file.separator}${dita.map.filename.root}_MERGED.xml"
+            out="${output.dir}${file.separator}jsquestions${file.separator}trashme.xml"
+            style="${dita2scorm.1.2.questions.transform}">
+            <param name="BASE_DIR" expression="${dita.temp.dir}${file.separator}"/>
+            <param name="OUT_DIR" expression="${output.dir}${file.separator}jsquestions"/>
+            <xmlcatalog>
+                <catalogpath path="${xml.catalog.files}"/>
+            </xmlcatalog>
+        </xslt>
+    </target>
+    
+    <target name="dita2index.transform" depends="dita2toc.transform">
+        <echo>Transforming input file to launchpage.html</echo>
+        <mkdir dir="${output.dir}/jsquestions"/>
+        
+        <xslt processor="trax" basedir="${dita.temp.dir}" destdir="${output.dir}" force="true"
+            in="${dita.temp.dir.fullpath}${file.separator}${dita.map.filename.root}_MERGED.xml"
+            out="${output.dir}${file.separator}trashme.xml"
+            style="${dita2scorm1.2.index.transform}">
+            <param name="BASE_DIR" expression="${dita.temp.dir}${file.separator}"/>
+            <param name="OUT_DIR" expression="${output.dir}"/>
+            <xmlcatalog>
+                <catalogpath path="${xml.catalog.files}"/>
+            </xmlcatalog>
+        </xslt>
+    </target>
+    
+    <target name="dita2toc.transform">
+        <echo>Transforming input file to toc.html</echo>
+        
+        <xslt processor="trax" basedir="${dita.temp.dir}" destdir="${output.dir}" force="true"
+            in="${dita.temp.dir.fullpath}${file.separator}${dita.map.filename.root}_MERGED.xml"
+            out="${output.dir}${file.separator}shared${file.separator}toc.html"
+            style="${dita2scorm1.2.toc.transform}">
+            <param name="BASE_DIR" expression="${dita.temp.dir}${file.separator}"/>
+            <param name="OUT_DIR" expression="${output.dir}"/>
+            <xmlcatalog>
+                <catalogpath path="${xml.catalog.files}"/>
+            </xmlcatalog>
+        </xslt>
+    </target>
+    
+    <target name="dita2scorm1.2.transform">
+        <!-- ${dita.temp.dir.fullpath}${file.separator}${user.input.file} -->
+        <!--        <xslt processor="trax" basedir="${dita.temp.dir}" destdir="${dita.temp.dir}" force="true"
+            in="${dita.temp.dir}${file.separator}${dita.input.filename}"
+            out="${dita.temp.dir}${file.separator}${supermap.ditamap}" style="${dita2pace.supermap}">
+            <param name="BASE_DIR" expression="${dita.temp.dir}${file.separator}"/>
+            <param name="OUT_DIR" expression="${dita.temp.dir}${file.separator}"/>
+            <xmlcatalog>
+                <catalogpath path="${xml.catalog.files}"/>
+            </xmlcatalog>
+        </xslt>
+
+        <echo>Transforming DITA to PACE...</echo>
+
+        <xslt processor="trax" basedir="${dita.temp.dir}" destdir="${output.dir}" force="true"
+            in="${dita.temp.dir}${file.separator}${supermap.ditamap}"
+            out="${output.dir}${file.separator}${toc.ditamap}" style="${dita2pace.transform}">
+            <param name="BASE_DIR" expression="${dita.temp.dir}${file.separator}"/>
+            <param name="OUT_DIR" expression="${output.dir}"/>
+            <xmlcatalog>
+                <catalogpath path="${xml.catalog.files}"/>
+            </xmlcatalog>
+        </xslt>-->
+    </target>
+
+    <!-- Overridden from build_preprocess to amend copy-image (and delete copy-html. -->
+    <target name="dita2scorm1.2.copy-files"
+        depends="dita2scorm1.2.copy-image,copy-flag,copy-subsidiary,copy-generated-files"
+        unless="preprocess.copy-files.skip"/>
+
+    <target name="dita2scorm1.2.copy-image-uplevels" if="image.copy.uplevels"
+        depends="copy-image-check" unless="preprocess.copy-image.skip"
+        description="Copy image files">
+        <copy todir="${output.dir}/${uplevels}/assets" flatten="true">
+            <fileset dir="${user.input.dir}" includesfile="${dita.temp.dir}/${d_imagefile}"/>
+        </copy>
+    </target>
+
+    <target name="dita2scorm1.2.copy-image-normal" if="image.copy.normal" depends="copy-image-check"
+        unless="preprocess.copy-image.skip" description="Copy image files">
+        <copy todir="${output.dir}/assets" flatten="true">
+            <fileset dir="${user.input.dir}" includesfile="${dita.temp.dir}/${d_imagefile}"/>
+        </copy>
+    </target>
+
+    <target name="dita2scorm1.2.copy-image"
+        depends="dita2scorm1.2.copy-image-uplevels,dita2scorm1.2.copy-image-normal"
+        description="Copy image files"> </target>
+
+    <target name="copy-image-check">
+        <condition property="preprocess.copy-image.skip">
+            <or>
+                <isset property="preprocess.copy-files.skip"/>
+                <isset property="noImagelist"/>
+            </or>
+        </condition>
+        <condition property="image.copy.uplevels">
+            <not>
+                <equals arg1="${generate.copy.outer}" arg2="3"/>
+            </not>
+        </condition>
+        <condition property="image.copy.normal">
+            <and>
+                <equals arg1="${generate.copy.outer}" arg2="3"/>
+            </and>
+        </condition>
+
+        <property name="d_imagefile" value="digital_images.list"/>
+        <copy file="${dita.temp.dir}/${imagefile}" tofile="${dita.temp.dir}/${d_imagefile}">
+            <filterchain>
+                <linecontains>
+                    <contains value="/digital/"/>
+                </linecontains>
+            </filterchain>
+        </copy>
+
+    </target>
+
+
+    <target name="dita2scorm1.2.findassets">
+
+        <!-- filter html.list to exclude entries with a web-address. -->
+        <copy file="${dita.temp.dir}/${htmlfile}" tofile="${dita.temp.dir}/${assetfile}">
+            <filterchain>
+                <linecontains negate="true">
+                    <contains value="http"/>
+                </linecontains>
+            </filterchain>
+        </copy>
+
+        <condition property="got.assets" value="true">
+            <length file="${dita.temp.dir}/${assetfile}" when="greater" length="0"/>
+        </condition>
+
+        <echo>got.assets is ${got.assets}.</echo>
+
+        <!-- Look for a glossary. -->
+        <condition property="got.glossary">
+            <available file="${dita.temp.dir}${file.separator}glossary"/>
+        </condition>
+
+        <echo>got.glossary is ${got.glossary}.</echo>
+    </target>
+
+
+    <target name="dita2scorm1.2.moveassets" if="got.assets">
+        <!-- [SP] 2015-01-27: NOTES:
+            There are currently two issues:
+            * The standard OT processing copies images from the input folder to the output folder, along 
+              with their entire structure, so if the images are in course_samples/assets/digital, that entire 
+              directory tree gets copied to the output folder.  (What we want in PACE is for all assets to 
+              be copied to a single assets folder.)
+            * There are other resources, in addition to images (SWF and PDF), that need to be moved 
+              to the assets folder from the input folder. The OT detects SWFs and lists them in a 
+              couple of .list files, but is entirely ignorant of the PDFs. 
+        
+        -->
+        <!-- [SP] 2016-03-09 sfb: Moving assets is important for PACE, but is not necessarily needed for SCORM. -->
+        <!--        <echo>In cleanup...</echo>
+
+        <!-\- The assets folder is created in the wrong folder (one level down); it needs to be moved to the output directory. -\->
+        <echo>Moving assets folder:</echo>
+
+
+        <!-\- copy those files to the assets folder, with flatten="true".-\->
+        <copy todir="${output.dir}/assets" flatten="true">
+            <fileset dir="${user.input.dir}" includesfile="${dita.temp.dir}/${assetfile}"/>
+        </copy>
+-->
+    </target>
+
+    <target name="dita2scorm1.2.moveglossary" if="got.glossary">
+        <property name="dita2scorm1.2.glossary.dir"
+            value="${dita.temp.dir}${file.separator}glossary"/>
+        <property name="dita2scorm1.2.glossary.xsl"
+            value="${dita2scorm1.2.plugin.dir}${file.separator}xsl${file.separator}glossary2pace.xsl"/>
+
+        <!--        <copy todir="${output.dir}${file.separator}glossary">
+            <fileset dir="${dita2scorm1.2.glossary.dir}"/>
+            <flattenmapper/>
+        </copy>
+-->
+        <xslt basedir="${dita2scorm1.2.glossary.dir}"
+            destdir="${output.dir}${file.separator}glossary" style="${dita2scorm1.2.glossary.xsl}">
+            <flattenmapper/>
+        </xslt>
+
+    </target>
+
+    <target name="dita2scorm1.2.cleanup"
+        depends="dita2scorm1.2.findassets,dita2scorm1.2.moveassets">
+        
+        <!--<!-\- [SP] 2016-10-14 sfb: remove blank lines at the beginning of HTML files-\->
+        <filterchain>
+            <headfilter lines="-1" skip="1"/>
+        </filterchain>
+        -->
+        
+        
+
+        <!-- [SP] 2016-03-09 sfb: The creation of the ASCII folder and all the replace expressions 
+            are for characters that could not be handled by the PACE LMS. At this point, we
+            do not know what requirements, if any, the target LMS has. -->
+        <!--        <mkdir dir="${output.dir}/ASCII"/>
+,dita2scorm1.2.moveglossary
+        <echo>Applying native2ascii for *.dita in ${output.dir}.</echo>
+        <native2ascii encoding="UTF-8" src="${output.dir}" dest="${output.dir}/ASCII"
+            includes="**/*.dita" ext=".dita"/>
+        <echo>Applying native2ascii for *.xml in ${output.dir}.</echo>
+        <native2ascii encoding="UTF-8" src="${output.dir}" dest="${output.dir}/ASCII"
+            includes="**/*.xml" ext=".xml"/>
+
+        <echo>Converting \unnnn to &amp;nnnn;.</echo>
+        <replaceregexp encoding="utf-8" match="\\u(....)" replace="&amp;#x\1;" flags="g">
+            <fileset dir="${output.dir}/ASCII">
+                <include name="**/*.dita"/>
+                <include name="**/*.xml"/>
+            </fileset>
+        </replaceregexp>
+        <!-\-        <replaceregexp 
+            encoding="utf-8"
+            match='\\u(....)'
+            replace='&amp;#x\1;'>
+        </replaceregexp>
+-\->
+        <echo>Converting &amp;amp; to &amp;#038;.</echo>
+        <replace dir="${output.dir}/ASCII" encoding="utf-8" token="&amp;amp;" value="&amp;#038;"
+            summary="yes">
+            <include name="**/*.dita"/>
+        </replace>
+        <replace dir="${output.dir}/ASCII" encoding="utf-8" token="&amp;amp;" value="&amp;#038;"
+            summary="yes">
+            <include name="**/*.xml"/>
+        </replace>
+        <echo>Converting &amp;lt; to &amp;#060;.</echo>
+        <replace dir="${output.dir}/ASCII" encoding="utf-8" token="&amp;lt;" value="&amp;#060;"
+            summary="yes">
+            <include name="**/*.dita"/>
+        </replace>
+        <replace dir="${output.dir}/ASCII" encoding="utf-8" token="&amp;lt;" value="&amp;#060;"
+            summary="yes">
+            <include name="**/*.xml"/>
+        </replace>
+        <echo>Converting &amp;gt; to &amp;#062;.</echo>
+        <replace dir="${output.dir}/ASCII" encoding="utf-8" token="&amp;gt;" value="&amp;#062;"
+            summary="yes">
+            <include name="**/*.dita"/>
+        </replace>
+        <replace dir="${output.dir}/ASCII" encoding="utf-8" token="&amp;gt;" value="&amp;#062;"
+            summary="yes">
+            <include name="**/*.xml"/>
+        </replace>
+
+        <echo>Removing ditaarch namespace declaration.</echo>
+        <replace dir="${output.dir}/ASCII" encoding="utf-8"
+            token=' xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/"' value=""
+            summary="yes">
+            <include name="**/*.dita"/>
+        </replace>
+
+        <replace dir="${output.dir}/ASCII" encoding="utf-8"
+            token=' xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/"' value=""
+            summary="yes">
+            <include name="**/*.xml"/>
+        </replace>
+
+        <echo>Removing default namespace declaration.</echo>
+        <replace dir="${output.dir}/ASCII" encoding="utf-8" token=' xmlns=""' value="" summary="yes">
+            <include name="**/*.dita"/>
+        </replace>
+
+        <replace dir="${output.dir}/ASCII" encoding="utf-8" token=' xmlns=""' value="" summary="yes">
+            <include name="**/*.xml"/>
+        </replace>
+
+        <replace dir="${output.dir}/ASCII" encoding="utf-8" token="DOCTYPE kaptask"
+            value="DOCTYPE topic" summary="yes">
+            <include name="**/*.dita"/>
+        </replace>
+        <replace dir="${output.dir}/ASCII" encoding="utf-8" token="DOCTYPE kaptask"
+            value="DOCTYPE topic" summary="yes">
+            <include name="**/*.xml"/>
+        </replace>
+
+        <echo>Removing temp from xmlns:tempxs. </echo>
+        <replace dir="${output.dir}/ASCII" encoding="utf-8" token='xmlns:temp="temp'
+            value='xmlns:xs="' summary="yes">
+            <include name="**/*.dita"/>
+        </replace>
+
+        <replace dir="${output.dir}/ASCII" encoding="utf-8" token='xmlns:temp="temp'
+            value='xmlns:xs="' summary="yes">
+            <include name="**/*.xml"/>
+        </replace>
+
+        <!-\- (R) was coming out in Hex, just in case PACE can't deal with that, replace with decimal. -\->
+        <replace dir="${output.dir}/ASCII" encoding="utf-8" token="#x00ae;" value="#174;"
+            summary="yes">
+            <include name="**/*.dita"/>
+        </replace>
+        <replace dir="${output.dir}/ASCII" encoding="utf-8" token="#x00ae;" value="#174;"
+            summary="yes">
+            <include name="**/*.xml"/>
+        </replace>
+
+        <!-\- Remove the doctype from assessmentItems, questions, and question maps. -\->
+        <replace dir="${output.dir}/ASCII" encoding="utf-8" token="&lt;!DOCTYPE assessmentItem"
+            value="" summary="yes">
+            <include name="**/*.xml"/>
+        </replace>
+        <replace dir="${output.dir}/ASCII" encoding="utf-8" token="&lt;!DOCTYPE question" value=""
+            summary="yes">
+            <include name="**/*.dita"/>
+        </replace>
+        <replace dir="${output.dir}/ASCII" encoding="utf-8"
+            token='  PUBLIC "&apos;&apos;" "&apos;&apos;"&gt;' value="" summary="yes">
+            <include name="**/*.xml"/>
+        </replace>
+        <replace dir="${output.dir}/ASCII" encoding="utf-8"
+            token='  PUBLIC "&apos;&apos;" "&apos;&apos;"&gt;' value="" summary="yes">
+            <include name="**/*.dita"/>
+        </replace>
+
+        <!-\- Hyphen is behaving oddly. -\->
+        <echo>Converting #038;#045; to #045;.</echo>
+        <replace dir="${output.dir}/ASCII" encoding="utf-8" token="#038;#045;" value="#045;"
+            summary="yes">
+            <include name="**/*.dita"/>
+        </replace>
+        <replace dir="${output.dir}/ASCII" encoding="utf-8" token="#038;#045;" value="#045;"
+            summary="yes">
+            <include name="**/*.xml"/>
+        </replace>
+
+
+        <copy todir="${output.dir}" overwrite="true">
+            <fileset dir="${output.dir}/ASCII"/>
+        </copy>
+
+        <delete dir="${output.dir}/ASCII"/>
+-->
+        <echo>Deleting DITA list files</echo>
+        <delete file="${output.dir}${file.separator}dita.list" failonerror="false"/>
+        <delete file="${output.dir}${file.separator}dita.xml.properties" failonerror="false"/>
+        
+        <echo>Deleting trashme files</echo>
+        <delete file="${output.dir}${file.separator}jsquestions${file.separator}trashme.xml" failonerror="false"/>
+        <delete file="${output.dir}${file.separator}trashme.xml" failonerror="false"/>
+        
+        <echo>Deleting extra MREP folder</echo>
+        <delete dir="${output.dir}${file.separator}MREP" failonerror="false"/>
+
+    </target>
+
+    <!-- TODO: Repurpose the following to create the SCORM package -->
+
+    <target name="dita2scorm1.2.make_package">
+        <delete failonerror="false">
+            <fileset dir="${output.dir}" includes="**/*.svg"/>
+            <fileset dir="${output.dir}" includes="**/*.eps"/>
+        </delete>
+        <move todir="${output.dir}${file.separator}topics${file.separator}">
+            <fileset dir="${output.dir}">
+                <include name="**/*.png"/>
+                <include name="**/*.jpg"/>
+            </fileset>
+        </move>
+        <move todir="${output.dir}${file.separator}topics${file.separator}" encoding="UTF-8">
+            <fileset dir="${output.dir}">
+                <exclude name="*.list"/>
+                <exclude name="*.properties"/>
+                <exclude name="*.xml"/>
+                <exclude name="**/*.png"/>
+                <exclude name="**/*.jpg"/>
+            </fileset>
+            <filterchain>
+                <tokenfilter>
+                    <replacestring
+                        from='PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"'
+                        to=""/>
+                    <!--                    <replacestring from="-//W3C//DTD XHTML 1.0 Transitional//EN"
+                        to="-//W3C//DTD XHTML 1.1//EN"/>
+                    <replacestring from="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+                        to="http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"/>-->
+                    <replacestring from="&lt;html&gt;"
+                        to='&lt;html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops"&gt;'
+                    />
+                </tokenfilter>
+                
+            </filterchain>
+        </move>
+
+        <!-- Similar fixups on nav.html -->
+        <echo>Fixup on nav.html. </echo>
+        <replace file="${dita.temp.dir}${file.separator}nav.html" encoding="utf-8"
+            token="&lt;html&gt;"
+            value='&lt;html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops"&gt;'
+            summary="yes"/>
+
+
+        <move todir="${output.dir}${file.separator}topics${file.separator}">
+            <fileset dir="${output.dir}">
+                <include name="*.png"/>
+                <include name="*.jpg"/>
+            </fileset>
+        </move>
+
+        <!-- Ensure the old (empty) topics folder is gone. -->
+        <delete failonerror="false" includeemptydirs="true">
+            <fileset dir="${output.dir}/topics/topics">
+                <include name="**/*"/>
+            </fileset>
+        </delete>
+        <!-- then really make sure it's gone. -->
+        <delete failonerror="false" includeemptydirs="true" dir="${output.dir}/topics/topics"/>
+        <!-- delete the print folder. -->
+        <delete failonerror="false" includeemptydirs="true">
+            <fileset dir="${output.dir}/topics">
+                <include name="**/print"/>
+            </fileset>
+        </delete>
+        <!-- Get rid of the common*.css files. -->
+        <delete failonerror="false">
+            <fileset dir="${output.dir}/topics">
+                <include name="*.css"/>
+            </fileset>
+        </delete>
+        
+        
+        <copy file="${dita.temp.dir}${file.separator}nav.html" todir="${output.dir}"/>
+        <copy file="${dita.temp.dir}${file.separator}content.opf" todir="${output.dir}"/>
+        <!--        <copy
+            file="${dita.plugin.com.kpe.sepub3.dir}${file.separator}resource${file.separator}mimetype"
+            todir="${output.dir}"/>-->
+        <copy todir="${output.dir}${file.separator}META-INF${file.separator}" includeemptydirs="yes">
+            <fileset
+                dir="${dita.plugin.com.kpe.sepub3.dir}${file.separator}resource${file.separator}META-INF"
+            />
+        </copy>
+        <basename property="epub.filename" file="${args.input}" suffix=".ditamap"/>
+        <zip destfile="${output.dir}${file.separator}${epub.filename}.zip" basedir="${output.dir}"
+            excludes="*.epub *.list *.properties index.html *.xml mimetype"/>
+        <!-- [SP] 13-Mar-15 sfb: Copy pre-zipped mimetype because of Ant zip issues. -->
+        <copy
+            file="${dita.plugin.com.kpe.sepub3.dir}${file.separator}resource${file.separator}mimetype.zip"
+            todir="${output.dir}"/>
+
+        <!-- [SP] 13-Mar-15 sfb: Workaround: Don't worry about zipping mimetype because, for now, it's pre-zipped. -->
+        <!--        <antcall target="epub.zipmime"/>-->
+
+        <zip destfile="${output.dir}${file.separator}${epub.filename}.epub" update="true"
+            keepcompression="true">
+            <zipfileset src="${output.dir}${file.separator}mimetype.zip"/>
+            <zipfileset src="${output.dir}${file.separator}${epub.filename}.zip"/>
+        </zip>
+
+
+    </target>
+
+    <target name="dita2scorm1.2.debug" if="scorm.debug">
+        <!-- [SP] 2016-03-09 sfb: There's no supermap top copy in SCORM. -->
+        <!--        <echo>scorm.debug is on: copying supermap.ditamap to out folder. </echo>
+        <copy file="${dita.temp.dir}${file.separator}supermap.ditamap"
+            todir="${dita.map.output.dir}"/>-->
+    </target>
+    
+    <target name="dita2scorm1.2.blank.lines">
+        <echo>Removing blank lines.</echo>
+        <!-- [SP] 2016-10-14 sfb: remove blank lines at the beginning of HTML files-->
+        <copy todir="${dita.temp.dir}${file.separator}junk" encoding="UTF-8" failonerror="false" overwrite="true">
+            <fileset dir="${output.dir}">
+                <include name="**/*.html"/>
+            </fileset>
+            <filterchain>
+                <headfilter lines="-1" skip="1"/>
+            </filterchain>
+        </copy>
+        
+        <!-- Now put 'em back. -->
+        <copy todir="${output.dir}" encoding="UTF-8" failonerror="false" overwrite="true">
+            <fileset dir="${dita.temp.dir}${file.separator}junk">
+                <include name="**/*.html"/>
+            </fileset>
+        </copy>
+    </target>
+    
+    <target name="copy.scorm.resources">
+<!--        <echo>Deleting our ${output.dir}${file.separator}index.html</echo>-->
+<!--        <delete file="${output.dir}${file.separator}index.html" failonerror="false"/>-->
+        
+        <copy todir="${output.dir}">
+            <fileset dir="${dita2scorm1.2.plugin.dir}${file.separator}resources"/>
+        </copy>
+                
+    </target>
+
+    <target name="dita2scorm1.2.manifest">
+        <fileset id="premanifest" dir="${output.dir}"/>
+        <property name="premanifest" refid="premanifest"/>
+
+        <echo>Deleting unnecessary files...</echo>
+
+        <delete>
+            <fileset dir="${output.dir}" includes="*.ditamap"/>
+        </delete>
+
+        <echo>Generating SCORM 1.2 manifest...</echo>
+
+        <xslt processor="trax" basedir="${dita.temp.dir}" destdir="${output.dir}" force="true"
+            in="${dita.temp.dir}${file.separator}${dita.input.filename}"
+            out="${output.dir}${file.separator}${imsmanifest.xml}"
+            style="${dita2scorm.1.2.manifest.transform}">
+            <param name="BASE_DIR" expression="${dita.temp.dir}${file.separator}"/>
+            <param name="OUT_DIR" expression="${output.dir}"/>
+            <param name="premanifest" expression="${premanifest}"/>
+            <xmlcatalog>
+                <catalogpath path="${xml.catalog.files}"/>
+            </xmlcatalog>
+        </xslt>
+    </target>
+    
+    <target name="clean.namespaces">
+        <echo>Removing empty namespaces...</echo>
+        <replace dir="${output.dir}" encoding="utf-8" token=' xmlns=""' value="" summary="yes">
+            <include name="**/*.*"/>
+        </replace>
+        
+<!--        <echo>Converting smart quotes and non-breaking spaces...</echo>
+        <replace dir="${output.dir}" encoding="utf-8" token="&#x201c;" value="&#x22;" summary="yes">
+            <include name="**/*.html"/>
+        </replace>
+        <replace dir="${output.dir}" encoding="utf-8" token="&#x201d;" value="&#x22;" summary="yes">
+            <include name="**/*.html"/>
+        </replace>
+        <replace dir="${output.dir}" encoding="utf-8" token="&#x2019;" value="&#x27;" summary="yes">
+            <include name="**/*.html"/>
+        </replace>
+        <replace dir="${output.dir}" encoding="utf-8" token="&#xa0;" value=" " summary="yes">
+            <include name="**/*.html"/>
+        </replace>-->
+    </target>
+
+    <target name="dita2scorm1.2.package"
+        depends="dita2scorm1.2.package.debug,dita2scorm1.2.package.nodebug"> </target>
+
+    <target name="dita2scorm1.2.package.debug" if="scorm.debug">
+        <echo>Creating SCORM package...</echo>
+        <zip destfile="${output.dir}/${base.file}.zip" basedir="${output.dir}"/>
+    </target>
+
+    <target name="dita2scorm1.2.package.nodebug" unless="scorm.debug">
+        <echo>Creating SCORM package...</echo>
+        <zip destfile="${output.dir}/${base.file}.zip" basedir="${output.dir}"/>
+
+        <echo>Deleting packaged files and directories...</echo>
+        <delete includeemptydirs="true">
+            <fileset dir="${output.dir}" excludes="*.zip"/>
+        </delete>
+
+    </target>
+
+
+
+</project>

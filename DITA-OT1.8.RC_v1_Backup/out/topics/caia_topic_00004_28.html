@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="nl-nl" lang="nl-nl">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="kpe-concept"/>
+<meta name="DC.Title" content="Resetting Strategy Parameters"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="caia_topic_00004_28"/>
+<meta name="DC.Language" content="nl-NL"/>
+<link rel="stylesheet" type="text/css" href="..%5Ccommonltr.css"/>
+<title>Resetting Strategy Parameters</title>
+</head>
+<body id="caia_topic_00004_28">
+
+<h1 class="title topictitle1">Resetting Strategy Parameters </h1>
+<div class="body conbody kpe-conceptBody"><p class="p">LO DSAA.3: Demonstrate knowledge of resetting in dynamic strategies.</p>
+<p class="p">For example:</p>
+<ul class="ul"><li class="li">Discuss the motivations for, and impact of, resetting the parameters of dynamic strategies.</li>
+</ul>
+<p class="p">The parameters of dynamic asset allocation strategies concern the decision rules that are to be followed when rebalancing. For OBPI strategies, the strategy must be reset periodically as options expire. For CPPI strategies, investors may choose to alter the parameters of the strategy in the case of a large increase in stock market value. In this scenario, investors may choose to increase the value of the floor to lock-in profits. However, this strategy alters the payoff diagram for the strategy. While the payoff diagram will remain convex during market increases, this alteration causes a concave payoff during market decreases. Also, investors should be aware that changing the floor or multiplier can cause the strategy to be transformed to a different strategy. For example, if the floor is initially set at $70 and the value of the portfolio increases to $150, increasing the floor to $100 would lock-in $30 of profit. While this makes sense intuitively, if the floor increases in lockstep with the portfolio value, the CPPI strategy will effectively be transformed into a constant mix strategy. Thus, the manager must be aware of how resetting the parameters can alter the nature of the asset allocation strategy.</p>
+<div class="fig fignone"><span class="figcap">Figuur 1. Figure 12: Key Characteristics of Dynamic Strategies</span></div>
+
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><tbody class="tbody"><tr class="row"><td class="entry" valign="top" width="32.038957753604855%"> </td>
+<td class="entry" valign="top" width="18.682013660511004%"><p class="p">Buy-and-hold</p>
+</td>
+<td class="entry" valign="top" width="18.50493296230711%"><p class="p">Constant Mix</p>
+</td>
+<td class="entry" valign="top" width="15.583101441942828%"><p class="p">CPPI</p>
+</td>
+<td class="entry" valign="top" width="15.190994181634201%"><p class="p">OBPI</p>
+</td>
+</tr>
+<tr class="row"><td class="entry" valign="top" width="32.038957753604855%"><p class="p">Payoff diagram shape</p>
+</td>
+<td class="entry" valign="top" width="18.682013660511004%"><p class="p">Linear</p>
+</td>
+<td class="entry" valign="top" width="18.50493296230711%"><p class="p">Concave</p>
+</td>
+<td class="entry" valign="top" width="15.583101441942828%"><p class="p">Convex</p>
+</td>
+<td class="entry" valign="top" width="15.190994181634201%"><p class="p">Convex</p>
+</td>
+</tr>
+<tr class="row"><td class="entry" valign="top" width="32.038957753604855%"><p class="p">Slope of exposure diagram</p>
+</td>
+<td class="entry" valign="top" width="18.682013660511004%"><p class="p">m = 1</p>
+</td>
+<td class="entry" valign="top" width="18.50493296230711%"><p class="p">m &lt; 1</p>
+</td>
+<td class="entry" valign="top" width="15.583101441942828%"><p class="p">m &gt; 1</p>
+</td>
+<td class="entry" valign="top" width="15.190994181634201%"><p class="p">m &gt; 1</p>
+</td>
+</tr>
+<tr class="row"><td class="entry" valign="top" width="32.038957753604855%"><p class="p">Required rebalancing action in bull markets</p>
+</td>
+<td class="entry" valign="top" width="18.682013660511004%"><p class="p">None</p>
+</td>
+<td class="entry" valign="top" width="18.50493296230711%"><p class="p">Sell stocks</p>
+</td>
+<td class="entry" valign="top" width="15.583101441942828%"><p class="p">Buy stocks</p>
+</td>
+<td class="entry" valign="top" width="15.190994181634201%"><p class="p">Buy stocks</p>
+</td>
+</tr>
+<tr class="row"><td class="entry" valign="top" width="32.038957753604855%"><p class="p">Required rebalancing action in bear markets</p>
+</td>
+<td class="entry" valign="top" width="18.682013660511004%"><p class="p">None</p>
+</td>
+<td class="entry" valign="top" width="18.50493296230711%"><p class="p">Buy stocks</p>
+</td>
+<td class="entry" valign="top" width="15.583101441942828%"><p class="p">Sell stocks</p>
+</td>
+<td class="entry" valign="top" width="15.190994181634201%"><p class="p">Sell stocks</p>
+</td>
+</tr>
+<tr class="row"><td class="entry" valign="top" width="32.038957753604855%"><p class="p">Optimal market conditions</p>
+</td>
+<td class="entry" valign="top" width="18.682013660511004%"><p class="p">Median performance in all markets</p>
+</td>
+<td class="entry" valign="top" width="18.50493296230711%"><p class="p">Flat, but oscillating</p>
+</td>
+<td class="entry" valign="top" width="15.583101441942828%"><p class="p">Trending markets</p>
+</td>
+<td class="entry" valign="top" width="15.190994181634201%"><p class="p">Trending markets</p>
+</td>
+</tr>
+<tr class="row"><td class="entry" valign="top" width="32.038957753604855%"><p class="p">Downside protection (i.e., presence of a floor)</p>
+</td>
+<td class="entry" valign="top" width="18.682013660511004%"><p class="p">Yes</p>
+</td>
+<td class="entry" valign="top" width="18.50493296230711%"><p class="p">No </p>
+</td>
+<td class="entry" valign="top" width="15.583101441942828%"><p class="p">Yes</p>
+</td>
+<td class="entry" valign="top" width="15.190994181634201%"><p class="p">Yes</p>
+</td>
+</tr>
+<tr class="row"><td class="entry" valign="top" width="32.038957753604855%"><p class="p">Dynamic resetting</p>
+</td>
+<td class="entry" valign="top" width="18.682013660511004%"><p class="p">Not required</p>
+</td>
+<td class="entry" valign="top" width="18.50493296230711%"><p class="p">Not required</p>
+</td>
+<td class="entry" valign="top" width="15.583101441942828%"><p class="p">Not required</p>
+</td>
+<td class="entry" valign="top" width="15.190994181634201%"><p class="p">Required</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="nl-nl" lang="nl-nl">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="kpe-concept"/>
+<meta name="DC.Title" content="LOS 45.h: Explain how interest rate volatility affects option adjusted spreads."/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="re_question_00127_7"/>
+<meta name="DC.Language" content="nl-NL"/>
+<link rel="stylesheet" type="text/css" href="..%5Ccommonltr.css"/>
+<title>LOS 45.h: Explain how interest rate volatility affects option adjusted spreads.</title>
+</head>
+<body id="re_question_00127_7">
+
+<h1 class="title topictitle1 los">LOS 45.h: Explain how interest rate volatility affects option adjusted spreads.</h1>
+<div class="body conbody kpe-conceptBody"><p class="p">CFA<sup class="ph sup">®</sup> Program Curriculum, Volume 5, page 339</p>
+<p class="p">Consider a callable bond. When interest rate volatility increases, the value of the call option increases, the value of the straight bond is unaffected, and (because the issuer, not the bondholder, is long the call) the computed value of the callable bond decreases. Hence when the assumed level of volatility of benchmark rates used in a binomial tree is higher, the computed value of a callable bond will be lower, and therefore closer to its actual market price. The constant spread that needs to be added to the benchmark rates to correctly price the bond is therefore lower.  </p>
+<p class="p">Hence as the <em class="ph i">assumed</em> level of volatility in an interest rate tree increases, the computed OAS (implied in a given market price) for a callable bond decreases. Similarly, the computed OAS of a putable bond increases as the assumed level of volatility in the binomial tree increases. </p>
+<p class="p">The assumed level of volatility used by an analyst to generate the binomial interest rate tree affects the computed value of OAS. If the analyst assumes a lower-than-actual level of volatility, the callable bond will appear to have higher-than-actual level of OAS and may (erroneously) appear to be an attractive investment. Conversely, when the analyst assumes a higher-than-actual level of volatility, the computed OAS will be artificially low and the callable bond is likely to be erroneously classified as overpriced. </p>
+<p class="p">Similarly, when the analyst assumes a higher-than-actual (lower-than-actual) level of volatility, the computed OAS for a putable bond will be too high (low) and the bond will be erroneously classified as underpriced (overpriced). Figure 1 summarizes this information.</p>
+<div class="fig fignone"><span class="figcap">Figuur 1. Relationship Between Volatility and OAS</span></div>
+
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><tbody class="tbody"><tr class="row"><td class="entry" valign="top" width="20.28013708836239%"><p class="p">Assumed Level of Volatility</p>
+</td>
+<td class="entry" valign="top" width="12.755178065862019%"><p class="p">Value</p>
+</td>
+<td class="entry" valign="top" width="12.770078974817464%"><p class="p">OAS<sub class="ph sub">CALL</sub></p>
+</td>
+<td class="entry" valign="top" width="12.755178065862019%"><p class="p">OAS<sub class="ph sub">PUT</sub></p>
+</td>
+</tr>
+<tr class="row"><td class="entry" valign="top" width="20.28013708836239%"> </td>
+<td class="entry" valign="top" width="12.755178065862019%"><p class="p">Calls</p>
+</td>
+<td class="entry" valign="top" width="12.770078974817464%"><p class="p">Puts</p>
+</td>
+<td class="entry" valign="top" width="12.755178065862019%"><p class="p">Callable</p>
+</td>
+<td class="entry" valign="top" width="12.770078974817464%"><p class="p">Putable</p>
+</td>
+<td class="entry" valign="top" width="14.334674415139324%"> </td>
+<td class="entry" valign="top" width="14.334674415139324%"> </td>
+</tr>
+<tr class="row"><td class="entry" valign="top" width="20.28013708836239%"><p class="p">High</p>
+</td>
+<td class="entry" valign="top" width="12.755178065862019%"><p class="p">High</p>
+</td>
+<td class="entry" valign="top" width="12.770078974817464%"><p class="p">High</p>
+</td>
+<td class="entry" valign="top" width="12.755178065862019%"><p class="p">Low</p>
+</td>
+<td class="entry" valign="top" width="12.770078974817464%"><p class="p">High</p>
+</td>
+<td class="entry" valign="top" width="14.334674415139324%"><p class="p">Low</p>
+</td>
+<td class="entry" valign="top" width="14.334674415139324%"><p class="p">High</p>
+</td>
+</tr>
+<tr class="row"><td class="entry" valign="top" width="20.28013708836239%"><p class="p">Low</p>
+</td>
+<td class="entry" valign="top" width="12.755178065862019%"><p class="p">Low</p>
+</td>
+<td class="entry" valign="top" width="12.770078974817464%"><p class="p">Low</p>
+</td>
+<td class="entry" valign="top" width="12.755178065862019%"><p class="p">High</p>
+</td>
+<td class="entry" valign="top" width="12.770078974817464%"><p class="p">Low</p>
+</td>
+<td class="entry" valign="top" width="14.334674415139324%"><p class="p">High</p>
+</td>
+<td class="entry" valign="top" width="14.334674415139324%"><p class="p">Low</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+</body>
+</html>

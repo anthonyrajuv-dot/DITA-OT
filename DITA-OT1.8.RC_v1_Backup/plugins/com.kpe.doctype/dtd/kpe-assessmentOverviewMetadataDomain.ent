@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ============================================================= -->
+<!--                    HEADER                                     -->
+<!-- ============================================================= -->
+<!--  MODULE:    KPE DITA Assessment Overview Metadata Domain      -->
+<!--  VERSION:   1.1                                               -->
+<!--  CM VERSION 2.0                                               -->
+<!--  DATE:      July 2013                                         -->
+<!--                                                               -->
+<!-- ============================================================= -->
+
+<!-- ============================================================= -->
+<!--                    PUBLIC DOCUMENT TYPE DEFINITION            -->
+<!--                    TYPICAL INVOCATION                         -->
+<!--                                                               -->
+<!--  Refer to this file by the following public identifier or an 
+      appropriate system identifier 
+PUBLIC "-//KPE//ENTITIES DITA KPE Assessment Overview Metadata Domain//EN"
+      Delivered as file "kpe-assessmentOverviewMetadataDomain.ent" -->
+
+<!-- ============================================================= -->
+<!-- SYSTEM:     Darwin Information Typing Architecture (DITA)     -->
+<!--                                                               -->
+<!-- PURPOSE:    Declaring the elements and specialization         -->
+<!--             attributes for KPE Assessment Overview            -->
+<!--             Metadata Domain.                                  -->
+<!--                                                               -->
+<!-- ORIGINAL CREATION DATE:                                       -->
+<!--             July 2013                                         -->
+<!--                                                               -->
+<!--             (C) Copyright Kaplan 2013                         -->
+<!--             All Rights Reserved.                              -->
+<!--                                                               -->
+<!-- UPDATED:                                                      -->
+<!-- 2014.11.07 PSB: Added CM Version in header, removed assessmentType-->
+<!-- 2016.04.29 Scriptorium: Added minimumPassScore for scorm output-->
+<!-- ============================================================= -->
+
+
+<!-- ============================================================= -->
+<!--               ELEMENT EXTENSION ENTITY DECLARATIONS           -->
+<!-- ============================================================= -->
+
+<!ENTITY % kpe-assessmentOverviewMeta-d-data      
+                                      "questionRandomize | 
+                                       distractorRandomize |
+                                       minimumPassScore">
+
+
+<!-- ============================================================= -->
+<!--                    DOMAIN ENTITY DECLARATION                  -->
+<!-- ============================================================= -->
+
+
+<!ENTITY kpe-assessmentOverviewMeta-d-att 
+  "(topic kpe-assessmentOverviewMeta-d)"
+>
+
+<!-- ========== End KPE Common Metadata Domain Entities ========== -->
+

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\temp\pdf\documentation\d4p-users-guide\word2dita?><?workdir-uri file:/C:/Users/PBentley/Downloads/dita4publishers-0.9.18/documentation/temp/pdf/documentation/d4p-users-guide/word2dita/?><?path2project ..\..\?><?path2project-uri ../../?><concept xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="conceptId" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)       (topic indexing-d)      (topic d4p_formatting-d)      (topic d4p_ruby-d)      a(props d4p_renditionTarget)      (topic d4p_classification-d)      (topic d4p_math-d)      (topic d4p_simplebib-d)      (topic d4p_variables-d)      (topic d4p_verse-d)      (topic xml-d)      (topic abbrev-d)     " class="- topic/topic concept/concept " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="concept:1;3:25">
+ <title class="- topic/title " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="title:1;4:9">Word-to-DITA Ant Parameters</title>
+ <shortdesc class="- topic/shortdesc " xtrc="shortdesc:1;5:13" xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml">Ant parameters for the Word-to-DITA transformation type</shortdesc>
+  <prolog class="- topic/prolog " xtrc="prolog:1;6:11" xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml">
+    <author class="- topic/author " xtrc="author:1;5:21" xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide.ditamap">W. Eliot Kimber</author><metadata class="- topic/metadata " xtrc="metadata:1;7:15" xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml">
+      <keywords class="- topic/keywords " xtrc="keywords:1;8:17" xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml">
+        <indexterm class="- topic/indexterm " xtrc="indexterm:1;9:20" xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml"/>
+      </keywords>
+    <prodinfo class="- topic/prodinfo " xtrc="prodinfo:1;7:27" xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide.ditamap">
+    <prodname class="- topic/prodname " xtrc="prodname:1;8:15" xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide.ditamap">DITA For Publishers</prodname>
+    <vrmlist class="- topic/vrmlist " xtrc="vrmlist:1;9:14" xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide.ditamap">
+      <vrm class="- topic/vrm " version="0.9.16" xtrc="vrm:1;11:27" xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide.ditamap"/>
+    </vrmlist>
+    </prodinfo></metadata>
+  </prolog>
+ <conbody class="- topic/body  concept/conbody " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="conbody:1;13:11">
+   <p class="- topic/p " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="p:1;14:7">To run the Word-to-DITA transformation using the Open Toolkit plugin, specify the following Ant parameters.</p>
+    <section class="- topic/section " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="section:1;15:14">
+      <title class="- topic/title " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="title:2;16:14">Required Parameters</title>
+      <parml class="+ topic/dl pr-d/parml " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="parml:1;17:14">
+        <plentry class="+ topic/dlentry pr-d/plentry " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="plentry:1;18:18">
+          <pt class="+ topic/dt pr-d/pt " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="pt:1;19:15">args.input</pt>
+          <pd class="+ topic/dd pr-d/pd " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="pd:1;20:15">The absolute filename and path of the DOCX file to process.</pd>
+        </plentry>
+        <plentry class="+ topic/dlentry pr-d/plentry " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="plentry:2;22:18">
+          <pt class="+ topic/dt pr-d/pt " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="pt:2;23:15">word.doc</pt>
+          <pd class="+ topic/dd pr-d/pd " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="pd:2;24:15">The path and filename of the Word DOCX file to process.</pd>
+        </plentry>
+      </parml>
+    </section>
+    <section class="- topic/section " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="section:2;28:14">
+      <title class="- topic/title " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="title:3;29:14">Optional Parameters</title>
+      <parml class="+ topic/dl pr-d/parml " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="parml:2;30:14">
+        <plentry class="+ topic/dlentry pr-d/plentry " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="plentry:3;31:18">
+          <pt class="+ topic/dt pr-d/pt " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="pt:3;32:15">output.dir</pt>
+          <pd class="+ topic/dd pr-d/pd " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="pd:3;33:15">Specifies the absolute path of of the directory to contain the generated output.</pd>
+        </plentry>
+        <plentry class="+ topic/dlentry pr-d/plentry " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="plentry:4;35:18">
+          <pt class="+ topic/dt pr-d/pt " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="pt:4;36:15">w2d.clean.output.dir</pt>
+          <pd class="+ topic/dd pr-d/pd " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="pd:4;37:15">Set to "true" to have the output directory cleaned out before
+            running the transform. The default is "false".</pd>
+        </plentry>
+        <plentry class="+ topic/dlentry pr-d/plentry " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="plentry:5;40:18">
+          <pt class="+ topic/dt pr-d/pt " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="pt:5;41:15">w2d.debug.xslt</pt>
+          <pd class="+ topic/dd pr-d/pd " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="pd:5;42:15">Turns on debugging of the XSLT transform. Default is "false".</pd>
+        </plentry>
+        <plentry class="+ topic/dlentry pr-d/plentry " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="plentry:6;44:18">
+          <pt class="+ topic/dt pr-d/pt " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="pt:6;45:15">w2d.defaultStyleToTagMap</pt>
+          <pd class="+ topic/dd pr-d/pd " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="pd:6;46:15">Specifies the location of the style-to-tag map to use as the
+            default if no style-to-tag-map is specified. The default is the
+            word-builtin-styles-style2tagmap.xml file. This parameter is mostly
+            useful for setting as a default in installation-specific properties
+            files. You would not normally specify it for a specific
+            document.</pd>
+        </plentry>
+        <plentry class="+ topic/dlentry pr-d/plentry " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="plentry:7;53:18">
+          <pt class="+ topic/dt pr-d/pt " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="pt:7;54:15">w2d.filename.prefix</pt>
+          <pd class="+ topic/dd pr-d/pd " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="pd:7;55:15">The prefix to use for generated files other than submaps. The
+            default is no prefix.</pd>
+        </plentry>
+        <plentry class="+ topic/dlentry pr-d/plentry " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="plentry:8;58:18">
+          <pt class="+ topic/dt pr-d/pt " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="pt:8;59:15">w2d.filter.br</pt>
+          <pd class="+ topic/dd pr-d/pd " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="pd:8;60:15">Control whether or not <xmlelem class="+ topic/keyword xml-d/xmlelem " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="xmlelem:1;60:47">br</xmlelem> elements generated
+            from the Word data will be filtered out of the result DITA. Set to
+            "true" to filter out <xmlelem class="+ topic/keyword xml-d/xmlelem " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="xmlelem:2;62:43">br</xmlelem> elements. The default is
+            "false" (<xmlelem class="+ topic/keyword xml-d/xmlelem " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="xmlelem:3;63:31">br</xmlelem> elements are included in the result
+            DITA). The <xmlelem class="+ topic/keyword xml-d/xmlelem " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="xmlelem:4;64:33">br</xmlelem> element is provided by the DITA for
+            Publishers formatting vocabulary domain module.</pd>
+        </plentry>
+        <plentry class="+ topic/dlentry pr-d/plentry " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="plentry:9;67:18">
+          <pt class="+ topic/dt pr-d/pt " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="pt:9;68:15">w2d.filter.tabs</pt>
+          <pd class="+ topic/dd pr-d/pd " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="pd:9;69:15">Control whether or not <xmlelem class="+ topic/keyword xml-d/xmlelem " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="xmlelem:5;69:47">tab</xmlelem> elements generated
+            from the Word data will be filtered out of the result DITA. Set to
+            "true" to filter out <xmlelem class="+ topic/keyword xml-d/xmlelem " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="xmlelem:6;71:43">tab</xmlelem> elements. The default is
+            "false" (<xmlelem class="+ topic/keyword xml-d/xmlelem " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="xmlelem:7;72:31">tab</xmlelem> elements are included in the result
+            DITA). The <xmlelem class="+ topic/keyword xml-d/xmlelem " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="xmlelem:8;73:33">tab</xmlelem> element is provided by the DITA
+            for Publishers formatting vocabulary domain module.</pd>
+        </plentry>
+        <plentry class="+ topic/dlentry pr-d/plentry " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="plentry:10;76:18">
+          <pt class="+ topic/dt pr-d/pt " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="pt:10;77:15">w2d.include.word.backpointers</pt>
+          <pd class="+ topic/dd pr-d/pd " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="pd:10;78:15">Set to "false" to turn off inclusion of <xmlatt class="+ topic/keyword xml-d/xmlatt " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="xmlatt:1;78:63">xtrc</xmlatt>
+            attributes in the generated DITA files that point back to the
+            original paragraphs in the Word document. Default is "true"
+            (<xmlatt class="+ topic/keyword xml-d/xmlatt " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="xmlatt:2;81:22">xtrc</xmlatt> attributes are generated).</pd>
+        </plentry>
+        <plentry class="+ topic/dlentry pr-d/plentry " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="plentry:11;83:18">
+          <pt class="+ topic/dt pr-d/pt " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="pt:11;84:15">w2d.root.map.name</pt>
+          <pd class="+ topic/dd pr-d/pd " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="pd:11;85:15">The filename (without extension) to use for the root map if one is
+            generated. By default uses the filename of the input DOCX file. Only
+            specify this property if the style-to-tag mapping will result in a
+            map. If the style-to-tag mapping only produces topics, then do not
+            specify this property.</pd>
+        </plentry>
+        <plentry class="+ topic/dlentry pr-d/plentry " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="plentry:12;91:18">
+          <pt class="+ topic/dt pr-d/pt " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="pt:12;92:15">w2d.root.output.filename</pt>
+          <pd class="+ topic/dd pr-d/pd " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="pd:12;93:15">Specifies the complete filename (including extension), of the root
+            output file, whether it's a topic or a map. You would not normally
+            specify this property unless the behavior of
+            <parmname class="+ topic/keyword pr-d/parmname " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="parmname:1;96:23">w2d.root.map.name</parmname> or
+            <parmname class="+ topic/keyword pr-d/parmname " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="parmname:2;97:23">w2d.root.topic.name</parmname> doesn't give you the result
+            you want.</pd>
+        </plentry>
+        <plentry class="+ topic/dlentry pr-d/plentry " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="plentry:13;100:18">
+          <pt class="+ topic/dt pr-d/pt " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="pt:13;101:15">w2d.root.topic.name</pt>
+          <pd class="+ topic/dd pr-d/pd " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="pd:13;102:15">The filename (without extension) to use for the root topic. By
+            default, uses the filename of the input DOCX file. This property is
+            ignored if <parmname class="+ topic/keyword pr-d/parmname " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="parmname:3;104:34">w2d.root.topic.name</parmname> is also
+            specified.</pd>
+        </plentry>
+        <plentry class="+ topic/dlentry pr-d/plentry " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="plentry:14;107:18">
+          <pt class="+ topic/dt pr-d/pt " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="pt:14;108:15">w2d.style-to-tag-map</pt>
+          <pd class="+ topic/dd pr-d/pd " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="pd:14;109:15">The absolute filename and path of the style-to-tag mapping to use.
+            If not specified, the built-in mapping file
+            <filepath class="+ topic/ph sw-d/filepath " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="filepath:1;111:23">net.sourceforge.dita4publishers.word2dita/xsl/word-builtin-styles-style2tagmap.xml</filepath>
+            is used.</pd>
+        </plentry>
+        <plentry class="+ topic/dlentry pr-d/plentry " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="plentry:15;114:18">
+          <pt class="+ topic/dt pr-d/pt " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="pt:15;115:15">w2d.submap.name.prefix</pt>
+          <pd class="+ topic/dd pr-d/pd " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="pd:15;116:15">The prefix to use for generated submaps. The default is
+            "map".</pd>
+        </plentry>
+        <plentry class="+ topic/dlentry pr-d/plentry " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="plentry:16;119:18">
+          <pt class="+ topic/dt pr-d/pt " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="pt:16;120:15">w2d.temp.dir</pt>
+          <pd class="+ topic/dd pr-d/pd " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="pd:16;121:15">The temporary directory to use for word2dita process. Default is
+            ${basedir}/temp.</pd>
+        </plentry>
+        <plentry class="+ topic/dlentry pr-d/plentry " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="plentry:17;124:18">
+          <pt class="+ topic/dt pr-d/pt " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="pt:17;125:15">w2d.topic.extension</pt>
+          <pd class="+ topic/dd pr-d/pd " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="pd:17;126:15">The extension to use for generated topic files. The default is
+            ".dita".</pd>
+        </plentry>
+        <plentry class="+ topic/dlentry pr-d/plentry " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="plentry:18;129:18">
+          <pt class="+ topic/dt pr-d/pt " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="pt:18;130:15">w2d.word2dita.xslt</pt>
+          <pd class="+ topic/dd pr-d/pd " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="pd:18;131:15">Specifies the name of the XSLT transform to use to convert the DOCX file to DITA. Default is the <filepath class="+ topic/ph sw-d/filepath " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word2dita-ant-parameters.xml" xtrc="filepath:2;131:122">docx2dita.xsl</filepath> transform in the word2dita Toolkit plugin.</pd>
+        </plentry>
+      </parml>
+    </section>
+ </conbody>
+</concept>

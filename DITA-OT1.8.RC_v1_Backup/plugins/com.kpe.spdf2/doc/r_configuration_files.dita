@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="reference_rhc_hk5_kh">
+  <title>Configuration files</title>
+  <shortdesc>Describes the various files that you can use to configure the spdf2 plugin.</shortdesc>
+  <refbody>
+    <section>
+      <p>To configure the spdf2 plugin you modify several files: </p>
+      <dl>
+        <dlentry>
+          <dt>com.kpe.spdf2/cfg/fo/attrs/spdf2_basic-settings.xsl</dt>
+          <dd>
+            <p>Defines a number of XSL variables and params used throughout the spdf2 transforms;
+              these include margin sizes, font specifications, and so on.</p>
+          </dd>
+        </dlentry>
+        <dlentry>
+          <dt>com.kpe.spdf2/cfg/fo/spdf2_font-mappings.xml</dt>
+          <dd/>
+        </dlentry>
+        <dlentry>
+          <dt>spdf/build_init.xml</dt>
+          <dd>
+            <p>Usually you don't need to do anything to this file. It's responsible for defining a
+              number of properties used by the plugin. However, some users on 64-bit machines have
+              experienced problems with Java and the -d64 option, which this file sets when it
+              detects a 64-bit architecture. </p>
+            <p>If the Open Toolkit fails and you see in the
+              log:<codeblock>[java] Could not create the Java virtual machine.
+[java] Unrecognized optio: -d64</codeblock>
+              you will need to edit <filepath>build_init.xml</filepath> and find the lines (around
+              line
+              85):<codeblock>	&lt;condition property="jvmArchFlag"
+	  value="-d64"
+	  else="">
+</codeblock>Change
+              the <parmname>value</parmname> attribute so that it assigns a null string (just like
+              the <parmname>else</parmname>
+              attribute):<codeblock>	&lt;condition property="jvmArchFlag"
+	  value=""
+	  else="">
+</codeblock></p>
+          </dd>
+        </dlentry>
+      </dl>
+    </section>
+  </refbody>
+</reference>

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="nl-nl" lang="nl-nl">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="kpe-concept"/>
+<meta name="DC.Title" content="Nonlinear Return Models"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="caia_topic_00001_82"/>
+<meta name="DC.Language" content="nl-NL"/>
+<link rel="stylesheet" type="text/css" href="..%5Ccommonltr.css"/>
+<title>Nonlinear Return Models</title>
+</head>
+<body id="caia_topic_00001_82">
+
+<h1 class="title topictitle1"><strong class="ph b">Nonlinear Return Models </strong></h1>
+<div class="body conbody kpe-conceptBody"><p class="p"><strong class="ph b">LO 9.3: Demonstrate knowledge of dynamic risk exposure models.</strong></p>
+<p class="p"><strong class="ph b">For example:</strong></p>
+<ul class="ul"><li class="li"><strong class="ph b">Define nonlinear exposure.</strong></li>
+<li class="li"><strong class="ph b">Discuss and apply the dummy variable approach to analyzing market-timing strategies.</strong></li>
+<li class="li"><strong class="ph b">Discuss the separate regression approach to analyzing market-timing strategies.</strong></li>
+<li class="li"><strong class="ph b">Discuss and apply the quadratic approach to analyzing market-timing strategies.</strong></li>
+</ul>
+<p class="p">The models discussed above examine linear relationships between dependent and independent variables. However, alternative investment returns often have <strong class="ph b">nonlinear exposures</strong> to market factors. Nonlinear exposure occurs when the sensitivity of a position’s value changes depending on the size of the change in the market factor. <strong class="ph b">Nonlinear models</strong> examine nonlinear relationships between dependent and independent variables. </p>
+<p class="p">Nonlinear relationships among asset returns and factor returns might arise from market forecasting attempts by fund managers. For instance, consider a market timer that is able to forecast market movements with 100% accuracy. The market timer would take long or short positions based on the market’s direction. The payoffs for the market timer would mirror that of an option straddle where the option premiums are $0. That is, the profit/loss diagram relative to market returns would form a V-shaped pattern, bottoming out at a payoff equal to zero. In this case, a linear regression would erroneously indicate a lack of relation. A clear relation exists, albeit a nonlinear one. </p>
+<p class="p"><strong class="ph b">Dynamic risk exposure models </strong>examine nonlinear relationships caused by factor risk exposures that change over time. For example, fund managers might attempt to time the market by targeting higher betas as the market index improves. </p>
+<p class="p">We will examine three dynamic risk exposure methods. In the first method (known as the <strong class="ph b">dummy variable regression model</strong>), the fund beta takes one of two values: an up-market beta and a down-market beta. The <strong class="ph b">up-market beta</strong> is based on periods when the market’s return exceeds the risk-free rate and the <strong class="ph b">down-market beta</strong> is based on periods when the market’s return falls below the risk-free rate.</p>
+<p class="p">The dummy variable regression model is </p>
+<p class="p">where:</p>
+<p class="p">b<sub class="ph sub">i,d</sub> = down-market beta </p>
+<p class="p">D<sub class="ph sub">1</sub> = dummy variable; equals 1 when R<sub class="ph sub">mt</sub> – R<sub class="ph sub">f </sub>is positive, and equals 0 when R<sub class="ph sub">mt</sub> – R<sub class="ph sub">f </sub>is zero or negative</p>
+<p class="p">B<sub class="ph sub">i,diff</sub> = difference between up-market beta and down-market beta</p>
+<p class="p">For example, in a down-market period, D<sub class="ph sub">1</sub> = 0, and the formula can be simplified to:</p>
+<p class="p">R<sub class="ph sub">it</sub> – R<sub class="ph sub">f</sub> = a<sub class="ph sub">i</sub> + B<sub class="ph sub">i,d</sub>(R<sub class="ph sub">mt</sub> – R<sub class="ph sub">f</sub>) + e<sub class="ph sub">it</sub></p>
+<p class="p">In an up-market period, D<sub class="ph sub">1</sub> = 1, and the formula can be simplified to:</p>
+<p class="p">R<sub class="ph sub">it</sub> – R<sub class="ph sub">f</sub> = a<sub class="ph sub">i</sub> + (B<sub class="ph sub">i,d</sub> + B<sub class="ph sub">i,diff</sub>)(R<sub class="ph sub">mt</sub> – R<sub class="ph sub">f</sub>) + e<sub class="ph sub">it</sub></p>
+<p class="p">which also indicates that the up-market beta equals B<sub class="ph sub">i,u</sub> + B<sub class="ph sub">i,diff </sub>.<sub class="ph sub"> </sub>If B<sub class="ph sub">i,diff</sub> is significantly positive, then we can conclude that the down-market beta is significantly less than the up-market beta, indicative of good market-timing. </p>
+<div class="note sample note"><span class="notetitle">sample:</span> <p class="p label"><strong class="ph b">Example: Up-market and down-market betas</strong></p>
+<p class="p">A dynamic risk exposure model is estimated for Portfolio P:</p>
+<p class="p">R<sub class="ph sub">pt</sub> – R<sub class="ph sub">f</sub> = 0.02 + [1.2 + D<sub class="ph sub">1</sub>(–0.40)] (R<sub class="ph sub">mt</sub> – R<sub class="ph sub">f</sub>) </p>
+<p class="p">where:</p>
+<p class="p">D<sub class="ph sub">1</sub> equals 1 when R<sub class="ph sub">mt</sub> – R<sub class="ph sub">f</sub> is positive and equals 0 when R<sub class="ph sub">mt</sub> – R<sub class="ph sub">f</sub> is zero or negative </p>
+<p class="p"><strong class="ph b">Determine</strong> the up-market beta and the down-market beta and <strong class="ph b">determine</strong> if the portfolio manager exhibited market-timing skill.</p>
+<p class="p"><strong class="ph b">Answer</strong>:</p>
+<p class="p">During up-markets, the regression equation is:</p>
+<p class="p">R<sub class="ph sub">pt</sub> – R<sub class="ph sub">f</sub> = 0.02 + (1.20 – 0.40)(R<sub class="ph sub">mt</sub> – R<sub class="ph sub">f</sub>), or</p>
+<p class="p">R<sub class="ph sub">pt</sub> – R<sub class="ph sub">f</sub> = 0.02 + 0.80(R<sub class="ph sub">mt</sub> – R<sub class="ph sub">f</sub>).</p>
+<p class="p">Therefore, the up-market beta equals 0.80.</p>
+<p class="p">During down-markets, the regression equation is:</p>
+<p class="p">R<sub class="ph sub">pt</sub> – R<sub class="ph sub">f</sub> = 0.02 + 1.20(R<sub class="ph sub">mt</sub> – R<sub class="ph sub">f</sub>).</p>
+<p class="p">Therefore, the down-market beta equals 1.20. </p>
+<p class="p">Alternatively, we can answer the question more directly, by knowing that B<sub class="ph sub">i,u</sub> is the up-market beta, and B<sub class="ph sub">i,diff </sub>equals the difference between the up-market beta and the down-market beta (e.g., the down-market beta equals 1.20 and the up-market beta equals: 1.20 + (–0.40 = 0.80). These findings suggest that the fund manager timed the market poorly as portfolio exposure to markets increased in poor markets and decreased in good markets.</p>
+</div>
+<p class="p">In the second dynamic risk exposure approach (known as the <strong class="ph b">separate regressions model</strong>), the analyst runs separate non-overlapping regressions to estimate betas for each regression period. Several different time periods are examined, and several periodic betas are derived for the asset.</p>
+<p class="p">In the third dynamic risk exposure model (known as the <strong class="ph b">quadratic curve regression model</strong>), excess returns for the asset are regressed against the square of the market excess returns, resulting in a quadratic curve regression:</p>
+<p class="p">R<sub class="ph sub">it</sub> – R<sub class="ph sub">f</sub> = a<sub class="ph sub">i</sub> + B<sub class="ph sub">im</sub>(R<sub class="ph sub">mt</sub> – R<sub class="ph sub">f</sub>)<sup class="ph sup">2</sup> + e<sub class="ph sub">it</sub></p>
+<p class="p">A positive value for B<sub class="ph sub">im</sub> indicates that the fund manager continually adjusted the beta higher as the market return increased, and adjusted the beta lower as the market return fell. A negative value for B<sub class="ph sub">im</sub> is indicative of a bad market-timer. The intercept of the regression measures the skill of the manager after controlling for market-timing ability. Note that B<sub class="ph sub">im</sub> is not the CAPM beta. B<sub class="ph sub">im</sub> measures the sensitivity of the asset’s excess returns to the <em class="ph i">square </em>of the market’s excess returns. </p>
+<p class="p">The following data and graph illustrate the return pattern for a fund manager (i) with B<sub class="ph sub">im</sub> = 0.50, and a<sub class="ph sub">i</sub> = 1%, for a nonlinear regression with a perfect fit. All following numbers are in percent.</p>
+<div class="fig fignone"><span class="figcap">Figuur 1. <strong class="ph b">Figure 3: Manager Returns</strong></span></div>
+
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><tbody class="tbody"><tr class="row"><td class="entry" valign="top" width="31.057494866529773%"><p class="p"><em class="ph i">R</em><sub class="ph sub">mt</sub><em class="ph i"> – R</em><sub class="ph sub">f</sub></p>
+</td>
+<td class="entry" valign="top" width="34.727926078028744%"><p class="p"><em class="ph i">(R</em><sub class="ph sub">mt</sub><em class="ph i"> – R</em><sub class="ph sub">f </sub><em class="ph i">)</em><sup class="ph sup">2</sup></p>
+</td>
+<td class="entry" valign="top" width="34.21457905544148%"><p class="p"><em class="ph i">R</em><sub class="ph sub">i</sub><em class="ph i"> – R</em><sub class="ph sub">f</sub></p>
+</td>
+</tr>
+<tr class="row"><td class="entry" valign="top" width="31.057494866529773%"><p class="p">–5%</p>
+</td>
+<td class="entry" valign="top" width="34.727926078028744%"><p class="p">25%</p>
+</td>
+<td class="entry" valign="top" width="34.21457905544148%"><p class="p">12.51%</p>
+</td>
+</tr>
+<tr class="row"><td class="entry" valign="top" width="31.057494866529773%"><p class="p">–4%</p>
+</td>
+<td class="entry" valign="top" width="34.727926078028744%"><p class="p">16%</p>
+</td>
+<td class="entry" valign="top" width="34.21457905544148%"><p class="p">8.01%</p>
+</td>
+</tr>
+<tr class="row"><td class="entry" valign="top" width="31.057494866529773%"><p class="p">–3%</p>
+</td>
+<td class="entry" valign="top" width="34.727926078028744%"><p class="p">9%</p>
+</td>
+<td class="entry" valign="top" width="34.21457905544148%"><p class="p">4.51%</p>
+</td>
+</tr>
+<tr class="row"><td class="entry" valign="top" width="31.057494866529773%"><p class="p">–2%</p>
+</td>
+<td class="entry" valign="top" width="34.727926078028744%"><p class="p">4%</p>
+</td>
+<td class="entry" valign="top" width="34.21457905544148%"><p class="p">2.01%</p>
+</td>
+</tr>
+<tr class="row"><td class="entry" valign="top" width="31.057494866529773%"><p class="p">–1%</p>
+</td>
+<td class="entry" valign="top" width="34.727926078028744%"><p class="p">1%</p>
+</td>
+<td class="entry" valign="top" width="34.21457905544148%"><p class="p">0.51%</p>
+</td>
+</tr>
+<tr class="row"><td class="entry" valign="top" width="31.057494866529773%"><p class="p">0%</p>
+</td>
+<td class="entry" valign="top" width="34.727926078028744%"><p class="p">0%</p>
+</td>
+<td class="entry" valign="top" width="34.21457905544148%"><p class="p">0.01%</p>
+</td>
+</tr>
+<tr class="row"><td class="entry" valign="top" width="31.057494866529773%"><p class="p">1%</p>
+</td>
+<td class="entry" valign="top" width="34.727926078028744%"><p class="p">1%</p>
+</td>
+<td class="entry" valign="top" width="34.21457905544148%"><p class="p">0.51%</p>
+</td>
+</tr>
+<tr class="row"><td class="entry" valign="top" width="31.057494866529773%"><p class="p">2%</p>
+</td>
+<td class="entry" valign="top" width="34.727926078028744%"><p class="p">4%</p>
+</td>
+<td class="entry" valign="top" width="34.21457905544148%"><p class="p">2.01%</p>
+</td>
+</tr>
+<tr class="row"><td class="entry" valign="top" width="31.057494866529773%"><p class="p">3%</p>
+</td>
+<td class="entry" valign="top" width="34.727926078028744%"><p class="p">9%</p>
+</td>
+<td class="entry" valign="top" width="34.21457905544148%"><p class="p">4.51%</p>
+</td>
+</tr>
+<tr class="row"><td class="entry" valign="top" width="31.057494866529773%"><p class="p">4%</p>
+</td>
+<td class="entry" valign="top" width="34.727926078028744%"><p class="p">16%</p>
+</td>
+<td class="entry" valign="top" width="34.21457905544148%"><p class="p">8.01%</p>
+</td>
+</tr>
+<tr class="row"><td class="entry" valign="top" width="31.057494866529773%"><p class="p">5%</p>
+</td>
+<td class="entry" valign="top" width="34.727926078028744%"><p class="p">25%</p>
+</td>
+<td class="entry" valign="top" width="34.21457905544148%"><p class="p">12.51%</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="fig fignone"><span class="figcap">Figuur 2. <strong class="ph b">Figure 4: Quadratic Curve Regression </strong></span></div>
+<p class="p">Notice that the asset’s excess returns improve as the market excess returns becomes either more positive or more negative. If B<sub class="ph sub">im</sub> had equaled zero, the relation would have been a flat line at a value equal to the alpha. If the B<sub class="ph sub">im</sub> had been negative, the relation would have been hump-shaped (peaking at a value equal to the alpha). </p>
+</div>
+
+</body>
+</html>

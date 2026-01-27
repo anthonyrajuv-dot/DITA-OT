@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\temp\pdf\documentation\d4p-users-guide\word2dita?><?workdir-uri file:/C:/Users/PBentley/Downloads/dita4publishers-0.9.18/documentation/temp/pdf/documentation/d4p-users-guide/word2dita/?><?path2project ..\..\?><?path2project-uri ../../?><concept xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="conceptId" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)       (topic indexing-d)      (topic d4p_formatting-d)      (topic d4p_ruby-d)      a(props d4p_renditionTarget)      (topic d4p_classification-d)      (topic d4p_math-d)      (topic d4p_simplebib-d)      (topic d4p_variables-d)      (topic d4p_verse-d)      (topic xml-d)      (topic abbrev-d)     " class="- topic/topic concept/concept " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word-to-dita-ant-task.xml" xtrc="concept:1;3:25">
+ <title class="- topic/title " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word-to-dita-ant-task.xml" xtrc="title:1;4:9">Setting Up an Ant Script for Running the Word-to-DITA Transform</title>
+ <shortdesc class="- topic/shortdesc " xtrc="shortdesc:1;5:13" xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word-to-dita-ant-task.xml">How to set up an Ant task to run the Word-to-DITA transform against DOCX files.</shortdesc>
+  <prolog class="- topic/prolog " xtrc="prolog:1;6:11" xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word-to-dita-ant-task.xml">
+    <author class="- topic/author " xtrc="author:1;5:21" xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide.ditamap">W. Eliot Kimber</author><metadata class="- topic/metadata " xtrc="metadata:1;7:15" xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word-to-dita-ant-task.xml">
+      <keywords class="- topic/keywords " xtrc="keywords:1;8:17" xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word-to-dita-ant-task.xml">
+        <indexterm class="- topic/indexterm " xtrc="indexterm:1;9:20" xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word-to-dita-ant-task.xml">word-to-dita Toolkit plugin<indexterm class="- topic/indexterm " xtrc="indexterm:2;9:58" xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word-to-dita-ant-task.xml">Ant script for</indexterm></indexterm>
+        <indexterm class="- topic/indexterm " xtrc="indexterm:3;10:20" xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word-to-dita-ant-task.xml"/>
+      </keywords>
+    <prodinfo class="- topic/prodinfo " xtrc="prodinfo:1;7:27" xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide.ditamap">
+    <prodname class="- topic/prodname " xtrc="prodname:1;8:15" xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide.ditamap">DITA For Publishers</prodname>
+    <vrmlist class="- topic/vrmlist " xtrc="vrmlist:1;9:14" xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide.ditamap">
+      <vrm class="- topic/vrm " version="0.9.16" xtrc="vrm:1;11:27" xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide.ditamap"/>
+    </vrmlist>
+    </prodinfo></metadata>
+  </prolog>
+ <conbody class="- topic/body  concept/conbody " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word-to-dita-ant-task.xml" xtrc="conbody:1;14:11">
+    <p class="- topic/p " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word-to-dita-ant-task.xml" xtrc="p:1;15:8">You can set up an Ant script to run the transform against a specific Word document. A typical script looks like this:<codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word-to-dita-ant-task.xml" xtrc="codeblock:1;15:136">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;project name="Single Word Doc to Map and Topics 01" default="transformMyDoc"&gt;
+
+  &lt;property file="build.properties"/&gt;
+  &lt;property file="${user.home}/.build.properties"/&gt;
+  &lt;property file="${user.home}/build.properties"/&gt;
+  
+  &lt;!-- This property should be set in one of the included files above
+       to reflect the location of Toolkit on your machine:
+    --&gt;
+  &lt;property name="dita-ot-dir" location="c:\DITA-OT1.5"/&gt;
+  
+  &lt;dirname property="myAntFile.dir" file="${ant.file}"/&gt;
+  
+  &lt;tstamp/&gt;
+  
+  &lt;target name="transformMyDoc"&gt;
+    
+    &lt;property name="word.doc" 
+      location="${myAntFile.dir}/<b class="+ topic/ph hi-d/b " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word-to-dita-ant-task.xml" xtrc="b:1;34:37">word2dita_single_doc_to_map_and_topics_01.docx</b>"/&gt;
+    
+    &lt;basename  property="doc.base.name" file="${word.doc}" suffix=".docx"/&gt;
+  
+    &lt;ant antfile="${dita-ot-dir}/build.xml" target="dita2word2dita"&gt;
+      &lt;!-- Set this to the filename of the DOCX file to be transformed: --&gt;
+      &lt;property name="args.input" 
+        location="${word.doc}"/&gt;
+  
+      &lt;!-- Change w2d.style-to-tag-map to point to your style-to-tag map document: --&gt;
+      &lt;property name="w2d.style-to-tag-map" 
+          location="${myAntFile.dir}/<b class="+ topic/ph hi-d/b " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word-to-dita-ant-task.xml" xtrc="b:2;45:41">style2tagmap.xml</b>"/&gt;
+      
+      
+      &lt;property name="w2d.root.output.filename" 
+          value="${doc.base.name}.ditamap"/&gt;
+      
+      &lt;!-- Specify output.dir to set to the output directory to contain the generated DITA files: --&gt;
+      
+      &lt;property name="output.dir" location="${myAntFile.dir}/../dita"/&gt;
+      &lt;property name="w2d.clean.output.dir" value="true"/&gt;&lt;!-- Clean output directory before doing generation --&gt;
+      &lt;property name="w2d.debug.xslt" value="true"/&gt;&lt;!-- Turn XSLT debug messages on --&gt;
+    &lt;/ant&gt;
+    &lt;ant antfile="${dita-ot-dir}/build.xml" target="dita2xhtml"&gt;
+      &lt;property name="args.input" 
+        location="${myAntFile.dir}/../dita/${doc.base.name}.ditamap"/&gt;
+    &lt;/ant&gt;
+  &lt;/target&gt;  
+
+&lt;/project&gt;</codeblock></p>
+    <p class="- topic/p " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word-to-dita-ant-task.xml" xtrc="p:2;64:8">The text in bold is what you would change to reflect your documents.</p>
+    <p class="- topic/p " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word-to-dita-ant-task.xml" xtrc="p:3;65:8">Note the initial <xmlelem class="+ topic/keyword xml-d/xmlelem " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word-to-dita-ant-task.xml" xtrc="xmlelem:1;65:34">property</xmlelem> elements that import a file named <filepath class="+ topic/ph sw-d/filepath " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word-to-dita-ant-task.xml" xtrc="filepath:1;65:97">build.properties</filepath>. This approach lets you put this script anywhere and use the build.properties file to set the location of your Toolkit, defined in the Ant property <varname class="+ topic/keyword sw-d/varname " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word-to-dita-ant-task.xml" xtrc="varname:1;65:282">dita-ot-dir</varname>. (See <xref href="w2d-getting-started.xml#conceptId" format="dita" class="- topic/xref " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word-to-dita-ant-task.xml" xtrc="xref:1;67:22" type="concept"><?ditaot gentext?>Getting Started With The Word2DITA Transform<?ditaot genshortdesc?><desc class="- topic/desc ">How to set up an Ant task to convert a Word document to DITA using the Open Toolkit</desc></xref> for more details on this one-time setup task.)</p>
+    <p class="- topic/p " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word-to-dita-ant-task.xml" xtrc="p:4;68:8">If you name this file <filepath class="+ topic/ph sw-d/filepath " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word-to-dita-ant-task.xml" xtrc="filepath:2;68:40">build.xml</filepath> in an appropriate directory (e.g., the same directory as the Word document), you can run this Ant script from the command line like so:<codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word-to-dita-ant-task.xml" xtrc="codeblock:2;68:207">c:\workspace\myworddoc\&gt; <b class="+ topic/ph hi-d/b " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word-to-dita-ant-task.xml" xtrc="b:3;68:235">ant</b></codeblock></p>
+    <p class="- topic/p " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word-to-dita-ant-task.xml" xtrc="p:5;69:8">You can also specify the Word document as a command-line parameter:<codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word-to-dita-ant-task.xml" xtrc="codeblock:3;69:86">c:\workspace\myworddoc\ &gt; ant <b class="+ topic/ph hi-d/b " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word-to-dita-ant-task.xml" xtrc="b:4;69:119">-Dword.doc=c:/workspace/anotherworddoc/some-document.docx</b></codeblock></p>
+    <p class="- topic/p " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word-to-dita-ant-task.xml" xtrc="p:6;70:8">TODO: It should be possible to use Ant to convert a set of documents in one go but I haven't worked out the details for that yet.</p>
+    <p class="- topic/p " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word-to-dita-ant-task.xml" xtrc="p:7;71:8">If you want to get really sophisticated you can extend your Ant script to run the Toolkit against the DITA files you just generated, for example, to generate HTML as a way to validate the generated files. To do that you would add this <xmlelem class="+ topic/keyword xml-d/xmlelem " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word-to-dita-ant-task.xml" xtrc="xmlelem:2;71:252">ant</xmlelem> element after the <xmlelem class="+ topic/keyword xml-d/xmlelem " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word-to-dita-ant-task.xml" xtrc="xmlelem:3;71:293">ant</xmlelem> element that runs the Word-to-DITA transform:<codeblock xml:space="preserve" class="+ topic/pre pr-d/codeblock " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word-to-dita-ant-task.xml" xtrc="codeblock:4;71:363">      &lt;ant antfile="${dita-ot-dir}/build.xml" target="dita2xhtml"&gt;
+        &lt;property name="args.input" 
+          location="${myAntFile.dir}/../dita/${doc.base.name}.ditamap"/&gt;
+      &lt;/ant&gt;</codeblock></p>
+    <p class="- topic/p " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\word2dita\word-to-dita-ant-task.xml" xtrc="p:8;75:8">You can, of course, add any other normal Toolkit arguments you might want to add.</p>
+  </conbody>
+</concept>

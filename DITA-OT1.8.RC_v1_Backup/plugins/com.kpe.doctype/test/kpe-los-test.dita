@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE kpe-los PUBLIC "-//KPE//DTD DITA KPE LOS Master//EN" "kpe-los.dtd">
+<kpe-los id="overview_2g2_ngg_sk">
+ <title>Overview</title>
+ <prolog><metadata><BloomsTaxonomy value="creating"></BloomsTaxonomy></metadata></prolog>
+ <kpe-losBody>
+  <lcObjectives>
+   <lcObjectivesStem>stem stuff</lcObjectivesStem>
+   <lcObjectivesGroup id="lcObjectivesGroup_xy5_ckg_sk">
+    <lcObjective><ph>los text</ph></lcObjective>
+   </lcObjectivesGroup>
+  </lcObjectives>
+ </kpe-losBody>
+</kpe-los>

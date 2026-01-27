@@ -1,0 +1,884 @@
+/******************************
+ main
+ ******************************/
+
+html{
+    background: #f0ede5;
+    font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+    font-size: 13px !important;
+    color: #424242;
+    line-height: 17px;
+    margin: 0 auto !important;
+    max-width: 975px;
+}
+
+body{
+    background: white;
+/*  This change is necessary for ePub. Need a way of choosing the right one for the right circumstances.   */
+    padding: 0px 0px 15px 0px !important;
+    /*padding: 15px 15px 15px 15px !important;*/
+    margin: 0 auto !important;
+    max-width: 975px;
+}
+
+section#main_body, 
+div#main_body{
+    margin-left: 20px;
+    float: left;
+    width: 600px;
+    margin-top: -40px;
+    margin-bottom: 20px;
+}
+
+section section,
+div.section_cont div.section_cont{
+    margin-left: 0px;
+}
+
+
+/*
+ * links
+ */
+
+a{
+    color: #5f4d89;
+}
+
+a:hover{
+    color: #9fc237;
+}
+
+
+/* 
+ * headings 
+ */
+
+body h1{
+    padding-top: 0px;
+    color: #5F4D89;
+    font-family: Verdana, Geneva, Arial, Helvetica;
+    font-weight: normal;
+    font-size: 18px;
+    margin-bottom: 8px;
+    line-height: 1.4em;
+}
+
+h1 > img{
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+h2{
+    color: #5F4D89;
+    font-family: Verdana, Geneva, Arial, Helvetica;
+    font-weight: normal;
+    font-size: 14px;
+    margin-bottom: 8px;
+    margin-top: 22px !important;
+}
+
+
+/******************************
+ sideTOC
+ ******************************/
+
+div.sidebar{
+    background: #F9F9F9;
+    width: 195px;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-top: -40px;    
+    margin-left: 22px !important;
+    min-height: 100%;
+    clear: both;
+    float: left;
+    overflow: hidden;
+    border-style: solid;
+    border-radius: 5px;
+    border-width: 1px;
+    border-right-width: 0px;
+    border-color: #B5B6B7;
+    border-left-color: #B5B6B7 !important;
+    border-left-width: 7px !important;
+    border-left-style: solid !important;     
+    -moz-transition: width .5s;
+    -webkit-transition: width .5s;
+    -o-transition: width .5s;
+    -webkit-box-shadow: 3px 3px 7px #535355;
+    -moz-box-shadow: 3px 3px 7px #535355;        
+    box-shadow: 3px 3px 7px #535355;
+}
+
+div.box{
+    clear: both;
+    float: left;
+    padding-bottom: 10px;
+    font-size: 12px;
+    overflow: hidden;
+    min-height: 400px;
+    position: relative;
+    right: 0px;
+    top: 0px;
+    border-radius: 5px;
+    display: block;
+    box-shadow: 1px 1px 1px #535355;    
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+}
+
+
+/* override scriptorium stylesheet*/
+#side_navigation{
+    margin-left: 5px !important;
+    margin-right: 0px !important;
+    padding-left: 5px !important;
+    float: left !important;
+    height: auto !important;    
+    max-width: 205px;
+}
+
+div.open{
+    width: 195px;
+    -moz-transition: width .5s;
+    -webkit-transition: width .5s;
+    -o-transition: width .5s;
+}
+
+div.closed{
+    width: 12px;
+    -moz-transition: width .5s;
+    -webkit-transition: width .5s;
+    -o-transition: width .5s;
+}
+
+div.box > div#nav_handle{
+    display: block;
+    position: absolute;
+    right: 0px;
+    margin-right: 0px;
+    width: 6px;
+    min-height: 100%;
+    overflow: visible;
+    border-right-color: #B5B6B7 !important;
+    border-right-width: 7px !important;
+    border-right-style: solid !important;
+    border-radius: 3px;
+    
+}
+
+div.box > div#nav_handle > div#nav_handle_img{
+    position: absolute;
+    margin-top: -18px;
+    margin-left: -5px;
+    left: 100%;
+    top: 50%;
+    border: #b5b6b7 1px solid;
+    border-radius: 2px;
+    height: 36px;
+    width: 10px;
+    display: block !important;
+}
+
+div.open > div#nav_handle:hover > div#nav_handle_img{
+    background-color: #fafafa;
+}
+
+div.closed > div#nav_handle:hover > div#nav_handle_img{
+    background-color: #fafafa;
+}
+
+div.open > div#nav_handle > div#nav_handle_img{
+    background: #ededed url(../images/nav_handle_small.png) no-repeat center;
+}
+
+div.closed > div#nav_handle > div#nav_handle_img{
+    background: #ededed url(../images/nav_handle_small_open.png) no-repeat center;
+}
+
+
+/* 
+ * sideTOC lists 
+ */
+
+div.box > ul{
+    overflow: hidden;
+}
+
+nav.sections ul,
+div.sections ul{
+    list-style-type: none;
+    margin-left: 2px;
+    margin-top: 8px;
+    padding: 0px;
+    width: 170px;
+}
+
+nav.sections ul ul,
+div.sections ul ul{
+    list-style-type: none;
+    margin-top: 0px;
+    margin-left: 15px;
+    padding: 0px;
+}
+
+nav.sections ul li,
+div.sections ul li{
+    padding-bottom: 12px;
+    padding-right: 4px;
+    margin-left: 8px;
+}
+
+nav.sections ul li ul li,
+div.sections ul li ul li{
+    padding-top: 6px;
+    padding-bottom: 2px;
+    max-width: 140px;
+    margin-left: 4px;
+}
+
+nav.sections ul li ul li ul li,
+div.sections ul li ul li ul li{
+    max-width: 125px;
+    margin-left: 4px;
+}
+
+nav.sections ul li ul li ul li ul li,
+div.sections ul li ul li ul li ul li{
+    max-width: 100px;
+    margin-left: 4px;
+}
+
+nav.breadcrumbs ul li,
+div.breadcrumbs ul li{
+    display: inline;
+    list-style-type: disc;
+}
+
+nav.breadcrumbs ul li:last-child,
+div.breadcrumbs ul li:last-child{
+    font-weight: bold
+}
+
+span.toc_branch{
+    display: block;
+    float: left;
+    margin-right: 6px;
+    margin-left: -15px;
+    height: 1.2em;
+    width: 9px;
+}
+
+span.toc_branch[title = 'Click to expand']{
+    background: url(../images/triangle_collapsed.png) no-repeat left center;
+}
+
+span.toc_branch[title = 'Click to collapse']{
+    background: url(../images/triangle_expanded.png) no-repeat left center;
+}
+
+
+/* 
+ * sideTOC PDF and EPUB links 
+ */
+
+div.epublink,
+div.pdflink,
+div.search{
+    clear: left;
+    float: left;
+    margin-left: 9px;
+}
+
+div.epublink p,
+div.pdflink p{
+    margin-top: 0px;
+    margin-bottom: 8px;
+}
+
+div.epublink p a,
+div.pdflink p a{
+    margin-left: 5px;
+}
+
+div.epublink p a,
+div.epublink p img,
+div.pdflink p a,
+div.pdflink p img{
+    vertical-align: middle;
+    background: transparent !important;
+}
+
+
+/******************************
+ breadcrumbs, prev-next
+ ******************************/
+
+nav.breadcrumbs,
+div.breadcrumbs{
+    background: url(../images/breadcrumbs.png) no-repeat 5px bottom;
+    margin-left: 15px !important;
+    min-height: 33px;
+    padding-top: 5px;
+    padding-bottom: 10px !important;
+}
+
+nav.breadcrumbs p,
+div.breadcrumbs p{
+    margin-left: 5px !important;
+    color: #9FC237;
+    margin-bottom: 8px !important;
+}
+
+nav.breadcrumbs p.corp_crumbs,
+div.breadcrumbs p.corp_crumbs{
+    display: none;
+}
+
+nav.breadcrumbs p.lcl_crumbs,
+div.breadcrumbs p.lcl_crumbs{
+    padding-left: 5px;
+    width: 800px;
+    float: left;
+    font-size: 14px !important;
+}
+
+p.prev_next{
+    text-align: right;
+    font-size: 13px !important;
+    float: right;
+    width: 75px;
+    margin-right: 0px !important;
+    color:#9FC237;
+}
+
+footer p.prev_next,
+div.footer_cont p.prev_next{
+    clear: both;
+    margin-right: 20px !important;
+}
+
+#bcrumbs{
+    margin-left: 10px;
+    margin-bottom: 5px;
+    width: 940px;
+}
+
+
+/******************************
+ footer
+ ******************************/
+
+div.fn{
+    font-size: 11px !important;
+}
+
+p.copyright{    
+    display: none;
+}
+
+footer, div.footer_cont{
+    clear: both
+}
+
+
+/******************************
+ notes
+ ******************************/
+
+div.note{
+    border-top: solid black 1px;
+    border-bottom: solid black 1px;
+    color: #5F4D89;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+div.note p{
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+div.warning,
+div.caution,
+div.note{
+    margin-left: 60px;
+    margin-bottom: 25px;
+    padding-bottom: 5px;
+}
+
+div.warning > img,
+div.caution > img,
+div.note > img{
+    float: left;
+    padding-right: 0px;
+    margin-left: -55px;
+    max-width: 40px;
+}
+
+div.note div.p{
+    color: #424242;
+}
+
+p.warningtitle{
+    color: #abbd26;
+    font-weight: bold;
+    margin-top: 25px;
+    text-transform:uppercase;
+}
+
+p.cautiontitle{
+    color: #abbd26;
+    font-weight: bold;
+    margin-top: 25px;
+    text-transform:uppercase;
+}
+
+p.notetitle + p.p,
+div.note p.p{
+    /*font-weight: bold;*/
+    font-weight:normal;
+}
+
+p.notetitle{
+    color: #abbd26;
+    font-weight: bold;
+    margin-top: 25px;
+    text-transform:uppercase;
+    
+}
+
+p.warningtext{
+    margin-top: -10px;
+}
+
+
+/******************************
+ figures and tables
+ ******************************/
+
+/* 
+ * figure and table captions 
+ */
+
+.fig_table_caption,
+.figcap{
+    font-size: 12px !important;
+    font-style: italic;
+    color: #5F4D89;
+}
+
+#expand,
+.expand{
+    display: inline;
+    float: left;
+    margin-right: 3px;    
+}
+
+.tablenoborder{
+    margin-bottom: 8px;
+}
+
+    /* '\9' targets <IE9 only */
+
+.tablenoborder .expand > img{
+    /*margin-top: 3px\9;*/     
+}
+
+div.table_exp *{
+    font-size: 12px;
+}
+
+td > div.figborder{
+    /*margin: 5px;*/
+    /*padding: 5px;*/
+}
+
+td{
+    padding: 5px;
+}
+
+td p.p{
+    /*line-height: 10px;    */
+    font-size: 13px !important;
+}
+
+
+/* 
+ * figures 
+ */
+
+img.productexample{
+    float: right
+}
+
+/* Limit images to 600 px wide. */
+img.image{
+    /*max-width: 150px;*/
+    clear: both;
+    display: block;
+    margin: auto;
+    max-height: 250px;
+    max-width: 250px;
+}
+
+embed.image{
+    height: 200px;
+    width: 200px;
+}
+
+div.figure_exp,
+div.table_exp{
+    padding: 10px;
+}
+
+div.figure_exp img.image{
+    max-height: 80% !important;
+    max-width: 80% !important;
+    margin: 10px;
+}
+
+div.figborder{
+    /* sfb 15-Jan-13: Max width was limiting SVG display. */
+    max-width: 280px;
+    max-height: 280px;
+    padding-top: 3px;
+    padding-bottom: 10px;
+}
+
+div.figborder + div.tablenoborder > table.table{
+    width: 268px !important;
+}
+
+.figborder img{
+    /*height:auto;*/
+    /*added or changed for epub*/
+    /*max-width: 150px;*/
+    /*width:75%;*/
+    border: 10px;
+}
+
+.figborder{
+    border-style: solid;
+    padding-left: 3px;
+    border-width: 1px;
+    padding-right: 3px;
+    margin-top: 1em;
+    border-color: gray;
+}
+
+div.fignone{
+    /*  sfb: None means no border, NOT "don't display the figure at all"! */  
+    /* display: none !important; */
+    border-style: none;
+    padding-left: 3px;
+    border-width: 0px;
+    padding-right: 3px;
+    margin-top: 1em;
+    border-color: white;
+}
+
+.figure_exp * img{
+    max-width: 600px;
+}
+
+.figure_exp .expand,
+.table_exp .expand{
+    display: none;
+}
+
+.figure_exp img.image{
+    /*width: 100% !important;*/
+    /*max-width: 100% !important;*/
+    margin: 10px;
+}
+
+
+/* 
+ * tables 
+ */
+
+table.table, tr, th, td{
+    border-spacing: 2px !important;
+    border: 1px solid gray !important;
+}
+
+#main_body table.table{
+    border: 1px solid gray !important;
+    width: 400px;
+}
+
+thead.thead > tr.row > th.entry{
+    padding: 4px 6px 4px 6px !important;
+    font-size: 13px;
+}
+
+thead.thead{
+    background: #f0ede5 !important;    
+}
+
+tbody.tbody > tr.row > td.entry{
+    padding-right: 6px !important;
+    padding-left: 6px !important;
+    padding: 0 6px 6px 6px !important;
+}
+
+table.table embed{
+    width: 50px !important;
+    height: 50px !important;
+}
+
+table .p{
+    margin-top: 4px;
+    margin-bottom: 0px;
+    font-size: 0.8em;
+}
+
+div.tablenoborder{
+    font-size: 9px;
+}
+
+div.tablenoborder > p{
+    margin-top: 6px;
+    margin-bottom: 3px;
+}
+
+
+/******************************
+ lists
+ ******************************/
+
+ul.ullinks{
+    list-style-type: square;
+}
+
+.ulchildlink{
+    /*margin-bottom: 3px;*/
+    margin-top: 3px;
+}
+
+#main_body ol,
+#main_body ul{
+    margin-left: 40px !important;
+}
+
+#main_body ol
+{
+    list-style: decimal !important;
+}
+#main_body ol li ol
+{
+    list-style: lower-alpha !important;
+}
+
+ol.steps{
+    list-style: decimal !important;
+}
+
+ol.substeps{
+    list-style: lower-alpha;
+}
+
+li.step,
+li.substep{
+    margin-top: 10px !important;
+}
+
+#main_body ul{
+    list-style-type: square !important;
+}
+
+#main_body ul ul{
+    list-style-type: disc !important;
+}
+
+
+/******************************
+ para, span, blockquote, terms
+ ******************************/
+
+/* dl styles */
+.term{
+    font-weight: bold;
+}
+
+div.search p{
+    font-weight: bold;
+    margin-bottom: 0px;
+}
+
+input.search{
+    cursor: pointer;
+    color: #5F4D89;
+    font-weight: bold;
+    padding: 1px 2px;
+}
+
+div.unittoggle{
+    margin-top: 10px;
+    text-align: left;
+    float: left;
+    clear: both;
+    display: none;
+}
+
+/* syntax descriptions. */
+var.keyword,
+span.keyword {
+   font-family: courier;
+   font-weight: bold;
+}
+
+/*  Software domain. */
+var.varname,
+span.varname {
+    font-style: italic;
+}
+span.cmdname {
+    font-weight: bold;
+}
+
+/* Programming domain. */
+span.var {
+    font-style: italic;
+}
+span.kwd {
+    font-weight: bold;
+}
+
+
+/* Reserved for future use. */
+span.si{
+}
+
+span.us{
+}
+
+div.print_email a img{
+    margin: 0 8px -5px 0;
+}
+
+p.print_this,
+p.mail_this,
+p.feedback{
+    font-size: .8em;
+    color: #5F4D89;
+    float: right;
+    text-align: left;
+    margin-bottom: 3px;
+    margin-right: 20px;
+    height: 20px;
+}
+
+p.print_this:hover,
+p.mail_this:hover,
+p.feedback:hover{
+    color: #9FC237;
+}
+
+p.print_this,
+p.mail_this,
+p.feedback{    
+    width: 100px;
+}
+
+p.mail_this,
+p.feedback{
+    clear: both;
+}
+
+div.footer_cont p.mail_this,
+div.footer_cont p.feedback{
+    clear: none;
+}
+
+div.footer_cont div.print_email{
+    width: 350px;
+    float: right;
+}
+
+div.footer_cont p.print_this,
+div.footer_cont p.mail_this,
+div.footer_cont p.feedback{
+    width: auto;
+}
+
+p.feedback{    
+    padding: 1px;
+}
+
+p.feedback a img{
+    width: 13px;
+    height: 13px;
+    margin: 0 10px -3px 4px;
+}
+
+p.feedback a{
+    /*background-image: url(../images/static_plus16.gif);
+    background-repeat: no-repeat;
+    display:inline-block;*/
+    /*text-indent: 22px;    
+    margin-left: 1px;*/
+}
+
+p.feedback a:hover{
+    /*background-image: url(../images/animated_plus16.gif);*/
+}
+
+/******************************
+ override scriptorium main.css
+ ******************************/
+
+#tertiaryNavigation{
+    width: 200px !important;
+}
+
+#tertiaryNavigation a{
+    margin-top: 10px !important;
+    padding-right: 2px !important;
+}
+
+div.logo > img{
+    width: 170px !important;
+    margin-left: 30px;
+}
+
+div.epublink, div.pdflink{
+    width: 160px;
+}
+
+div.refsyn {
+   margin-bottom: 10px;
+}
+
+span.synph{
+   font-family: courier;
+    display:block;
+    /* Note, this will cause any pretty printing passed from the XML to the 
+       HTML to be taken literally. */
+    white-space: pre-wrap; 
+}
+
+div.search{
+    margin-left: 18px !important;
+    background: transparent !important;
+    display: none;
+}
+
+div.search > form > input,
+div.search > form > input.search,
+div.search > form > select{
+    width: 160px;
+}
+
+#footer{
+    margin-top: auto !important;
+}
+
+/* If using adaptive CSS, uncomment this. 
+   WARNING: The adaptive CSS make ePub very unhappy.  If you re-enable this, find a way of doing it for XHTML only. 
+*/
+/*@import url('a.css');*/
+
+/*
+ * EOF ///////////////////////////////////////
+ */

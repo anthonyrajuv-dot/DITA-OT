@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="public">
+
+    <!-- topics / structural specializations -->
+    <!-- Assessment overview for assessment metadata -->
+    <public publicId="-//KPE//DTD DITA KPE Assessment Overview//EN"
+        uri="dtd/kpe-assessmentOverview.dtd"/>
+    <public publicId="-//KPE//ENTITIES DITA KPE Assessment Overview//EN"
+        uri="dtd/kpe-assessmentOverview.ent"/>
+    <public publicId="-//KPE//ELEMENTS DITA KPE Assessment Overview//EN"
+        uri="dtd/kpe-assessmentOverview.mod"/>
+    
+    <!-- concept topic with KPE-specific elements -->
+    <public publicId="-//KPE//DTD DITA KPE Concept//EN"
+        uri="dtd/kpe-concept.dtd"/>
+    <public publicId="-//KPE//ENTITIES DITA KPE Concept//EN"
+        uri="dtd/kpe-concept.ent"/>
+    <public publicId="-//KPE//ELEMENTS DITA KPE Concept//EN"
+        uri="dtd/kpe-concept.mod"/>
+    
+    <!-- glossary topic with KPE-specific elements -->
+    <public publicId="-//KPE//DTD DITA KPE Glossary Entry//EN"
+        uri="dtd/kpe-glossEntry.dtd"/>
+    <public publicId="-//KPE//ENTITIES DITA KPE Glossary Entry//EN"
+        uri="dtd/kpe-glossEntry.ent"/>
+    <public publicId="-//KPE//ELEMENTS DITA KPE Glossary Entry//EN"
+        uri="dtd/kpe-glossEntry.mod"/>
+    
+    <!-- LOS master topic -->
+    <public publicId="-//KPE//DTD DITA KPE LOS Master//EN"
+        uri="dtd/kpe-los.dtd"/>
+    <public publicId="-//KPE//ENTITIES DITA KPE LOS Master//EN"
+        uri="dtd/kpe-los.ent"/>
+    <public publicId="-//KPE//ELEMENTS DITA KPE LOS Master//EN"
+        uri="dtd/kpe-los.mod"/>
+ 
+    <!-- learning overview topic with KPE-specific elements -->
+    <public publicId="-//KPE//DTD DITA KPE Overview//EN"
+        uri="dtd/kpe-overview.dtd"/>
+    <public publicId="-//KPE//ENTITIES DITA KPE Overview//EN"
+        uri="dtd/kpe-overview.ent"/>
+    <public publicId="-//KPE//ELEMENTS DITA KPE Overview//EN"
+        uri="dtd/kpe-overview.mod"/>
+
+    <!-- learning assessment topic with KPE-specific elements -->
+    <public publicId="-//KPE//DTD DITA KPE Question//EN"
+        uri="dtd/kpe-question.dtd"/>
+    <public publicId="-//KPE//ENTITIES DITA KPE Question//EN"
+        uri="dtd/kpe-question.ent"/>
+    <public publicId="-//KPE//ELEMENTS DITA KPE Question//EN"
+        uri="dtd/kpe-question.mod"/>    
+
+	
+	<!-- ARV: learning assessment prompt with KPE-specific elements -->
+	<public publicId="-//KPE//DTD DITA KPE Prompt//EN"
+		uri="dtd/kpe-prompt.dtd"/>
+	<public publicId="-//KPE//ENTITIES DITA KPE Prompt//EN"
+		uri="dtd/kpe-prompt.ent"/>
+	<public publicId="-//KPE//ELEMENTS DITA KPE Prompt//EN"
+		uri="dtd/kpe-prompt.mod"/>    
+
+    <!-- learning summary topic with KPE-specific elements -->
+    <public publicId="-//KPE//DTD DITA KPE Summary//EN"
+        uri="dtd/kpe-summary.dtd"/>
+    <public publicId="-//KPE//ENTITIES DITA KPE Summary//EN"
+        uri="dtd/kpe-summary.ent"/>
+    <public publicId="-//KPE//ELEMENTS DITA KPE Summary//EN"
+        uri="dtd/kpe-summary.mod"/>   
+    
+    <!-- task topic with KPE-specific elements -->
+    <public publicId="-//KPE//DTD DITA KPE Task//EN"
+        uri="dtd/kpe-task.dtd"/>
+    <public publicId="-//KPE//ENTITIES DITA KPE Task//EN"
+        uri="dtd/kpe-task.ent"/>
+    <public publicId="-//KPE//ELEMENTS DITA KPE Task//EN"
+        uri="dtd/kpe-task.mod"/> 
+    
+    <!-- maps -->
+    <public publicId="-//KPE//DTD DITA KPE Map//EN"
+        uri="dtd/kpe-map.dtd"/>
+    
+    <public publicId="-//KPE//ENTITIES DITA KPE Kaplan Way Metadata Domain//EN"
+        uri="dtd/kpe-KaplanWayMetadataDomain.ent"/>
+    <public publicId="-//KPE//ELEMENTS DITA KPE Kaplan Way Metadata Domain//EN"
+        uri="dtd/kpe-KaplanWayMetadataDomain.mod"/>
+    
+
+    <!-- element domain specializations -->
+    <public publicId="-//KPE//ENTITIES DITA KPE Common Elements Domain//EN"
+        uri="dtd/kpe-commonDomain.ent"/>
+    <public publicId="-//KPE//ELEMENTS DITA KPE Common Elements Domain//EN"
+        uri="dtd/kpe-commonDomain.mod"/>
+    
+    <public publicId="-//KPE//ENTITIES DITA KPE Financial Elements Domain//EN"
+        uri="dtd/kpe-financialDomain.ent"/>
+    <public publicId="-//KPE//ELEMENTS DITA KPE Financial Elements Domain//EN"
+        uri="dtd/kpe-financialDomain.mod"/>
+<public publicId="-//KPE//ENTITIES DITA KPE Question Elements Domain//EN"
+        uri="dtd/kpe-questionDomain.ent"/>
+    <public publicId="-//KPE//ELEMENTS DITA KPE Question Elements Domain//EN"
+        uri="dtd/kpe-questionDomain.mod"/>    
+
+	<!-- ARV: 28-03-2025 -->
+	<public publicId="-//KPE//ENTITIES DITA KPE Prompt Elements Domain//EN"
+		uri="dtd/kpe-promptDomain.ent"/>
+	<public publicId="-//KPE//ELEMENTS DITA KPE Prompt Elements Domain//EN"
+		uri="dtd/kpe-promptDomain.mod"/>    
+
+    <!-- metadata element specialization domains -->
+    <public publicId="-//KPE//ENTITIES DITA KPE Assessment Overview Metadata Domain//EN"
+        uri="dtd/kpe-assessmentOverviewMetadataDomain.ent"/>
+    <public publicId="-//KPE//ELEMENTS DITA KPE Assessment Overview Metadata Domain//EN"
+        uri="dtd/kpe-assessmentOverviewMetadataDomain.mod"/>
+
+    <public publicId="-//KPE//ENTITIES DITA KPE Common Metadata Domain//EN"
+        uri="dtd/kpe-commonMetadataDomain.ent"/>
+    <public publicId="-//KPE//ELEMENTS DITA KPE Common Metadata Domain//EN"
+        uri="dtd/kpe-commonMetadataDomain.mod"/>
+
+    <public publicId="-//KPE//ENTITIES DITA KPE LOS Metadata Domain//EN"
+        uri="dtd/kpe-losMetadataDomain.ent"/>
+    <public publicId="-//KPE//ELEMENTS DITA KPE LOS Metadata Domain//EN"
+        uri="dtd/kpe-losMetadataDomain.mod"/>    
+
+    <public publicId="-//KPE//ENTITIES DITA KPE Point Value Metadata Domain//EN"
+        uri="dtd/kpe-pointValueMetadataDomain.ent"/>
+    <public publicId="-//KPE//ELEMENTS DITA KPE Point Value Metadata Domain//EN"
+        uri="dtd/kpe-pointValueMetadataDomain.mod"/> 
+    
+    <public publicId="-//KPE//ENTITIES DITA KPE Blooms Map Metadata Domain//EN" uri="dtd/kpe-bloomsMapMetadataDomain.ent"/>
+    <public publicId="-//KPE//ELEMENTS DITA KPE Blooms Map Metadata Domain//EN" uri="dtd/kpe-bloomsMapMetadataDomain.mod"/>
+    
+    <public publicId="-//KPE//ENTITIES DITA KPE Difficulty Metadata Domain//EN" uri="dtd/kpe-difficultyMetadataDomain.ent"/>
+    <public publicId="-//KPE//ELEMENTS DITA KPE Difficulty Metadata Domain//EN" uri="dtd/kpe-difficultyMetadataDomain.mod"/>
+    
+    <public publicId="-//KPE//ENTITIES DITA KPE sortOrder Metadata Domain//EN" uri="dtd/kpe-sortOrderMetadataDomain.ent"/>
+    <public publicId="-//KPE//ELEMENTS DITA KPE sortOrder Metadata Domain//EN" uri="dtd/kpe-sortOrderMetadataDomain.mod"/>
+	
+	<public publicId="-//KPE//ELEMENTS DITA KPE essayData Metadata Domain//EN" uri="dtd/kpe-essayDataMetadataDomain.ent"/>
+	<public publicId="-//KPE//ELEMENTS DITA KPE essayData Metadata Domain//EN" uri="dtd/kpe-essayDataMetadataDomain.mod"/>
+	
+	<public publicId="-//KPE//ELEMENTS DITA KPE skill Metadata Domain//EN" uri="dtd/kpe-skillMetadataDomain.ent"/>
+	<public publicId="-//KPE//ELEMENTS DITA KPE skill Metadata Domain//EN" uri="dtd/kpe-skillMetadataDomain.mod"/>
+	
+	<public publicId="-//KPE//ELEMENTS DITA KPE scoringGroup Metadata Domain//EN" uri="dtd/kpe-scoringGroupMetadataDomain.ent"/>
+	<public publicId="-//KPE//ELEMENTS DITA KPE scoringGroup Metadata Domain//EN" uri="dtd/kpe-scoringGroupMetadataDomain.mod"/>
+
+	<public publicId="-//KPE//ELEMENTS DITA KPE topicprompt Metadata Domain//EN" uri="dtd/kpe-topicpromptMetadataDomain.ent"/>
+	<public publicId="-//KPE//ELEMENTS DITA KPE topicprompt Metadata Domain//EN" uri="dtd/kpe-topicpromptMetadataDomain.mod"/>
+
+</catalog>

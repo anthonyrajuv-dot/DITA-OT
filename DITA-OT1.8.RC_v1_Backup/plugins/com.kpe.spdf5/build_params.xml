@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<params>
+    <param name="OUTPUT_TYPE"   expression="${KPE.output.type}"  if="KPE.output.type"/>    
+    <param name="KPE_FILENAMES" expression="${KPE.filenames}"    if="KPE.filenames"/>
+    <param name="ANSWER_KEY"    expression="${answer.key.valid}" if="answer.key.valid"/>
+</params>

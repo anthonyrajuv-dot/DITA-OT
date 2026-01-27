@@ -1,0 +1,535 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Tripane Help creation.  -->
+<project name="com.kpe.pace" basedir="." default="dita2pace">
+    
+    <property name="dita2pace.version" value="2.0.1"/>
+    <property name="dita2pace.date" value="2014-09-29"/>
+
+    <!-- Makes renaming the plugin easier. -->
+    <property name="dita2pace.plugin.dir" value="${dita.plugin.com.kpe.pace.dir}"/>
+    <property name="dita2pace.temp.dir" value="${dita2pace.plugin.dir}${file.separator}temp"/> <!-- not used. -->
+    
+    <!-- To implement the chunking, we'll probably have to implement a pre-processor to filter from the 
+         args.input to the temp.dir. Then we'll process from temp to output. -->
+    
+    <property name="dita2pace.supermap" value="${dita2pace.plugin.dir}${file.separator}xsl${file.separator}dita2supermap.xsl"/>
+    <property name="dita2pace.transform" value="${dita2pace.plugin.dir}${file.separator}xsl${file.separator}dita2pace.xsl"/>
+    
+    <property name="supermap.ditamap" value="supermap.ditamap"/>
+    <property name="toc.ditamap" value="toc.ditamap"/>
+    
+    <property name="args.figurelink.style" value="TITLE"/>
+    <property name="assetfile" value="assets.list"/>
+    
+    
+<!--    <target name="preprocess" depends="gen-list,debug-filter,copy-files,
+        conrefpush,conref,move-meta-entries,keyref,coderef,mapref,mappull,chunk,maplink,move-links,topicpull,flag-module" description="Preprocessing ended"></target>
+-->    
+    
+    <target name="dita2pace"
+        depends="dita2pace.announce,build-init, dita2pace.init, 
+        gen-list,usstate-normalize-java,debug-filter,dita2pace.copy-files, 
+        conrefpush,conref,move-meta-entries,keyref,coderef,mapref,mappull,chunk,maplink,move-links, topicpull,
+        dita2pace.transform, 
+        dita2pace.cleanup, dita2pace.debug, dita2pace.donetimedate">
+    </target>
+    
+    <target name="dita2pace.announce">
+        <echo>Running DITA2PACE ${dita2pace.version} (${dita2pace.date}).</echo>
+    </target>
+    
+    <target name="dita2pace.donetimedate">
+        <tstamp>
+            <format property="donetimedate" pattern="yyyy-MM-dd KK:mm:ss"/>
+        </tstamp>
+        <echo>Finished at ${donetimedate}.</echo>
+    </target>
+    
+    <!-- topicpull,flag-module, -->
+    <target name="dita2pace.init">
+        <echo>In init...</echo>
+        <echo>temp dir is ${dita.temp.dir}</echo>
+        
+        <mkdir dir="${output.dir}${file.separator}topics"/>
+        <mkdir dir="${output.dir}${file.separator}tasks"/>
+        <mkdir dir="${output.dir}${file.separator}los"/>
+		
+        
+    </target>
+    
+    <target name="dita2pace.transform">
+        <!-- ${dita.temp.dir.fullpath}${file.separator}${user.input.file} -->
+        <xslt processor="trax" 
+            basedir="${dita.temp.dir}"
+            destdir="${dita.temp.dir}" 
+            force="true"
+            in="${dita.temp.dir}${file.separator}${dita.input.filename}"
+            out="${dita.temp.dir}${file.separator}${supermap.ditamap}"
+            style="${dita2pace.supermap}"
+            >
+            <param name="BASE_DIR" expression="${dita.temp.dir}${file.separator}"/>
+            <param name="OUT_DIR" expression="${dita.temp.dir}${file.separator}"/>
+            <xmlcatalog>
+                <catalogpath path="${xml.catalog.files}"/>
+            </xmlcatalog>
+        </xslt>
+        
+        <echo>Transforming DITA to PACE...</echo>
+        
+        <xslt processor="trax" 
+            basedir="${dita.temp.dir}"
+            destdir="${output.dir}" 
+            force="true"
+            in="${dita.temp.dir}${file.separator}${supermap.ditamap}"
+            out="${output.dir}${file.separator}${toc.ditamap}"
+            style="${dita2pace.transform}"
+            >
+            <param name="BASE_DIR" expression="${dita.temp.dir}${file.separator}"/>
+            <param name="OUT_DIR" expression="${output.dir}"/>
+            <xmlcatalog>
+                <catalogpath path="${xml.catalog.files}"/>
+            </xmlcatalog>
+        </xslt>
+        
+        
+    </target>
+    
+    <!-- Overridden from build_preprocess to amend copy-image (and delete copy-html. -->
+    <target name="dita2pace.copy-files" 
+        depends="dita2pace.copy-image,copy-flag,copy-subsidiary,copy-generated-files" 
+        unless="preprocess.copy-files.skip"></target>
+    
+    <target name="dita2pace.copy-image-uplevels" if="image.copy.uplevels" depends="copy-image-check" unless="preprocess.copy-image.skip" description="Copy image files">
+        <copy todir="${output.dir}/${uplevels}/assets" flatten="true">
+            <fileset dir="${user.input.dir}" includesfile="${dita.temp.dir}/${d_imagefile}"></fileset>
+        </copy>
+    </target>
+    
+    <target name="dita2pace.copy-image-normal" if="image.copy.normal" depends="copy-image-check" unless="preprocess.copy-image.skip" description="Copy image files">
+        <copy todir="${output.dir}/assets" flatten="true">
+            <fileset dir="${user.input.dir}" includesfile="${dita.temp.dir}/${d_imagefile}"></fileset>
+        </copy>
+    </target>
+    
+    <target name="dita2pace.copy-image" depends="dita2pace.copy-image-uplevels,dita2pace.copy-image-normal" description="Copy image files">   
+    </target>
+    
+    <target name="copy-image-check">
+        <condition property="preprocess.copy-image.skip">
+            <or>
+                <isset property="preprocess.copy-files.skip"></isset>
+                <isset property="noImagelist"></isset>
+            </or>
+        </condition>
+        <condition property="image.copy.uplevels">
+            <not>
+                <equals arg1="${generate.copy.outer}" arg2="3"></equals>
+            </not>
+        </condition>
+        <condition property="image.copy.normal">
+            <and>
+                <equals arg1="${generate.copy.outer}" arg2="3"></equals>
+            </and>
+        </condition> 	
+        
+        <property name="d_imagefile" value="digital_images.list"></property>
+        <copy file="${dita.temp.dir}/${imagefile}" tofile="${dita.temp.dir}/${d_imagefile}">
+            <filterchain>
+                <linecontains>
+                    <contains value="/digital/"/>
+                </linecontains>
+            </filterchain>
+        </copy>
+        
+    </target>
+    
+    
+    <target name="dita2pace.findassets">
+        
+        <!-- filter html.list to exclude entries with a web-address. -->
+        <copy file="${dita.temp.dir}/${htmlfile}" tofile="${dita.temp.dir}/${assetfile}">
+            <filterchain>
+                <linecontains negate="true">
+                    <contains value="http"/>
+                </linecontains>
+            </filterchain>
+        </copy>
+
+        <condition property="got.assets" value="true">
+            <length file="${dita.temp.dir}/${assetfile}" when="greater" length="0"/>
+        </condition>
+        
+        <echo>got.assets is ${got.assets}.</echo>
+        
+        <!-- Look for a glossary. -->
+        <condition property="got.glossary">
+            <available file="${dita.temp.dir}${file.separator}glossary"/>
+        </condition>    
+        
+        <echo>got.glossary is ${got.glossary}.</echo>
+    </target>
+    
+    
+    <target name="dita2pace.moveassets" if="got.assets">
+        
+        <!-- [SP] 2015-01-27: NOTES:
+            There are currently two issues:
+            * The standard OT processing copies images from the input folder to the output folder, along 
+              with their entire structure, so if the images are in course_samples/assets/digital, that entire 
+              directory tree gets copied to the output folder.  (What we want in PACE is for all assets to 
+              be copied to a single assets folder.)
+            * There are other resources, in addition to images (SWF and PDF), that need to be moved 
+              to the assets folder from the input folder. The OT detects SWFs and lists them in a 
+              couple of .list files, but is entirely ignorant of the PDFs. 
+        
+        -->
+        
+        <echo>In cleanup...</echo>
+        
+        <!-- The assets folder is created in the wrong folder (one level down); it needs to be moved to the output directory. -->
+        <echo>Moving assets folder:</echo>
+        
+
+        <!-- copy those files to the assets folder, with flatten="true".-->
+        <copy todir="${output.dir}/assets" flatten="true">
+            <fileset dir="${user.input.dir}" includesfile="${dita.temp.dir}/${assetfile}"></fileset>
+        </copy>
+        
+    </target>
+    
+    <target name="dita2pace.moveglossary" if="got.glossary">
+        <property name="dita2pace.glossary.dir" value="${dita.temp.dir}${file.separator}glossary"/>
+        <property name="dita2pace.glossary.xsl" value="${dita2pace.plugin.dir}${file.separator}xsl${file.separator}glossary2pace.xsl"/>
+        
+<!--        <copy todir="${output.dir}${file.separator}glossary">
+            <fileset dir="${dita2pace.glossary.dir}"/>
+            <flattenmapper/>
+        </copy>
+-->        
+        <xslt basedir="${dita2pace.glossary.dir}" 
+            destdir="${output.dir}${file.separator}glossary" 
+            style="${dita2pace.glossary.xsl}">
+            <flattenmapper/>            
+        </xslt>
+        
+    </target>
+    
+    <target name="dita2pace.cleanup" depends="dita2pace.findassets,dita2pace.moveassets,dita2pace.moveglossary">
+        <mkdir dir="${output.dir}${file.separator}ASCII" />
+        
+
+        <echo>Applying native2ascii for *.dita in ${output.dir}.</echo>
+        <native2ascii encoding="UTF-8" src="${output.dir}" dest="${output.dir}/ASCII"
+            includes="**/*.dita" ext=".dita"/>
+        <echo>Applying native2ascii for *.xml in ${output.dir}.</echo>
+        <native2ascii encoding="UTF-8" src="${output.dir}" dest="${output.dir}/ASCII"
+            includes="**/*.xml" ext=".xml"/>
+        
+        <echo>Converting \unnnn to &amp;nnnn;.</echo>
+        <replaceregexp 
+            encoding="utf-8"
+            match='\\u(....)'
+            replace='&amp;#x\1;'
+            flags="g">
+            <fileset dir="${output.dir}/ASCII">
+                <include name="**/*.dita"/>
+                <include name="**/*.xml"/>
+            </fileset>
+        </replaceregexp>
+<!--        <replaceregexp 
+            encoding="utf-8"
+            match='\\u(....)'
+            replace='&amp;#x\1;'>
+        </replaceregexp>
+-->
+        <echo>Converting &amp;amp; to &amp;#038;.</echo>
+        <replace dir="${output.dir}/ASCII"
+            encoding="utf-8"
+            token='&amp;amp;'
+            value='&amp;#038;' summary="yes">
+            <include name="**/*.dita"/>
+        </replace>
+        <replace dir="${output.dir}/ASCII"
+            encoding="utf-8"
+            token='&amp;amp;'
+            value='&amp;#038;' summary="yes">
+            <include name="**/*.xml"/>
+        </replace>
+        <echo>Converting &amp;lt; to &amp;#060;.</echo>
+        <replace dir="${output.dir}/ASCII"
+            encoding="utf-8"
+            token='&amp;lt;'
+            value='&amp;#060;' summary="yes">
+            <include name="**/*.dita"/>
+        </replace>
+        <replace dir="${output.dir}/ASCII"
+            encoding="utf-8"
+            token='&amp;lt;'
+            value='&amp;#060;' summary="yes">
+            <include name="**/*.xml"/>
+        </replace>
+        <echo>Converting &amp;gt; to &amp;#062;.</echo>
+        <replace dir="${output.dir}/ASCII"
+            encoding="utf-8"
+            token='&amp;gt;'
+            value='&amp;#062;' summary="yes">
+            <include name="**/*.dita"/>
+        </replace>
+        <replace dir="${output.dir}/ASCII"
+            encoding="utf-8"
+            token='&amp;gt;'
+            value='&amp;#062;' summary="yes">
+            <include name="**/*.xml"/>
+        </replace>
+        
+        <echo>Removing ditaarch namespace declaration.</echo>
+        <replace dir="${output.dir}/ASCII"
+            encoding="utf-8"
+            token=' xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/"'
+            value='' summary="yes">
+            <include name="**/*.dita"/>
+        </replace>
+
+        <replace dir="${output.dir}/ASCII"
+            encoding="utf-8"
+            token=' xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/"'
+            value='' summary="yes">
+            <include name="**/*.xml"/>
+        </replace>
+
+        <echo>Removing default namespace declaration.</echo>
+        <replace dir="${output.dir}/ASCII"
+            encoding="utf-8"
+            token=' xmlns=""'
+            value='' summary="yes">
+            <include name="**/*.dita"/>
+        </replace>
+        
+        <replace dir="${output.dir}/ASCII"
+            encoding="utf-8"
+            token=' xmlns=""'
+            value='' summary="yes">
+            <include name="**/*.xml"/>
+        </replace>
+
+        <replace dir="${output.dir}/ASCII"
+            encoding="utf-8"
+            token='DOCTYPE kaptask'
+            value='DOCTYPE topic' summary="yes">
+            <include name="**/*.dita"/>
+        </replace>
+        <replace dir="${output.dir}/ASCII"
+            encoding="utf-8"
+            token='DOCTYPE kaptask'
+            value='DOCTYPE topic' summary="yes">
+            <include name="**/*.xml"/>
+        </replace>
+        
+   
+        
+        
+        
+        
+       
+        
+<!-- [SP] 2016-05-09 sfb: With Frank Shipley's namespace correction, this should behave correctly now. -->
+<!--        <echo>Removing temp from xmlns:tempxs. </echo>
+        <replace dir="${output.dir}/ASCII"
+            encoding="utf-8"
+            token='xmlns:temp="temp'
+            value='xmlns:xs="' summary="yes">
+            <include name="**/*.dita"/>
+        </replace>
+        
+        <replace dir="${output.dir}/ASCII"
+            encoding="utf-8"
+            token='xmlns:temp="temp'
+            value='xmlns:xs="' summary="yes">
+            <include name="**/*.xml"/>
+        </replace>-->
+        
+        <!-- (R) was coming out in Hex, just in case PACE can't deal with that, replace with decimal. -->
+        <replace dir="${output.dir}/ASCII"
+            encoding="utf-8"
+            token='#x00ae;'
+            value='#174;' summary="yes">
+            <include name="**/*.dita"/>
+        </replace>
+        <replace dir="${output.dir}/ASCII"
+            encoding="utf-8"
+            token='#x00ae;'
+            value='#174;' summary="yes">
+            <include name="**/*.xml"/>
+        </replace>
+
+        <!-- Remove the doctype from assessmentItems, questions, and question maps. -->
+        <replace dir="${output.dir}/ASCII"
+            encoding="utf-8"
+            token='&lt;!DOCTYPE assessmentItem'
+            value='' summary="yes">
+            <include name="**/*.xml"/>
+        </replace>
+        <replace dir="${output.dir}/ASCII"
+            encoding="utf-8"
+            token='&lt;!DOCTYPE question'
+            value='' summary="yes">
+            <include name="**/*.dita"/>
+        </replace>
+        <replace dir="${output.dir}/ASCII"
+            encoding="utf-8"
+            token='  PUBLIC "&apos;&apos;" "&apos;&apos;"&gt;'
+            value='' summary="yes">
+            <include name="**/*.xml"/>
+        </replace>
+        <replace dir="${output.dir}/ASCII"
+            encoding="utf-8"
+            token='  PUBLIC "&apos;&apos;" "&apos;&apos;"&gt;'
+            value='' summary="yes">
+            <include name="**/*.dita"/>
+        </replace>
+        
+        <!-- Hyphen is behaving oddly. -->
+        <echo>Converting #038;#045; to #045;.</echo>
+        <replace dir="${output.dir}/ASCII"
+            encoding="utf-8"
+            token='#038;#045;'
+            value='#045;' summary="yes">
+            <include name="**/*.dita"/>
+        </replace>
+        <replace dir="${output.dir}/ASCII"
+            encoding="utf-8"
+            token='#038;#045;'
+            value='#045;' summary="yes">
+            <include name="**/*.xml"/>
+        </replace>
+
+    	<!-- ARV added on 02-06-2025; Hyphen is behaving oddly. -->
+        <echo>Converting #038;#045; to #045;.</echo>
+        <replace dir="${output.dir}/ASCII"
+            encoding="utf-8"
+            token='&amp;#045;'
+            value='-' summary="yes">
+            <include name="*.ditamap"/>
+        </replace>
+        <replace dir="${output.dir}/ASCII"
+            encoding="utf-8"
+            token='&amp;#045;'
+            value='-' summary="yes">
+            <include name="**/*.dita"/>
+        </replace>
+        <!-- [ARV: 13-01-2026] Commented out -->
+        <!--<replace dir="${output.dir}/ASCII"
+            encoding="utf-8"
+            token='&amp;#045;'
+            value='-' summary="yes">
+            <include name="**/*.xml"/>
+        </replace>-->
+        
+        
+        <!-- copy glossary       -->
+        <echo>Copying glossary files</echo>
+        <copy todir="${output.dir}/glossary" flatten="true">
+            <fileset dir="${dita.temp.dir}">
+                <include name="**/glossary/*"/>
+            </fileset>
+        </copy>
+        
+<!--  adding size to m:mfrac      -->
+        <echo>Adding mathsize to m:mfrac.</echo>
+        <replace dir="${output.dir}/ASCII"
+            encoding="utf-8"
+            token='&lt;m:mfrac'
+            value='&lt;m:mstyle mathsize="16pt"&gt;&lt;m:mfrac' summary="yes">
+            <include name="**/*.dita"/>
+            <include name="**/*.xml"/>
+        </replace>
+                
+        <replace dir="${output.dir}/ASCII"
+            encoding="utf-8"
+            token='&lt;/m:mfrac&gt;'
+            value='&lt;/m:mfrac&gt;&lt;/m:mstyle&gt;' summary="yes">
+            <include name="**/*.dita"/>
+            <include name="**/*.xml"/>
+        </replace>
+    	
+    	
+ <!--  ARV: replacing "assessmentItemKaplan-Prompt" to "assessmentItemPrompt"      -->
+    	<echo>replacing "assessmentItemKaplan2-Prompt2" to "assessmentItemPrompt".</echo>
+        <replace dir="${output.dir}/ASCII"
+            encoding="utf-8"
+            token='&lt;assessmentItemKaplan2-Prompt2'
+            value='&lt;assessmentItemPrompt' summary="yes">
+            <include name="**/*.dita"/>
+            <include name="**/*.xml"/>
+        </replace>
+                
+    	<replace dir="${output.dir}/ASCII"
+    		encoding="utf-8"
+    		token='&lt;/assessmentItemKaplan2-Prompt2'
+    		value='&lt;/assessmentItemPrompt' summary="yes">
+    		<include name="**/*.dita"/>
+    		<include name="**/*.xml"/>
+    	</replace>
+    	
+    	<echo>replacing Kaplan2-Prompt2 to nothing.</echo>
+    	<replace dir="${output.dir}/ASCII"
+    		encoding="utf-8"
+    		token='Kaplan2-Prompt2'
+    		value='' summary="yes">
+    		<include name="**/*.dita"/>
+    		<include name="**/*.xml"/>
+    	</replace>
+    	    	
+    	
+    	<!-- [ARV: 05-01-2026] To replace &#x205f; with keyboard space -->
+    	<echo>replacing medium space &amp;#x205f; to Space.</echo>
+    	<replace dir="${output.dir}/ASCII"
+    		encoding="utf-8"
+    		token='&amp;#x205f;'
+    		value=' ' summary="yes">
+    		<include name="**/*.dita"/>
+    		<include name="**/*.xml"/>
+    	</replace>
+    	
+    	<!--<echo>Converting &amp;#x039; to Keyboard apostrophe => '.</echo>
+    	<replace dir="${output.dir}"
+    		encoding="utf-8"
+    		token='&amp;#039;'
+    		value="'" summary="yes">
+    		<include name="**/*.xml"/>
+    		<include name="**/*.dita"/>
+    		<include name="*.ditamap"/>
+    	</replace>-->
+        
+        
+        
+        
+        
+        
+        
+      <!--  <replaceregexp match="&lt;/strong&gt;$^&lt;em&gt;" replace="&lt;/strong&gt;&#x00a0;&lt;em&gt;" flags="gim" byline="false">
+            <fileset dir="${output.dir}/ASCII" includes="**/*.*"/>
+        </replaceregexp>-->
+        
+        <copy todir="${output.dir}" overwrite="true">
+            <fileset dir="${output.dir}/ASCII"/>
+        </copy>
+        
+        <delete dir="${output.dir}/ASCII"/>
+        
+        <echo>Deleting DITA list files</echo>
+        <delete file="${output.dir}${file.separator}dita.list" failonerror="false"/>
+        <delete file="${output.dir}${file.separator}dita.xml.properties" failonerror="false"/>
+        
+        <echo>Deleting extra MREP folder</echo>
+        <delete dir="${output.dir}${file.separator}MREP" failonerror="false"/>
+        
+    </target>
+    
+    <target name="dita2pace.debug" if="pace.debug">
+        <echo>pace.debug is on: copying supermap.ditamap to out folder. </echo>
+        <copy file="${dita.temp.dir}${file.separator}supermap.ditamap" todir="${dita.map.output.dir}"/>
+    </target>
+    
+
+</project>

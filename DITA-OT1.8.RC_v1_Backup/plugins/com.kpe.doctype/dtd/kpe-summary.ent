@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ============================================================= -->
+<!--                    HEADER                                     -->
+<!-- ============================================================= -->
+<!--  MODULE:    KPE DITA Summary Entity                           -->
+<!--  VERSION:   1.1                                               -->
+<!--  CM VERSION 2.1                                               -->
+<!--  DATE:      January 2014                                      -->
+<!--                                                               -->
+<!-- ============================================================= -->
+
+<!-- ============================================================= -->
+<!--                    PUBLIC DOCUMENT TYPE DEFINITION            -->
+<!--                    TYPICAL INVOCATION                         -->
+<!--                                                               -->
+<!--  Refer to this file by the following public identifier or an 
+      appropriate system identifier 
+PUBLIC "-//KPE//ENTITIES DITA KPE Summary//EN"
+      Delivered as file "kpe-summary.ent"                        -->
+
+<!-- ============================================================= -->
+<!-- SYSTEM:     Darwin Information Typing Architecture (DITA)     -->
+<!--                                                               -->
+<!-- PURPOSE:    Declaring the domain entity for summary           -->
+<!--              topics                                           -->
+<!--                                                               -->
+<!-- ORIGINAL CREATION DATE:                                       -->
+<!--             January 2014                                      -->
+<!--                                                               -->
+<!--             (C) Copyright Kaplan 2014                         -->
+<!--             All Rights Reserved.                              -->
+<!--                                                               -->
+<!--  UPDATES:                                                     -->
+<!-- 2014.11.07 PSB: Added CM Version in header                    -->
+<!-- ============================================================= -->
+
+
+<!-- ============================================================= -->
+<!--                    LEARNING ENTITIES                          -->
+<!-- ============================================================= -->
+
+<!ENTITY kpe-summary-att     
+  "(topic learningBase learningSummary kpe-summary)"
+>
+
+
+<!-- ================== End Learning Entities ==================== -->

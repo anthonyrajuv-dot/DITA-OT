@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  This file is part of the DITA Open Toolkit project.
+  See the accompanying license.txt file for applicable licenses.
+-->
+<plugin id="com.kpe.spdf4">
+  <require plugin="org.dita.pdf2"/>
+  <feature extension="dita.conductor.transtype.check" value="spdf4"/>
+  <feature extension="dita.transtype.print" value="spdf4"/>
+  <feature extension="dita.conductor.target.relative" file="integrator.xml"/>
+  <feature extension="dita.conductor.pdf2.param" file="build_params.xml"/>
+</plugin>

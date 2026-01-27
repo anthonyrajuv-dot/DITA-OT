@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="nl-nl" lang="nl-nl">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="kpe-concept"/>
+<meta name="DC.Title" content="Multifactor Applications"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="caia_topic_00001_84"/>
+<meta name="DC.Language" content="nl-NL"/>
+<link rel="stylesheet" type="text/css" href="..%5Ccommonltr.css"/>
+<title>Multifactor Applications</title>
+</head>
+<body id="caia_topic_00001_84">
+
+<h1 class="title topictitle1"><strong class="ph b">Multifactor Applications</strong></h1>
+<div class="body conbody kpe-conceptBody"><p class="p"><strong class="ph b">LO 9.5: Demonstrate knowledge of approaches to analyzing hedge fund returns using multifactor models.</strong></p>
+<p class="p"><strong class="ph b">For example:</strong></p>
+<ul class="ul"><li class="li"><strong class="ph b">Describe how style analysis and asset class groupings can be used to analyze fund performance.</strong></li>
+<li class="li"><strong class="ph b">Describe how performance of a fund can be analyzed using returns of funds with similar strategies.</strong></li>
+<li class="li"><strong class="ph b">Describe how marketwide factors can be used to analyze performance of a fund.</strong></li>
+<li class="li"><strong class="ph b">Describe how specialized market factors can be used in hedge fund replication.</strong></li>
+</ul>
+<p class="p">Multifactor models are applied to explain fund returns relative to:</p>
+<ul class="ul"><li class="li">Returns of asset classes held by the fund (style analysis).</li>
+<li class="li">Returns of funds with similar strategies.</li>
+<li class="li">Market factors that drive asset returns.</li>
+<li class="li">Fund replication using specialized market factors.</li>
+</ul>
+<p class="p">Each application is addressed below.</p>
+<div class="section"><h2 class="title sectiontitle"><strong class="ph b">Style Analysis </strong></h2><p class="p">Regression-based <strong class="ph b">style analysis</strong> was developed by Nobel Prize winner, professor William Sharpe. In regression-based style analysis, a multiple linear regression is estimated in which portfolio returns are regressed against asset class index returns. Each slope coefficient measures the extent to which the portfolio is exposed to each asset class included in the regression. Examples of the asset class indices used in style analysis include various domestic and international stock and bond indices, as well as real estate and commodity indices. The <em class="ph i">R</em>-squared indicates the degree to which the asset class indices explain the fund’s returns, and 1 minus the <em class="ph i">R</em>-squared indicates the degree to which the returns are attributable to manager skill or to luck. For instance, if the manager specifies and maintains a particular style and the style indices perfectly mimic the portfolio style, the regression would have an <em class="ph i">R</em>-squared equal to one. An <em class="ph i">R</em>-squared of one also would indicate that the fund manager added no incremental value beyond the asset class selections. Although style analysis has shown that up to 90% of mutual fund returns can be explained by underlying asset class returns, it has been much less successful when applied to alternative investments.</p>
+</div>
+<div class="section"><h2 class="title sectiontitle"><strong class="ph b">Similar Strategies</strong></h2><p class="p">Returns of a portfolio can be compared against portfolios that follow similar strategies (long-only equity, long/short, market neutral, global macro, etc.). The approach works best when the portfolio holdings are observed, so that the investment style is easily determined. Difficulties with this approach when applied to hedge funds include:</p>
+<ul class="ul"><li class="li">Holdings often lack transparency.</li>
+<li class="li">Portfolios and risk exposures often change over time.</li>
+<li class="li">Investment style often is not clearly verbalized.</li>
+<li class="li">Within style, strategies and returns can differ greatly.</li>
+<li class="li">Investment style of the fund may drift over time.</li>
+</ul>
+<p class="p"><strong class="ph b">Principal components analysis </strong>is a multivariate statistical method that helps identify funds with similar strategies, without the need to observe fund holdings. The factors, called principal components, are derived statistically by grouping funds that have high return correlations. Therefore, each principal component comprises a subgroup of funds that behave similarly. Often, names of trading styles are assigned to the principal components according to the commonality characterizing the principal components. Research based on principal component analysis indicates that hedge funds can be classified into one of five trading style groups: distressed, global macro, value, opportunistic, and trend-following. Studies show that the principal component analysis is better than methods that compare fund returns against mixtures of observable traditional asset classes. For example, it is better to compare an opportunistic fund against a group of funds similarly grouped as opportunistic, than to compare an opportunistic fund against a benchmark comprising a mixture of various traditional asset classes (style analysis). </p>
+</div>
+<div class="section"><h2 class="title sectiontitle"><strong class="ph b">Marketwide Factors </strong></h2><p class="p">The Fama-French three-factor model discussed previously can be used to examine the relationship between the returns of a fund and the returns on marketwide factors. The key to the Fama-French model is that the factors are tradable empirically derived, and factor exposure is empirically estimated. For example, two of the factors equal rate of return spreads between twin stock styles (small vs. big, high book-to-market vs. low book-to-market), and the factors are identified based on historical observation, not on theoretical derivation. The Fama-French model provides estimates of the portfolio exposure to each factor. The exposures are estimated from the regression, rather than derived from examining the holdings of the portfolio. </p>
+<p class="p">Similar models have been developed for hedge funds. The objective of the analysis is to develop an arbitrage-free model in which the model accurately explains the cross-sectional differences in fund returns. In other words, the model is helpful if no set of funds performs differently from the prediction of the model. Factors are developed based on four steps:</p>
+<ol class="ol"><li class="li">1. Identify variables (e.g., size) that conceptually differentiate fund returns.</li>
+<li class="li">2. Segment the sample in two groups based on each variable (e.g., small vs. big).</li>
+<li class="li">3. Derive the return spread between the two groups for each factor.</li>
+<li class="li">4. Test the data to see if the factor return spreads adequately explain the entire sample of asset returns.</li>
+</ol>
+<p class="p">Seven marketwide factors that have been identified for hedge funds include:</p>
+<ul class="ul"><li class="li">Excess return on the S&amp;P 500 (index return minus the risk-free return).</li>
+<li class="li">Small cap minus big cap stock return.</li>
+<li class="li">10-year Treasury bond return minus the risk-free return.</li>
+<li class="li">Baa-rated bond return minus 10-year Treasury bond return.</li>
+<li class="li">Return on a portfolio of bond call and put options.</li>
+<li class="li">Return on a portfolio of currency call and put options.</li>
+<li class="li">Return on a portfolio of commodity call and put options.</li>
+</ul>
+<p class="p">The three option portfolios identified (i.e., the last three bullets of the list above) are constructed to match the payoffs for a series of <strong class="ph b">look-back options</strong>. The payoff on a look-back option is based on the value of the underlying asset over a specific reference period, rather than just at the expiration date.</p>
+</div>
+<div class="section"><h2 class="title sectiontitle"><strong class="ph b">Fund Replication </strong></h2><p class="p"><strong class="ph b">Hedge fund replication </strong>is a process of identifying an investment strategy that mimics a particular fund’s returns. In fund replication, a model is derived that uniquely identifies <em class="ph i">specialized</em> factors for each fund and the exposure to each factor. A key goal is to have a beta that is approximately equal to the fund beta The key difference here versus the multifactor modeling discussed previously is that, for fund replication, the model identified factors for a specific fund, rather than marketwide factors for a broad cross-section of funds. In the fund replication method, a fund’s return is explained by a specialized set of market-based (as opposed to marketwide) factors. </p>
+</div>
+<div class="section"><h2 class="title sectiontitle"><strong class="ph b">Multifactor Return Summary </strong></h2><p class="p">Some caveats are in order for applications of multifactor models for hedge funds. </p>
+<ul class="ul"><li class="li"><em class="ph i">Returns explained by returns of asset classes held by the fund.</em> This method does not apply well to hedge funds. Tests show that hedge fund returns are not explained well by passive asset class returns. For example, while a fund might hold commodity positions (e.g., a managed futures fund), the correlation of the fund with a commodities index might be low because the fund might hold long and short positions, and it might follow strategies more closely tied to trends (changes) in commodity prices rather than to the level of commodity prices. </li>
+<li class="li"><em class="ph i">Returns explained by returns on funds with similar strategies. </em>This method does not apply well to hedge funds. For instance, hedge funds often are unique, driven primarily by idiosyncratic risks, and, therefore, may not correlate highly with other funds that employ similar strategies. </li>
+<li class="li"><em class="ph i">Returns explained by marketwide factors. </em>This method does not apply well to hedge funds. For example, a merger arbitrage fund correlates more highly with probabilities of the merger’s success than with marketwide factors. While marketwide factors fail to accurately explain individual hedge fund returns, the seven factors above explain 90% of the return variation for a diversified portfolio of hedge funds.</li>
+<li class="li"><em class="ph i">Returns explained by specialized market factors. </em>This method may work for hedge funds. Market-based factors might be identified uniquely for each fund. For example, a merger arbitrage fund’s returns might correlate highly with a specialized factor representing hedged positions in all mergers. </li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

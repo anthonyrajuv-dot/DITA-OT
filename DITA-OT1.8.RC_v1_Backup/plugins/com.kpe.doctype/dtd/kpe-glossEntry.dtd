@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ============================================================= -->
+<!--                    HEADER                                     -->
+<!-- ============================================================= -->
+<!--  MODULE:    KPE DITA Glossary DTD                             -->
+<!--  VERSION:   1.4                                               -->
+<!--  CM VERSION 2.1                                               -->
+<!--  DATE:      January 2014                                      -->
+<!--                                                               -->
+<!-- ============================================================= -->
+
+<!-- ============================================================= -->
+<!--                    PUBLIC DOCUMENT TYPE DEFINITION            -->
+<!--                    TYPICAL INVOCATION                         -->
+<!--                                                               -->
+<!--  Refer to this file by the following public identifier or an 
+      appropriate system identifier 
+PUBLIC "-//KPE//DTD DITA KPE Glossary Entry//EN"
+      Delivered as file "kpe-glossEntry.dtd"                       -->
+
+<!-- ============================================================= -->
+<!-- SYSTEM:     Darwin Information Typing Architecture (DITA)     -->
+<!--                                                               -->
+<!-- PURPOSE:    DTD to describe KPE DITA Glossary Entry topics   -->
+<!--                                                               -->
+<!-- ORIGINAL CREATION DATE:                                       -->
+<!--             May 2013                                          -->
+<!--                                                               -->
+<!--             (C) Copyright Kaplan 2013                         -->
+<!--             All Rights Reserved.                              -->
+<!--                                                               -->
+<!-- UPDATED:                                                      -->
+<!-- ARS: added finanical domain                                   -->
+<!-- 2013.08.23 SP: Added software and UI domains.                 -->
+<!-- 2013.10.09 ARS: Added the MathML domains                      -->
+<!-- 2014.01.03 PSB: Added legalCite                               -->
+<!-- 2014.01.06 PSB: Added mnemonic and reset base elements        -->
+<!-- 2014.11.07 PSB: Added CM Version in header                    -->
+<!-- 2015.07.14 PSB: Added courseHours and USState domains         -->
+<!-- 2018.05.01 PSB: Added productLine attribute                   -->
+<!-- 2018.05.01 PSB: Added level attribute                         -->
+<!-- 2018.05.11 PSB: Added series attribute                        -->
+<!-- ============================================================= -->
+
+
+<!-- ============================================================= -->
+<!--                    TOPIC ENTITY DECLARATIONS                  -->
+<!-- ============================================================= -->
+
+<!ENTITY % kpe-courseHours-d-dec 
+   SYSTEM "kpe-courseHoursPropsDomain.ent"
+   >%kpe-courseHours-d-dec;
+ 
+<!ENTITY % kpe-level-d-dec
+   SYSTEM "kpe-levelPropsDomain.ent"
+   >%kpe-level-d-dec;     
+ 
+<!ENTITY % kpe-productLine-d-dec
+   SYSTEM "kpe-productLinePropsDomain.ent"
+   >%kpe-productLine-d-dec;   
+ 
+<!ENTITY % kpe-series-d-dec
+   SYSTEM "kpe-seriesPropsDomain.ent"
+   >%kpe-series-d-dec;
+ 
+<!ENTITY % kpe-USstate-d-dec
+   SYSTEM "kpe-USstatePropsDomain.ent"
+   >%kpe-USstate-d-dec;
+ 
+<!ENTITY % concept-dec     
+  PUBLIC "-//OASIS//ENTITIES DITA 1.2 Concept//EN" 
+         "../../../dtd/technicalContent/dtd/concept.ent"
+>%concept-dec;
+
+<!ENTITY % glossentry-dec     
+  PUBLIC "-//OASIS//ENTITIES DITA 1.2 Glossary Entry//EN" 
+         "../../../dtd/technicalContent/dtd/glossentry.ent"
+>%glossentry-dec;
+
+<!ENTITY % kpe-glossEntry-dec     
+  PUBLIC "-//KPE//ENTITIES DITA KPE Glossary Entry//EN" 
+         "kpe-glossEntry.ent"
+>%kpe-glossEntry-dec;
+
+
+<!-- ============================================================= -->
+<!--                    DOMAIN ENTITY DECLARATIONS                 -->
+<!-- ============================================================= -->
+
+<!ENTITY % kpe-common-d-dec     
+    PUBLIC "-//KPE//ENTITIES DITA KPE Common Elements Domain//EN" 
+          "kpe-commonDomain.ent"
+>%kpe-common-d-dec;
+
+<!ENTITY % kpe-commonMeta-d-dec     
+    PUBLIC "-//KPE//ENTITIES DITA KPE Common Metadata Domain//EN" 
+           "kpe-commonMetadataDomain.ent"
+>%kpe-commonMeta-d-dec; 
+
+<!ENTITY % kpe-financial-d-dec     
+    PUBLIC "-//KPE//ENTITIES DITA KPE Financial Elements Domain//EN" 
+           "kpe-financialDomain.ent"
+>%kpe-financial-d-dec;
+
+<!ENTITY % abbrev-d-dec     
+  PUBLIC "-//OASIS//ENTITIES DITA 1.2 Abbreviated Form Domain//EN" 
+         "../../../dtd/technicalContent/dtd/abbreviateDomain.ent"
+>%abbrev-d-dec;
+
+<!ENTITY % equation-d-dec     
+  PUBLIC "-//OASIS//ENTITIES DITA 1.3 Equation Domain//EN" 
+         "../../org.oasis-open.dita.mathml.doctypes/doctypes/dtd/equationDomain.ent"                                                
+>%equation-d-dec;
+
+<!ENTITY % hi-d-dec     
+  PUBLIC "-//OASIS//ENTITIES DITA 1.2 Highlight Domain//EN" 
+         "../../../dtd/base/dtd/highlightDomain.ent"
+>%hi-d-dec;
+
+<!ENTITY % indexing-d-dec     
+  PUBLIC "-//OASIS//ENTITIES DITA 1.2 Indexing Domain//EN" 
+         "../../../dtd/base/dtd/indexingDomain.ent"                                                 
+>%indexing-d-dec;
+
+<!ENTITY % mathml-d-dec     
+  PUBLIC "-//OASIS//ENTITIES DITA 1.3 MathML Domain//EN" 
+         "../../org.oasis-open.dita.mathml.doctypes/doctypes/dtd/mathmlDomain.ent"                                                
+>%mathml-d-dec;
+
+<!ENTITY % sw-d-dec     
+  PUBLIC "-//OASIS//ENTITIES DITA 1.2 Software Domain//EN" 
+         "../../../dtd/technicalContent/dtd/softwareDomain.ent"                                                 
+>%sw-d-dec;
+
+<!ENTITY % ui-d-dec     
+  PUBLIC "-//OASIS//ENTITIES DITA 1.2 User Interface Domain//EN" 
+         "../../../dtd/technicalContent/dtd/uiDomain.ent"                                                       
+>%ui-d-dec;
+
+<!ENTITY % ut-d-dec     
+  PUBLIC "-//OASIS//ENTITIES DITA 1.2 Utilities Domain//EN" 
+         "../../../dtd/base/dtd/utilitiesDomain.ent"                                                
+>%ut-d-dec;
+
+<!-- ============================================================= -->
+<!--                    DOMAIN ATTRIBUTE DECLARATIONS              -->
+<!-- ============================================================= -->
+
+<!-- ============================================================= -->
+<!--                    DOMAIN EXTENSIONS                          -->
+<!-- ============================================================= -->
+<!--                    One for each extended base element, with
+                        the name of the domain(s) in which the
+                        extension was declared                     -->
+
+<!ENTITY % cite         "cite |
+                         %kpe-common-d-cite;
+                        ">
+                        
+<!ENTITY % data         "data |
+                         %kpe-commonMeta-d-data;
+                        ">
+
+<!ENTITY % fig          "fig |
+                         %ut-d-fig; |
+                         %equation-d-fig;
+                        ">
+                        
+<!ENTITY % foreign      "foreign | 
+                         %mathml-d-foreign;
+                        ">
+
+<!ENTITY % index-base   "index-base | 
+                         %indexing-d-index-base;
+                        ">
+                        
+<!ENTITY % keyword      "keyword | 
+                         %sw-d-keyword; |
+                         %ui-d-keyword;
+                        ">
+
+<!ENTITY % note         "note |
+                         %kpe-common-d-note;
+                        ">
+
+<!ENTITY % p            "p |
+                         %equation-d-p;
+                        ">
+
+<!ENTITY % ph           "ph | 
+                         %hi-d-ph; |
+                         %kpe-common-d-ph; |
+                         %kpe-financial-d-ph; |
+                         %sw-d-ph; | 
+                         %ui-d-ph; |
+                         %equation-d-ph;  
+                        ">
+
+<!ENTITY % pre          "pre |
+                         %sw-d-pre;|
+                         %ui-d-pre;
+                        ">
+                        
+<!ENTITY % term         "term | 
+                         %abbrev-d-term;
+                        ">
+
+
+<!-- ============================================================= -->
+<!--                    DOMAIN ATTRIBUTE EXTENSIONS                -->
+<!-- ============================================================= -->
+<!ENTITY % props-attribute-extensions  "%kpe-courseHours-d-attribute;
+%kpe-level-d-attribute;
+%kpe-productLine-d-attribute;
+%kpe-series-d-attribute;
+%kpe-USstate-d-attribute; 
+"                                                                    >
+<!ENTITY % base-attribute-extensions   ""                            >
+
+
+<!-- ============================================================= -->
+<!--                    TOPIC NESTING OVERRIDE                     -->
+<!-- ============================================================= -->
+
+<!--                    Redefine the infotype entity to exclude 
+                        other topic types and disallow nesting     -->
+<!ENTITY % kpe-glossEntry-info-types 
+                        "no-topic-nesting"                           >
+
+
+<!-- ============================================================= -->
+<!--                    DOMAINS ATTRIBUTE OVERRIDE                 -->
+<!-- ============================================================= -->
+<!--                    Must be declared ahead of the DTDs, which
+                        puts @domains first in order               -->
+
+<!ENTITY included-domains 
+                          "&concept-att;
+                           &glossentry-att;
+                           &abbrev-d-att;
+                           &equation-d-att;
+                           &hi-d-att;
+                           &indexing-d-att;
+                           &mathml-d-att;
+                           &sw-d-att;
+                           &ui-d-att;
+                           &ut-d-att;
+                           &kpe-common-d-att;
+                           &kpe-commonMeta-d-att;
+                           &kpe-courseHours-d-att;
+                           &kpe-financial-d-att;
+                           &kpe-glossEntry-att;
+                           &kpe-level-d-att;
+                           &kpe-productLine-d-att;
+                           &kpe-series-d-att;
+                           &kpe-USstate-d-att;"
+>
+
+
+<!-- ============================================================= -->
+<!--                    TOPIC ELEMENT INTEGRATION                  -->
+<!-- ============================================================= -->
+
+<!--                    Embed topic to get generic elements        -->
+<!ENTITY % topic-type   
+    PUBLIC "-//OASIS//ELEMENTS DITA 1.2 Topic//EN" 
+    "../../../dtd/base/dtd/topic.mod" 
+>%topic-type;
+
+<!ENTITY % concept-typemod 
+    PUBLIC "-//OASIS//ELEMENTS DITA 1.2 Concept//EN" 
+    "../../../dtd/technicalContent/dtd/concept.mod"  
+>%concept-typemod;
+
+<!--                    Embed glossary to get specific elements    -->
+<!ENTITY % glossentry-typemod 
+    PUBLIC "-//OASIS//ELEMENTS DITA 1.2 Glossary Entry//EN" 
+    "../../../dtd/technicalContent/dtd/glossentry.mod"
+>%glossentry-typemod;
+
+<!ENTITY % kpe-glossEntry-typemod 
+    PUBLIC "-//KPE//ELEMENTS DITA KPE Glossary Entry//EN" 
+    "kpe-glossEntry.mod"
+>%kpe-glossEntry-typemod;
+
+<!-- ============================================================= -->
+<!--                    DOMAIN ELEMENT INTEGRATION                 -->
+<!-- ============================================================= -->
+
+<!ENTITY % kpe-common-d-def     
+    PUBLIC "-//KPE//ELEMENTS DITA KPE Common Elements Domain//EN" 
+           "kpe-commonDomain.mod"
+>%kpe-common-d-def;
+
+<!ENTITY % kpe-commonMeta-d-def     
+    PUBLIC "-//KPE//ELEMENTS DITA KPE Common Metadata Domain//EN"
+           "kpe-commonMetadataDomain.mod"
+>%kpe-commonMeta-d-def; 
+
+<!ENTITY % kpe-financial-d-def     
+    PUBLIC "-//KPE//ELEMENTS DITA KPE Financial Elements Domain//EN"
+           "kpe-financialDomain.mod"
+>%kpe-financial-d-def;
+
+<!ENTITY % abbrev-d-def     
+  PUBLIC "-//OASIS//ELEMENTS DITA 1.2 Abbreviated Form Domain//EN" 
+         "../../../dtd/technicalContent/dtd/abbreviateDomain.mod"
+>%abbrev-d-def;
+
+<!ENTITY % equation-d-def   
+  PUBLIC "-//OASIS//ELEMENTS DITA 1.3 Equation Domain//EN" 
+         "../../org.oasis-open.dita.mathml.doctypes/doctypes/dtd/equationDomain.mod"                                                
+>%equation-d-def;
+
+<!ENTITY % hi-d-def     
+  PUBLIC "-//OASIS//ELEMENTS DITA 1.2 Highlight Domain//EN" 
+         "../../../dtd/base/dtd/highlightDomain.mod"
+>%hi-d-def;
+
+<!ENTITY % indexing-d-def     
+  PUBLIC "-//OASIS//ELEMENTS DITA 1.2 Indexing Domain//EN" 
+         "../../../dtd/base/dtd/indexingDomain.mod"
+>%indexing-d-def;
+
+<!ENTITY % mathml-d-def     
+  PUBLIC "-//OASIS//ELEMENTS DITA 1.3 MathML Domain//EN" 
+         "../../org.oasis-open.dita.mathml.doctypes/doctypes/dtd/mathmlDomain.mod"
+>%mathml-d-def;
+
+<!ENTITY % sw-d-def     
+  PUBLIC "-//OASIS//ELEMENTS DITA 1.2 Software Domain//EN" 
+         "../../../dtd/technicalContent/dtd/softwareDomain.mod"
+>%sw-d-def;
+
+<!ENTITY % ui-d-def     
+  PUBLIC "-//OASIS//ELEMENTS DITA 1.2 User Interface Domain//EN" 
+         "../../../dtd/technicalContent/dtd/uiDomain.mod"
+>%ui-d-def;
+
+<!ENTITY % ut-d-def     
+  PUBLIC "-//OASIS//ELEMENTS DITA 1.2 Utilities Domain//EN" 
+         "../../../dtd/base/dtd/utilitiesDomain.mod"
+>%ut-d-def;
+
+
+<!-- ================== End KPE DITA Glossary DTD  =================== -->

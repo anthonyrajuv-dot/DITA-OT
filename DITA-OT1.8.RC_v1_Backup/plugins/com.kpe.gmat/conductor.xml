@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ | (C) Copyright IBM Corporation 2005 - 2006. All Rights Reserved.
+ *-->
+<project>
+    <import file="${dita.plugin.com.kpe.gmat.dir}${file.separator}build_dita2gmat.xml"/>
+</project>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE bookmap PUBLIC "-//OASIS//DTD DITA BookMap//EN" "bookmap.dtd">
+<bookmap id="spdf_plugin" xml:lang="en-us">
+
+    <booktitle>
+        <mainbooktitle>Using the SPDF plugin</mainbooktitle>
+    </booktitle>
+    <bookmeta>
+        <authorinformation>
+            <organizationinfo>
+                <namedetails>
+                    <organizationnamedetails>
+                        <organizationname>Scriptorium Publishing Services</organizationname>
+                    </organizationnamedetails>
+                </namedetails>
+                <addressdetails>
+                    <thoroughfare>2327 Englert Drive</thoroughfare>
+                    <locality>
+                        <localityname>Durham</localityname>
+                        <postalcode>27713</postalcode>
+                    </locality>
+                    <administrativearea>NC</administrativearea>
+                    <country>U.S.A.</country>
+                </addressdetails>
+            </organizationinfo>
+        </authorinformation>
+        <prodinfo>
+            <prodname>SPDF Plugin</prodname>
+            <vrmlist>
+                <vrm version="June, 2012"/>
+            </vrmlist>
+        </prodinfo>
+        <bookrights>
+            <copyrfirst>
+                <year>2011</year>
+            </copyrfirst>
+            <copyrlast>
+                <year>2012</year>
+            </copyrlast>
+            <bookowner>
+                <organization>Scriptorium Publishing Services</organization>
+            </bookowner>
+        </bookrights>
+    </bookmeta>
+    <frontmatter>
+        <booklists>
+            <toc/>
+            <trademarklist href="trademarks.dita" print="yes" toc="no"/>
+        </booklists>
+    </frontmatter>
+    <chapter href="intro.dita"/>
+    <chapter href="configuring.dita"/>
+    <chapter href="copyright_trademarks.dita"/>
+    <!--<topicref href="using_features.dita"/>-->
+</bookmap>

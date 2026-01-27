@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="nl-nl" lang="nl-nl">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="kpe-concept"/>
+<meta name="DC.Title" content="Managed Futures Portfolio Construction"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="caia_topic_00005_106"/>
+<meta name="DC.Language" content="nl-NL"/>
+<link rel="stylesheet" type="text/css" href="..%5Ccommonltr.css"/>
+<title>Managed Futures Portfolio Construction</title>
+</head>
+<body id="caia_topic_00005_106">
+
+<h1 class="title topictitle1">Managed Futures Portfolio Construction</h1>
+<div class="body conbody kpe-conceptBody"><p class="p">LO 25.5: Demonstrate knowledge of systematic futures portfolio construction.</p>
+<p class="p">For example:</p>
+<ul class="ul"><li class="li">Recognize the four core decisions of a futures trading system.</li>
+<li class="li">Describe the use of data processing in futures portfolio construction. </li>
+<li class="li">Describe approaches to position sizing in futures portfolio construction, and calculate the number of futures contracts in a given allocation. </li>
+<li class="li">Describe the process of market allocation in managed futures portfolio construction. </li>
+<li class="li">Summarize the role of trading execution in a managed futures portfolio construction. </li>
+</ul>
+<div class="section"><h2 class="title sectiontitle">Four Core Decisions of a Futures Trading System</h2><p class="p">Futures trading is different from regular investing because the former involves taking long or short positions instead of actually holding the underlying assets. There are four core decisions to consider:</p>
+<ol class="ol"><li class="li"><strong class="ph b">Entry.</strong> When should a position be taken?</li>
+<li class="li"><strong class="ph b">Size. </strong>What is the appropriate size for the position?</li>
+<li class="li"><strong class="ph b">Exit. </strong>When should the investor unwind the position?</li>
+<li class="li"><strong class="ph b">Allocation.</strong> What is the appropriate risk or capital to allocate to various sectors and markets?</li>
+</ol>
+</div>
+<div class="section"><h2 class="title sectiontitle">Use of Data Processing in Futures Portfolio Construction</h2><p class="p">The information used in portfolio construction could be both technical and fundamental in nature. From a pricing perspective, there is a key issue with the rolling forward of contracts from expiring to new ones. Rolling forward creates pricing gaps, and as a result, necessitates pricing adjustments near contract expiration dates. Removing such gaps would allow for continuous pricing of futures contracts. </p>
+</div>
+<div class="section"><h2 class="title sectiontitle">Position Sizing</h2><p class="p">Market volatility will impact the size of a position taken, and <strong class="ph b">volatility targeting</strong> is one method used to determine the size as follows:</p>
+<div class="fig equation-figure fignone"><p class="p">where:</p>
+<p class="p">sizing function = positive value for long position, negative value for short position; range is −1 ≤ n ≤ +1 (higher absolute values indicate greater confidence in position)</p>
+<p class="p">risk loading = amount of exposure in a specific market that is dependent on the market environment and the desired amount of risk taken</p>
+<p class="p">risk loading × equity = also termed <strong class="ph b">capital at risk</strong> </p>
+<p class="p">notional value = notional value of the futures contract (contract size × contract price)</p>
+<p class="p">RVolT = future volatility estimate</p>
+<p class="p">RVolR = realized volatility target</p>
+</div>
+<p class="p">Another method uses variables besides the volatility target as follows:</p>
+<div class="fig equation-figure fignone"><p class="p">where:</p>
+<p class="p">sizing function = similar to above</p>
+<p class="p">risk loading = similar to above plus it includes a volatility target and other relevant information </p>
+<p class="p">PVolR = daily price volatility of the futures contract </p>
+</div>
+<p class="p">The second portion of the equation is also known as the <strong class="ph b">total adjusted dollar risk allocated</strong>. The numerator is the allocated dollar risk and represents the amount of capital that assumes active risk. The denominator is the <strong class="ph b">futures contract dollar risk</strong>, and it measures the risk of the underlying asset over a specific trading period. The <strong class="ph b">point value</strong> (or <em class="ph i">contract size</em>) is the gain or loss in the contract from a one-point change (e.g., $1) in futures prices. </p>
+</div>
+<div class="section"><h2 class="title sectiontitle">Market Allocation</h2><p class="p">Market allocations comprise risk and capital components. With respect to updated allocations based on risk, the risk loading and volatility adjustments described in the previous equations are relevant. Capital allocations to individual markets are dependent on the allocated risk and the amount of realized volatility in each market. As a result, the notional exposure in a given market could be extremely high if the market’s volatility is the same. In other words, the risk allocation and the notional exposures are not necessarily the same.</p>
+<p class="p">There are three common methods of risk allocation:</p>
+<ol class="ol"><li class="li"><strong class="ph b">Equal dollar risk allocation. </strong>The same dollar amount is invested in each market, and there is no regard for any correlation between markets.</li>
+<li class="li"><strong class="ph b">Equal risk contribution. </strong>This considers the risk contribution of market and considers correlation between markets.</li>
+<li class="li"><strong class="ph b">Market capacity weighting.</strong> This depends on individual market capacity, or market size, based on daily trading volume and price volatility.</li>
+</ol>
+<p class="p">Because CTA funds with a greater amount of assets are unable to allocate capital to markets with lower open interest and volumes, risk allocations methods for such funds tend to be similar to market capacity weighting. </p>
+</div>
+<div class="section"><h2 class="title sectiontitle">Trading Execution</h2><p class="p">There are a wide variety of ways to implement trading signals into actual positions. To the extent that execution is delayed for short-term strategies, execution speed and alpha decay become relevant. <strong class="ph b">Alpha decay </strong>refers to the rate in which performance diminishes when execution is delayed. For long-term (trend-following) strategies, cost is the relevant consideration. Therefore, trend-following strategies do not require the fastest futures trading systems and can divide daily orders into numerous intraday orders to get a better sense of any price trends. To minimize costs, market orders are most frequently used.  </p>
+</div>
+</div>
+
+</body>
+</html>

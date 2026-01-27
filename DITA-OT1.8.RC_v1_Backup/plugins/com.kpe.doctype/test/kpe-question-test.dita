@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE kpe-question PUBLIC "-//KPE//DTD DITA KPE Question//EN" "kpe-question.dtd">
+<kpe-question id="assessment_2vl_54t_zk">
+ <title>question</title>
+ <prolog>
+  <metadata>
+   <pointValue value="1"/>
+  </metadata>
+ </prolog>
+ <kpe-questionBody>
+  <lcInteraction>
+   <lcSingleSelect2 id="1">
+    <lcQuestion2>blah blah <qualifier>EXCEPT</qualifier></lcQuestion2>
+    <lcAnswerOptionGroup2 id="lcAnswerOptionGroup_kzz_3tt_zk">
+     <lcAnswerOption2>
+      <lcAnswerContent2><pointValue value="1"/></lcAnswerContent2>
+     </lcAnswerOption2>
+    </lcAnswerOptionGroup2>
+    <lcFeedbackCorrect2>lakjflkajlkfjalsjldf</lcFeedbackCorrect2>
+   </lcSingleSelect2>
+  </lcInteraction>
+ </kpe-questionBody>
+</kpe-question>

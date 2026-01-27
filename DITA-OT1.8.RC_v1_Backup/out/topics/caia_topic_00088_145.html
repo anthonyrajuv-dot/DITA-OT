@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="nl-nl" lang="nl-nl">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="kpe-concept"/>
+<meta name="DC.Title" content="Option-Based Volatility Strategies"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="caia_topic_00088_145"/>
+<meta name="DC.Language" content="nl-NL"/>
+<link rel="stylesheet" type="text/css" href="..%5Ccommonltr.css"/>
+<title>Option-Based Volatility Strategies</title>
+</head>
+<body id="caia_topic_00088_145">
+
+<h1 class="title topictitle1">Option-Based Volatility Strategies </h1>
+<div class="body conbody kpe-conceptBody"><p class="p">LO 30.5: Demonstrate knowledge of option-based volatility strategies.</p>
+<p class="p">For example:</p>
+<ul class="ul"><li class="li">Describe the characteristics and mechanics of vertical intra-asset (skew) option spreads, describe how vertical spreads take advantage of volatility skew, and discuss how to use vertical spreads in equities while hedging delta risk. </li>
+<li class="li">Describe the characteristics of horizontal intra-asset (skew) spreads. </li>
+<li class="li">Describe the characteristics of inter-asset option spreads. </li>
+</ul>
+<div class="section"><h2 class="title sectiontitle">Vertical Intra-Asset (Skew) Option Spreads</h2><p class="p">A <strong class="ph b">vertical spread</strong> involves long and short calls or short and long puts on the same underlying asset, whereby the long position has a particular strike price and the short position has a different strike price. Both positions have the same expiration date. An example of a pure vertical spread would be long 50 April 125 strike calls and short 50 April 135 strike calls (same number of options on both sides). In contrast, a <strong class="ph b">ratio spread</strong> does not have the same number of options on both sides (e.g., long 50 April 125 strike calls and short 25 April 135 strike calls). </p>
+<p class="p">On the expiration date, if the options are out-of-the-money, then the vertical spread will be worthless. If the options are in-the-money, then the vertical spread is worth the difference between the strike prices. Consider the market exposure for a bear spread (long ATM put option, sell OTM put option) that will be profitable should the value of the underlying asset decrease. Additionally, because implied volatility and the value of the underlying asset tend to move in different directions, the bear spread has volatility exposure. Finally, consider the opposite situation with a bull spread (long ATM call option, sell OTM call option) that will be profitable should the value of the underlying asset increase. </p>
+<p class="p">Volatility skews occur because of implied volatilities that differ because of different strike prices. To profit from volatility skews, sell OTM put (or call) options with a higher implied volatility than ATM options and buy ATM put (or call) options. The volatility skew (i.e., graphically a smile or smirk) represents the differential between the volatilities of the OTM and ATM options. </p>
+<p class="p">Vertical spreads with delta hedging is a much-used strategy involving the sale of OTM puts and purchase of ATM puts. The cost of the strategy is theta (time decay of options) because the ATM option cash outflows are greater than the OTM option cash inflows. Because volatility usually increases when the price of the underlying asset falls, the long volatility position will profit in such a case. The delta hedge will eliminate directional moves of the price of the underlying asset. As a result, there will now be two ways to profit (1) narrowing of the spread between the ATM and OTM options, (2) actual volatility rises and is greater than implied volatility (i.e., delta hedging profits will outweigh the theta cost). </p>
+</div>
+<div class="section"><h2 class="title sectiontitle">Horizontal Intra-Asset (Skew) Option Spreads</h2><p class="p">A <strong class="ph b">horizontal spread</strong> involves long and short calls or short and long puts on the same underlying asset, whereby the long position has a specific expiration date and the short position has a different expiration date. Both positions have the same strike price. In contrast to vertical spreads, horizontal spreads have far less exposure to changes in the prices of the underlying assets. Instead, horizontal spreads earn profits based on changes in relative implied volatilities of options with different expiration dates. The changes in volatility usually occur when new information is received in the market. </p>
+<p class="p">For example, consider a firm that will release its earnings in the next month. The implied volatility of three-month options on the firm’s stock has increased much more than that of the six-month options. One strategy is to sell the shorter option and buy the longer option on the assumption that the volatility of the shorter option will fall once the earnings are released, thereby narrowing the volatility spreads. That assumes the change in the stock price does not cause losses because of the negative gamma of the position. </p>
+<p class="p">It is also possible to assume that the volatility of the shorter option will rise even further once the earnings are released, thereby widening the volatility spreads. In that case, the strategy would be to buy the shorter option and sell the longer option. </p>
+<p class="p">Selling shorter-term puts and buying longer-term puts is analogous to earning income by providing insurance to those seeking protection from negative impacts of new information. Selling shorter-term calls and buying longer-term calls around a specific date could be seen as assisting option buyers wishing to leverage themselves to profit from a perceived imminent and significant price change in the underlying asset. </p>
+<p class="p">In contrast to a vertical spread, it is not as easy to compute the maximum gain or loss on a horizontal spread due to the different option expiry dates. In other words, there is uncertainty as to the profit from the long-term option once the short-term option has expired. </p>
+</div>
+<div class="section"><h2 class="title sectiontitle">Inter-Asset Option Spreads</h2><p class="p">An <strong class="ph b">inter-asset option spread </strong>consists of a long position in one asset and a short position in another asset. The strategy attempts to profit by taking a long position in an asset whose implied volatility is anticipated to increase more than the implied volatility of the short position asset. For example, we could determine the three-month implied volatilities of the S&amp;P 500 and the NASDAQ-100 Index using historical data and then determine the spread between the two indices.</p>
+<p class="p">The inter-asset option spread peaks at the same time the volatility peaks and the spread is at its lowest when there is little volatility. Using the expected changes in spreads between the implied volatilities of the two indices, inter-asset option spread strategies are designed. </p>
+<p class="p">The components within each of the indices are quite different (i.e., number of stocks held, weightings within large-cap U.S. stocks), which would explain why the correlation within the NASDAQ Index is usually greater than that of the S&amp;P 500. </p>
+<p class="p">The inter-asset spread strategy involves delta-neutral hedging to each index so that their respective returns are not relevant. As a result, profits are intended to be earned based on the differences in implied volatilities between the two indices. The differences can be broken down as (1) implied volatility of the stocks of each index, and (2) correlation between the stocks of each index. When there is financial stress in the markets, correlations between assets usually increase so the implied volatility differences are reduced in periods of low volatility. Overall, a long position in the NASDAQ Index option and a short position in the S&amp;P 500 option is a long volatility position so it will perform well when there is financial stress assuming that delta hedging is in place. </p>
+</div>
+</div>
+
+</body>
+</html>

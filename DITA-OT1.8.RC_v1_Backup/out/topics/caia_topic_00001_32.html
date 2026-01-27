@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="nl-nl" lang="nl-nl">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="kpe-concept"/>
+<meta name="DC.Title" content="Returns Based on Notional Principal"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="caia_topic_00001_32"/>
+<meta name="DC.Language" content="nl-NL"/>
+<link rel="stylesheet" type="text/css" href="..%5Ccommonltr.css"/>
+<title>Returns Based on Notional Principal</title>
+</head>
+<body id="caia_topic_00001_32">
+
+<h1 class="title topictitle1">Returns Based on Notional Principal</h1>
+<div class="body conbody kpe-conceptBody"><p class="p"><strong class="ph b">LO 3.2: Demonstrate knowledge of returns based on notional principal.</strong></p>
+<p class="p">For example:</p>
+<ul class="ul"><li class="li">Recognize and apply the concept of forward contracts.</li>
+<li class="li">Define and apply the concepts of notional principal and full collateralization for forward contracts.</li>
+<li class="li">Calculate the log return to a fully collateralized derivatives position.</li>
+<li class="li">Calculate the log return to a partially collateralized derivatives position.</li>
+</ul>
+<p class="p">A <strong class="ph b">forward contract </strong>is a bilateral contract that obligates one party to buy and one party to sell a specific quantity of an asset, at a set price, on a specific date in the future. The initial value of a forward contract is zero to both parties at contract initiation. This initial zero value creates a problem, as this value is typically used to determine investment returns. Next, we look at how notional principal can be used to solve this issue and determine returns on these types of investments.</p>
+<p class="p"><strong class="ph b">Notional principal</strong> is the face amount on the underlying asset upon which cash flows on a derivative instrument (e.g., forward or swap) are based. The <strong class="ph b">return on notional principal</strong> equals the gain or loss on the derivative instrument divided by the notional principal. For instance, assume a gain of 50,000 euros is realized on a euro forward contract with notional principal of 1 million euros. The return on notional principal would be €50,000 / €1,000,000 = 5%. The return on notional principal may be misleading because the initial cash outflow does not equal the notional principal. In many alternative investments, there is no cash outflow at the initiation of the investment. </p>
+<p class="p">Therefore, the return on notional principal is often expressed on a <strong class="ph b">fully collateralized basis</strong>, in which the forward contract is matched with capital equal to the forward contract’s notional principal. The return on a fully collateralized position consists of two components: the risk-free return on the collateral and the percent change in the derivative value. Using continuous compounding, the return (i.e., the log return) on the fully collateralized position, R<sub class="ph sub">fcoll</sub>, equals:</p>
+<p class="p">R<sub class="ph sub">fcol</sub>l = ln(1 + R) + R<sub class="ph sub">f</sub><span class="ph"/></p>
+<p class="p">Alternatively, the return can be expressed on a <strong class="ph b">partially collateralized basis</strong>, in which the forward contract is matched with capital equal to a percentage, <em class="ph i">p</em>, of the forward contract’s notional principal. A partially collateralized return is a leveraged return, where the leverage factor equals 1 / p, where <em class="ph i">p</em> is the percent of the notional principal set aside as collateral. Therefore, returns on the partially collateralized investment are magnified by 1 / p. Formally, the log return on a partially collateralized position, R<sub class="ph sub">pcoll</sub>, equals:</p>
+<p class="p">R<sub class="ph sub">pcoll</sub> = [<em class="ph i">L</em> × ln(1 + R)] + R<sub class="ph sub">f</sub><span class="ph"/></p>
+<p class="p">where:</p>
+<p class="p"><em class="ph i">L</em> = leverage factor =1 / p </p>
+<p class="p">The notional principal equals L multiplied by the collateral amount. For example, if the collateral amount equals 20% of the notional principal (e.g., p = 20%), then the notional principal equals 1 / 0.20 or 5 multiplied by the amount of collateral.</p>
+<div class="note sample note"><span class="notetitle">sample:</span> <p class="p label">Example: Calculation of a partially collateralized return</p>
+<p class="p">Assume the risk-free rate equals 2% and the return on the derivative instrument equals 5%. <strong class="ph b">Calculate</strong> the partially collateralized return for a position with 30% collateral. </p>
+<p class="p">Answer: </p>
+<p class="p">The partially collateralized return equals:</p>
+<p class="p">R<sub class="ph sub">pcoll</sub> = [1/0.30 × ln(1.05)] + 0.02 = 0.183 = 18.3%</p>
+<p class="p"><em class="ph i">Professor’s Note: The risk-free return will be lower for the partially collateralized formula relative to the fully collateralized formula due to the lower level of collateral that earns the risk-free rate.</em></p>
+</div>
+</div>
+
+</body>
+</html>

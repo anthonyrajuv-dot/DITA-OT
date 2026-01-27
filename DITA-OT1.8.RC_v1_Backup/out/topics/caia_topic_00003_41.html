@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="nl-nl" lang="nl-nl">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="kpe-concept"/>
+<meta name="DC.Title" content="Topic 6.2: Credit Risk and Credit Derivatives"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="caia_topic_00003_41"/>
+<meta name="DC.Language" content="nl-NL"/>
+<link rel="stylesheet" type="text/css" href="..%5Ccommonltr.css"/>
+<title>Topic 6.2: Credit Risk and Credit Derivatives</title>
+</head>
+<body id="caia_topic_00003_41">
+
+<h1 class="title topictitle1">Topic 6.2: Credit Risk and Credit Derivatives</h1>
+<div class="body conbody kpe-conceptBody"><div class="section"><h2 class="title sectiontitle">Credit Risk </h2><p class="p"><strong class="ph b">Credit risk</strong> is the variability in financial outcomes related to firm failure or default. Unlike market risk, which is a systematic risk, credit risk contains idiosyncratic or firm-specific risk stemming from performance issues of individual securities. <strong class="ph b">Default risk </strong>is the risk that the issuer of a bond (or debtor on a loan) will not meet some (partial default) or all (complete default) of the obligations of the issue. <strong class="ph b">Credit spread </strong>is an asset’s yield over the yield of a risk-free benchmark with similar time-to-maturity.</p>
+</div>
+<div class="section"><h2 class="title sectiontitle">Reduced-Form Credit Models</h2><p class="p">Unlike structural models, <strong class="ph b">reduced-form models</strong> do not explicitly attempt to model default probabilities. Rather, reduced-form models take the market prices of liquid securities and infer the market’s expectation of default, which can then be used to price illiquid securities. The lender must calculate its credit risk exposure in advance. The <strong class="ph b">expected credit loss</strong> is a function of three components: </p>
+<ul class="ul"><li class="li"><em class="ph i">Probability of default (PD)</em>. This refers to the probability that the borrower will not fulfill the contractual obligations set forth in the loan agreement. The steps required to calculate the probability of default are shown in the next section.</li>
+<li class="li"><em class="ph i">Exposure at default (EAD)</em>. This is the value of the debt at the time of default. When the loan is newly issued, it is simply the principal of the loan. At maturity, the EAD is the principal plus interest on the loan. </li>
+<li class="li"><em class="ph i">Loss given default (LGD)</em>. This is the economic loss suffered by the lender if the borrower defaults. The proportion that is recovered is called the <em class="ph i">recovery rate</em> (RR); therefore, LGD = 1 – RR.</li>
+</ul>
+<p class="p">Expected credit loss is calculated as:</p>
+<div class="eqn-block ">expected credit loss = PD × EAD × LGD = PD × EAD × (1 – RR)</div></div>
+<div class="section"><h2 class="title sectiontitle">Risk-Neutral Modeling Approach</h2><p class="p">Two key characteristics of the <strong class="ph b">risk-neutral modeling approach</strong><strong class="ph b"> </strong>make the method indispensable to investors: </p>
+<ul class="ul"><li class="li">Modeling under the risk-neutral approach is simple and manageable.</li>
+<li class="li">Under certain circumstances, the prices calculated by risk-neutral modeling must be equal to the prices that would exist when market participants are risk-averse. </li>
+</ul>
+<p class="p">The reduced-form model is a risk-neutral model, whereby the probabilities used are risk-neutral probabilities. The risk-neutral probability of default will only equal the actual probability of default if  = 0 (i.e., a bond has no systematic risk). If a bond contains systematic risk, the actual probability of default will be lower and the expected return higher to compensate for the systematic risk. The key point is that a risk-neutral probability determined from a liquid bond issue can be used to price illiquid bonds in spite of potentially differing levels of systematic risk.</p>
+<p class="p">Consider a 1-period, zero-coupon risky bond with face value of <em class="ph i">K</em> and a 1-period risk-free rate of <em class="ph i">r</em>. The present value of the risky bond can be modeled as the weighted average of a binomial process where the end-of-period values represent the default and non-default states. If the bond defaults, assume the recovery rate is <em class="ph i">RR</em>. The risk-neutral probability that the bond will default and be worth K × RR is , and the risk-neutral probability that the bond will not default and be worth <em class="ph i">K</em> is (1 – ). Therefore, the present value of the bond is calculated as:</p>
+<p class="p">The probabilities in the risk-neutral reduced-form model can only be viewed as actual probabilities of default if investors are risk-neutral. Otherwise, the probabilities must be taken as risk-neutral probabilities. In real-world applications, given actual probabilities, a risk-adjusted discount rate would need to be used by adding a premium (i.e., credit spread) to the risk-free discount rate. Using a credit spread, we can rewrite the formula for the value of the bond as follows:</p>
+<p class="p">To determine the probability of default for this bond, the following formula is used:</p>
+<p class="p">If the short-term risk-free rate and credit spread are not large, the denominator in the second term (i.e., 1 + r + s) is close to 1. Therefore, the expression above can be approximated by:</p>
+<p class="p">Application of the reduced-form model often involves using information obtained in liquid markets to price assets in less liquid markets. <strong class="ph b">Calibrating a model</strong><strong class="ph b"> </strong>refers to the process of determining the values of the key parameters of the model, such as the risk-neutral probability of default. </p>
+<p class="p">Advantages of the reduced-form model:</p>
+<ul class="ul"><li class="li">Can be calibrated using CDS spreads.</li>
+<li class="li">Flexibility (i.e., can easily price derivatives and portfolios, can adjust for credit rating changes, and does not require balance sheet information.</li>
+</ul>
+<p class="p">Disadvantages of the reduced-form model:</p>
+<ul class="ul"><li class="li">Potential lack of adequate market data needed to calibrate model.</li>
+<li class="li">Sensitivity to key assumptions.</li>
+<li class="li">Limited historical default rates.</li>
+<li class="li">No guarantee that historical default rates represent future default rates.</li>
+</ul>
+</div>
+<div class="section"><h2 class="title sectiontitle">Credit Derivatives</h2><p class="p">Credit derivatives have the following three major economic roles: </p>
+<ol class="ol"><li class="li"><strong class="ph b">Risk transfer</strong><strong class="ph b">. </strong>Allow a bank to continue making loans to a major client by providing a mechanism to transfer some of the risk of the loans to another party. </li>
+<li class="li"><strong class="ph b">Liquidity</strong><strong class="ph b">. </strong>Act to provide liquidity to the market in times of financial market stress. Credit derivatives have changed credit risk from an illiquid risk to a liquid risk that can be traded like any other. </li>
+<li class="li"><strong class="ph b">Price discovery</strong><strong class="ph b"> </strong>(a.k.a. <em class="ph i">price revelation</em>).<strong class="ph b"> </strong>The highly-liquid markets for credit derivatives provide information about what informed buyers and sellers think various securities are worth. </li>
+</ol>
+<p class="p">Credit derivatives can be grouped by three major categories:</p>
+<ol class="ol"><li class="li"><em class="ph i">Single-name vs. multiname instruments</em>. Single-name instruments reference a single entity, while multiname instruments reference multiple entities. </li>
+<li class="li"><em class="ph i">Funded vs. unfunded</em>. Funded credit instruments involve the transfer of notional principal, while unfunded instruments do not. </li>
+<li class="li"><em class="ph i">Non-sovereign entities vs. sovereign entities</em>. Sovereign instruments are more complex to model due to their additional risks such as willingness to pay.</li>
+</ol>
+<p class="p">There have been four major stages of credit derivatives:</p>
+<p class="p"><em class="ph i">Step 1: Defensive stage</em> (late 1980s–early 1990s). Banks attempted to develop methods to reduce their credit exposures.</p>
+<p class="p"><em class="ph i">Step 2: Emergence of intermediaries </em>(1991–late 1990s). Intermediaries became dealers of credit derivatives and investors began investing in credit risk derivatives.</p>
+<p class="p"><em class="ph i">Step 3: Development of regulations</em> (late 1990s–2002). Regulation of the market began and the ISDA created the Master Agreement of 1999. Credit dealers began managing diversified portfolios of credit derivatives.</p>
+<p class="p"><em class="ph i">Step. 4: Liquid market</em> (2003–present). Credit derivatives market became more liquid. This was due in part to the revised ISDA Master Agreement of 2003. Market liquidity increased due to the advent of index trading in 2004 and the increased presence of hedge funds as protection sellers and protection buyers.</p>
+<p class="p">A fifth stage may be on the horizon as both U.S. and European Union legislation push the credit derivatives markets to exchange-traded markets with clearinghouses.</p>
+</div>
+<div class="section"><h2 class="title sectiontitle">Credit Default Swaps </h2><p class="p">A <strong class="ph b">credit default swap</strong> (CDS) only makes a payment if a credit event occurs. In a <strong class="ph b">total return swap</strong> (TRS), the swap buyer receives the total return of the reference asset regardless of whether a credit event occurs.</p>
+<p class="p">The buyer of a TRS (i.e., the <em class="ph i">credit protection seller</em>) receives the total return of a reference asset in exchange for LIBOR + spread and assumes all credit risk exposure associated with the asset. The seller of the TRS (i.e., the <em class="ph i">credit protection buyer</em>) retains ownership, but since cash flows are passed to the buyer, the seller receives a net cash flow of LIBOR + spread.</p>
+<p class="p">Terms negotiated between the CDS buyer and seller include:</p>
+<ol class="ol"><li class="li"><strong class="ph b">CDS spread/premium</strong>—the premium paid by the buyer to the seller of the CDS; quoted as a percentage of the notional value underlying the CDS.</li>
+<li class="li"><strong class="ph b">Contract size and maturity</strong>—no limits on contract size or maturity are imposed by the ISDA; most CDS have a contract size of $20 to $100 million and maturity of three to five years.</li>
+<li class="li"><strong class="ph b">Payment trigger events</strong>—determine when the CDS seller must make a payment to the CDS buyer. The CDS buyer (seller) would prefer to have the trigger events defined as broadly (narrowly) as possible. Although payment trigger events are negotiated between the CDS buyer and seller, the ISDA has identified seven specific types: </li>
+<li class="li">Bankruptcy.</li>
+<li class="li">Failure to pay.</li>
+<li class="li">Restructuring.</li>
+<li class="li">Obligation acceleration.</li>
+<li class="li">Obligation default (technical default).</li>
+<li class="li">Repudiation/moratorium by a sovereign government.</li>
+<li class="li">Government intervention.</li>
+<li class="li"><strong class="ph b"> </strong><strong class="ph b">Method of settlement</strong>—settlement can be made with either a cash payment or physical delivery of the underlying (the more common method). In a <em class="ph i">cash settlement</em>, the seller pays the buyer an amount equal to the lost value of the underlying risky bond. In a <em class="ph i">physical settlement</em>, the CDS seller buys the reference asset from the CDS buyer at par value.</li>
+<li class="li"><strong class="ph b">Choice of assets to deliver</strong>—the CDS buyer has a choice of assets to deliver including: direct obligations of the reference entity, obligations of a subsidiary of the reference entity if the reference entity’s ownership stake in the subsidiary is greater than 50%, or obligations of a third party that the reference entity has guaranteed.</li>
+</ol>
+<p class="p">Four key parameters define a CDS: </p>
+<ol class="ol"><li class="li"><strong class="ph b">Credit reference. </strong>The <em class="ph i">referenced asset</em> is specified within the contract. At default, several bonds may qualify to be deliverable. </li>
+<li class="li"><strong class="ph b">Notional amount. </strong>The amount of credit risk to be transferred is specified in the contract.</li>
+<li class="li"><strong class="ph b">CDS spread</strong>. The annual payment amount in basis points is specified in the contract. Payments are made on a quarterly basis. </li>
+<li class="li"><strong class="ph b">CDS maturity</strong>. Typical expiration dates are on the 20th of March, June, September, or December. The most common and most liquid length is five years.</li>
+</ol>
+<p class="p">CDSs are priced to have zero value at initiation, as the expected cash flows to both parties are equal. Over time, the value will change. <strong class="ph b">Marking-to-market</strong> (MTM) allows the balance sheet to reflect the current financial position of the CDS contract. Changes in the creditworthiness of the reference entity affect the value of the CDS. As the credit spread widens, the protection buyer benefits. As the credit spread narrows, the protection seller gains. A CDS contract may be marked-to-market for three different reasons: (1) financial statement reporting, (2) economic gain realization, and (3) collateral management.</p>
+<p class="p">The three basic methods for unwinding CDS contracts include: </p>
+<ol class="ol"><li class="li"><em class="ph i">Contract termination</em>. The simplest way is for the counterparty to agree to terminate the contract. </li>
+<li class="li"><em class="ph i">Offsetting positions</em>. A counterparty may enter an offsetting position with another counterparty if the initial CDS participant will not terminate the contract. </li>
+<li class="li"><em class="ph i">Novation/assignment</em>. In a novation, the trade is assigned to a third party. The original counterparty must agree to the novation.</li>
+</ol>
+<p class="p">The major participants in the credit derivatives market are banks, hedge funds, asset managers, insurance companies, and corporations. Their roles are as follows: </p>
+<ul class="ul"><li class="li"><em class="ph i">Banks</em>.<ul class="ul"><li class="li"><em class="ph i">Trading activities</em>. The CDS market allows market makers to more efficiently make trades, hedge positions, and to use less capital.</li>
+<li class="li"><em class="ph i">Loan portfolio managers</em>. CDSs allow for efficient hedging of exposure to existing loans as well as reducing regulatory capital.</li>
+</ul>
+</li>
+<li class="li"><em class="ph i">Hedge funds.</em> Hedge funds have begun trading across volatility, correlation, and recovery rate strategies rather than just hedging a single-name exposure.</li>
+<li class="li"><em class="ph i">Asset managers</em>. The CDS market allows asset managers to trade credit risks with maturities that may have limited liquidity. In addition, asset managers can easily implement bearish views. Further, the CDS indices allow managers to easily add or shed broad credit exposure.</li>
+<li class="li"><em class="ph i">Insurance companies</em>. Life and property insurance companies are natural sellers of credit protection. Their objective is to increase return on their investment portfolio by selling options they do not expect to be exercised. In contrast, monoline insurers and reinsurers sell credit protection to enhance return and diversify their exposure to include credit risk.</li>
+<li class="li"><em class="ph i">Corporations</em>. Corporations typically use credit derivatives to hedge exposure to an existing counterparty. The high liquidity and transparency of the market is a viable alternative to securing credit insurance or costly factoring (i.e., selling receivables). In addition, corporations may attempt to increase returns to pension funds or excess cash balances via credit derivatives. Additionally, corporations may observe their own CDS spreads as benchmarks for bond deals in order to minimize funding costs.</li>
+</ul>
+<p class="p">Motivations for entering into CDSs include:</p>
+<ul class="ul"><li class="li">Isolation of credit risk.</li>
+<li class="li">Efficient synthetic shorting of credit risk.</li>
+<li class="li">Ease of establishing synthetic positions.</li>
+<li class="li">Linking of bond, loan, equity, and structured product markets.</li>
+<li class="li">Providing liquidity during periods of market stress.</li>
+</ul>
+</div>
+<div class="section"><h2 class="title sectiontitle">Other Credit Derivatives</h2><p class="p">CDSs, while not considered an option, are similar to options with regard to the asymmetric (contingent) payout. Key differences between CDSs and options are:</p>
+<ul class="ul"><li class="li">There is no initial premium or payment made by one party. </li>
+<li class="li">CDSs automatically require payment given that a trigger event has occurred (i.e., no<span class="ph"> </span>option to exercise).</li>
+</ul>
+<p class="p">Credit options can have an underlying of a price, a rate, or a spread. Since rates (and spreads) move opposite of prices, a credit put on a bond price and a credit calls on a rate offer the same protection against declines in market values because of credit quality deterioration. Credit options are frequently <strong class="ph b">binary options</strong>, where there are two payouts: (1) zero or (2) a fixed amount. Additionally, credit options can be <strong class="ph b">European</strong> (i.e., payout at expiration only), or <strong class="ph b">American</strong> (i.e., payout at or before expiration).</p>
+<p class="p">The payout on a credit put option can be expressed as follows: </p>
+<div class="eqn-block ">payout = Max[0, X – B(t)] if in default, and 0 otherwise</div><p class="p">A long position in a CDS call option allows the holder of the option to enter into a CDS contract if the credit spread widens beyond the strike price. A <strong class="ph b">CDS call option</strong> offers a bondholder downside protection against the risk of default, while allowing the bondholder the ability to realize the benefits of credit improvements. In contrast, a position that consists of the underlying bond and CDS provides downside protection, but does not benefit from credit improvements.</p>
+<p class="p"><strong class="ph b">Credit-linked notes</strong> (CLNs) are bonds issued with an embedded credit option that either reduces the coupon payment or partially redeems the principal if there is a negative credit event or default. The investor receives a higher coupon payment as compensation for bearing the credit risk. The issuer effectively pays an insurance premium in the form of a higher coupon payment.</p>
+<p class="p"><strong class="ph b">CDS indices</strong> allow investors access to broad, deep, and liquid credit markets. They are equally-weighted baskets of single-named CDSs. The two most common indices are represented by the <em class="ph i">CDX</em> (North America and emerging markets) and <em class="ph i">iTraxx</em> (Europe and Asia) indices. </p>
+</div>
+<div class="section"><h2 class="title sectiontitle">Risks of Credit Derivatives </h2><p class="p">Three types of risk associated with credit derivatives are:</p>
+<ol class="ol"><li class="li"><strong class="ph b">Operational risk</strong>—traders or investors may take on excessive credit risk exposure without adequate supervision and accounting systems.</li>
+<li class="li"><strong class="ph b">Pricing/model risk</strong>—credit derivatives are often priced by complex mathematical models, which will yield inaccurate results if the inputs used or their application are inappropriate. </li>
+<li class="li"><strong class="ph b">Liquidity risk</strong>—because credit derivatives are customized for the needs of the buyer and seller, either counterparty may be forced to realize a significant liquidity discount if it wants to sell its position to a third party.</li>
+</ol>
+<p class="p">CDS risks include:</p>
+<ul class="ul"><li class="li"><strong class="ph b">Counterparty risk</strong> is the risk that one party will not honor the agreement. The primary risk facing the <em class="ph i">protection seller</em> is that the protection buyer does not pay the premium, forcing the seller to enter into a new contract. The <em class="ph i">protection buyer</em> has a higher overall risk than the protection seller. Its risks are three-fold: that the protection seller fails to pay in the event of a credit event; that the protection seller goes bankrupt prior to contract maturity, or basis risk; and that the reference entity fails to match the asset being hedged (i.e., basis risk).</li>
+<li class="li"><strong class="ph b">Basis risk </strong>occurs if the CDS value is not perfectly correlated with the value of the asset being hedged. </li>
+</ul>
+<p class="p">Risks associated with credit derivatives include: </p>
+<ul class="ul"><li class="li"><strong class="ph b">Risk taking</strong><strong class="ph b">. </strong>Most credit derivatives are off-balance-sheet instruments, so without adequate supervision and accounting systems, it can be easy to take on excessive leverage or credit risk exposure without that exposure being reflected in the firm’s financial statements. </li>
+<li class="li"><strong class="ph b">Pricing risk</strong><strong class="ph b">. </strong>Credit derivatives are often priced using complex mathematical models. The accuracy of these models depends on the inputs used and how they are applied. </li>
+<li class="li"><strong class="ph b">Liquidity risk</strong><strong class="ph b">. </strong>A derivative counterparty may have to offer a significant liquidity discount in order to transfer its position to a third party due to derivative’s customized structure. In addition, approval by the original counterparty is typically required before a credit derivative can be sold. </li>
+<li class="li"><strong class="ph b">Counterparty risk</strong>. Risk that a counterparty to a transaction fails to make a payment as required by the underlying contract. In OTC options (e.g. call options or put options), only the long party faces counterparty risk. The short party faces no counterparty risk, because the long party has no additional financial obligation after paying the initial option premium.</li>
+<li class="li"><strong class="ph b">Basis risk</strong>. Risk that the value of the CDS and the value of the asset that the CDS is intended to hedge are not perfectly correlated. </li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

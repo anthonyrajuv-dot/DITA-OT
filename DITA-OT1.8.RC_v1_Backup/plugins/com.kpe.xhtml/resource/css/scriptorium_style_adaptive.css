@@ -1,0 +1,209 @@
+/*
+ * ///////////////////////////////////////
+ */
+
+/******************************
+ ADAPTIVE CSS
+ ******************************/
+
+/* 
+ * phone 
+ */
+
+@media screen and (max-width: 560px){
+
+/* iPhone 480px portrait */
+/* Droid razr maxx = 760px landscape */
+
+
+/* 
+ * main 
+ */
+ 
+ html{
+     max-width: 560px;     
+ }
+
+section#main_body, div#main_body{
+    margin-left: 12px;
+    float: left;
+    margin-top: 0px;
+    padding-right: 0px;
+    width: 83%;
+}
+
+section, div.section_cont{
+    margin-left: 72px;
+}
+
+p{
+    margin-right: auto !important;
+    margin-bottom: 5px !important;
+    margin-top: 5px !important;
+}
+
+
+/* 
+ * sideTOC 
+ */
+
+div.box > div#nav_handle{
+    float: left;
+}
+
+div.box{
+    clear: both;
+    float: left;
+    padding-bottom: 10px;
+    width: 10px;
+    font-size: 12px;
+}
+
+div.sidebar{
+    min-height: 100%;
+    margin-top: 0px;
+    width: 195px;
+    margin-left: 8px !important;
+    margin-bottom: 10px;
+}
+
+div.box{
+    margin-top: 0px;
+}
+
+div.open{
+    width: 195px;
+    -moz-transition: width .5s;
+    -webkit-transition: width .5s;
+    -o-transition: width .5s;
+}
+
+div.closed{
+    width: 12px;
+    -moz-transition: width .5s;
+    -webkit-transition: width .5s;
+    -o-transition: width .5s;
+}
+
+
+/* 
+ * prev-next, breadcrumbs 
+ */
+
+footer p.prev_next, div.footer_cont p.prev_next{
+    margin-right: 15px !important;
+}
+
+#bcrumbs{
+    width: 98%;
+    margin-left: 8px !important;
+    height: auto !important;
+}
+
+nav.breadcrumbs, div.breadcrumbs{
+    background: none;
+}
+
+nav.breadcrumbs p.lcl_crumbs, div.breadcrumbs p.lcl_crumbs{
+    font-size: 1em !important;
+    line-height: 1.2em !important;
+}
+
+p.prev_next{
+    float: right !important;
+    margin-right: 15px !important;
+}
+
+nav.breadcrumbs p.lcl_crumbs, div.breadcrumbs p.lcl_crumbs{
+    padding-left: 5px;
+    max-width: 85%;
+    float: left;
+}
+
+
+/* 
+ * header 
+ */
+
+#navigation{
+    display: none;
+    width: auto !important;
+}
+
+#header{
+    /*width: 300px !important;*/
+    margin-left: 10px !important;
+    width: auto !important;
+}
+
+#header > div#tertiaryNavigation{
+    display: none;
+    width: auto !important;
+}
+
+ul#topnav{
+    width: auto !important;
+}
+
+
+/* 
+ * footer 
+ */
+
+#footer{
+    display: none;
+}
+
+
+/* 
+ * lists 
+ */
+
+#main_body ol, #main_body ul{
+    margin-left: 30px !important;
+}
+
+li.step, li.substep{
+    margin-top: 5px !important;
+}
+
+
+/* 
+ * widgets 
+ */
+
+#print_this, #mail_this, .print_this, .mail_this{
+    display: none;
+}
+
+
+/* 
+ * figures and tables 
+ */
+
+table{
+    width: 85% !important;
+}
+
+tbody.tbody > tr.row > td.entry{
+    padding: 2px !important;
+}
+
+table p{
+    line-height: 1em !important;
+}
+
+.figure_exp,
+.table_exp{
+    width: 98% !important;
+    margin-left: 5px;
+}
+
+.figure_exp table,
+.table_exp table{
+    width: 95% !important;
+}
+
+}
+
+/* [end mobile CSS] */

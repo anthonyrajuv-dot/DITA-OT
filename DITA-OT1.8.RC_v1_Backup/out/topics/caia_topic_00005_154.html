@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="nl-nl" lang="nl-nl">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="kpe-concept"/>
+<meta name="DC.Title" content="Payoff-Distribution Replication Approach"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="caia_topic_00005_154"/>
+<meta name="DC.Language" content="nl-NL"/>
+<link rel="stylesheet" type="text/css" href="..%5Ccommonltr.css"/>
+<title>Payoff-Distribution Replication Approach</title>
+</head>
+<body id="caia_topic_00005_154">
+
+<h1 class="title topictitle1">Payoff-Distribution Replication Approach </h1>
+<div class="body conbody kpe-conceptBody"><p class="p">LO 31.6: Demonstrate knowledge of the payoff-distribution approach to replication.</p>
+<p class="p">For example:</p>
+<ul class="ul"><li class="li">Describe the payoff-distribution approach to hedge fund replication.</li>
+<li class="li">Compare and contrast the factor-based replication approach and the payoff-distribution replication approach, and describe the calculations that are necessary to replicate the probability distribution of a given hedge fund benchmark. </li>
+<li class="li">Summarize the empirical research evidence regarding the payoff-distribution approach.</li>
+</ul>
+<div class="section"><h2 class="title sectiontitle"><strong class="ph b">Payoff-Distribution Approach</strong></h2><p class="p">The objective of the <strong class="ph b">payoff-distribution approach</strong> is to create a portfolio with a return distribution that matches the benchmark. In contrast, the objective of the factor-based approach is to create a portfolio where the returns match a benchmark’s returns each period. </p>
+</div>
+<div class="section"><h2 class="title sectiontitle"><strong class="ph b">Factor-Based Approach vs. Payoff-Distribution Approach</strong></h2><p class="p">The factor-based approach has a historical correlation with the benchmark hedge fund close to 80%, implying it does fairly well at matching the monthly returns. However, the mean, standard deviation, kurtosis, and skewness are not representative of the benchmark hedge fund. </p>
+<p class="p">In contrast, the payoff-distribution replication portfolio matches the benchmark hedge fund with regard to the higher moments of standard deviation, kurtosis, and skewness, while the tracking error of monthly returns is very high. In fact, the monthly return correlation was close to zero for the benchmark and the payoff-distribution approach. Note that the payoff-distribution approach does not explicitly attempt to match the mean return of the benchmark hedge fund return.</p>
+<p class="p">These results are not that surprising given that higher moments for most investments are more stable, whereas mean returns are typically unstable and less predictable. Another reason for the difference in mean returns for the benchmark and payoff-distribution replication is related to the methodology for creating the clone portfolio. The payoff-distribution methodology is similar to a delta hedge option strategy. In the case of the delta hedge option strategy, the replicator portfolio uses options as the underlying asset; therefore, the mean returns are similar. However, the payoff-distribution methodology uses a reserve asset other than the underlying hedge fund, and this causes the difference between the means of the two portfolios. </p>
+</div>
+<div class="section"><h2 class="title sectiontitle">Replication Calculations </h2><p class="p">The payoff-distribution methodology used has its foundations in the classic option pricing model. Assume the objective is to replicate the probability distribution of monthly returns for a hedge fund benchmark. The following equation illustrates how the desired distribution is constructed. </p>
+<div class="eqn-block ">Pr(R<sub class="ph sub">t,</sub>HF &lt; x) = FHF(x)</div><div class="fig equation-figure fignone"><p class="p">where:</p>
+<p class="p">Rt,HF = monthly returns</p>
+<p class="p">FHF(x) = desired probability distribution</p>
+</div>
+<p class="p">Assume the targeted distribution will be replicated using a reserve asset that is highly liquid. The monthly return on the reserve asset is Rt,R, and the idea is to obtain a derivative, G(Rr), written on the reserve asset so as to have its monthly return distribution be equal to the target probability distribution as follows:</p>
+<div class="eqn-block ">Pr(R<sub class="ph sub">t,</sub>HF &lt; x) = Pr(G(Rr) &lt; x)</div><p class="p">It is crucial to identify the form of the derivative, G(Rr). Then a replication portfolio is constructed to replicate the derivative’s payoff. For example, the replication portfolio could consist of a liquid risky asset, such as the S&amp;P 500 ETF, and a risk-free asset, such as cash. </p>
+</div>
+<div class="section"><h2 class="title sectiontitle">Empirical Evidence</h2><p class="p">An empirical study compared the payoff distributions of 13 hedge fund indices from 1997– 2006 to the payoff-distribution replicator based on futures contracts on the S&amp;P 500 index and the Eurodollar. The average returns on the replicator fund were significantly lower than the hedge fund indices for the out-of-sample data. </p>
+<p class="p">The standard deviations for the clone were close to the benchmark hedge fund, and the higher moments yielded mixed results depending on the strategy. The best clone for matching the return distribution was the short-selling index, and the worst was the equity market neutral index. In addition, the 95% value at risk (VaR) was similar for the clones and hedge funds, but the Sharpe ratios were significantly higher for the hedge funds. Overall, the results suggest the payoff-distribution approach may be successful in matching higher moments for a few strategies, but the mean returns are always lower. </p>
+<p class="p">Another test using a lengthy, out-of-sample period suggested almost eight years of data is needed to create payoff-distribution replicator products that matched the hedge funds. This implies that an investor needs to wait a long time to test the success of the replicator product. However, the correlations were still low, suggesting the replicator product did a poor job of matching the returns of hedge funds.</p>
+</div>
+</div>
+
+</body>
+</html>

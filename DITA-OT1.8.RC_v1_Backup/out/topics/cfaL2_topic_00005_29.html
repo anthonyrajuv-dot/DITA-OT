@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="nl-nl" lang="nl-nl">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="kpe-concept"/>
+<meta name="DC.Title" content="Using Put-Call Parity for Arbitrage"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="cfaL2_topic_00005_29"/>
+<meta name="DC.Language" content="nl-NL"/>
+<link rel="stylesheet" type="text/css" href="..%5Ccommonltr.css"/>
+<title>Using Put-Call Parity for Arbitrage</title>
+</head>
+<body id="cfaL2_topic_00005_29">
+
+<h1 class="title topictitle1">Using Put-Call Parity for Arbitrage</h1>
+<div class="body conbody kpe-conceptBody"><p class="p">As with all arbitrage trades, you want to “buy low and sell high.” If put-call parity doesn’t hold (if the cost of a fiduciary call does not equal the cost of a protective put), then you buy (go long in) the underpriced position and sell (go short) in the overpriced position.</p>
+<div class="note sample note"><span class="notetitle">sample:</span> <p class="p label"><strong class="ph b">Example: Exploiting violations of put-call parity</strong></p>
+<p class="p">The stock of ArbCity Inc. is trading for $75. A 3-month call option with an exercise price of $75 is selling for $4.50, and a 3-month put at $75 is selling for $3.80. The risk-free rate is 5%. Calculate the no-arbitrage price of the put option, and illustrate how the violation of put-call parity can be exploited to earn arbitrage profits.</p>
+<p class="p label"><strong class="ph b">Answer:</strong></p>
+<p class="p">First, calculate what the put option should be selling for, given the other prices:</p>
+<div class="eqn-block ">=$4.50 - $75.00 + $74.09 = $3.59</div><p class="p">Put-call parity doesn’t hold because the actual market price of the put is $3.80, not the no-arbitrage price of $3.59:</p>
+<p class="p">The fiduciary call (the left side of the equation) is relatively underpriced, and the protective put (the right side) is relatively overpriced. Therefore, the arbitrage strategy is to buy the fiduciary call (and pay $78.59) and short-sell the protective put (and receive $78.80). The arbitrage profits from this trade are $78.80 – $78.59, or $0.21 per share. The net cash flow at maturity will be zero, so we’ve produced cash flow of $0.21 today with no cash outflow obligation in the future—that’s what we call an arbitrage profit. The cash flows are shown in the following table.</p>
+</div>
+
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><tbody class="tbody"><tr class="row"><td class="entry" valign="top" width="21.578282828282827%"><p class="p">Today</p>
+</td>
+<td class="entry" valign="top" width="11.830808080808081%"><p class="p">Three Months from Today</p>
+</td>
+</tr>
+<tr class="row"><td class="entry" valign="top" width="21.578282828282827%"> </td>
+<td class="entry" valign="top" width="11.830808080808081%"><p class="p">If Stock Price &lt; $75</p>
+</td>
+<td class="entry" valign="top" width="19.444444444444446%"><p class="p">If Stock Price &gt; $75</p>
+</td>
+</tr>
+<tr class="row"><td class="entry" valign="top" width="21.578282828282827%"><p class="p">Transaction</p>
+</td>
+<td class="entry" valign="top" width="11.830808080808081%"><p class="p">Cash Flow</p>
+</td>
+<td class="entry" valign="top" width="19.444444444444446%"><p class="p">Transaction</p>
+</td>
+<td class="entry" valign="top" width="11.868686868686869%"><p class="p">Cash Flow</p>
+</td>
+<td class="entry" valign="top" width="23.434343434343436%"><p class="p">Transaction</p>
+</td>
+<td class="entry" valign="top" width="11.843434343434343%"><p class="p">Cash Flow</p>
+</td>
+</tr>
+<tr class="row"><td class="entry" valign="top" width="21.578282828282827%"><p class="p">Long call option</p>
+</td>
+<td class="entry" valign="top" width="11.830808080808081%"><p class="p">–$4.50</p>
+</td>
+<td class="entry" valign="top" width="19.444444444444446%"> </td>
+<td class="entry" valign="top" width="11.868686868686869%"> </td>
+<td class="entry" valign="top" width="23.434343434343436%"><p class="p">Exercise call and buy stock</p>
+</td>
+<td class="entry" valign="top" width="11.843434343434343%"><p class="p">–$75.00</p>
+</td>
+</tr>
+<tr class="row"><td class="entry" valign="top" width="21.578282828282827%"><p class="p">Invest in zero coupon bond</p>
+</td>
+<td class="entry" valign="top" width="11.830808080808081%"><p class="p">–$74.09</p>
+</td>
+<td class="entry" valign="top" width="19.444444444444446%"><p class="p">Proceeds from bond</p>
+</td>
+<td class="entry" valign="top" width="11.868686868686869%"><p class="p">+$75.00</p>
+</td>
+<td class="entry" valign="top" width="23.434343434343436%"><p class="p">Proceeds from bond</p>
+</td>
+<td class="entry" valign="top" width="11.843434343434343%"><p class="p">+$75.00</p>
+</td>
+</tr>
+<tr class="row"><td class="entry" valign="top" width="21.578282828282827%"><p class="p">Cost of fiduciary call</p>
+</td>
+<td class="entry" valign="top" width="11.830808080808081%"><p class="p">–$78.59</p>
+</td>
+<td class="entry" valign="top" width="19.444444444444446%"> </td>
+<td class="entry" valign="top" width="11.868686868686869%"> </td>
+<td class="entry" valign="top" width="23.434343434343436%"> </td>
+<td class="entry" valign="top" width="11.843434343434343%"> </td>
+</tr>
+<tr class="row"><td class="entry" valign="top" width="21.578282828282827%"><p class="p">Short put option</p>
+</td>
+<td class="entry" valign="top" width="11.830808080808081%"><p class="p">+$3.80</p>
+</td>
+<td class="entry" valign="top" width="19.444444444444446%"><p class="p">Put exercised, obligation to buy stock</p>
+</td>
+<td class="entry" valign="top" width="11.868686868686869%"><p class="p">–$75.00</p>
+</td>
+<td class="entry" valign="top" width="23.434343434343436%"> </td>
+<td class="entry" valign="top" width="11.843434343434343%"> </td>
+</tr>
+<tr class="row"><td class="entry" valign="top" width="21.578282828282827%"><p class="p">Short stock</p>
+<p class="p">Proceeds from protective put</p>
+</td>
+<td class="entry" valign="top" width="11.830808080808081%"><p class="p">+$75.00</p>
+<p class="p">+$78.80</p>
+</td>
+<td class="entry" valign="top" width="19.444444444444446%"><p class="p">Settle short position by delivering stock</p>
+</td>
+<td class="entry" valign="top" width="11.868686868686869%"><p class="p">$0.00</p>
+</td>
+<td class="entry" valign="top" width="23.434343434343436%"><p class="p">Settle short position by delivering stock</p>
+</td>
+<td class="entry" valign="top" width="11.843434343434343%"><p class="p">$0.00</p>
+</td>
+</tr>
+<tr class="row"><td class="entry" valign="top" width="21.578282828282827%"><p class="p">Total cash flow = arbitrage profit</p>
+</td>
+<td class="entry" valign="top" width="11.830808080808081%"><p class="p">$0.21</p>
+</td>
+<td class="entry" valign="top" width="19.444444444444446%"><p class="p">Total cash flow</p>
+</td>
+<td class="entry" valign="top" width="11.868686868686869%"><p class="p">$0.00</p>
+</td>
+<td class="entry" valign="top" width="23.434343434343436%"><p class="p">Total cash flow</p>
+</td>
+<td class="entry" valign="top" width="11.843434343434343%"><p class="p">$0.00</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p">In a frictionless market, these violations will be eliminated very quickly as arbitrageurs jump in to exploit them.</p>
+</div>
+
+</body>
+</html>

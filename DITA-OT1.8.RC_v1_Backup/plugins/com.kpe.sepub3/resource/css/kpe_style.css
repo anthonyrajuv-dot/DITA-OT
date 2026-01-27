@@ -1,0 +1,415 @@
+/* CSS reset */
+body, div, dl, dt, dd, h1, h2, h3, h4, h5, h6, p, pre, code, blockquote {
+	padding:0;
+	border-width:0;
+	orphans:2;
+	widows:2;
+	margin:10px 10px 10px 0px;
+}
+/* Header styles */
+.unit_title {
+	font-size:3em;
+	line-height:1.083;
+	text-align:center;
+	page-break-before:always;
+}
+h1 {
+	-epub-hyphens:none;
+	font-size:1.3em;
+	font-weight:900;
+	line-height:1.04;
+	margin:23px 0px 9px 5px;
+	page-break-after:avoid;
+	page-break-before:auto;
+	text-align:left;
+	text-transform:uppercase;
+}
+/*PSB Added .los for los titles*/
+.los
+{
+	font-size:1em;
+	margin:23px 0px 9px 5px;
+	page-break-after:avoid;
+	line-height:1.083;
+	text-align:left;
+	page-break-before:always;
+	font-weight:bold;
+}
+.kc_los
+{
+	font-size:1em;
+	page-break-after:avoid;
+	line-height:1.083;
+	text-align:left;
+	page-break-before:always;
+	font-weight:bold;
+	color: blue;
+}
+h2 {
+	-epub-hyphens:none;
+	font-size:1.2em;
+	font-weight:bold;
+	line-height:1.083;
+	margin:14px 0px 0px 20px;
+	text-align:left;
+}
+/* [SP] 23-Feb-2015: Changed display to block.*/
+h3 {
+	-epub-text-align-last:left;
+	font-size:1em;
+	line-height:1.227;
+	margin:9px 0px 0px 20px;
+	text-align:justify;
+	display:block;
+	font-style:italic;
+}
+/* [SP] 23-Feb-2015: Changed display to block.*/
+h4 {
+	-epub-text-align-last:left;
+	font-size:1em;
+	line-height:1.227;
+	margin:9px 0px 0px 20px;
+	text-align:justify;
+	display:block;
+	font-style:italic;
+	font-weight:normal;
+}
+/* Main body elements */
+p {
+	font-size:1em;
+	margin-left:20px;
+}
+.lcObjectivesStem {
+	-epub-hyphens:none;
+	display:block;
+	font-size:1em;
+	font-style:italic;
+	line-height:1.13;
+	margin:0px 0px 11px 5px;
+	page-break-after:avoid;
+}
+.learning_objective {
+	-epub-hyphens:none;
+	display:list-item;
+	list-style-type:square;
+	list-style-position:outside;
+	font-size:1em;
+	font-style:normal;
+	line-height:1.13;
+	margin:0px 0px 11px 60px;
+	page-break-after:avoid;
+}
+.sli {
+	list-style-type:none;
+}
+blockquote {
+	text-align:justify;
+	margin:5px 50px 5px 60px;
+}
+div.eqn-block {
+	font-size:0.85em;
+	font-weight:300;
+	line-height:1.444;
+	margin-top:9px;
+	text-align:center;
+}
+div.eqn-block_equation {
+	font-size:0.85em;
+	font-weight:300;
+	line-height:1.444;
+	margin:10px 0px 10px 80px;
+	text-align:left;
+}
+.footnote {
+	font-size:0.7em;
+	margin-left:20px;
+}
+.formula {
+	line-height:1.182;
+	margin:5px 0px 0px 80px;
+}
+.glossdef {
+	margin-top:-10px;	
+}
+.example_title {
+	font-size:0.9em;
+	font-weight:bold;
+	line-height:1.444;
+	margin:14px 0px 0px 60px;
+	text-align:justify;	
+}
+.example_body {
+	font-size:0.85em;
+	line-height:1.444;
+	margin:14px 0px 0px 60px;
+	text-align:justify;	
+}
+.example_formula {
+	font-size:0.85em;
+	line-height:1.444;
+	margin-top:9px;
+	text-align:center;
+}
+table.example {
+	margin-left:50px;
+}
+li.example {
+	font-size:0.85em;
+	text-align:justify;
+	margin-left:80px;
+}
+div.eqn-block {
+	font-size:0.85em;
+	font-weight:300;
+	line-height:1.444;
+	margin-top:9px;
+	text-align:center;
+}
+div.eqn-block_equation {
+	font-size:0.85em;
+	font-weight:300;
+	line-height:1.444;
+	margin:10px 0px 10px 80px;
+	text-align:left;
+}
+
+/* List styling for regular body elements*/
+ul {
+	list-style-type:square;
+	list-style-position:outside;
+}
+ol {
+	list-style-position:outside;
+}
+li {
+	margin-left:20px;
+}
+li.subnumber {
+	margin-left:0px;
+	list-style-type:lower-alpha;
+}
+li.subbullet {
+	margin-left:0px;
+}
+li.correct {
+    font-weight: bold;
+    font-size: 95%;
+}
+li.q_distractor {
+	list-style-type:lower-alpha;
+	margin-left:0px;
+}
+/* Table styling */
+table {
+	border-collapse:collapse;
+	margin-left:20px;
+}
+th {
+	border:1px solid #000;
+	padding:0.5em;
+	font-size:.85em;
+}
+th.no_border {
+	border-style:none;
+	padding:5px 20px 5px 5px;
+}
+td {
+	border:1px solid #000;
+	padding:5px 20px 5px 5px;
+	vertical-align:top;
+	text-align:center;
+}
+td.cell_left {
+	border:1px solid #000;
+	padding:5px 20px 5px 5px;
+	vertical-align:top;
+	text-align:left;
+}
+td.cell_right {
+	border:1px solid #000;
+	padding:5px 20px 5px 5px;
+	vertical-align:top;
+	text-align:right;
+}
+td.no_border {
+	border-style:none;
+	padding:5px 20px 5px 5px;
+	vertical-align:top;
+	text-align:center;
+}
+td.no_border_left {
+	border-style:none;
+	padding:5px 20px 5px 5px;
+	vertical-align:top;
+	text-align:left;
+}
+/* Figure styles */
+.figure_title {
+	-epub-hyphens:none;
+	font-size:1em;
+	font-weight:900;
+	line-height:1.263;
+	margin:20px 0px 0px 20px;
+	page-break-after:avoid;
+}
+.figure_body {
+	font-size:0.85em;
+	
+	line-height:1.412;
+	margin:3px 0px 0px 20px;
+}
+.figure_body_flush_left {
+	font-size:0.85em;
+	font-weight:300;
+	line-height:1.412;
+	margin:3px 0px 0px 0px;
+}
+p.figure_inline {
+	font-size:0.85em;
+	margin:12px 0px 3px 0px;
+	text-align:center;
+}
+.figure_list_unnumbered {
+	font-size:1em;
+	margin-left:15px;
+}
+li.figure_bullet {
+	font-size:0.85em;
+	list-style-type:square;
+	margin-left:15px;
+}
+li.figure_list_number {
+	font-size:0.85em;
+	margin-left:15px;
+}
+p.figure_source{
+	font-size:.75em;
+	margin-top:3px;
+	margin-bottom:20px;
+}
+/* Margin Notes */
+div.MN_box {
+	text-align:left;
+	display:inline-block;
+	background-color:#e6e7e8;
+	border-top:5px solid #7f7f7f;
+	margin:10px 0px 10px 20px;
+	padding:5px 10px 5px 10px;
+}
+.MN_body
+	{
+	font-size:0.8em;
+	font-weight:300;
+	line-height:1.444;
+	margin:4px 0px 10px 0px;
+	text-align:justify;	
+	}
+li.MN_box {
+	font-size:0.8em;
+	font-weight:300;
+	text-align:justify;
+	margin-left:0px;
+	margin-top:0px;
+}
+/* Review Exercise styling */
+.fill_term {
+}
+li.matching_num {
+	line-height:1.13;
+	margin:0px 0px 7px 45px;
+	text-indent:-7px;
+}
+li.matching_ltr {
+	line-height:1.043;
+	margin:0px 9px 6px 28px;
+	text-indent:-19px;
+}
+/*gray boxes */
+div.gray {
+	background-color:#e6e7e8;
+	margin:10px 10px 10px 40px;
+	padding:5px;
+}
+/* Character styles */
+b {
+}
+.bold_italic {
+	font-weight:bold;
+	font-style:italic;
+}
+strong {
+}
+.underline {
+	text-decoration:underline;
+}
+.double_underline {
+	text-decoration:underline;
+	border-bottom:1px solid #000;
+}
+.overline {
+	text-decoration:overline;
+}
+.strike {
+	text-decoration:line-through;
+}
+sup {
+	font-size:70%;
+}
+sub {
+	font-size:70%;
+}
+i {
+}
+em {
+}
+span.denominator {
+	vertical-align:sub;
+	font-size:58%;
+}
+span.numerator {
+	vertical-align:super;
+	font-size:58%;
+}
+
+img {
+	margin:5px 0px 10px 20px;
+}
+/* Image sizing */
+.image2 {
+	width:2%;
+	vertical-align:middle;
+}
+.image5 {
+	width:5%;
+	vertical-align:middle;
+}
+.image10 {
+	width:10%;
+	vertical-align:middle;
+}
+.image15 {
+	width:15%;
+	vertical-align:middle;
+}
+.image25 {
+	width:25%;
+	vertical-align:middle;
+}
+img.image40 {
+	width:40%;
+	vertical-align:middle;
+}
+img.image60 {
+	width:60%;
+	vertical-align:middle;
+}
+img.image70 {
+	width:70%;
+	vertical-align:middle;
+}
+img.image90 {
+	width:90%;
+	vertical-align:middle;
+}
+
+

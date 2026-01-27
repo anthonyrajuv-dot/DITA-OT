@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?><?workdir /C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\temp\pdf\documentation\d4p-users-guide\frontmatter?><?workdir-uri file:/C:/Users/PBentley/Downloads/dita4publishers-0.9.18/documentation/temp/pdf/documentation/d4p-users-guide/frontmatter/?><?path2project ..\..\?><?path2project-uri ../../?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="topic-1" ditaarch:DITAArchVersion="1.2" domains="(topic hi-d)                             (topic ut-d)                             (topic indexing-d)                            (topic hazard-d)                            (topic abbrev-d)                            (topic pr-d)                             (topic sw-d)                            (topic ui-d)    " class="- topic/topic " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\frontmatter\coverpage.xml" xtrc="topic:1;3:21">
+  <title class="- topic/title " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\frontmatter\coverpage.xml" xtrc="title:1;4:11"/>
+  <titlealts class="- topic/titlealts " xtrc="titlealts:1;5:14" xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\frontmatter\coverpage.xml">
+    <navtitle class="- topic/navtitle " xtrc="navtitle:1;6:15" xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\frontmatter\coverpage.xml">DITA For Publishers User Guide</navtitle>
+  </titlealts>
+  <prolog class="- topic/prolog "><author class="- topic/author " xtrc="author:1;5:21" xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide.ditamap">W. Eliot Kimber</author><metadata class="- topic/metadata "><prodinfo class="- topic/prodinfo " xtrc="prodinfo:1;7:27" xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide.ditamap">
+    <prodname class="- topic/prodname " xtrc="prodname:1;8:15" xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide.ditamap">DITA For Publishers</prodname>
+    <vrmlist class="- topic/vrmlist " xtrc="vrmlist:1;9:14" xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide.ditamap">
+      <vrm class="- topic/vrm " version="0.9.16" xtrc="vrm:1;11:27" xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide.ditamap"/>
+    </vrmlist>
+    </prodinfo></metadata></prolog><body class="- topic/body " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\frontmatter\coverpage.xml" xtrc="body:1;8:9">
+    <image href="../images/cover-graphic.jpg" id="image_0cc0cb5f-fa36-477e-9408-a5a2eaa72155" placement="inline" class="- topic/image " xtrf="C:\Users\PBentley\Downloads\dita4publishers-0.9.18\documentation\d4p-users-guide\frontmatter\coverpage.xml" xtrc="image:1;11:56"/>
+  </body>
+</topic>

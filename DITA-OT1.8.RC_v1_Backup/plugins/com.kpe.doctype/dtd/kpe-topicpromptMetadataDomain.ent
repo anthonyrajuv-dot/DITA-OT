@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ============================================================= -->
+<!--                    HEADER                                     -->
+<!-- ============================================================= -->
+<!--  MODULE:    KPE DITA topicprompt Metadata Domain               -->
+<!--  VERSION:   1.0                                               -->
+<!--  CM VERSION 2.1                                               -->
+<!--  DATE:      July 2024                                       -->
+<!--                                                               -->
+<!-- ============================================================= -->
+
+<!-- ============================================================= -->
+<!--                    PUBLIC DOCUMENT TYPE DEFINITION            -->
+<!--                    TYPICAL INVOCATION                         -->
+<!--                                                               -->
+<!--  Refer to this file by the following public identifier or an 
+      appropriate system identifier 
+PUBLIC "-//KPE//ENTITIES DITA KPE topicprompt Metadata Domain//EN"
+      Delivered as file "kpe-topicpromptMetadataDomain.ent"          -->
+
+<!-- ============================================================= -->
+<!-- SYSTEM:     Darwin Information Typing Architecture (DITA)     -->
+<!--                                                               -->
+<!-- PURPOSE:    Declaring the entities                            -->
+<!--             for KPE topicprompt Metadata                       -->
+<!--                                                               -->
+<!-- ORIGINAL CREATION DATE:                                       -->
+<!--             July 2024                                       -->
+<!--                                                               -->
+<!--             (C) Copyright Kaplan 2024          .              -->
+<!--             All Rights Reserved.                              -->
+<!--                                                               -->
+<!-- UPDATED:                                                      -->
+<!-- ============================================================= -->
+
+<!-- ============================================================= -->
+<!--               ELEMENT EXTENSION ENTITY DECLARATIONS           -->
+<!-- ============================================================= -->
+
+<!ENTITY % kpe-topicpromptMeta-d-data      "topicprompt">
+
+
+<!-- ============================================================= -->
+<!--                    DOMAIN ENTITY DECLARATION                  -->
+<!-- ============================================================= -->
+
+
+<!ENTITY kpe-topicpromptMeta-d-att 
+  "(topic kpe-topicpromptMeta-d)"
+>
+
+<!-- ========== End KPE topicprompt Domain Entities ========== -->
+
