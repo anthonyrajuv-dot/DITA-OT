@@ -2053,13 +2053,14 @@
 		<xsl:variable name="element_name" select="local-name()"/>
 		
 		<xsl:if test="self::lcPrompt2">
-			<xsl:call-template name="gmat_QuestionContext">
+			<!-- [ARV: 29-01-2026] Do nothing as we have Prompts master to handle -->
+			<!--<xsl:call-template name="gmat_QuestionContext">
 				<xsl:with-param name="Q_prompt" select="lcQuestionContext2"/>
 				<xsl:with-param name="question_item_file" select="$question_item_file"/>
 				<xsl:with-param name="Question-Context-Name" select="$Question-Context-Name"/>
 				<xsl:with-param name="element_name" select="$element_name"/>		 		
 				<xsl:with-param name="q_number" select="$q_number"/>
-			</xsl:call-template>
+			</xsl:call-template>-->
 		</xsl:if>
 	</xsl:template>
 	
