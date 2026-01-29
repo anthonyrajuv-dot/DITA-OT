@@ -16,13 +16,7 @@
 	
 	
 	<xsl:variable name="los_summary" select="/supermap/los_summary" as="element()*"/>
-    <xsl:variable name="prompts_summary" select="/supermap/prompts_summary" as="element()*"/>
-    
-	<xsl:variable name="createdDate" select="/kpe-question/prolog/critdates/created/@date" />
-	<xsl:variable name="modifiedDate" select="/kpe-question/prolog/critdates/created/@modified" />
-	<xsl:variable name="stateData" select="/kpe-question/prolog/metadata/othermeta/@state" />
-	<xsl:variable name="ContentData" select="/kpe-question/prolog/metadata/othermeta/@content" />
-	<xsl:variable name="eassyTypeData" select="/kpe-question/prolog/metadata/othermeta/@eassyType" />
+   <xsl:variable name="prompts_summary" select="/supermap/prompts_summary" as="element()*"/>
 	
 	
 	<xsl:variable name="prod-subtype" select="/supermap/@prodsubtype"/>    
@@ -486,18 +480,6 @@
                     select="concat('../los/',/supermap/@name_base,'_LOG',$los_number,'_LO',$los_number,'.dita')"
                 />
             </xsl:attribute>
-        </data>
-		<data name="questionAttribute">
-            <xsl:attribute name="key"><xsl:value-of select="{$stateData}"/></xsl:attribute>
-            <xsl:attribute name="value"><xsl:value-of select="{$ContentData}"/></xsl:attribute>
-        </data>
-		<data name="questionAttribute">
-            <xsl:attribute name="key"><xsl:value-of select="'Month'"/></xsl:attribute>
-            <xsl:attribute name="value"><xsl:value-of select="{$createdDate}"/></xsl:attribute>
-        </data>
-		<data name="questionAttribute">
-            <xsl:attribute name="key"><xsl:value-of select="'Month'"/></xsl:attribute>
-            <xsl:attribute name="value"><xsl:value-of select="{$eassyTypeData}"/></xsl:attribute>
         </data>
     </xsl:template>
     
@@ -2041,8 +2023,8 @@
         </xsl:apply-templates>
     </xsl:template>
 	
-	
-	<xsl:template match="lcPrompt2">
+	<!-- [ARV: 29-01-2026] Do nothing as we have Prompts master to handle -->
+	<!--<xsl:template match="lcPrompt2">
 		<xsl:param name="unit"/>
 		<xsl:param name="q_number"/>
 		<xsl:param name="task_number"/>
@@ -2053,16 +2035,16 @@
 		<xsl:variable name="element_name" select="local-name()"/>
 		
 		<xsl:if test="self::lcPrompt2">
-			<!-- [ARV: 29-01-2026] Do nothing as we have Prompts master to handle -->
-			<!--<xsl:call-template name="gmat_QuestionContext">
+			<!-\- [ARV: 29-01-2026] Do nothing as we have Prompts master to handle -\->
+			<!-\-<xsl:call-template name="gmat_QuestionContext">
 				<xsl:with-param name="Q_prompt" select="lcQuestionContext2"/>
 				<xsl:with-param name="question_item_file" select="$question_item_file"/>
 				<xsl:with-param name="Question-Context-Name" select="$Question-Context-Name"/>
 				<xsl:with-param name="element_name" select="$element_name"/>		 		
 				<xsl:with-param name="q_number" select="$q_number"/>
-			</xsl:call-template>-->
+			</xsl:call-template>-\->
 		</xsl:if>
-	</xsl:template>
+	</xsl:template>-->
 	
 	
 
