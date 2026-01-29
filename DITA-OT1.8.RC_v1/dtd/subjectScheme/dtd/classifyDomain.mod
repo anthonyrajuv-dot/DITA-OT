@@ -51,7 +51,7 @@ PUBLIC "-//OASIS//ELEMENTS DITA Map Subject Classification Domain//EN"
 <!ENTITY % topicCell           "topicCell">
 <!ENTITY % subjectCell         "subjectCell">
 <!ENTITY % skill         		  "skill">
-<!ENTITY % scoringGroup         "scoringGroup">
+<!ENTITY % scoreWeight         "scoreWeight">
 
 <!-- ============================================================= -->
 <!--                    ELEMENT DECLARATIONS                       -->
@@ -163,19 +163,19 @@ PUBLIC "-//OASIS//ELEMENTS DITA Map Subject Classification Domain//EN"
 
 
 
-<!-- [ARV:16-01-2026] Added for Capturing ScoringGroup -->
-<!--                    LONG NAME: ScoringGroup                   -->
-<!ENTITY % scoringGroup.content
+<!-- [ARV:16-01-2026] Added for Capturing scoreWeighting -->
+<!--                    LONG NAME: Score Weighting                   -->
+<!ENTITY % scoreWeight.content
                        "EMPTY"
 >
-<!ENTITY % scoringGroup.attributes
-             "group 
+<!ENTITY % scoreWeight.attributes
+             "value 
                         CDATA 
                                   #IMPLIED
              %univ-atts;"
 >
-<!ELEMENT scoringGroup    %scoringGroup.content;>
-<!ATTLIST scoringGroup    %scoringGroup.attributes;>
+<!ELEMENT scoreWeight    %scoreWeight.content;>
+<!ATTLIST scoreWeight    %scoreWeight.attributes;>
 
 
 
@@ -456,7 +456,7 @@ PUBLIC "-//OASIS//ELEMENTS DITA Map Subject Classification Domain//EN"
     class CDATA "+ map/relcell classify-d/subjectCell ">
 <!ATTLIST skill %global-atts;
     class CDATA "+ map/skill classify-d/skill ">
-<!ATTLIST scoringGroup %global-atts;
-    class CDATA "+ map/scoringGroup classify-d/scoringGroup ">
+<!ATTLIST scoreWeight %global-atts;
+    class CDATA "+ map/scoreWeight classify-d/scoreWeight ">
 
 <!-- ================== DITA Subject Classification Domain  ====== -->

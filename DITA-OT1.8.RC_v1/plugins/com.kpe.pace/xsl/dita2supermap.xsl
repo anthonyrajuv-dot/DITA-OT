@@ -1059,7 +1059,7 @@
           <xsl:apply-templates select="bloomsMap"/> 
           <xsl:apply-templates select="sortOrder"/>
           <xsl:apply-templates select="questionType"/>
-        	 <xsl:apply-templates select="scoringGroup"/>
+        	 <xsl:apply-templates select="scoreWeight"/>
         </topicref>
     </xsl:template>
     
@@ -1156,12 +1156,13 @@
 	
 	
 	<!-- [ARV: 17-01-2026] Added as new update for BAR's Scoring Group -->
-	<xsl:template match="scoringGroup">
-		<scoringGroup>
-			<xsl:attribute name="group">
-				<xsl:value-of select="@group"/>
+	<!-- [ARV: 29-01-2026] Updated attribute name to scoreWeight -->
+	<xsl:template match="scoreWeight">
+		<scoreWeight>
+			<xsl:attribute name="value">
+				<xsl:value-of select="@value"/>
 			</xsl:attribute>
-		</scoringGroup>
+		</scoreWeight>
 	</xsl:template>
 	
 	<xsl:template match="essayData">

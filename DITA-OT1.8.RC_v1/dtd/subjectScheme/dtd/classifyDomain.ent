@@ -41,7 +41,7 @@ PUBLIC "-//OASIS//ENTITIES DITA Map Subject Classification Domain//EN"
 <!-- ============================================================= -->
 
 <!ENTITY % classify-d-topicref
-              "topicsubject | topicapply | topicprompt | skill | scoringGroup"
+              "topicsubject | topicapply | topicprompt | skill | scoreWeight"
 >
 <!ENTITY % classify-d-reltable 
               "topicSubjectTable"

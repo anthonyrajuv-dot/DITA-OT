@@ -2,7 +2,7 @@
 <!-- ============================================================= -->
 <!--                    HEADER                                     -->
 <!-- ============================================================= -->
-<!--  MODULE:    KPE DITA scoringGroup Metadata Domain               -->
+<!--  MODULE:    KPE DITA scoreWeight Metadata Domain               -->
 <!--  VERSION:   1.0                                               -->
 <!--  CM VERSION 2.1                                               -->
 <!--  DATE:      August 2015                                       -->
@@ -15,14 +15,14 @@
 <!--                                                               -->
 <!--  Refer to this file by the following public identifier or an 
       appropriate system identifier 
-PUBLIC "-//KPE//ELEMENTS DITA KPE scoringGroup Metadata Domain//EN"
-      Delivered as file "kpe-scoringGroupMetadataDomain.mod"         -->
+PUBLIC "-//KPE//ELEMENTS DITA KPE scoreWeight Metadata Domain//EN"
+      Delivered as file "kpe-scoreWeightMetadataDomain.mod"         -->
 
 <!-- ============================================================= -->
 <!-- SYSTEM:     Darwin Information Typing Architecture (DITA)     -->
 <!--                                                               -->
 <!-- PURPOSE:    Declaring the elements and specialization         -->
-<!--             attributes for KPE scoringGroup Metadata            -->
+<!--             attributes for KPE scoreWeight Metadata            -->
 <!--                                                               -->
 <!-- ORIGINAL CREATION DATE:                                       -->
 <!--             August 2024                                       -->
@@ -38,7 +38,7 @@ PUBLIC "-//KPE//ELEMENTS DITA KPE scoringGroup Metadata Domain//EN"
 <!-- ============================================================= -->
 
 
-<!ENTITY % scoringGroup                 "scoringGroup"                 >
+<!ENTITY % scoreWeight                 "scoreWeight"                 >
 
 <!-- ============================================================= -->
 <!--                    DOMAINS ATTRIBUTE OVERRIDE                 -->
@@ -48,27 +48,27 @@ PUBLIC "-//KPE//ELEMENTS DITA KPE scoringGroup Metadata Domain//EN"
 <!--                    ELEMENT DECLARATIONS                       -->
 <!-- ============================================================= -->
 
-<!-- KPE scoringGroup                                                -->
-<!-- doc:scoringGroup support                                        -->
-<!ENTITY % scoringGroup.content
+<!-- KPE scoreWeight                                                -->
+<!-- doc:scoreWeight support                                        -->
+<!ENTITY % scoreWeight.content
                        "(#PCDATA)*"
 >
-<!ENTITY % scoringGroup.attributes
+<!ENTITY % scoreWeight.attributes
            "keyref CDATA #IMPLIED
-            code CDATA #IMPLIED
-            %univ-atts;"
+           %univ-atts;
+           "
 >
 
 
-<!ELEMENT scoringGroup    %scoringGroup.content;>
-<!ATTLIST scoringGroup    %scoringGroup.attributes;>
+<!ELEMENT scoreWeight    %scoreWeight.content;>
+<!ATTLIST scoreWeight    %scoreWeight.attributes;>
 
 
 <!-- ============================================================= -->
 <!--                    SPECIALIZATION ATTRIBUTE DECLARATIONS      -->
 <!-- ============================================================= -->
 
-<!ATTLIST scoringGroup       %global-atts; 
-    class CDATA "+ topic/data kpe-scoringGroupMeta-d/scoringGroup ">
+<!ATTLIST scoreWeight       %global-atts; 
+    class CDATA "+ topic/data kpe-scoreWeightMeta-d/scoreWeight ">
 
    

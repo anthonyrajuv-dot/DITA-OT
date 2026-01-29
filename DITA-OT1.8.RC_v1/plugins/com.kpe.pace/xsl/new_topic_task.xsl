@@ -864,7 +864,8 @@
             </xsl:apply-templates>
 			
 			<!-- [ARV 16-01-2026: Added as new update for BAR's Scoring Group] -->
-				<xsl:apply-templates select="scoringGroup" mode="scoringGroup-mode">
+			<!-- [ARV 29-01-2026: Updated attribute value to scoreWeighting ] -->
+			<xsl:apply-templates select="scoreWeight" mode="scoreWeight-mode">
 					<xsl:with-param name="q_number" select="$q_number"/>
 					<xsl:with-param name="base_list" select="$base_list"/>
 					<xsl:with-param name="q_id_base" select="replace($file_id_base,'SAME_ESSAY_','')"/>
@@ -1157,7 +1158,8 @@
 	
 	
 	<!-- [ARV: 17-01-2026] Added as new update for BAR's Scoring Group -->
-	<xsl:template match="scoringGroup" mode="scoringGroup-mode">
+	<!-- [ARV: 29-01-2026] Updated attribute name to scoreWeighting -->
+	<xsl:template match="scoreWeight" mode="scoreWeight-mode">
 		<xsl:param name="q_number"/>
 		<xsl:param name="base_list" as="element()*"/>
 		<xsl:param name="q_id_base"/>
@@ -1186,10 +1188,10 @@
 			</xsl:choose>
 		</xsl:variable>
 		
-		<xsl:variable name="scoringGroupVal" select="@group"/>
-		<xsl:if test="$scoringGroupVal != ''">
-			<data name="scoringGroup">
-				<xsl:attribute name="value" select="$scoringGroupVal"/>
+		<xsl:variable name="scoreWeight" select="@value"/>
+		<xsl:if test="$scoreWeight != ''">
+			<data name="scoreWeighting">
+				<xsl:attribute name="value" select="$scoreWeight"/>
 				<xsl:attribute name="datatype" select="$datatype"/>
 			</data>
 		</xsl:if>
@@ -2291,13 +2293,14 @@
 		<xsl:variable name="element_name" select="local-name()"/>
 		
 		<xsl:if test="self::lcPrompt2">
-			<xsl:call-template name="gmat_QuestionContext">
+			<!-- [ARV: 29-01-2026] Do nothing as we have Prompts master to handle -->
+			<!--<xsl:call-template name="gmat_QuestionContext">
 				<xsl:with-param name="Q_prompt" select="lcQuestionContext2"/>
 				<xsl:with-param name="question_item_file" select="$question_item_file"/>
 				<xsl:with-param name="Question-Context-Name" select="$Question-Context-Name"/>
 				<xsl:with-param name="element_name" select="$element_name"/>		 		
 				<xsl:with-param name="q_number" select="$q_number"/>
-			</xsl:call-template>
+			</xsl:call-template>-->
 		</xsl:if>
 	</xsl:template>
 	
