@@ -364,7 +364,8 @@ PUBLIC "-//OASIS//ELEMENTS DITA Common Elements//EN"
    %basic.ph; | 
    %data.elements.incl; | 
    %foreign.unknown.incl; | 
-   %image; | 
+   %image; |
+   %spaceX; | 
    %txt.incl;
   "
 >
