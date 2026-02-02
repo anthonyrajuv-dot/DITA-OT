@@ -81,7 +81,7 @@
                         <xsl:apply-templates
                             select="*[contains(@class,' topic/titlealts ')]/*[contains(@class,' topic/navtitle ')]"
                         />
-                    </xsl:when>
+                    </xsl:when>                		
                     <xsl:otherwise>
                         <xsl:apply-templates select="*[contains(@class,' topic/title ')]"/>
                     </xsl:otherwise>
@@ -2181,9 +2181,7 @@
         		
         		
         		<xsl:if test="not(lcOpenQuestion2) and not(lcMultipleSelect2)">
-        			 <xsl:message>ARV: Tag selected here is
-        			 	<xsl:value-of select="name()"></xsl:value-of>
-        			 </xsl:message>
+        			 <xsl:message>ARV: Tag selected here is <xsl:value-of select="name()"></xsl:value-of></xsl:message>
                 <xsl:call-template name="get_correct_multiple"/>
             </xsl:if>
         		<xsl:if test="lcMultipleSelect2">
@@ -2674,7 +2672,7 @@
                         	</xsl:if>
                         </prompt>
                     	
-                    	<xsl:message>isSPE: <xsl:value-of select="$isSPE"/></xsl:message>
+                    	<xsl:message>[ARV-Info] isSPE: <xsl:value-of select="$isSPE"/></xsl:message>
                         
 			<!-- BAR Essay	 -->
          <xsl:if test="(lcOpenAnswer2/child::essaySection) and not(contains(@orig_href,'.pdf.dita')) and not($offering_type='other') ">
@@ -3492,11 +3490,12 @@
 
             <xsl:choose>
                 <xsl:when test="not(empty($navtitle))">
+                	<xsl:message>ARV: Navtitle is <xsl:value-of select="$navtitle"/></xsl:message>
                     <title>
-                        <xsl:apply-templates select="$navtitle" mode="identity"/>
+                        <xsl:apply-templates select="$navtitle" mode="identity"/>                    		
                     </title>
-                </xsl:when>
-                <xsl:otherwise>
+                </xsl:when>            	
+                <xsl:otherwise>                	
                     <xsl:apply-templates select="*[contains(@class,' topic/title ')]"
                         mode="new_tt_common"/>
                 </xsl:otherwise>
@@ -3565,6 +3564,11 @@
     </xsl:template>
 
 
+	<!-- [ARV: 30-01-2025] Added to enable space between two ph tags -->
+	<xsl:template match="spaceX" mode="identity" priority="100">
+		<xsl:message>[ARV-info] spaceX is working..</xsl:message>
+		<xsl:text> </xsl:text>
+	</xsl:template>
 
 
 <!-- ARV: 07-05-2025 Updated for Prompts (START)-->
@@ -4041,7 +4045,7 @@
 		<xsl:variable name="string_7" select="translate($string_6,'&#10;',' ')"/>
 		<xsl:variable name="string_8" select="replace($string_7,'  *',' ')"/>
 		<!--        <xsl:message>Replaced characters in: <xsl:value-of select="$string_8"/>.</xsl:message>-->
-		<xsl:value-of select="$string_8" disable-output-escaping="yes"/>
+		<xsl:value-of select="$string_8" disable-output-escaping="yes"/>		
 	</xsl:template>
 
     <!-- kpe-assessmentOverviewBody -->
@@ -4451,9 +4455,23 @@
 
 
     <!-- UL should be passed with no attributes. -->
-    <xsl:template match="ul" mode="identity" priority="100">
+	<!-- [ARV: Started editing this template ] -->
+	<xsl:template match="ul" mode="identity" priority="100">
         <xsl:copy>
-            <xsl:apply-templates mode="identity"/>
+			<xsl:choose>
+				<xsl:when test="@outputclass='emdash'">
+					<xsl:attribute name="type">
+						<xsl:text>–</xsl:text>
+					</xsl:attribute>
+					<!--<xsl:for-each select="li">
+						<li><span style="margin-left:-1.2em;">—</span><xsl:text>&#x00A0;</xsl:text></li>
+					</xsl:for-each>-->		
+					<xsl:apply-templates mode="identity"/>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:apply-templates mode="identity"/>
+				</xsl:otherwise>
+			</xsl:choose>        	
         </xsl:copy>
     </xsl:template>
 

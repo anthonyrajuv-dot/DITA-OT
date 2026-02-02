@@ -279,9 +279,9 @@ PUBLIC "-//OASIS//ELEMENTS DITA Common Elements//EN"
   "#PCDATA | 
    %basic.ph.noxref; | 
    %data.elements.incl; | 
-   %foreign.unknown.incl; | 
-   %image;
-  "
+   %foreign.unknown.incl; |
+   %spaceX; | 
+   %image;"
 >
 <!ENTITY % xreftext.cnt 
   "#PCDATA | 
@@ -1859,6 +1859,17 @@ PUBLIC "-//OASIS//ELEMENTS DITA Common Elements//EN"
 <!ATTLIST xref    %xref.attributes;>
 
 
+<!-- [ARV: 30-01-2026] Added to enable space between ph elements -->
+<!--                    LONG NAME: SpaceX                      -->
+<!ENTITY % spaceX.content
+                       "EMPTY"
+>
+<!ENTITY % spaceX.attributes
+             "outputclass CDATA #IMPLIED"
+>
+<!ELEMENT spaceX    %spaceX.content;>
+<!ATTLIST spaceX    %spaceX.attributes;>
+
 
 <!ENTITY % tableXML 
   PUBLIC  "-//OASIS//ELEMENTS DITA Exchange Table Model//EN" 
@@ -1933,6 +1944,7 @@ PUBLIC "-//OASIS//ELEMENTS DITA Common Elements//EN"
 <!ATTLIST ul        %global-atts;  class CDATA "- topic/ul "         >
 <!ATTLIST unknown   %global-atts;  class CDATA "- topic/unknown "    >
 <!ATTLIST xref      %global-atts;  class CDATA "- topic/xref "       >
+<!ATTLIST spaceX      %global-atts;  class CDATA "- topic/spaceX "       >
 
 
 <!-- ================== End Common Elements Module  ============== -->

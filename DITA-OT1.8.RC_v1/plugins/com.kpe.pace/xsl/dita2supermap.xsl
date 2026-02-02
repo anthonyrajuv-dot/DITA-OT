@@ -1059,7 +1059,7 @@
           <xsl:apply-templates select="bloomsMap"/> 
           <xsl:apply-templates select="sortOrder"/>
           <xsl:apply-templates select="questionType"/>
-        	 <xsl:apply-templates select="scoreWeight"/>
+        	 <xsl:apply-templates select="scoreWeight"/>        	 
         </topicref>
     </xsl:template>
     
@@ -1216,6 +1216,7 @@
             </xsl:attribute>
         </questionType>
     </xsl:template>
+	
   
     <xsl:template name="find_unique_los">
         <xsl:param name="has_intro"/>
@@ -1369,14 +1370,14 @@
         <xsl:param name="topic_id"/>
         
         
-        <xsl:copy>
+        <xsl:copy>        		
             <xsl:apply-templates select="@*" mode="chunk_topic"/>
             <xsl:apply-templates select="node()" mode="chunk_topic">
                 <xsl:with-param name="chunk_id" select="$chunk_id"/>
                 <xsl:with-param name="counter" select="$counter"/>
                 <xsl:with-param name="chunk_map" select="$chunk_map"/>
                 <xsl:with-param name="topic_id" select="$topic_id"/>
-            </xsl:apply-templates>
+            </xsl:apply-templates>        	   
 
             <!-- Add "if" for subsequent entries. -->
             <xsl:if test="$counter &gt; 1">
