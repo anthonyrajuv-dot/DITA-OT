@@ -4487,7 +4487,7 @@
 
 
     <!-- UL should be passed with no attributes. -->
-	<!-- [ARV: Started editing this template ] -->
+	<!-- [ARV: 05-02-2025] For including endash and square list markers -->
 	<xsl:template match="ul" mode="identity" priority="100">
 	    <xsl:variable name="list-margin">
 	        <xsl:choose>

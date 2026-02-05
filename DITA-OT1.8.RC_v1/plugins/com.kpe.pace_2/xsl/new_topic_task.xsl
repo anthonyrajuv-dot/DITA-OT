@@ -2484,11 +2484,66 @@
     
     
     <!-- UL should be passed with no attributes. -->
-    <xsl:template match="ul" mode="identity" priority="100">
-        <xsl:copy>
-            <xsl:apply-templates mode="identity"/>
-        </xsl:copy>
-    </xsl:template>
+	<!-- [ARV: 05-02-2025] For including endash and square list markers -->
+	<xsl:template match="ul" mode="identity" priority="100">
+		<xsl:variable name="list-margin">
+			<xsl:choose>
+				<xsl:when test="parent::li">
+					<xsl:text>margin-top: 5px; margin-bottom: 5px; </xsl:text>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:text>margin-bottom: 10px; </xsl:text>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
+		<xsl:variable name="default-list-style">
+			<xsl:text>list-style-type: disc; </xsl:text>
+		</xsl:variable>
+		<xsl:copy>            
+			<xsl:choose>
+				<xsl:when test="@outputclass='ul_endash'">
+					<xsl:attribute name="type">
+						<xsl:text>none</xsl:text>
+					</xsl:attribute>
+					<xsl:attribute name="style">
+						<xsl:value-of select="$list-margin"/>
+					</xsl:attribute>				    
+					<xsl:for-each select="li">
+						<xsl:if test="position() != last()">
+							<li style="margin-bottom: 5px;">
+								<span style="margin-left:-1em;">&#8211;&#8194;</span>
+								<xsl:apply-templates mode="identity"/>
+							</li>
+						</xsl:if>
+						<xsl:if test="position() = last()">
+							<li>
+								<span style="margin-left:-1em;">&#8211;&#8194;</span>
+								<xsl:apply-templates mode="identity"/>
+							</li>
+						</xsl:if>
+					</xsl:for-each>
+				</xsl:when>
+				<xsl:when test="@outputclass='ul_square'">
+					<xsl:attribute name="type">
+						<xsl:text>none</xsl:text>
+					</xsl:attribute>
+					<xsl:attribute name="style">
+						<xsl:value-of select="$list-margin"/>
+						<xsl:value-of select="'list-style-type: square; '"/>
+					</xsl:attribute>
+					<xsl:apply-templates mode="identity"/>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:if test="parent::li/parent::ul[@outputclass='ul_endash' or @outputclass='ul_square']">
+						<xsl:attribute name="style">
+							<xsl:value-of select="$default-list-style,$list-margin"/>
+						</xsl:attribute>
+					</xsl:if>
+					<xsl:apply-templates mode="identity"/>
+				</xsl:otherwise>
+			</xsl:choose>        	
+		</xsl:copy>
+	</xsl:template>
 
     <!-- ol may have an outputclass, which needs to be output as @type, with modified values. -->
     <xsl:template match="ol" mode="identity vignette" priority="100">
