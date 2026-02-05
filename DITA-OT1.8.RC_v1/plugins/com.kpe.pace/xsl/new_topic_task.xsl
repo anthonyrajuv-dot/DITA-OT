@@ -23,6 +23,7 @@
 	
 	<xsl:variable name="prod-subtype" select="/supermap/@prodsubtype"/>
 	<xsl:variable name="trunk-identifier" select="/supermap/@trunk-identifier"/>
+    <xsl:variable name="scoreWeight" select="/supermap/@scoreWeight"/>
     
 	
 
@@ -594,16 +595,46 @@
             </xsl:choose>
         </xsl:variable>
 			
+		<xsl:variable name="t-weights" select="tokenize($scoreWeight,'\|')"/>
 			
-		<xsl:variable name="question-type" select="document(@orig_href)/kpe-question/kpe-questionBody/lcInteraction"/>
+		<xsl:variable name="scoreWeightMCQ">
+		    <xsl:if test="$scoreWeight != '' "><xsl:value-of select="$t-weights[1]"/></xsl:if>
+		</xsl:variable>
+		    
+		    <xsl:variable name="scoreWeightIQS">
+		        <xsl:if test="$scoreWeight != '' "><xsl:value-of select="$t-weights[2]"/></xsl:if>
+		    </xsl:variable>
+		    
+		    <xsl:variable name="scoreWeightPT">
+		        <xsl:if test="$scoreWeight != '' "><xsl:value-of select="$t-weights[3]"/></xsl:if>
+		    </xsl:variable>
 			
-		<xsl:variable name="prompt-type" select="document(@orig_href)/kpe-prompt/kpe-promptBody/lcInteraction"/>
+        <xsl:variable name="scoreWeightVal">
+            <xsl:choose>
+                <xsl:when test="topicprompt">
+                    <xsl:message>[K:info] Integrated Question Set</xsl:message>
+                    <xsl:value-of select="$scoreWeightIQS"/>
+                </xsl:when>
+                <xsl:when test="document(@orig_href)/kpe-question[@questiontype='PT']">
+                    <xsl:message>[K:info] Performance Task Library</xsl:message>
+                    <xsl:value-of select="$scoreWeightPT"/>
+                </xsl:when>
+                <xsl:when test="document(@orig_href)/kpe-question/kpe-questionBody/lcInteraction[lcSingleSelect2]">
+                    <xsl:message>[K:info] Multi Choice Quesiton</xsl:message>
+                    <xsl:value-of select="$scoreWeightMCQ"/>
+                </xsl:when>
+            </xsl:choose>
+        </xsl:variable>
+			
+			<xsl:variable name="question-type" select="document(@orig_href)/kpe-question/kpe-questionBody/lcInteraction"/>
+			<xsl:variable name="prompt-type" select="document(@orig_href)/kpe-prompt/kpe-promptBody/lcInteraction"/>
 			
 			
     	<xsl:variable name="question_title">
     		<xsl:value-of select="document(@orig_href)/kpe-question/title"/>
     	</xsl:variable>
-		<xsl:message>ARV25: <xsl:value-of select="@orig_href"/></xsl:message>
+		    
+		    <xsl:message>ARV25: <xsl:value-of select="@orig_href"/></xsl:message>
     	
     	
         <xsl:message>file_id_base is: <xsl:value-of select="$file_id_base"/>.</xsl:message>
@@ -865,12 +896,14 @@
 			
 			<!-- [ARV 16-01-2026: Added as new update for BAR's Scoring Group] -->
 			<!-- [ARV 29-01-2026: Updated attribute value to scoreWeighting ] -->
-			<xsl:apply-templates select="scoreWeight" mode="scoreWeight-mode">
-					<xsl:with-param name="q_number" select="$q_number"/>
-					<xsl:with-param name="base_list" select="$base_list"/>
-					<xsl:with-param name="q_id_base" select="replace($file_id_base,'SAME_ESSAY_','')"/>
-					<xsl:with-param name="skill-code" select="$skill-code"/>
-				</xsl:apply-templates>
+                <xsl:if test="$scoreWeight != '' ">
+                    <xsl:call-template name="scoreWeight">
+                        <xsl:with-param name="q_number" select="$q_number"/>
+                        <xsl:with-param name="base_list" select="$base_list"/>
+                        <xsl:with-param name="q_id_base" select="replace($file_id_base, 'SAME_ESSAY_', '')"/>                        
+                        <xsl:with-param name="scoreWeightVal" select="$scoreWeightVal"/>
+                    </xsl:call-template>
+                </xsl:if>
 				
 			
 				<xsl:apply-templates select="essayData">
@@ -1159,10 +1192,12 @@
 	
 	<!-- [ARV: 17-01-2026] Added as new update for BAR's Scoring Group -->
 	<!-- [ARV: 29-01-2026] Updated attribute name to scoreWeighting -->
-	<xsl:template match="scoreWeight" mode="scoreWeight-mode">
+    <!-- [ARV: 04-02-2026] Added name="questionAttribute" scoreWeighting -->
+	<xsl:template name="scoreWeight">
 		<xsl:param name="q_number"/>
 		<xsl:param name="base_list" as="element()*"/>
 		<xsl:param name="q_id_base"/>
+	    <xsl:param name="scoreWeightVal"/>
 		
 		<xsl:variable name="ts_base" select="@base"/>
 		
@@ -1187,14 +1222,11 @@
 				</xsl:otherwise>
 			</xsl:choose>
 		</xsl:variable>
-		
-		<xsl:variable name="scoreWeight" select="@value"/>
-		<xsl:if test="$scoreWeight != ''">
-			<data name="scoreWeighting">
-				<xsl:attribute name="value" select="$scoreWeight"/>
-				<xsl:attribute name="datatype" select="$datatype"/>
-			</data>
-		</xsl:if>
+	    <data name="questionAttribute">
+	        <xsl:attribute name="key" select="'scoreWeighting'"/>
+	        <xsl:attribute name="value" select="$scoreWeightVal"/>
+	        <xsl:attribute name="datatype" select="$datatype"/>
+	    </data>
 	</xsl:template>
 	
 	
@@ -4457,18 +4489,59 @@
     <!-- UL should be passed with no attributes. -->
 	<!-- [ARV: Started editing this template ] -->
 	<xsl:template match="ul" mode="identity" priority="100">
-        <xsl:copy>
+	    <xsl:variable name="list-margin">
+	        <xsl:choose>
+	            <xsl:when test="parent::li">
+	                <xsl:text>margin-top: 5px; margin-bottom: 5px; </xsl:text>
+	            </xsl:when>
+	            <xsl:otherwise>
+	                <xsl:text>margin-bottom: 10px; </xsl:text>
+	            </xsl:otherwise>
+	        </xsl:choose>
+	    </xsl:variable>
+		<xsl:variable name="default-list-style">
+			<xsl:text>list-style-type: disc; </xsl:text>
+		</xsl:variable>
+        <xsl:copy>            
 			<xsl:choose>
-				<xsl:when test="@outputclass='emdash'">
+				<xsl:when test="@outputclass='ul_endash'">
 					<xsl:attribute name="type">
-						<xsl:text>–</xsl:text>
+						<xsl:text>none</xsl:text>
 					</xsl:attribute>
-					<!--<xsl:for-each select="li">
-						<li><span style="margin-left:-1.2em;">—</span><xsl:text>&#x00A0;</xsl:text></li>
-					</xsl:for-each>-->		
-					<xsl:apply-templates mode="identity"/>
+				    <xsl:attribute name="style">
+						<xsl:value-of select="$list-margin"/>
+					</xsl:attribute>				    
+					<xsl:for-each select="li">
+					    <xsl:if test="position() != last()">
+					        <li style="margin-bottom: 5px;">
+					            <span style="margin-left:-1em;">&#8211;&#8194;</span>
+					            <xsl:apply-templates mode="identity"/>
+					        </li>
+					    </xsl:if>
+					    <xsl:if test="position() = last()">
+					        <li>
+					            <span style="margin-left:-1em;">&#8211;&#8194;</span>
+					            <xsl:apply-templates mode="identity"/>
+					        </li>
+					    </xsl:if>
+					</xsl:for-each>
 				</xsl:when>
+			    <xsl:when test="@outputclass='ul_square'">
+			        <xsl:attribute name="type">
+			            <xsl:text>none</xsl:text>
+			        </xsl:attribute>
+			        <xsl:attribute name="style">
+			            <xsl:value-of select="$list-margin"/>
+			            <xsl:value-of select="'list-style-type: square; '"/>
+			        </xsl:attribute>
+			        <xsl:apply-templates mode="identity"/>
+			    </xsl:when>
 				<xsl:otherwise>
+				    <xsl:if test="parent::li/parent::ul[@outputclass='ul_endash' or @outputclass='ul_square']">
+				        <xsl:attribute name="style">
+				        	<xsl:value-of select="$default-list-style,$list-margin"/>
+				        </xsl:attribute>
+				    </xsl:if>
 					<xsl:apply-templates mode="identity"/>
 				</xsl:otherwise>
 			</xsl:choose>        	

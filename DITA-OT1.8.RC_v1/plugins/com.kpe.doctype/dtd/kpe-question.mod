@@ -77,9 +77,8 @@ PUBLIC "-//KPE//ELEMENTS DITA KPE Question//EN"
               %conref-atts;
               %select-atts;
               %localization-atts;
-              outputclass
-                        CDATA
-                                  #IMPLIED"
+              questiontype CDATA #IMPLIED
+              outputclass CDATA #IMPLIED"
 >
 <!ELEMENT kpe-question    %kpe-question.content;>
 <!ATTLIST kpe-question

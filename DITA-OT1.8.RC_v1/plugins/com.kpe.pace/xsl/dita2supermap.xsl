@@ -62,14 +62,15 @@
     	<xsl:variable name="skill_code" select="$bookmeta/skillcode/@href"/>
     	
     	<!-- Get hold of Product verticle. -->
-    	<xsl:variable name="prod_vert" select="$bookmeta/prodinfo/brand"/>
+    	<xsl:variable name="prod_vert" select="$bookmeta/prodinfo/brand"/>    	
     	
     	
-    	
-    	<xsl:variable name="all-prompts-ids" select="//lcQuestionContext2" as="element()*"/>
-    	
+    	<xsl:variable name="all-prompts-ids" select="//lcQuestionContext2" as="element()*"/>    	
     	
     	<xsl:variable name="prod-subtype" select="$bookmeta/prodinfo/prodsubtype"/>
+        
+        <!-- If scoreweight is required. -->
+        <xsl:variable name="scoreWeight" select="$bookmeta/scoreWeight"/>
     
     	
 
@@ -104,6 +105,9 @@
         	<!-- Store productsubtype for GMAT-OG to use Legacy Id instead of Filename. -->
         	<xsl:attribute name="prodsubtype" select="$prod-subtype/@subtype"/>
         	<xsl:attribute name="trunk-identifier" select="$prod-subtype/@trunk-identifier"/>
+            
+            <!-- [ARV: 04-02-2026] -->
+            <xsl:attribute name="scoreWeight" select="$scoreWeight/@value"/>
             
         	
             
@@ -1058,8 +1062,7 @@
         	 <xsl:apply-templates select="sampleAnswer"/>
           <xsl:apply-templates select="bloomsMap"/> 
           <xsl:apply-templates select="sortOrder"/>
-          <xsl:apply-templates select="questionType"/>
-        	 <xsl:apply-templates select="scoreWeight"/>        	 
+          <xsl:apply-templates select="questionType"/>                  	 
         </topicref>
     </xsl:template>
     
@@ -1157,13 +1160,14 @@
 	
 	<!-- [ARV: 17-01-2026] Added as new update for BAR's Scoring Group -->
 	<!-- [ARV: 29-01-2026] Updated attribute name to scoreWeight -->
-	<xsl:template match="scoreWeight">
+	<!-- [ARV: 04-02-2026] Commented out -->
+	<!--<xsl:template match="scoreWeight">
 		<scoreWeight>
 			<xsl:attribute name="value">
 				<xsl:value-of select="@value"/>
 			</xsl:attribute>
 		</scoreWeight>
-	</xsl:template>
+	</xsl:template>-->
 	
 	<xsl:template match="essayData">
 		<essayData>

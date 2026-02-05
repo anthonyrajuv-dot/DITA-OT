@@ -132,6 +132,7 @@ PUBLIC "-//OASIS//ELEMENTS DITA BookMap//EN"
 <!ENTITY % volume          "volume"                                  >
 <!ENTITY % year            "year"                                    >
 <!ENTITY % skillcode       "skillcode"                               >
+<!ENTITY % scoreWeight     "scoreWeight"                               >
 
 
 <!-- ============================================================= -->
@@ -232,6 +233,7 @@ PUBLIC "-//OASIS//ELEMENTS DITA BookMap//EN"
                          (%resourceid;)*, 
                          (%bookid;)?,
                          (%skillcode;)?,
+                         (%scoreWeight;)?,
                          (%bookchangehistory;)*,
                          (%bookrights;)*,
                          (%data;)*)"
@@ -374,7 +376,7 @@ PUBLIC "-//OASIS//ELEMENTS DITA BookMap//EN"
 
 
 <!-- [ARV: 19-12-2025] Added to capture skill coded file for BAR -->
-<!--                    LONG NAME: Book ID                         -->
+<!--                    LONG NAME: Skill Code                         -->
 <!ENTITY % skillcode.content
                        "EMPTY"
 >
@@ -383,6 +385,19 @@ PUBLIC "-//OASIS//ELEMENTS DITA BookMap//EN"
 >
 <!ELEMENT skillcode    %skillcode.content;>
 <!ATTLIST skillcode    %skillcode.attributes;>
+
+
+
+<!-- [ARV: 19-12-2025] Added to capture Score value for Mixed Questions for weighting in BAR -->
+<!--                    LONG NAME: Score Weight                         -->
+<!ENTITY % scoreWeight.content
+                       "EMPTY"
+>
+<!ENTITY % scoreWeight.attributes
+             "value CDATA #IMPLIED"
+>
+<!ELEMENT scoreWeight    %scoreWeight.content;>
+<!ATTLIST scoreWeight    %scoreWeight.attributes;>
 
 
 
@@ -1260,7 +1275,8 @@ PUBLIC "-//OASIS//ELEMENTS DITA BookMap//EN"
 <!ATTLIST booklist    %global-atts; class CDATA "- map/topicref bookmap/booklist ">
 <!ATTLIST booklists   %global-atts; class CDATA "- map/topicref bookmap/booklists ">
 <!ATTLIST bookmeta    %global-atts; class CDATA "- map/topicmeta bookmap/bookmeta ">
-<!ATTLIST skillcode    %global-atts; class CDATA "- map/topicmeta bookmap/skillcode ">
+<!ATTLIST skillcode   %global-atts; class CDATA "- map/topicmeta bookmap/skillcode ">
+<!ATTLIST scoreWeight %global-atts; class CDATA "- map/topicmeta bookmap/scoreWeight ">
 
 <!ATTLIST booknumber  %global-atts; class CDATA "- topic/data bookmap/booknumber ">
 <!ATTLIST bookowner   %global-atts; class CDATA "- topic/data bookmap/bookowner ">
