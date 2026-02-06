@@ -1124,9 +1124,9 @@
 				</data>
 			</xsl:when>
 			<xsl:when test="$difficulty != '' and $isVignette = 'yes-from-difficulty-mode'">
-				<!-- don nothing -->
+				<!-- do nothing -->
 			</xsl:when>
-			<xsl:when test="$difficulty != '' and $isVignette = 'no'">
+			<xsl:when test="$difficulty != '' and $isVignette = 'no-from-questionType-mode'">
 				<data name="difficulty">
 					<xsl:attribute name="value" select="$difficulty"/>
 					<xsl:attribute name="datatype" select="$datatype"/>
@@ -1143,8 +1143,7 @@
 		<xsl:param name="test_id"/>
 		<xsl:param name="isVignette"/>
 		
-		<xsl:variable name="ts_base" select="@base"/>
-		
+		<xsl:variable name="ts_base" select="@base"/>		
 		<!-- [ARV Copied on 14-01-2025]-->
 		<xsl:variable name="subq_number">
 			<xsl:choose>
@@ -1168,7 +1167,7 @@
 			</xsl:choose>
 		</xsl:variable>
 		
-		<xsl:variable name="questionType" select="@value"/>
+		<xsl:variable name="questionType" select="@value"/>		
 		<xsl:choose>
 			<xsl:when test="$questionType != '' and $isVignette = 'yes'">
 				<data name="tag">
@@ -1176,10 +1175,10 @@
 					<xsl:attribute name="datatype" select="$datatype"/>
 				</data>
 			</xsl:when>
-			<xsl:when test="$questionType != '' and $isVignette = 'yes-from-questionType-mode'">
-				<!-- don nothing -->
+			<xsl:when test="$questionType != '' and $isVignette = 'yes-from-questionType-mode'">				
+				<!-- do nothing -->
 			</xsl:when>
-			<xsl:when test="$questionType != '' and $isVignette = 'no'">
+			<xsl:when test="$questionType != '' and $isVignette = 'no-from-questionType-mode'">				
 				<data name="tag">
 					<xsl:attribute name="value" select="$questionType"/>
 					<xsl:attribute name="datatype" select="$datatype"/>
