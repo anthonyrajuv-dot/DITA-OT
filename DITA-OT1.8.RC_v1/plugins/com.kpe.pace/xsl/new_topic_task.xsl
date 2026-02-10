@@ -4535,8 +4535,18 @@
 			        </xsl:attribute>
 			        <xsl:apply-templates mode="identity"/>
 			    </xsl:when>
+				<xsl:when test="@outputclass='ul_circle'">
+					<xsl:attribute name="type">
+						<xsl:text>none</xsl:text>
+					</xsl:attribute>
+					<xsl:attribute name="style">
+						<xsl:value-of select="$list-margin"/>
+						<xsl:value-of select="'list-style-type: circle; '"/>
+					</xsl:attribute>
+					<xsl:apply-templates mode="identity"/>
+				</xsl:when>
 				<xsl:otherwise>
-				    <xsl:if test="parent::li/parent::ul[@outputclass='ul_endash' or @outputclass='ul_square']">
+					<xsl:if test="parent::li/parent::ul[@outputclass='ul_endash' or @outputclass='ul_square' or @outputclass='ul_circle']">
 				        <xsl:attribute name="style">
 				        	<xsl:value-of select="$default-list-style,$list-margin"/>
 				        </xsl:attribute>

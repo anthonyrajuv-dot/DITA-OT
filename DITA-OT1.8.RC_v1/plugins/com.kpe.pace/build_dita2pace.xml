@@ -478,18 +478,9 @@
     		value='' summary="yes">
     		<include name="**/*.dita"/>
     		<include name="**/*.xml"/>
-    	</replace>
-    	    	
+    	</replace>   	    	
     	
-    	<!-- [ARV: 05-01-2026] To replace &#x205f; with keyboard space -->
-    	<echo>replacing medium space &amp;#x205f; to Space.</echo>
-    	<replace dir="${output.dir}/ASCII"
-    		encoding="utf-8"
-    		token='&amp;#x205f;'
-    		value=' ' summary="yes">
-    		<include name="**/*.dita"/>
-    		<include name="**/*.xml"/>
-    	</replace>
+    	
     	
     	<!--<echo>Converting &amp;#x039; to Keyboard apostrophe => '.</echo>
     	<replace dir="${output.dir}"
