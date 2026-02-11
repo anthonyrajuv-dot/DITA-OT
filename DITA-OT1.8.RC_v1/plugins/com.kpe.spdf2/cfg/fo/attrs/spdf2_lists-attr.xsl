@@ -176,7 +176,9 @@ See the accompanying license.txt file for applicable licenses.
         <xsl:attribute name="provisional-label-separation">1mm</xsl:attribute>
         <xsl:attribute name="space-after.optimum">7pt</xsl:attribute>
         <xsl:attribute name="space-before.optimum">7pt</xsl:attribute>
-<!--		<xsl:attribute name="margin-left">-8pt</xsl:attribute>-->
+		  <xsl:attribute name="margin-left">
+		  	<xsl:value-of select="$ol-indent"/>
+		  </xsl:attribute>
     </xsl:attribute-set>
 
     <xsl:attribute-set name="ol.li" use-attribute-sets="li.widows-orphans">

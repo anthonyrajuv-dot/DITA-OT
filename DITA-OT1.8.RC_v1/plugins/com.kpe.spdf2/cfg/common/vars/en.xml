@@ -3,7 +3,16 @@
 
      <!-- [SP] Em dash for the 2nd-level list bullet. -->
      <variable id="Unordered List bullet level 2">&#x2012;</variable>
-    
+	
+	<!-- [ARV] Added for ndash list. -->
+	<variable id="Unordered List ndash">&#x2013;</variable>
+
+	<!-- [ARV] Added for square list. -->
+	<variable id="Unordered List square">&#x25a0;</variable>
+	
+	<!-- [ARV] Added for circle list. -->
+	<variable id="Unordered List circle">&#x25cb;</variable>
+
     
     <!-- The formatting used to display ordered lists (e.g., "1., 2." or 
          "1), 2)" -->

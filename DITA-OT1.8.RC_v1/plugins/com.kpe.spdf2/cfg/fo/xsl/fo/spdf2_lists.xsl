@@ -176,31 +176,78 @@ See the accompanying license.txt file for applicable licenses.
                     <xsl:variable name="level" as="xs:integer">
                         <xsl:apply-templates select="." mode="get-list-level"/>
                     </xsl:variable>
+                    <xsl:variable name="list-default">
+                        <xsl:choose>
+                        	<xsl:when test="parent::ul/parent::li/parent::ul[not(@outputclass)]"><xsl:text>bullet</xsl:text></xsl:when>
+                        </xsl:choose>
+                    </xsl:variable>
                     <xsl:choose>
-                        <xsl:when test="$level = 1">
-                            <!-- [SP] I think this was an error, the inline was an empty tag. 
-                                      Lift the bullet above the baseline.  -->
-                            <fo:inline id="{@id}" baseline-shift="0pt">
-                                <xsl:call-template name="insertVariable">
-                                    <xsl:with-param name="theVariableID"
-                                        select="'Unordered List bullet'"/>
-                                </xsl:call-template>
-                            </fo:inline>
-                        </xsl:when>
-
-                        <xsl:when test="$level = 2">
-                            <fo:inline id="{@id}" baseline-shift="0pt">
-                                <xsl:call-template name="insertVariable">
-                                    <xsl:with-param name="theVariableID"
-                                        select="'Unordered List bullet level 2'"/>
-                                </xsl:call-template>
-                            </fo:inline>
-                        </xsl:when>
+                    	<xsl:when test="parent::ul[@outputclass='ul_endash']">
+                    		<!-- [ARV] Added for ndash list. -->
+                    		<fo:inline id="{@id}" baseline-shift="0pt">
+                    			<xsl:call-template name="insertVariable">
+                    				<xsl:with-param name="theVariableID"
+                    					select="'Unordered List ndash'"/>
+                    			</xsl:call-template>
+                    		</fo:inline>
+                    	</xsl:when>
+                    	<xsl:when test="parent::ul[@outputclass='ul_square']">
+                    		<!-- [ARV] Added for square list.  -->
+                    		<fo:inline id="{@id}" baseline-shift="0pt">
+                    			<xsl:call-template name="insertVariable">
+                    				<xsl:with-param name="theVariableID"
+                    					select="'Unordered List square'"/>
+                    			</xsl:call-template>
+                    		</fo:inline>
+                    	</xsl:when>
+                    	<xsl:when test="parent::ul[@outputclass='ul_circle']">
+                    		<!-- [ARV] Added for circle list.  -->
+                    		<fo:inline id="{@id}" baseline-shift="0pt">
+                    			<xsl:call-template name="insertVariable">
+                    				<xsl:with-param name="theVariableID"
+                    					select="'Unordered List circle'"/>
+                    			</xsl:call-template>
+                    		</fo:inline>
+                    	</xsl:when>
 
                         <xsl:otherwise>
                             <!--[SP] Currently no third-level bullets defined.-->
-                            <xsl:message>SD_PDF ********** Used third-level bullet, but not defined.
-                            </xsl:message>
+                            <xsl:message>SD_PDF ********** Used third-level bullet, but not defined.</xsl:message>
+                        	<xsl:choose>
+                        		<xsl:when test="parent::ul/parent::li/parent::ul[@outputclass='ul_square' or @outputclass='ul_endash' or @outputclass='ul_circle']">
+                        			<!-- [SP] I think this was an error, the inline was an empty tag. 
+                                      Lift the bullet above the baseline.  -->
+                        			<fo:inline id="{@id}" baseline-shift="0pt">
+                        				<xsl:call-template name="insertVariable">
+                        					<xsl:with-param name="theVariableID"
+                        						select="'Unordered List bullet'"/>
+                        				</xsl:call-template>
+                        			</fo:inline>
+                        		</xsl:when>
+                        		<xsl:when test="$level = 1">
+                        			<!-- [SP] I think this was an error, the inline was an empty tag. 
+                                      Lift the bullet above the baseline.  -->
+                        			<fo:inline id="{@id}" baseline-shift="0pt">
+                        				<xsl:call-template name="insertVariable">
+                        					<xsl:with-param name="theVariableID"
+                        						select="'Unordered List bullet'"/>
+                        				</xsl:call-template>
+                        			</fo:inline>
+                        		</xsl:when>                        		
+                        		<xsl:when test="$level = 2">
+                        			<fo:inline id="{@id}" baseline-shift="0pt">
+                        				<xsl:call-template name="insertVariable">
+                        					<xsl:with-param name="theVariableID"
+                                        select="'Unordered List bullet level 2'"/>
+                        				</xsl:call-template>
+                        			</fo:inline>
+                        		</xsl:when>
+                        		<xsl:otherwise>
+                        			<!--[SP] Currently no third-level bullets defined.-->
+                        			<xsl:message>SD_PDF ********** Used third-level bullet, but not defined.
+                        			</xsl:message>
+                        		</xsl:otherwise>
+                        	</xsl:choose>
                         </xsl:otherwise>
                     </xsl:choose>
                     <!--                    <xsl:call-template name="insertVariable">
@@ -272,7 +319,9 @@ See the accompanying license.txt file for applicable licenses.
                                         <xsl:number format="i."/>
                                     </xsl:when>
                                     <xsl:when test="parent::*[@outputclass='ol_alpha']">
-                                        <xsl:number format="A."/>
+                                        <fo:inline id="{@id}" baseline-shift="0pt">
+                                        	<xsl:number format="A."/>
+                                        </fo:inline>
                                     </xsl:when>
                                     <xsl:when test="parent::*[@outputclass='ol_loweralpha']">
                                         <xsl:number format="a."/>
