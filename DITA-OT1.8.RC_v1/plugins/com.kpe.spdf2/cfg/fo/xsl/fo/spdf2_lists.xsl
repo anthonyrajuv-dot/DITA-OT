@@ -223,7 +223,7 @@ See the accompanying license.txt file for applicable licenses.
                             <!--[SP] Currently no third-level bullets defined.-->
                             <xsl:message>SD_PDF ********** Used third-level bullet, but not defined.</xsl:message>
                         	<xsl:choose>
-                        		<xsl:when test="parent::ul/parent::li/parent::ul[@outputclass='ul_square' or @outputclass='ul_endash' or @outputclass='ul_circle']">
+                        		<xsl:when test="parent::ul/parent::li/parent::ul[@outputclass='ul_square' or @outputclass='ul_endash' or @outputclass='ul_circle' or @outputclass='ul_opensquare']">
                         			<!-- [SP] I think this was an error, the inline was an empty tag. 
                                       Lift the bullet above the baseline.  -->
                         			<fo:inline id="{@id}" baseline-shift="0pt">
