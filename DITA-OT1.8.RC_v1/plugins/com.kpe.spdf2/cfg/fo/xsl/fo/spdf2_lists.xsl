@@ -191,6 +191,15 @@ See the accompanying license.txt file for applicable licenses.
                     			</xsl:call-template>
                     		</fo:inline>
                     	</xsl:when>
+                    	<xsl:when test="parent::ul[@outputclass='ul_opensquare']">
+                    		<!-- [ARV] Added for ndash list. -->
+                    		<fo:inline id="{@id}" baseline-shift="0pt">
+                    			<xsl:call-template name="insertVariable">
+                    				<xsl:with-param name="theVariableID"
+                    					select="'Unordered List open-square'"/>
+                    			</xsl:call-template>
+                    		</fo:inline>
+                    	</xsl:when>
                     	<xsl:when test="parent::ul[@outputclass='ul_square']">
                     		<!-- [ARV] Added for square list.  -->
                     		<fo:inline id="{@id}" baseline-shift="0pt">

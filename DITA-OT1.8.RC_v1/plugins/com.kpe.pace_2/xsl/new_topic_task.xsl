@@ -2523,6 +2523,28 @@
 						</xsl:if>
 					</xsl:for-each>
 				</xsl:when>
+				<xsl:when test="@outputclass='ul_opensquare'">
+					<xsl:attribute name="type">
+						<xsl:text>none</xsl:text>
+					</xsl:attribute>
+					<xsl:attribute name="style">
+						<xsl:value-of select="$list-margin"/>
+					</xsl:attribute>				    
+					<xsl:for-each select="li">
+						<xsl:if test="position() != last()">
+							<li style="margin-bottom: 5px;">
+								<span style="font-size:0.8rem; margin-left:-1.4em;">&#x25fb;&#8194;</span>
+								<xsl:apply-templates mode="identity"/>
+							</li>
+						</xsl:if>
+						<xsl:if test="position() = last()">
+							<li>
+								<span style="font-size:0.8rem; margin-left:-1.4em;">&#x25fb;&#8194;</span>
+								<xsl:apply-templates mode="identity"/>
+							</li>
+						</xsl:if>
+					</xsl:for-each>
+				</xsl:when>
 				<xsl:when test="@outputclass='ul_square'">
 					<xsl:attribute name="type">
 						<xsl:text>none</xsl:text>
@@ -2544,7 +2566,7 @@
 					<xsl:apply-templates mode="identity"/>
 				</xsl:when>
 				<xsl:otherwise>
-					<xsl:if test="parent::li/parent::ul[@outputclass='ul_endash' or @outputclass='ul_square' or @outputclass='ul_circle']">
+					<xsl:if test="parent::li/parent::ul[@outputclass='ul_endash' or @outputclass='ul_square' or @outputclass='ul_circle' or @outputclass='ul_opensquare']">
 						<xsl:attribute name="style">
 							<xsl:value-of select="$default-list-style,$list-margin"/>
 						</xsl:attribute>

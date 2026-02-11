@@ -10,6 +10,9 @@
 	<!-- [ARV] Added for square list. -->
 	<variable id="Unordered List square">&#x25a0;</variable>
 	
+	<!-- [ARV] Added for open-square list. -->
+	<variable id="Unordered List open-square">&#x25A1;</variable>
+	
 	<!-- [ARV] Added for circle list. -->
 	<variable id="Unordered List circle">&#x25cb;</variable>
 
