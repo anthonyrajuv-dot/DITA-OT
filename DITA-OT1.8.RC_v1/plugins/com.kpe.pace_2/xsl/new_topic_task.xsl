@@ -3822,5 +3822,11 @@
             <xsl:apply-templates/>
         </sup>
     </xsl:template>
+	
+	<!-- [ARV: 30-01-2025] Added to enable space between two ph tags -->
+	<xsl:template match="spaceX" mode="identity" priority="100">
+		<xsl:message>[ARV-info] spaceX is working..</xsl:message>
+		<xsl:text> </xsl:text>
+	</xsl:template>
     
 </xsl:stylesheet>

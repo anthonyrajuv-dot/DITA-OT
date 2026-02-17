@@ -2566,6 +2566,12 @@
             </fo:footnote-body>
         </fo:footnote>
     </xsl:template>
+	
+
+	<!-- [ARV: 17-02-2026] Added to get space in PDF  -->
+	<xsl:template match="*[contains(@class, ' topic/spaceX ')]">
+		<xsl:text> </xsl:text>
+	</xsl:template>
 
 
 
