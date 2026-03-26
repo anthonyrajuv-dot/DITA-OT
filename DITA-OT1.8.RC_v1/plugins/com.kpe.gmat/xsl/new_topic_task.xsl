@@ -2204,13 +2204,15 @@
         	<!-- ARV: added for lcQuestionPrompt2 on 28/02/2025 -->
         	<xsl:choose>
         		<xsl:when test="lcQuestionPrompt2/node()[self::text()]">
+        			<xsl:message>ARV: Executing if block... <xsl:value-of select="base-uri()"/></xsl:message>
         			<p>
         				<xsl:apply-templates select="lcQuestionPrompt2"/>
         			</p>
         		</xsl:when>
         		<xsl:otherwise>
+        			<xsl:message>ARV: Executing else block... <xsl:value-of select="base-uri()"/></xsl:message>
         			<xsl:apply-templates select="lcQuestionPrompt2/*" mode="identity">
-        				<xsl:with-param name="type" select="'question'"/>
+        				<xsl:with-param name="type" select="'question'"/>        				
         			</xsl:apply-templates>
         		</xsl:otherwise>
         	</xsl:choose>

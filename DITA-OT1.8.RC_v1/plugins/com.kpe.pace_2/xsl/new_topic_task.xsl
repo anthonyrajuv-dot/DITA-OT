@@ -2463,6 +2463,16 @@
             </xsl:choose>
         </div>
     </xsl:template>
+    
+    
+    <!-- [ARV:27-03-2026 - Added to make contents inside example element collapsible] -->
+    <xsl:template match="example[@outputclass = 'collapse']" mode="#all">        
+        <details>
+            <summary><xsl:value-of select="@spectitle"/></summary>
+            <xsl:apply-templates mode="identity"/>
+        </details>
+    </xsl:template>
+    
 
     <!--PSB ADDED CENTER 5/4/16-->
     <xsl:template match="p[@outputclass = 'center']" mode="#all">
@@ -2485,97 +2495,130 @@
     
     <!-- UL should be passed with no attributes. -->
 	<!-- [ARV: 05-02-2025] For including endash and square list markers -->
-	<xsl:template match="ul" mode="identity" priority="100">
-		<xsl:variable name="list-margin">
-			<xsl:choose>
-				<xsl:when test="parent::li">
-					<xsl:text>margin-top: 5px; margin-bottom: 5px; </xsl:text>
-				</xsl:when>
-				<xsl:otherwise>
-					<xsl:text>margin-bottom: 10px; </xsl:text>
-				</xsl:otherwise>
-			</xsl:choose>
-		</xsl:variable>
-		<xsl:variable name="default-list-style">
-			<xsl:text>list-style-type: disc; </xsl:text>
-		</xsl:variable>
-		<xsl:copy>            
-			<xsl:choose>
-				<xsl:when test="@outputclass='ul_endash'">
-					<xsl:attribute name="type">
-						<xsl:text>none</xsl:text>
-					</xsl:attribute>
-					<xsl:attribute name="style">
-						<xsl:value-of select="$list-margin"/>
-					</xsl:attribute>				    
-					<xsl:for-each select="li">
-						<xsl:if test="position() != last()">
-							<li style="margin-bottom: 5px;">
-								<span style="margin-left:-1em;">&#8211;&#8194;</span>
-								<xsl:apply-templates mode="identity"/>
-							</li>
-						</xsl:if>
-						<xsl:if test="position() = last()">
-							<li>
-								<span style="margin-left:-1em;">&#8211;&#8194;</span>
-								<xsl:apply-templates mode="identity"/>
-							</li>
-						</xsl:if>
-					</xsl:for-each>
-				</xsl:when>
-				<xsl:when test="@outputclass='ul_opensquare'">
-					<xsl:attribute name="type">
-						<xsl:text>none</xsl:text>
-					</xsl:attribute>
-					<xsl:attribute name="style">
-						<xsl:value-of select="$list-margin"/>
-					</xsl:attribute>				    
-					<xsl:for-each select="li">
-						<xsl:if test="position() != last()">
-							<li style="margin-bottom: 5px;">
-								<span style="font-size:0.8rem; margin-left:-1.4em;">&#x25fb;&#8194;</span>
-								<xsl:apply-templates mode="identity"/>
-							</li>
-						</xsl:if>
-						<xsl:if test="position() = last()">
-							<li>
-								<span style="font-size:0.8rem; margin-left:-1.4em;">&#x25fb;&#8194;</span>
-								<xsl:apply-templates mode="identity"/>
-							</li>
-						</xsl:if>
-					</xsl:for-each>
-				</xsl:when>
-				<xsl:when test="@outputclass='ul_square'">
-					<xsl:attribute name="type">
-						<xsl:text>none</xsl:text>
-					</xsl:attribute>
-					<xsl:attribute name="style">
-						<xsl:value-of select="$list-margin"/>
-						<xsl:value-of select="'list-style-type: square; '"/>
-					</xsl:attribute>
-					<xsl:apply-templates mode="identity"/>
-				</xsl:when>
-				<xsl:when test="@outputclass='ul_circle'">
-					<xsl:attribute name="type">
-						<xsl:text>none</xsl:text>
-					</xsl:attribute>
-					<xsl:attribute name="style">
-						<xsl:value-of select="$list-margin"/>
-						<xsl:value-of select="'list-style-type: circle; '"/>
-					</xsl:attribute>
-					<xsl:apply-templates mode="identity"/>
-				</xsl:when>
-				<xsl:otherwise>
-					<xsl:if test="parent::li/parent::ul[@outputclass='ul_endash' or @outputclass='ul_square' or @outputclass='ul_circle' or @outputclass='ul_opensquare']">
-						<xsl:attribute name="style">
-							<xsl:value-of select="$default-list-style,$list-margin"/>
-						</xsl:attribute>
-					</xsl:if>
-					<xsl:apply-templates mode="identity"/>
-				</xsl:otherwise>
-			</xsl:choose>        	
-		</xsl:copy>
-	</xsl:template>
+    <xsl:template match="ul" mode="identity" priority="100">
+        <xsl:variable name="list-margin">
+            <xsl:choose>
+                <xsl:when test="parent::li">
+                    <xsl:text>margin-top: 5px; margin-bottom: 5px; </xsl:text>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:text>margin-bottom: 10px; </xsl:text>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="default-list-style">
+            <xsl:text>list-style-type: disc; </xsl:text>
+        </xsl:variable>
+        <xsl:copy>            
+            <xsl:choose>
+                <xsl:when test="@outputclass='ul_endash'">
+                    <xsl:attribute name="type">
+                        <xsl:text>none</xsl:text>
+                    </xsl:attribute>
+                    <xsl:attribute name="style">
+                        <xsl:value-of select="$list-margin"/>
+                    </xsl:attribute>				    
+                    <xsl:for-each select="li">
+                        <xsl:if test="position() != last()">
+                            <li style="margin-bottom: 5px;">
+                                <span style="margin-left:-1em;">&#8211;&#8194;</span>
+                                <xsl:apply-templates mode="identity"/>
+                            </li>
+                        </xsl:if>
+                        <xsl:if test="position() = last()">
+                            <li style="margin-bottom: 5px;">
+                                <span style="margin-left:-1em;">&#8211;&#8194;</span>
+                                <xsl:apply-templates mode="identity"/>
+                            </li>
+                        </xsl:if>
+                    </xsl:for-each>
+                </xsl:when>
+                <xsl:when test="@outputclass='ul_opensquare'">
+                    <xsl:attribute name="type">
+                        <xsl:text>none</xsl:text>
+                    </xsl:attribute>
+                    <xsl:attribute name="style">
+                        <xsl:value-of select="$list-margin"/>
+                    </xsl:attribute>				    
+                    <xsl:for-each select="li">
+                        <xsl:if test="position() != last()">
+                            <li style="margin-bottom: 5px;">
+                                <span style="font-size:0.8rem; margin-left:-1.4em;">&#x25fb;&#8194;</span>
+                                <xsl:apply-templates mode="identity"/>
+                            </li>
+                        </xsl:if>
+                        <xsl:if test="position() = last()">
+                            <li style="margin-bottom: 5px;">
+                                <span style="font-size:0.8rem; margin-left:-1.4em;">&#x25fb;&#8194;</span>
+                                <xsl:apply-templates mode="identity"/>
+                            </li>
+                        </xsl:if>
+                    </xsl:for-each>
+                </xsl:when>
+                <xsl:when test="@outputclass='ul_square'">
+                    <xsl:attribute name="type">
+                        <xsl:text>none</xsl:text>
+                    </xsl:attribute>
+                    <xsl:attribute name="style">
+                        <xsl:value-of select="$list-margin"/>
+                        <xsl:value-of select="'list-style-type: square; '"/>
+                    </xsl:attribute>			    	
+                    <xsl:for-each select="li">
+                        <xsl:if test="position() != last()">
+                            <li style="margin-bottom: 5px;">			    				
+                                <xsl:apply-templates mode="identity"/>
+                            </li>
+                        </xsl:if>
+                        <xsl:if test="position() = last()">
+                            <li style="margin-bottom: 5px;">			    				
+                                <xsl:apply-templates mode="identity"/>
+                            </li>
+                        </xsl:if>
+                    </xsl:for-each>			        
+                </xsl:when>
+                <xsl:when test="@outputclass='ul_circle'">
+                    <xsl:attribute name="type">
+                        <xsl:text>none</xsl:text>
+                    </xsl:attribute>
+                    <xsl:attribute name="style">
+                        <xsl:value-of select="$list-margin"/>
+                        <xsl:value-of select="'list-style-type: circle; '"/>
+                    </xsl:attribute>
+                    <xsl:for-each select="li">
+                        <xsl:if test="position() != last()">
+                            <li style="margin-bottom: 5px;">			    				
+                                <xsl:apply-templates mode="identity"/>
+                            </li>
+                        </xsl:if>
+                        <xsl:if test="position() = last()">
+                            <li style="margin-bottom: 5px;">			    				
+                                <xsl:apply-templates mode="identity"/>
+                            </li>
+                        </xsl:if>
+                    </xsl:for-each>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:if test="parent::li/parent::ul[@outputclass='ul_endash' or @outputclass='ul_square' or @outputclass='ul_circle' or @outputclass='ul_opensquare']">
+                        <xsl:attribute name="style">
+                            <xsl:value-of select="$default-list-style,$list-margin"/>
+                        </xsl:attribute>
+                    </xsl:if>
+                    <xsl:for-each select="li">
+                        <xsl:if test="position() != last()">
+                            <li style="margin-bottom: 5px;">			    				
+                                <xsl:apply-templates mode="identity"/>
+                            </li>
+                        </xsl:if>
+                        <xsl:if test="position() = last()">
+                            <li style="margin-bottom: 5px;">			    				
+                                <xsl:apply-templates mode="identity"/>
+                            </li>
+                        </xsl:if>
+                    </xsl:for-each>
+                </xsl:otherwise>
+            </xsl:choose>        	
+        </xsl:copy>
+    </xsl:template>
 
     <!-- ol may have an outputclass, which needs to be output as @type, with modified values. -->
     <xsl:template match="ol" mode="identity vignette" priority="100">

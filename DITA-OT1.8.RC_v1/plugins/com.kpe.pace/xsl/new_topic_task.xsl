@@ -4138,8 +4138,13 @@
         <xsl:param name="type"/>
         <!-- video objects are distinguished from flash object by the presence of a codebase attribute in flash.-->
         <xsl:choose>
-            <xsl:when test="@codebase">
+            <xsl:when test="@codebase != ''">
                 <xsl:call-template name="handle_flash_object">
+                    <xsl:with-param name="type" select="$type"/>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="@type='application/pdf'">
+                <xsl:call-template name="handle_pdf_object">
                     <xsl:with-param name="type" select="$type"/>
                 </xsl:call-template>
             </xsl:when>
@@ -4207,6 +4212,16 @@
                 <!-- Do nothing.-->
             </xsl:otherwise>
         </xsl:choose>
+    </xsl:template>
+    
+    
+    <xsl:template name="handle_pdf_object">
+        <xsl:param name="type"/>
+        <embed>
+            <xsl:attribute name="src"><xsl:value-of select="@data"/></xsl:attribute>
+            <xsl:attribute name="type"><xsl:value-of select="@type"/></xsl:attribute>
+            <xsl:apply-templates select="node()" mode="identity"/>
+        </embed>
     </xsl:template>
 
 
@@ -4453,6 +4468,13 @@
 		<div id="answer_text" style="cursor:text;-moz-appearance: textfield; -webkit-appearance: textfield; width:auto; height:100px; border: .1px solid #0068a9; border-radius:8px; margin-bottom:18px;"></div>
 	</xsl:template>-->
 	
+	<!-- [ARV:27-03-2026 - Added to make contents inside example element collapsible] -->
+    <xsl:template match="example[@outputclass = 'collapse']" mode="#all">        
+        <details>
+            <summary><xsl:value-of select="@spectitle"/></summary>
+            <xsl:apply-templates mode="identity"/>
+        </details>
+    </xsl:template>
 
 
     <!--PSB ADDED CENTER 5/4/16-->
@@ -4518,7 +4540,7 @@
 					        </li>
 					    </xsl:if>
 					    <xsl:if test="position() = last()">
-					        <li>
+					        <li style="margin-bottom: 5px;">
 					            <span style="margin-left:-1em;">&#8211;&#8194;</span>
 					            <xsl:apply-templates mode="identity"/>
 					        </li>
@@ -4540,7 +4562,7 @@
 							</li>
 						</xsl:if>
 						<xsl:if test="position() = last()">
-							<li>
+						    <li style="margin-bottom: 5px;">
 								<span style="font-size:0.8rem; margin-left:-1.4em;">&#x25fb;&#8194;</span>
 								<xsl:apply-templates mode="identity"/>
 							</li>
@@ -4554,8 +4576,19 @@
 			        <xsl:attribute name="style">
 			            <xsl:value-of select="$list-margin"/>
 			            <xsl:value-of select="'list-style-type: square; '"/>
-			        </xsl:attribute>
-			        <xsl:apply-templates mode="identity"/>
+			        </xsl:attribute>			    	
+			    	<xsl:for-each select="li">
+			    		<xsl:if test="position() != last()">
+			    			<li style="margin-bottom: 5px;">			    				
+			    				<xsl:apply-templates mode="identity"/>
+			    			</li>
+			    		</xsl:if>
+			    		<xsl:if test="position() = last()">
+			    		    <li style="margin-bottom: 5px;">			    				
+			    				<xsl:apply-templates mode="identity"/>
+			    			</li>
+			    		</xsl:if>
+			    	</xsl:for-each>			        
 			    </xsl:when>
 				<xsl:when test="@outputclass='ul_circle'">
 					<xsl:attribute name="type">
@@ -4565,7 +4598,18 @@
 						<xsl:value-of select="$list-margin"/>
 						<xsl:value-of select="'list-style-type: circle; '"/>
 					</xsl:attribute>
-					<xsl:apply-templates mode="identity"/>
+					<xsl:for-each select="li">
+						<xsl:if test="position() != last()">
+							<li style="margin-bottom: 5px;">			    				
+								<xsl:apply-templates mode="identity"/>
+							</li>
+						</xsl:if>
+						<xsl:if test="position() = last()">
+						    <li style="margin-bottom: 5px;">			    				
+								<xsl:apply-templates mode="identity"/>
+							</li>
+						</xsl:if>
+					</xsl:for-each>
 				</xsl:when>
 				<xsl:otherwise>
 					<xsl:if test="parent::li/parent::ul[@outputclass='ul_endash' or @outputclass='ul_square' or @outputclass='ul_circle' or @outputclass='ul_opensquare']">
@@ -4573,7 +4617,18 @@
 				        	<xsl:value-of select="$default-list-style,$list-margin"/>
 				        </xsl:attribute>
 				    </xsl:if>
-					<xsl:apply-templates mode="identity"/>
+				    <xsl:for-each select="li">
+				        <xsl:if test="position() != last()">
+				            <li style="margin-bottom: 5px;">			    				
+				                <xsl:apply-templates mode="identity"/>
+				            </li>
+				        </xsl:if>
+				        <xsl:if test="position() = last()">
+				            <li style="margin-bottom: 5px;">			    				
+				                <xsl:apply-templates mode="identity"/>
+				            </li>
+				        </xsl:if>
+				    </xsl:for-each>
 				</xsl:otherwise>
 			</xsl:choose>        	
         </xsl:copy>

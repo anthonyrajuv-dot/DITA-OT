@@ -3122,10 +3122,10 @@
         </xsl:choose>
     </xsl:template>
 
-    <xsl:template match="*[contains(@class, ' glossentry/glossdef ')]"
+    <!--<xsl:template match="*[contains(@class, ' glossentry/glossdef ')]"
         mode="glossentry_glossdef.xhtml">
         <xsl:apply-imports/>
-    </xsl:template>
+    </xsl:template>-->
 
     <!-- [SP] Override definition list processing. -->
     <!-- =========== DEFINITION LIST =========== -->

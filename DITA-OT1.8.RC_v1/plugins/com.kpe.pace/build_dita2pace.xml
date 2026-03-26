@@ -492,8 +492,15 @@
     		<include name="*.ditamap"/>
     	</replace>-->
         
-        
-        
+        <!-- [ARV: 26-03-2026] To replace remove empty <h3/> -->
+        <echo>replacing &lt;h3/&gt; to &lt;h3 style="display: none;"&gt;&#x00a0;&lt;/h3&gt;.</echo>
+        <replace dir="${output.dir}/ASCII"
+            encoding="utf-8"
+            token='&lt;h3/&gt;'
+            value='&lt;h3 style="display: none;"&gt;&#x00a0;&lt;/h3&gt;' summary="yes">
+            <include name="**/*.dita"/>
+            <include name="**/*.xml"/>
+        </replace>
         
         
         
