@@ -4638,32 +4638,78 @@
     <xsl:template match="ol" mode="identity vignette" priority="100">
         <xsl:copy>
             <xsl:choose>
-                <xsl:when test="@outputclass">
+                <xsl:when test="@outputclass = 'ol_alpha'">
                     <xsl:attribute name="type">
-                        <xsl:choose>
-                            <xsl:when test="@outputclass='ol_alpha'">
-                                <xsl:text>A</xsl:text>
-                            </xsl:when>
-                        </xsl:choose>
-                        <xsl:choose>
-                            <xsl:when test="@outputclass='ol_loweralpha'">
-                                <xsl:text>a</xsl:text>
-                            </xsl:when>
-                        </xsl:choose>
-                        <xsl:choose>
-                            <xsl:when test="@outputclass='ol_roman'">
-                                <xsl:text>I</xsl:text>
-                            </xsl:when>
-                        </xsl:choose>
-                        <xsl:choose>
-                            <xsl:when test="@outputclass='ol_lowerroman'">
-                                <xsl:text>i</xsl:text>
-                            </xsl:when>
-                        </xsl:choose>
+                        <xsl:text>A</xsl:text>
                     </xsl:attribute>
+                    <xsl:for-each select="li">
+                        <li style="margin-bottom: 6px; margin-top: 3px;">
+                            <xsl:apply-templates mode="identity"/>
+                        </li>
+                    </xsl:for-each>
                 </xsl:when>
+                <xsl:when test="@outputclass = 'ol_loweralpha'">
+                    <xsl:attribute name="type">
+                        <xsl:text>a</xsl:text>
+                    </xsl:attribute>
+                    <xsl:for-each select="li">
+                        <li style="margin-bottom: 6px; margin-top: 3px;">
+                            <xsl:apply-templates mode="identity"/>
+                        </li>
+                    </xsl:for-each>
+                </xsl:when>            
+                <xsl:when test="@outputclass = 'ol_roman'">
+                    <xsl:attribute name="type">
+                        <xsl:text>I</xsl:text>
+                    </xsl:attribute>
+                    <xsl:for-each select="li">
+                        <li style="margin-bottom: 6px; margin-top: 3px;">
+                            <xsl:apply-templates mode="identity"/>
+                        </li>
+                    </xsl:for-each>
+                </xsl:when>
+                <xsl:when test="@outputclass = 'ol_lowerroman'">
+                    <xsl:attribute name="type">
+                        <xsl:text>i</xsl:text>
+                    </xsl:attribute>
+                    <xsl:for-each select="li">
+                        <li style="margin-bottom: 6px; margin-top: 3px;">
+                            <xsl:apply-templates mode="identity"/>
+                        </li>
+                    </xsl:for-each>
+                </xsl:when>
+                <xsl:when test="@outputclass = 'ol_dp_num'">
+                    <xsl:attribute name="style">
+                        <xsl:text>list-style-type: none;</xsl:text>
+                    </xsl:attribute>                    
+                    <xsl:for-each select="li">
+                        <li style="margin-left: 1.5em; margin-bottom: 6px; margin-top: 3px;">
+                            <span style="margin-left: -1.8em; padding-right: 0.6em;">(<xsl:number format="1"/>)</span>&#32;
+                            <xsl:apply-templates mode="identity"/>
+                        </li>
+                    </xsl:for-each>
+                </xsl:when>
+                <xsl:when test="@outputclass = 'ol_dp_loweralpha'">
+                    <xsl:attribute name="style">
+                        <xsl:text>list-style-type: none;</xsl:text>
+                    </xsl:attribute>                                 
+                    <xsl:for-each select="li">
+                        <li style="margin-left: 1.5em; margin-bottom: 6px; margin-top: 3px;">
+                            <span style="margin-left: -1.8em; padding-right: 0.6em;">(<xsl:number format="a"/>)</span>&#32;
+                            <xsl:apply-templates mode="identity"/>
+                        </li>
+                    </xsl:for-each>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:for-each select="li">
+                        <li style="margin-bottom: 6px; margin-top: 3px;">
+                            <xsl:apply-templates mode="identity"/>
+                        </li>
+                    </xsl:for-each>
+                </xsl:otherwise>
             </xsl:choose>
-            <xsl:apply-templates select="@*[not(name()='outputclass')]|node()" mode="identity"/>
+
+            <!--<xsl:apply-templates select="@*[not(name()='outputclass')]|node()" mode="identity"/>-->
         </xsl:copy>
     </xsl:template>
 
