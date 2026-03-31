@@ -1208,14 +1208,14 @@
                 <xsl:choose>
                     <xsl:when test="lcQuestion2/node()[self::text()]">
                         <prompt>
-                            <p><b>ARV</b>
+                            <p>
                                 <xsl:apply-templates select="lcQuestion2"/>
                             </p>
                         </prompt>
                     </xsl:when>
                     <xsl:otherwise>
                         <!--                    <xsl:comment>lcQuestion2 with block elements.</xsl:comment>-->
-                    	<prompt><b>ARV</b>
+                    	<prompt>
                             <xsl:apply-templates select="lcQuestion2/*" mode="identity">
                                 <xsl:with-param name="type" select="'question'"/>
                             </xsl:apply-templates>
