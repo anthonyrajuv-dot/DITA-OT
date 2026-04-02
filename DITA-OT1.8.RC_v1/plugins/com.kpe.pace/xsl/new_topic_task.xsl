@@ -1126,7 +1126,7 @@
 			<xsl:when test="$difficulty != '' and $isVignette = 'yes-from-difficulty-mode'">
 				<!-- do nothing -->
 			</xsl:when>
-			<xsl:when test="$difficulty != '' and $isVignette = 'no-from-questionType-mode'">
+			<xsl:when test="$difficulty != '' and $isVignette = 'no-from-difficulty-mode'">
 				<data name="difficulty">
 					<xsl:attribute name="value" select="$difficulty"/>
 					<xsl:attribute name="datatype" select="$datatype"/>
@@ -4636,76 +4636,106 @@
 
     <!-- ol may have an outputclass, which needs to be output as @type, with modified values. -->
     <xsl:template match="ol" mode="identity vignette" priority="100">
+        
+        <xsl:variable name="list-line-spacing">
+            <xsl:value-of select="'margin-bottom: 6px; margin-top: 3px;'"/>
+        </xsl:variable>
+        
         <xsl:copy>
             <xsl:choose>
                 <xsl:when test="@outputclass = 'ol_alpha'">
                     <xsl:attribute name="type">
                         <xsl:text>A</xsl:text>
                     </xsl:attribute>
-                    <xsl:for-each select="li">
-                        <li style="margin-bottom: 6px; margin-top: 3px;">
-                            <xsl:apply-templates mode="identity"/>
-                        </li>
-                    </xsl:for-each>
+                    <xsl:choose><xsl:when test="lower-case($prod_vert) = 'bar'">
+                        <xsl:for-each select="li">
+                            <li style="{$list-line-spacing}">
+                                <xsl:apply-templates mode="identity"/>
+                            </li>
+                        </xsl:for-each>
+                    </xsl:when>
+                    <xsl:otherwise><xsl:apply-templates mode="identity"/></xsl:otherwise>
+                    </xsl:choose>
                 </xsl:when>
                 <xsl:when test="@outputclass = 'ol_loweralpha'">
                     <xsl:attribute name="type">
                         <xsl:text>a</xsl:text>
                     </xsl:attribute>
-                    <xsl:for-each select="li">
-                        <li style="margin-bottom: 6px; margin-top: 3px;">
-                            <xsl:apply-templates mode="identity"/>
-                        </li>
-                    </xsl:for-each>
+                    <xsl:choose><xsl:when test="lower-case($prod_vert) = 'bar'">
+                        <xsl:for-each select="li">
+                            <li style="{$list-line-spacing}">
+                                <xsl:apply-templates mode="identity"/>
+                            </li>
+                        </xsl:for-each>
+                    </xsl:when>
+                    <xsl:otherwise><xsl:apply-templates mode="identity"/></xsl:otherwise>
+                    </xsl:choose>
                 </xsl:when>            
                 <xsl:when test="@outputclass = 'ol_roman'">
                     <xsl:attribute name="type">
                         <xsl:text>I</xsl:text>
                     </xsl:attribute>
-                    <xsl:for-each select="li">
-                        <li style="margin-bottom: 6px; margin-top: 3px;">
-                            <xsl:apply-templates mode="identity"/>
-                        </li>
-                    </xsl:for-each>
+                    <xsl:choose><xsl:when test="lower-case($prod_vert) = 'bar'">
+                        <xsl:for-each select="li">
+                            <li style="{$list-line-spacing}">
+                                <xsl:apply-templates mode="identity"/>
+                            </li>
+                        </xsl:for-each>
+                    </xsl:when>
+                    <xsl:otherwise><xsl:apply-templates mode="identity"/></xsl:otherwise></xsl:choose>
                 </xsl:when>
                 <xsl:when test="@outputclass = 'ol_lowerroman'">
                     <xsl:attribute name="type">
                         <xsl:text>i</xsl:text>
                     </xsl:attribute>
-                    <xsl:for-each select="li">
-                        <li style="margin-bottom: 6px; margin-top: 3px;">
-                            <xsl:apply-templates mode="identity"/>
-                        </li>
-                    </xsl:for-each>
+                    <xsl:choose><xsl:when test="lower-case($prod_vert) = 'bar'">
+                        <xsl:for-each select="li">
+                            <li style="{$list-line-spacing}">
+                                <xsl:apply-templates mode="identity"/>
+                            </li>
+                        </xsl:for-each>
+                    </xsl:when>
+                    <xsl:otherwise><xsl:apply-templates mode="identity"/></xsl:otherwise></xsl:choose>
                 </xsl:when>
                 <xsl:when test="@outputclass = 'ol_dp_num'">
                     <xsl:attribute name="style">
                         <xsl:text>list-style-type: none;</xsl:text>
-                    </xsl:attribute>                    
-                    <xsl:for-each select="li">
-                        <li style="margin-left: 1.5em; margin-bottom: 6px; margin-top: 3px;">
-                            <span style="margin-left: -1.8em; padding-right: 0.6em;">(<xsl:number format="1"/>)</span>&#32;
-                            <xsl:apply-templates mode="identity"/>
-                        </li>
-                    </xsl:for-each>
+                    </xsl:attribute>
+                    <xsl:choose><xsl:when test="lower-case($prod_vert) = 'bar'">
+                        <xsl:for-each select="li">
+                            <li style="{concat('margin-left: 1.5em;',$list-line-spacing)}">
+                                <span style="margin-left: -1.8em; padding-right: 0.6em;">(<xsl:number format="1"/>)</span>&#32;
+                                <xsl:apply-templates mode="identity"/>
+                            </li>
+                        </xsl:for-each>
+                    </xsl:when>
+                    <xsl:otherwise><xsl:apply-templates mode="identity"/></xsl:otherwise></xsl:choose>
                 </xsl:when>
                 <xsl:when test="@outputclass = 'ol_dp_loweralpha'">
                     <xsl:attribute name="style">
                         <xsl:text>list-style-type: none;</xsl:text>
-                    </xsl:attribute>                                 
+                    </xsl:attribute>
+                    <xsl:choose><xsl:when test="lower-case($prod_vert) = 'bar'">
                     <xsl:for-each select="li">
-                        <li style="margin-left: 1.5em; margin-bottom: 6px; margin-top: 3px;">
+                        <li style="{concat('margin-left: 1.5em;',$list-line-spacing)}">
                             <span style="margin-left: -1.8em; padding-right: 0.6em;">(<xsl:number format="a"/>)</span>&#32;
                             <xsl:apply-templates mode="identity"/>
                         </li>
                     </xsl:for-each>
+                    </xsl:when>
+                        <xsl:otherwise><xsl:apply-templates mode="identity"/></xsl:otherwise>
+                    </xsl:choose>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:for-each select="li">
-                        <li style="margin-bottom: 6px; margin-top: 3px;">
-                            <xsl:apply-templates mode="identity"/>
-                        </li>
-                    </xsl:for-each>
+                    <xsl:choose><xsl:when test="lower-case($prod_vert) = 'bar'">
+                            <xsl:for-each select="li">
+                                <li style="margin-bottom: 6px; margin-top: 3px;">
+                                    <xsl:apply-templates mode="identity"/>
+                                </li>
+                            </xsl:for-each>
+                    </xsl:when>
+                        <xsl:otherwise><xsl:apply-templates mode="identity"/></xsl:otherwise>
+                    </xsl:choose>
                 </xsl:otherwise>
             </xsl:choose>
 
