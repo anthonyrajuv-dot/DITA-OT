@@ -623,6 +623,10 @@
                     <xsl:message>[K:info] Multi Choice Quesiton</xsl:message>
                     <xsl:value-of select="$scoreWeightMCQ"/>
                 </xsl:when>
+            	<xsl:when test="document(@orig_href)/kpe-question/kpe-questionBody/lcInteraction[lcMultipleSelect2]">
+                    <xsl:message>[K:info] Multi Correct Choice Quesiton</xsl:message>
+                    <xsl:value-of select="$scoreWeightMCQ"/>
+                </xsl:when>
             </xsl:choose>
         </xsl:variable>
 			
