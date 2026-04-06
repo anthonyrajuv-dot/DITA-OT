@@ -52,6 +52,8 @@
     	<xsl:variable name="isSPE" select="$bookmeta/prodinfo/offering/@spe"/>
     	<xsl:variable name="open_answer" select="$bookmeta/prodinfo/offering/@openanswer"/>
         
+    	<!-- Get hold of Product verticle. -->
+    	<xsl:variable name="prod_vert" select="$bookmeta/prodinfo/brand"/>
         
     <xsl:variable name="all-prompts-ids" select="//lcQuestionContext2" as="element()*"/>
     	
@@ -81,6 +83,9 @@
         	<xsl:attribute name="performance_tracker" select="$performance_tracker"/>
         	<xsl:attribute name="isSPE" select="$isSPE"/>
         	<xsl:attribute name="open_answer" select="$open_answer"/>
+        	
+        	<!-- Hold brand abbreviation. -->
+        	<xsl:attribute name="prod_vert" select="$prod_vert"/>
             
             
             

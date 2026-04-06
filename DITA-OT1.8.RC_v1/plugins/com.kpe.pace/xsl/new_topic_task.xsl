@@ -4512,7 +4512,7 @@
 
 
     <!-- UL should be passed with no attributes. -->
-	<!-- [ARV: 05-02-2025] For including endash, opensquare and square list markers -->
+	<!-- [ARV: 05-02-2025, 06-04-2025] For including endash, opensquare and square list markers -->
 	<xsl:template match="ul" mode="identity" priority="100">
 	    <xsl:variable name="list-margin">
 	        <xsl:choose>
@@ -4535,7 +4535,8 @@
 					</xsl:attribute>
 				    <xsl:attribute name="style">
 						<xsl:value-of select="$list-margin"/>
-					</xsl:attribute>				    
+					</xsl:attribute>
+					<xsl:choose><xsl:when test="lower-case($prod_vert) = 'bar'">
 					<xsl:for-each select="li">
 					    <xsl:if test="position() != last()">
 					        <li style="margin-bottom: 5px;">
@@ -4550,6 +4551,9 @@
 					        </li>
 					    </xsl:if>
 					</xsl:for-each>
+					</xsl:when>
+						<xsl:otherwise><xsl:apply-templates mode="identity"/></xsl:otherwise>
+					</xsl:choose>
 				</xsl:when>
 				<xsl:when test="@outputclass='ul_opensquare'">
 					<xsl:attribute name="type">
@@ -4557,7 +4561,8 @@
 					</xsl:attribute>
 					<xsl:attribute name="style">
 						<xsl:value-of select="$list-margin"/>
-					</xsl:attribute>				    
+					</xsl:attribute>
+					<xsl:choose><xsl:when test="lower-case($prod_vert) = 'bar'">
 					<xsl:for-each select="li">
 						<xsl:if test="position() != last()">
 							<li style="margin-bottom: 5px;">
@@ -4572,6 +4577,9 @@
 							</li>
 						</xsl:if>
 					</xsl:for-each>
+					</xsl:when>
+						<xsl:otherwise><xsl:apply-templates mode="identity"/></xsl:otherwise>
+					</xsl:choose>
 				</xsl:when>
 			    <xsl:when test="@outputclass='ul_square'">
 			        <xsl:attribute name="type">
@@ -4580,7 +4588,8 @@
 			        <xsl:attribute name="style">
 			            <xsl:value-of select="$list-margin"/>
 			            <xsl:value-of select="'list-style-type: square; '"/>
-			        </xsl:attribute>			    	
+			        </xsl:attribute>
+			    	<xsl:choose><xsl:when test="lower-case($prod_vert) = 'bar'">			    	
 			    	<xsl:for-each select="li">
 			    		<xsl:if test="position() != last()">
 			    			<li style="margin-bottom: 5px;">			    				
@@ -4592,7 +4601,10 @@
 			    				<xsl:apply-templates mode="identity"/>
 			    			</li>
 			    		</xsl:if>
-			    	</xsl:for-each>			        
+			    	</xsl:for-each>
+			    	</xsl:when>
+			    		<xsl:otherwise><xsl:apply-templates mode="identity"/></xsl:otherwise>
+			    	</xsl:choose>
 			    </xsl:when>
 				<xsl:when test="@outputclass='ul_circle'">
 					<xsl:attribute name="type">
@@ -4602,6 +4614,7 @@
 						<xsl:value-of select="$list-margin"/>
 						<xsl:value-of select="'list-style-type: circle; '"/>
 					</xsl:attribute>
+					<xsl:choose><xsl:when test="lower-case($prod_vert) = 'bar'">
 					<xsl:for-each select="li">
 						<xsl:if test="position() != last()">
 							<li style="margin-bottom: 5px;">			    				
@@ -4614,6 +4627,33 @@
 							</li>
 						</xsl:if>
 					</xsl:for-each>
+					</xsl:when>
+						<xsl:otherwise><xsl:apply-templates mode="identity"/></xsl:otherwise>
+					</xsl:choose>
+				</xsl:when>
+				<xsl:when test="@outputclass='ul_btn_checkmark'">
+					<xsl:attribute name="style">
+						<xsl:text>list-style-type: none;</xsl:text>
+						<xsl:value-of select="$list-margin"/>
+					</xsl:attribute>
+					<xsl:choose><xsl:when test="lower-case($prod_vert) = 'bar'">
+					<xsl:for-each select="li">
+						<xsl:if test="position() != last()">
+							<li style="margin-left: 1.7em; margin-bottom: 6px;">
+								<span style="margin-left: -1.7em;">&#x2705;</span>&#x00A0;
+								<xsl:apply-templates mode="identity"/>
+							</li>
+						</xsl:if>
+						<xsl:if test="position() = last()">
+							<li style="margin-left: 1.7em; margin-bottom: 6px;">
+								<span style="margin-left: -1.7em;">&#x2705;</span>&#x00A0;
+								<xsl:apply-templates mode="identity"/>
+							</li>
+						</xsl:if>
+					</xsl:for-each>
+					</xsl:when>
+						<xsl:otherwise><xsl:apply-templates mode="identity"/></xsl:otherwise>
+					</xsl:choose>
 				</xsl:when>
 				<xsl:otherwise>
 					<xsl:if test="parent::li/parent::ul[@outputclass='ul_endash' or @outputclass='ul_square' or @outputclass='ul_circle' or @outputclass='ul_opensquare']">
@@ -4621,6 +4661,7 @@
 				        	<xsl:value-of select="$default-list-style,$list-margin"/>
 				        </xsl:attribute>
 				    </xsl:if>
+					<xsl:choose><xsl:when test="lower-case($prod_vert) = 'bar'">
 				    <xsl:for-each select="li">
 				        <xsl:if test="position() != last()">
 				            <li style="margin-bottom: 5px;">			    				
@@ -4633,6 +4674,9 @@
 				            </li>
 				        </xsl:if>
 				    </xsl:for-each>
+					</xsl:when>
+						<xsl:otherwise><xsl:apply-templates mode="identity"/></xsl:otherwise>
+					</xsl:choose>
 				</xsl:otherwise>
 			</xsl:choose>        	
         </xsl:copy>
