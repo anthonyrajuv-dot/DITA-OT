@@ -5361,14 +5361,35 @@
 	
 	
     <xsl:template match="entry" mode="PACE_table_head vignette">
-        <th bgcolor="#cccccc">
+        <th>
+            <!-- [CONDITIONAL COLORING FOR HEADERS] -->
+            <xsl:choose>
+                <!-- Only apply purple if the specific outputclass is present -->
+                <xsl:when test="@outputclass = 'purple-header' or parent::row/@outputclass = 'purple-header'">
+                    <xsl:attribute name="bgcolor">#b2a1c7</xsl:attribute>
+                </xsl:when>
+                <!-- Default header color remains gray as per original template -->
+                <xsl:otherwise>
+                    <xsl:choose>
+                        <!-- Only apply purple if the specific outputclass is present -->
+                        <xsl:when test="@outputclass = 'purple-header' or parent::row/@outputclass = 'purple-header'">
+                            <xsl:attribute name="bgcolor">#b2a1c7</xsl:attribute>
+                        </xsl:when>
+                        <!-- Default header color remains gray -->
+                        <xsl:otherwise>
+                            <xsl:attribute name="bgcolor">#cccccc</xsl:attribute>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:otherwise>
+            </xsl:choose>
+            
             <xsl:choose>
                 <xsl:when test="@align">
                     <xsl:attribute name="align">
                         <xsl:value-of select="@align"/>
                     </xsl:attribute>
                 </xsl:when>
-                <!--                PSB changed default from left to center 6/15/2017 -->
+                <!-- PSB changed default from left to center 6/15/2017 -->
                 <xsl:otherwise>
                     <xsl:attribute name="align">center</xsl:attribute>
                 </xsl:otherwise>
@@ -5388,7 +5409,7 @@
                 <xsl:when test="@rowsep = '0' and @colsep = '0'">
                     <xsl:apply-templates/>
                 </xsl:when>
-
+                
                 <xsl:when test="@rowsep = '1' and @colsep = '1'">
                     <xsl:attribute name="class">border_bottom border_right</xsl:attribute>
                 </xsl:when>
@@ -5413,7 +5434,7 @@
                     <xsl:call-template name="find-colspan"/>
                 </xsl:attribute>
             </xsl:if>
-
+            
             <xsl:if
                 test="../../../*[contains(@class, ' topic/colspec ')]/@colwidth and
                 not(@namest) and not(@nameend) and not(@spanspec)">
@@ -5447,22 +5468,68 @@
                 </xsl:variable>
                 <!-- Width = width of this column / width of table, times 100 to make a percent -->
                 <xsl:attribute name="width">
-                    <!--   <xsl:choose>
-                        <xsl:when test="$proportionalWidth">
-                            <xsl:value-of select="($thiswidth div $totalwidth) * 100"/>
-                            <xsl:text>%</xsl:text>
-                        </xsl:when>
-                        <xsl:otherwise>-->
                     <xsl:value-of select="$thiswidth"/>
-                    <!--</xsl:otherwise>
-                    </xsl:choose>-->
                 </xsl:attribute>
             </xsl:if>
-
-
-            <!--<xsl:apply-templates/>-->
+            
             <xsl:apply-templates mode="identity"/>
         </th>
+    </xsl:template>
+    
+    <!-- [MODIFIED TEMPLATE: PACE_table_body vignette] -->
+    <xsl:template match="entry" mode="PACE_table_body vignette">
+        <td>
+            <xsl:if test="@align">
+                <xsl:attribute name="align">
+                    <xsl:value-of select="@align"/>
+                </xsl:attribute>
+            </xsl:if>
+            <xsl:if test="@valign">
+                <xsl:attribute name="valign">
+                    <xsl:value-of select="@valign"/>
+                </xsl:attribute>
+            </xsl:if>
+            
+            <xsl:if test="@morerows">
+                <xsl:attribute name="rowspan">
+                    <xsl:value-of select="@morerows+1"/>
+                </xsl:attribute>
+            </xsl:if>
+            
+            <xsl:choose>
+                <xsl:when test="@rowsep = '1' and @colsep = '1'">
+                    <xsl:attribute name="class">border_bottom border_right</xsl:attribute>
+                </xsl:when>
+                <xsl:when test="@rowsep = '1'">
+                    <xsl:attribute name="class">border_bottom</xsl:attribute>
+                </xsl:when>
+                <xsl:when test="@colsep = '1'">
+                    <xsl:attribute name="class">border_right</xsl:attribute>
+                </xsl:when>
+            </xsl:choose>
+            
+            <xsl:if test="@namest and @nameend">
+                <xsl:attribute name="colspan">
+                    <xsl:call-template name="find-colspan"/>
+                </xsl:attribute>
+            </xsl:if>
+            
+            <xsl:choose>
+                <!-- Darker Gray for section dividers -->
+                <xsl:when test="@outputclass = 'section-divider' or parent::row/@outputclass = 'section-divider'">
+                    <xsl:attribute name="bgcolor">#d9d9d9</xsl:attribute>
+                </xsl:when>
+                <!-- Light Gray for standard shaded rows (Cats/Dogs) -->
+                <xsl:when test="@outputclass = 'shade-light' or parent::row/@outputclass = 'shade-light'">
+                    <xsl:attribute name="bgcolor">#f2f2f2</xsl:attribute>
+                </xsl:when>
+                <xsl:when test="@outputclass = 'shade'">
+                    <xsl:attribute name="bgcolor">#cccccc</xsl:attribute>
+                </xsl:when>
+            </xsl:choose>
+            
+            <xsl:apply-templates mode="identity"/>
+        </td>
     </xsl:template>
 
 
@@ -5586,6 +5653,14 @@
                 </xsl:attribute>
             </xsl:if>
             <xsl:choose>
+                <!-- Darker Gray for section dividers -->
+                <xsl:when test="@outputclass = 'section-divider' or parent::row/@outputclass = 'section-divider'">
+                    <xsl:attribute name="bgcolor">#d9d9d9</xsl:attribute>
+                </xsl:when>
+                <!-- Light Gray for shaded rows (Cats/Dogs) -->
+                <xsl:when test="@outputclass = 'shade-light' or parent::row/@outputclass = 'shade-light'">
+                    <xsl:attribute name="bgcolor">#f2f2f2</xsl:attribute>
+                </xsl:when>
                 <xsl:when test="@outputclass = 'shade'">
                     <xsl:attribute name="bgcolor">#cccccc</xsl:attribute>
                 </xsl:when>
