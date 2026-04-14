@@ -38,6 +38,10 @@
 
         <!-- Get the course number from the most recent VRM. -->
         <xsl:variable name="course_num" select="$bookmeta/prodinfo/vrmlist/vrm[1]/@version"/>
+    	
+    	
+    	<!-- Get hold of Product verticle. -->
+    	<xsl:variable name="prod_vert" select="$bookmeta/prodinfo/brand"/>
 
         <supermap>
             <xsl:attribute name="title">
@@ -65,6 +69,10 @@
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:attribute>
+        	
+        	
+        	<!-- Hold brand abbreviation. -->
+        	<xsl:attribute name="prod_vert" select="$prod_vert"/>
 
 
             <!-- Content of navtitle is necessary for determining if the first chapter is an introduction. -->

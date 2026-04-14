@@ -2461,6 +2461,14 @@
 		<fo:block font-weight="bold">Conclusion:</fo:block>
 		<xsl:apply-templates select="$sectionDoc//conclusion"/>
 	</xsl:template>
+	
+	
+	<!-- ARV Added on 14-04-2026 -->
+	<xsl:template match="*[contains(@class,' topic/alt ')]">
+		<fo:block color="darkblue" margin-bottom="10pt" font-size="12pt" text-decoration="underline" font-weight="bold">Alt Text:</fo:block>
+		<xsl:apply-templates/>
+	</xsl:template>
+	
 
     <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
 

@@ -4656,7 +4656,7 @@
 					</xsl:choose>
 				</xsl:when>
 				<xsl:otherwise>
-					<xsl:if test="parent::li/parent::ul[@outputclass='ul_endash' or @outputclass='ul_square' or @outputclass='ul_circle' or @outputclass='ul_opensquare']">
+					<xsl:if test="parent::li/parent::ul[(@outputclass='ul_endash' or @outputclass='ul_square' or @outputclass='ul_circle' or @outputclass='ul_opensquare' or @outputclass='other') and lower-case($prod_vert) = 'bar']">
 				        <xsl:attribute name="style">
 				        	<xsl:value-of select="$default-list-style,$list-margin"/>
 				        </xsl:attribute>
