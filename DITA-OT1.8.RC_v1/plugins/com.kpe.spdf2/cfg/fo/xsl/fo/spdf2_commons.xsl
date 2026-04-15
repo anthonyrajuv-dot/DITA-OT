@@ -1544,6 +1544,11 @@
                 </xsl:if>
             </xsl:otherwise>
         </xsl:choose>
+        <xsl:choose>
+            <xsl:when test="alt">
+            	<xsl:apply-templates/>
+            </xsl:when>
+        </xsl:choose>
         <!--</xsl:if>-->
     </xsl:template>
 
@@ -2464,10 +2469,29 @@
 	
 	
 	<!-- ARV Added on 14-04-2026 -->
-	<xsl:template match="*[contains(@class,' topic/alt ')]">
-		<fo:block color="darkblue" margin-bottom="10pt" font-size="12pt" text-decoration="underline" font-weight="bold">Alt Text:</fo:block>
-		<xsl:apply-templates/>
-	</xsl:template>
+    <xsl:template match="*[contains(@class, ' topic/alt ')]">
+        <xsl:variable name="altImagePath">
+            <xsl:call-template name="insertVariable">
+                <xsl:with-param name="theVariableID"
+                    select="concat('alt-text-icon', ' Alt Image Path')"/>
+            </xsl:call-template>
+        </xsl:variable>
+        <fo:list-block provisional-distance-between-starts="0pt" provisional-label-separation="12pt" margin-left="5px">
+            <fo:list-item>
+                <fo:list-item-label end-indent="label-end()">
+                    <fo:block margin-left="-28pt">
+                        <fo:external-graphic src="url({concat($artworkPrefix, $altImagePath)})" content-width="18pt"/>
+                    </fo:block>
+                </fo:list-item-label>
+                <fo:list-item-body start-indent="body-start()">
+                    <fo:block border-left="1px solid #B31A23" padding-left="4px" font-size="9pt" color="#5C2C35">
+                        <fo:inline color="#B31A23" font-weight="bold">Alt Text: </fo:inline>
+                        <xsl:apply-templates/>
+                    </fo:block>
+                </fo:list-item-body>
+            </fo:list-item>
+        </fo:list-block>
+    </xsl:template>
 	
 
     <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->

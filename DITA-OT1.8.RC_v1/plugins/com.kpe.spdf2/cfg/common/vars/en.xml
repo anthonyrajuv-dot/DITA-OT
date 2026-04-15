@@ -70,6 +70,8 @@
 	
 	<variable id="profnote Note Image Path">Customization/OpenTopic/common/artwork/profnote.png</variable>
     
+    <variable id="alt-text-icon Alt Image Path">Customization/OpenTopic/common/artwork/alt-text-icon.png</variable>
+    
         <!-- Images for watermarks -->
     <variable id="draft Watermark Image Path">Customization/OpenTopic/common/artwork/draft.svg</variable>
     <variable id="beta Watermark Image Path">Customization/OpenTopic/common/artwork/Beta.svg</variable>

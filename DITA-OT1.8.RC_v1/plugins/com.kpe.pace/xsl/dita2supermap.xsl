@@ -696,6 +696,17 @@
         -->
 <!--        <xsl:variable name="chunk_count" select="count($topic//section[title]) + count($topic//data[@name='pace_break' and upper-case(@value)='Y'])"/>-->
         <xsl:variable name="chunk_count" select="count($topic//section) + count($topic//data[@name='pace_break' and upper-case(@value)='Y'])"/>
+    	
+    	<!-- [ARV: 15-04-2026] Added to not chunk when chunk=no -->
+        <xsl:variable name="is_chunk_req">
+            <xsl:choose>
+                <xsl:when test="@chunk = 'yes' "><xsl:value-of select="'yes'"/></xsl:when>
+                <xsl:when test="@chunk = 'no' "><xsl:value-of select="'no'"/></xsl:when>
+                <xsl:when test="@chunk = '' "><xsl:value-of select="'yes'"/></xsl:when>
+                <xsl:when test="not(@chunk)"><xsl:value-of select="'yes'"/></xsl:when>
+            </xsl:choose>
+        </xsl:variable>
+    	
         <xsl:message>For <xsl:value-of select="@href"/>, chunk_count is: <xsl:value-of select="$chunk_count"/>.</xsl:message>
         <xsl:variable name="has_chunking">
             <xsl:choose>
@@ -704,13 +715,13 @@
                 <xsl:when test="$task_category = 'kpe-assessmentOverview'">
                     <xsl:value-of select="false()"/>
                 </xsl:when>-->
-                <xsl:when test="$chunk_count &gt; 0 and contains(name($topic),'concept')">
+                <xsl:when test="$is_chunk_req='yes' and $chunk_count &gt; 0 and contains(name($topic),'concept')">
                     <xsl:value-of select="true()"/>
                 </xsl:when>
 <!--                <xsl:when test="$topic//section[title] or $topic//data[@name='pace_break' and upper-case(@value)='Y']">
                     <xsl:value-of select="true()"/>
                 </xsl:when>-->
-                <xsl:otherwise>
+                <xsl:otherwise>                    
                     <xsl:value-of select="false()"/>
                 </xsl:otherwise>
             </xsl:choose>
