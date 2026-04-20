@@ -5410,7 +5410,7 @@
             </xsl:if>
             <xsl:choose>
                 <xsl:when test="@rowsep = '0' and @colsep = '0'">
-                    <xsl:apply-templates/>
+                    <!--<xsl:apply-templates/>-->
                 </xsl:when>
                 
                 <xsl:when test="@rowsep = '1' and @colsep = '1'">
