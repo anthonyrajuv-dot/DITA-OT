@@ -49,6 +49,7 @@ PUBLIC "-//OASIS//ENTITIES DITA Learning Domain//EN"
                         lcProblemSolving |
                         lcCriticalReasoning |
                         lcDataSufficiency |
+                        lcSentenseCorrection |
                         lcMultiSourceReasoningSingle |
                         lcMultiSourceReasoningMultiple |
                         lcReadingComprehension |
@@ -69,6 +70,7 @@ PUBLIC "-//OASIS//ENTITIES DITA Learning Domain//EN"
                         lcProblemSolving |
                         lcCriticalReasoning |
                         lcDataSufficiency |
+                        lcSentenseCorrection |
                         lcMultiSourceReasoningSingle |
                         lcMultiSourceReasoningMultiple |
                         lcReadingComprehension |

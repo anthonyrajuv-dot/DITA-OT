@@ -526,6 +526,31 @@ PUBLIC "-//OASIS//ELEMENTS DITA Learning Domain//EN"
 <!ATTLIST lcMultipleSelect2    %lcMultipleSelect2.attributes;>
 
 
+
+<!-- [ARV 00-04-2025] Added for GMAT Verticle => EA  -->
+<!ENTITY % lcSentenseCorrection.content
+                       "((%lcInteractionLabel2;)?,
+                         (%lcQuestion2;), 
+                         (%lcAsset2;)*,
+                         (%lcAnswerOptionGroup2;),
+                         (%lcFeedbackIncorrect2;)?,
+                         (%lcFeedbackCorrect2;)?,
+                         (%data;)*)"
+>
+<!ENTITY % lcSentenseCorrection.attributes
+             "id
+                        NMTOKEN
+                                  #IMPLIED
+              %univ-atts;
+              outputclass
+                        CDATA
+                                  #IMPLIED"
+>
+<!ELEMENT lcSentenseCorrection    %lcSentenseCorrection.content;>
+<!ATTLIST lcSentenseCorrection    %lcSentenseCorrection.attributes;>
+
+
+
 <!ENTITY % lcSequencing2.content
                        "((%lcInteractionLabel2;)?,
                          (%lcQuestion2;), 
@@ -1139,6 +1164,8 @@ PUBLIC "-//OASIS//ELEMENTS DITA Learning Domain//EN"
     class CDATA "+ topic/div learningInteractionBase2-d/lcInteractionBase learning2-d/lcQuestionContextTabContent ">
 <!ATTLIST lcTabQuestionContext2 %global-atts;
     class CDATA "+ topic/div learningInteractionBase2-d/lcInteractionBase learning2-d/lcTabQuestionContext2 ">
+<!ATTLIST lcSentenseCorrection %global-atts;
+    class CDATA "+ topic/div learningInteractionBase2-d/lcInteractionBase learning2-d/lcSentenseCorrection ">
     
 <!ATTLIST lcQuestionContext2 %global-atts;
     class CDATA "+ topic/div learningInteractionBase2-d/lcInteractionBase learning2-d/lcQuestionContext2 ">
