@@ -770,8 +770,8 @@
 					<xsl:when test="$question-type/lcDataSufficiency">
 						<xsl:value-of select="'Data Sufficiency'"/>
 					</xsl:when>
-					<xsl:when test="$question-type/lcSentenseCorrection">
-						<xsl:value-of select="'Sentense Correction'"/>
+					<xsl:when test="$question-type/lcSentenceCorrection">
+						<xsl:value-of select="'Sentence Correction'"/>
 					</xsl:when>
 					<xsl:when test="$question-type/lcTwoPartAnalysis">
 						<xsl:value-of select="'Two-Part Analysis'"/>
@@ -2054,7 +2054,7 @@
 
     <!-- Also used by new_assessment_from_q. (Updated by ARV for multichoice)-->
 	 <!-- Updated by ARV for lcTwoPartAnalysis-->
-	<xsl:template match="lcSingleSelect2 | lcTrueFalse2 | lcMultipleSelect2 | lcTwoPartAnalysis | lcProblemSolving | lcDataSufficiency | lcSentenseCorrection | lcCriticalReasoning | lcMultiSourceReasoningSingle | lcMultiSourceReasoningMultiple | lcReadingComprehension | lcTableAnalysis | lcGraphicsInterpretation" mode="new_learning_question">
+	<xsl:template match="lcSingleSelect2 | lcTrueFalse2 | lcMultipleSelect2 | lcTwoPartAnalysis | lcProblemSolving | lcDataSufficiency | lcSentenceCorrection | lcCriticalReasoning | lcMultiSourceReasoningSingle | lcMultiSourceReasoningMultiple | lcReadingComprehension | lcTableAnalysis | lcGraphicsInterpretation" mode="new_learning_question">
         <xsl:param name="unit"/>
         <xsl:param name="q_number"/>
         <xsl:param name="task_number"/>

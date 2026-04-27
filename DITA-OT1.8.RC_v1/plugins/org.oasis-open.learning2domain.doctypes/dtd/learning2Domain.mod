@@ -528,7 +528,7 @@ PUBLIC "-//OASIS//ELEMENTS DITA Learning Domain//EN"
 
 
 <!-- [ARV 00-04-2025] Added for GMAT Verticle => EA  -->
-<!ENTITY % lcSentenseCorrection.content
+<!ENTITY % lcSentenceCorrection.content
                        "((%lcInteractionLabel2;)?,
                          (%lcQuestion2;), 
                          (%lcAsset2;)*,
@@ -537,7 +537,7 @@ PUBLIC "-//OASIS//ELEMENTS DITA Learning Domain//EN"
                          (%lcFeedbackCorrect2;)?,
                          (%data;)*)"
 >
-<!ENTITY % lcSentenseCorrection.attributes
+<!ENTITY % lcSentenceCorrection.attributes
              "id
                         NMTOKEN
                                   #IMPLIED
@@ -546,8 +546,8 @@ PUBLIC "-//OASIS//ELEMENTS DITA Learning Domain//EN"
                         CDATA
                                   #IMPLIED"
 >
-<!ELEMENT lcSentenseCorrection    %lcSentenseCorrection.content;>
-<!ATTLIST lcSentenseCorrection    %lcSentenseCorrection.attributes;>
+<!ELEMENT lcSentenceCorrection    %lcSentenceCorrection.content;>
+<!ATTLIST lcSentenceCorrection    %lcSentenceCorrection.attributes;>
 
 
 
@@ -1164,8 +1164,8 @@ PUBLIC "-//OASIS//ELEMENTS DITA Learning Domain//EN"
     class CDATA "+ topic/div learningInteractionBase2-d/lcInteractionBase learning2-d/lcQuestionContextTabContent ">
 <!ATTLIST lcTabQuestionContext2 %global-atts;
     class CDATA "+ topic/div learningInteractionBase2-d/lcInteractionBase learning2-d/lcTabQuestionContext2 ">
-<!ATTLIST lcSentenseCorrection %global-atts;
-    class CDATA "+ topic/div learningInteractionBase2-d/lcInteractionBase learning2-d/lcSentenseCorrection ">
+<!ATTLIST lcSentenceCorrection %global-atts;
+    class CDATA "+ topic/div learningInteractionBase2-d/lcInteractionBase learning2-d/lcSentenceCorrection ">
     
 <!ATTLIST lcQuestionContext2 %global-atts;
     class CDATA "+ topic/div learningInteractionBase2-d/lcInteractionBase learning2-d/lcQuestionContext2 ">

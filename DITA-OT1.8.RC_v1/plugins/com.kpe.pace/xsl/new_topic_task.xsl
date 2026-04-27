@@ -799,8 +799,8 @@
 					<xsl:when test="$question-type/lcDataSufficiency">
 						<xsl:value-of select="'Data Sufficiency'"/>
 					</xsl:when>
-					<xsl:when test="$question-type/lcSentenseCorrection">
-						<xsl:value-of select="'Sentense Correction'"/>
+					<xsl:when test="$question-type/lcSentenceCorrection">
+						<xsl:value-of select="'Sentence Correction'"/>
 					</xsl:when>
 					<xsl:when test="$question-type/lcTwoPartAnalysis">
 						<xsl:value-of select="'Two-Part Analysis'"/>
@@ -2345,7 +2345,7 @@
 
     <!-- Also used by new_assessment_from_q. (Updated by ARV for multichoice)-->
 	 <!-- Updated by ARV for lcTwoPartAnalysis-->
-	<xsl:template match="lcSingleSelect2 | lcTrueFalse2 | lcMultipleSelect2 | lcTwoPartAnalysis | lcProblemSolving | lcDataSufficiency | lcSentenseCorrection | lcCriticalReasoning | lcMultiSourceReasoningSingle | lcMultiSourceReasoningMultiple | lcReadingComprehension | lcTableAnalysis | lcGraphicsInterpretation" mode="new_learning_question">
+	<xsl:template match="lcSingleSelect2 | lcTrueFalse2 | lcMultipleSelect2 | lcTwoPartAnalysis | lcProblemSolving | lcDataSufficiency | lcSentenceCorrection | lcCriticalReasoning | lcMultiSourceReasoningSingle | lcMultiSourceReasoningMultiple | lcReadingComprehension | lcTableAnalysis | lcGraphicsInterpretation" mode="new_learning_question">
         <xsl:param name="unit"/>
         <xsl:param name="q_number"/>
         <xsl:param name="task_number"/>
@@ -4539,7 +4539,7 @@
 				    <xsl:attribute name="style">
 						<xsl:value-of select="$list-margin"/>
 					</xsl:attribute>
-					<xsl:choose><xsl:when test="lower-case($prod_vert) = 'bar'">
+					<xsl:choose><xsl:when test="lower-case($prod_vert) != 'sec'">
 					<xsl:for-each select="li">
 					    <xsl:if test="position() != last()">
 					        <li style="margin-bottom: 5px;">
@@ -4565,7 +4565,7 @@
 					<xsl:attribute name="style">
 						<xsl:value-of select="$list-margin"/>
 					</xsl:attribute>
-					<xsl:choose><xsl:when test="lower-case($prod_vert) = 'bar'">
+					<xsl:choose><xsl:when test="lower-case($prod_vert) != 'sec'">
 					<xsl:for-each select="li">
 						<xsl:if test="position() != last()">
 							<li style="margin-bottom: 5px;">
@@ -4592,7 +4592,7 @@
 			            <xsl:value-of select="$list-margin"/>
 			            <xsl:value-of select="'list-style-type: square; '"/>
 			        </xsl:attribute>
-			    	<xsl:choose><xsl:when test="lower-case($prod_vert) = 'bar'">			    	
+			    	<xsl:choose><xsl:when test="lower-case($prod_vert) != 'sec'">			    	
 			    	<xsl:for-each select="li">
 			    		<xsl:if test="position() != last()">
 			    			<li style="margin-bottom: 5px;">			    				
@@ -4617,7 +4617,7 @@
 						<xsl:value-of select="$list-margin"/>
 						<xsl:value-of select="'list-style-type: circle; '"/>
 					</xsl:attribute>
-					<xsl:choose><xsl:when test="lower-case($prod_vert) = 'bar'">
+					<xsl:choose><xsl:when test="lower-case($prod_vert) != 'sec'">
 					<xsl:for-each select="li">
 						<xsl:if test="position() != last()">
 							<li style="margin-bottom: 5px;">			    				
@@ -4639,7 +4639,7 @@
 						<xsl:text>list-style-type: none;</xsl:text>
 						<xsl:value-of select="$list-margin"/>
 					</xsl:attribute>
-					<xsl:choose><xsl:when test="lower-case($prod_vert) = 'bar'">
+					<xsl:choose><xsl:when test="lower-case($prod_vert) != 'sec'">
 					<xsl:for-each select="li">
 						<xsl:if test="position() != last()">
 							<li style="margin-left: 1.7em; margin-bottom: 6px;">
@@ -4664,7 +4664,7 @@
 				        	<xsl:value-of select="$default-list-style,$list-margin"/>
 				        </xsl:attribute>
 				    </xsl:if>
-					<xsl:choose><xsl:when test="lower-case($prod_vert) = 'bar'">
+					<xsl:choose><xsl:when test="lower-case($prod_vert) != 'sec'">
 				    <xsl:for-each select="li">
 				        <xsl:if test="position() != last()">
 				            <li style="margin-bottom: 5px;">			    				
@@ -4698,9 +4698,10 @@
                     <xsl:attribute name="type">
                         <xsl:text>A</xsl:text>
                     </xsl:attribute>
-                    <xsl:choose><xsl:when test="lower-case($prod_vert) = 'bar'">
+                	<xsl:choose><xsl:when test="lower-case($prod_vert) != 'sec'">
                         <xsl:for-each select="li">
                             <li style="{$list-line-spacing}">
+                            	<xsl:if test="@value"><xsl:attribute name="value"><xsl:value-of select="@value"/></xsl:attribute></xsl:if>
                                 <xsl:apply-templates mode="identity"/>
                             </li>
                         </xsl:for-each>
@@ -4712,9 +4713,10 @@
                     <xsl:attribute name="type">
                         <xsl:text>a</xsl:text>
                     </xsl:attribute>
-                    <xsl:choose><xsl:when test="lower-case($prod_vert) = 'bar'">
+                	<xsl:choose><xsl:when test="lower-case($prod_vert) != 'sec'">
                         <xsl:for-each select="li">
                             <li style="{$list-line-spacing}">
+                            	<xsl:if test="@value"><xsl:attribute name="value"><xsl:value-of select="@value"/></xsl:attribute></xsl:if>
                                 <xsl:apply-templates mode="identity"/>
                             </li>
                         </xsl:for-each>
@@ -4726,9 +4728,10 @@
                     <xsl:attribute name="type">
                         <xsl:text>I</xsl:text>
                     </xsl:attribute>
-                    <xsl:choose><xsl:when test="lower-case($prod_vert) = 'bar'">
+                	<xsl:choose><xsl:when test="lower-case($prod_vert) != 'sec'">
                         <xsl:for-each select="li">
                             <li style="{$list-line-spacing}">
+                            	<xsl:if test="@value"><xsl:attribute name="value"><xsl:value-of select="@value"/></xsl:attribute></xsl:if>
                                 <xsl:apply-templates mode="identity"/>
                             </li>
                         </xsl:for-each>
@@ -4739,9 +4742,10 @@
                     <xsl:attribute name="type">
                         <xsl:text>i</xsl:text>
                     </xsl:attribute>
-                    <xsl:choose><xsl:when test="lower-case($prod_vert) = 'bar'">
+                	<xsl:choose><xsl:when test="lower-case($prod_vert) != 'sec'">
                         <xsl:for-each select="li">
                             <li style="{$list-line-spacing}">
+                            	<xsl:if test="@value"><xsl:attribute name="value"><xsl:value-of select="@value"/></xsl:attribute></xsl:if>
                                 <xsl:apply-templates mode="identity"/>
                             </li>
                         </xsl:for-each>
@@ -4752,10 +4756,22 @@
                     <xsl:attribute name="style">
                         <xsl:text>list-style-type: none;</xsl:text>
                     </xsl:attribute>
-                    <xsl:choose><xsl:when test="lower-case($prod_vert) = 'bar'">
+                    <xsl:choose><xsl:when test="lower-case($prod_vert) != 'null'">
                         <xsl:for-each select="li">
+                        	<xsl:variable name="anchor" select="(preceding-sibling::li[@value] | self::li[@value])[last()]" />
+                        	
+                        	<xsl:variable name="current-number">
+                        		<xsl:choose>
+                        			<xsl:when test="$anchor">
+                        				<xsl:value-of select="number($anchor/@value) + (count(preceding-sibling::li) - count($anchor/preceding-sibling::li))"/>
+                        			</xsl:when>
+                        			<xsl:otherwise>
+                        				<xsl:value-of select="position()"/>
+                        			</xsl:otherwise>
+                        		</xsl:choose>
+                        	</xsl:variable>                        	
                             <li style="{concat('margin-left: 1.5em;',$list-line-spacing)}">
-                                <span style="margin-left: -1.8em; padding-right: 0.6em;">(<xsl:number format="1"/>)</span>&#32;
+                            	<span style="margin-left: -1.8em; padding-right: 0.6em;">(<xsl:number value="$current-number" format="1"/>)</span>&#32;
                                 <xsl:apply-templates mode="identity"/>
                             </li>
                         </xsl:for-each>
@@ -4766,10 +4782,23 @@
                     <xsl:attribute name="style">
                         <xsl:text>list-style-type: none;</xsl:text>
                     </xsl:attribute>
-                    <xsl:choose><xsl:when test="lower-case($prod_vert) = 'bar'">
+                	<xsl:choose><xsl:when test="lower-case($prod_vert) != 'null'">
                     <xsl:for-each select="li">
+                    	<xsl:variable name="anchor" select="(preceding-sibling::li[@value] | self::li[@value])[last()]" />
+                    	
+                    	<xsl:variable name="current-number">
+                    		<xsl:choose>
+                    			<xsl:when test="$anchor">
+                    				<xsl:value-of select="number($anchor/@value) + (count(preceding-sibling::li) - count($anchor/preceding-sibling::li))"/>
+                    			</xsl:when>
+                    			<xsl:otherwise>
+                    				<xsl:value-of select="position()"/>
+                    			</xsl:otherwise>
+                    		</xsl:choose>
+                    	</xsl:variable>
+                    	
                         <li style="{concat('margin-left: 1.5em;',$list-line-spacing)}">
-                            <span style="margin-left: -1.8em; padding-right: 0.6em;">(<xsl:number format="a"/>)</span>&#32;
+                        	<span style="margin-left: -1.8em; padding-right: 0.6em;">(<xsl:number value="$current-number" format="a"/>)</span>&#32;
                             <xsl:apply-templates mode="identity"/>
                         </li>
                     </xsl:for-each>
@@ -4778,9 +4807,10 @@
                     </xsl:choose>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:choose><xsl:when test="lower-case($prod_vert) = 'bar'">
+                	<xsl:choose><xsl:when test="lower-case($prod_vert) != 'sec'">
                             <xsl:for-each select="li">
                                 <li style="margin-bottom: 6px; margin-top: 3px;">
+                                	<xsl:if test="@value"><xsl:attribute name="value"><xsl:value-of select="@value"/></xsl:attribute></xsl:if>
                                     <xsl:apply-templates mode="identity"/>
                                 </li>
                             </xsl:for-each>

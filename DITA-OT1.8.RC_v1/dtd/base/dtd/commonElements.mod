@@ -1034,9 +1034,8 @@ PUBLIC "-//OASIS//ELEMENTS DITA Common Elements//EN"
 >
 <!ENTITY % li.attributes
              "%univ-atts;
-              outputclass 
-                        CDATA 
-                                  #IMPLIED"
+              outputclass CDATA #IMPLIED
+              value CDATA #IMPLIED"
 >
 <!ELEMENT li    %li.content;>
 <!ATTLIST li    %li.attributes;>
