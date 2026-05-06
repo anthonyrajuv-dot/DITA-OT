@@ -49,7 +49,6 @@ public class USstateNormalizeModule {
      * args[0] = dita.temp.dir (the temp directory used by DITA-OT / Job)
      */
     public static void main(String[] args) throws Exception {
-        System.out.println("USstateNormalizeModule: main() started...");
         if (args.length < 1) {
             System.err.println("USstateNormalizeModule: expected tempDir argument");
             return;
@@ -62,15 +61,10 @@ public class USstateNormalizeModule {
      */
     public void execute(final String tempDirPath) throws Exception {
         final File tempDir = new File(tempDirPath);
-
-        System.out.println("USstateNormalizeModule: tempDirPath = " + tempDirPath);
         final Job job = new Job(tempDir);
 
         final String inputDirPath = job.getInputDir();  // e.g. Oxygen temp project dir
         final String inputMapPath = job.getInputMap();  // e.g. o_Rhode_Island.ditamap
-
-        System.out.println("USstateNormalizeModule: inputDirPath = " + inputDirPath);
-        System.out.println("USstateNormalizeModule: inputMapPath = " + inputMapPath);
 
         if (inputDirPath == null || inputMapPath == null) {
             System.out.println("USstateNormalizeModule: no inputDir or inputMap, nothing to do.");
@@ -79,10 +73,6 @@ public class USstateNormalizeModule {
 
         final File inputDir = new File(inputDirPath);
         final File mainMapFile = new File(inputDir, inputMapPath);
-
-        System.out.println("USstateNormalizeModule: inputDir exists = " + inputDir.exists());
-        System.out.println("USstateNormalizeModule: mainMapFile = " + mainMapFile.getAbsolutePath());
-        System.out.println("USstateNormalizeModule: mainMapFile exists = " + mainMapFile.exists());
 
         if (!mainMapFile.exists()) {
             System.out.println("USstateNormalizeModule: main map not found: " + mainMapFile);
@@ -101,57 +91,25 @@ public class USstateNormalizeModule {
         // Iterate all files in the job
         final Map<String, FileInfo> files = job.getFileInfo();
         for (FileInfo fi : files.values()) {
-           int normalizedCount = 0;
+            // Only process active, non-resource-only DITA / DITAMAP files
+            if (!fi.isActive || fi.isResourceOnly) {
+                continue;
+            }
+            if (fi.format != null && !"dita".equals(fi.format) && !"ditamap".equals(fi.format)) {
+                continue;
+            }
 
-            // 1. Normalize all .dita and .ditamap files under Oxygen input temp folder
-            normalizedCount += normalizeTree(inputDir, mainStateNorm);
+            final File f = new File(inputDir, fi.file);
+            if (!f.exists()) {
+                continue;
+            }
 
-            // 2. Normalize all .dita and .ditamap files under DITA-OT temp folder
-            // This may matter after debug-filter copies files into temp
-            normalizedCount += normalizeTree(tempDir, mainStateNorm);
-
-
-            System.out.println("USstateNormalizeModule: total normalized files = " + normalizedCount);
-        }
-    }
-
-private int normalizeTree(final File dir, final String mainState) throws Exception {
-    if (dir == null || !dir.exists() || !dir.isDirectory()) {
-        return 0;
-    }
-    return normalizeTreeRecursive(dir, mainState);
-}
-
-private int normalizeTreeRecursive(final File file, final String mainState) throws Exception {
-    int count = 0;
-
-    if (file == null || !file.exists()) {
-        return 0;
-    }
-
-    if (file.isDirectory()) {
-        File[] children = file.listFiles();
-        if (children != null) {
-            for (File child : children) {
-                count += normalizeTreeRecursive(child, mainState);
+            boolean changed = normalizeFileUSstateText(f, mainStateNorm);
+            if (changed) {
+                System.out.println("USstateNormalizeModule: normalized " + f.getAbsolutePath());
             }
         }
-        return count;
     }
-
-    String name = file.getName().toLowerCase();
-    if (name.endsWith(".dita") || name.endsWith(".ditamap")) {
-        boolean changed = normalizeFileUSstateText(file, mainState);
-        if (changed) {
-            System.out.println("USstateNormalizeModule: normalized " + file.getAbsolutePath());
-            count++;
-        }
-    }
-
-    return count;
-}
-
-
 
     /**
      * Create a DocumentBuilder that does NOT load external DTDs.
