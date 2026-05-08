@@ -526,11 +526,10 @@ PUBLIC "-//OASIS//ELEMENTS DITA Learning Domain//EN"
 <!ATTLIST lcMultipleSelect2    %lcMultipleSelect2.attributes;>
 
 
-
 <!-- [ARV 00-04-2025] Added for GMAT Verticle => EA  -->
 <!ENTITY % lcSentenceCorrection.content
-                       "((%lcInteractionLabel2;)?,
-                         (%lcQuestion2;), 
+                       "((%lcQuestionPrompt2;),
+                         ((%lcQuestionContextName;)? | (%lcQuestionContextType;)? | (%lcInteractionLabel2;)? | (%lcQuestionContext2;)), 
                          (%lcAsset2;)*,
                          (%lcAnswerOptionGroup2;),
                          (%lcFeedbackIncorrect2;)?,
