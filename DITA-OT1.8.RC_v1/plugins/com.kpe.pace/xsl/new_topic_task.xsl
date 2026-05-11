@@ -4658,6 +4658,31 @@
 						<xsl:otherwise><xsl:apply-templates mode="identity"/></xsl:otherwise>
 					</xsl:choose>
 				</xsl:when>
+			    <xsl:when test="@outputclass='other'">
+			        <xsl:attribute name="style">
+			            <xsl:text>list-style-type: none;</xsl:text>
+			            <xsl:value-of select="$list-margin"/>
+			        </xsl:attribute>
+			        <xsl:variable name="base-unicode"><xsl:value-of select="@base"/></xsl:variable>
+			        <xsl:choose><xsl:when test="lower-case($prod_vert) = 'bar' or lower-case($prod_vert) = 'gmat'">
+			            <xsl:for-each select="li">
+			                <xsl:if test="position() != last()">
+			                    <li style="margin-left: 1.7em; margin-bottom: 6px;">
+			                        <span style="margin-left: -1.7em; padding-right:0.3em;"><xsl:value-of select="codepoints-to-string($base-unicode)"/></span>&#x200A;
+			                        <xsl:apply-templates mode="identity"/>
+			                    </li>
+			                </xsl:if>
+			                <xsl:if test="position() = last()">
+			                    <li style="margin-left: 1.7em; margin-bottom: 6px;">
+			                        <span style="margin-left: -1.7em; padding-right:0.3em;"><xsl:value-of select="codepoints-to-string($base-unicode)"/></span>&#x200A;
+			                        <xsl:apply-templates mode="identity"/>
+			                    </li>
+			                </xsl:if>
+			            </xsl:for-each>
+			        </xsl:when>
+			            <xsl:otherwise><xsl:apply-templates mode="identity"/></xsl:otherwise>
+			        </xsl:choose>
+			    </xsl:when>
 				<xsl:otherwise>
 					<xsl:if test="parent::li/parent::ul[(@outputclass='ul_endash' or @outputclass='ul_square' or @outputclass='ul_circle' or @outputclass='ul_opensquare' or @outputclass='other') and lower-case($prod_vert) = 'bar']">
 				        <xsl:attribute name="style">
