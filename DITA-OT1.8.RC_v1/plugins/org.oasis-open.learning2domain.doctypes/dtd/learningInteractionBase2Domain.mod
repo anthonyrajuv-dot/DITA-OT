@@ -40,6 +40,7 @@ PUBLIC "-//OASIS//ELEMENTS DITA Learning Domain//EN"
 <!ENTITY % lcInteractionBase2        "lcInteractionBase2">
 <!ENTITY % lcInteractionLabel2       "lcInteractionLabel2">
 <!ENTITY % lcQuestionBase2           "lcQuestionBase2">
+<!ENTITY % lcQuestionContextBase2     "lcQuestionContextBase2">
 
 <!-- =====================================================================
      INTERACTION BASE 2 DEFINITIONS
@@ -116,6 +117,28 @@ PUBLIC "-//OASIS//ELEMENTS DITA Learning Domain//EN"
 <!ELEMENT lcQuestionBase2    %lcQuestionBase2.content;>
 <!ATTLIST lcQuestionBase2    %lcQuestionBase2.attributes;>
 
+
+
+<!ENTITY % lcQuestionContextBase2.content
+ "(#PCDATA | 
+   %basic.block; | 
+   %basic.ph; | 
+   %data.elements.incl; | 
+   %foreign.unknown.incl; | 
+   %txt.incl;)*
+ "
+>
+<!ENTITY % lcQuestionContextBase2.attributes
+             "%univ-atts;
+              outputclass
+                        CDATA
+                                  #IMPLIED"
+>
+<!ELEMENT lcQuestionContextBase2    %lcQuestionContextBase2.content;>
+<!ATTLIST lcQuestionContextBase2    %lcQuestionContextBase2.attributes;>
+
+
+
 <!-- =====================================================================
      CLASS ATTRIBUTES FOR ANCESTRY DECLARATION
      ===================================================================== -->
@@ -125,5 +148,7 @@ PUBLIC "-//OASIS//ELEMENTS DITA Learning Domain//EN"
     class CDATA "+ topic/p learningInteractionBase2-d/lcInteractionLabel2 ">
 <!ATTLIST lcQuestionBase2 %global-atts;
     class CDATA "+ topic/div   learningInteractionBase2-d/lcQuestionBase2 ">
+<!ATTLIST lcQuestionContextBase2 %global-atts;
+    class CDATA "+ topic/div   learningInteractionBase2-d/lcQuestionContextBase2 ">
 
 <!--============ End of learning interaction base 2 module ==================-->

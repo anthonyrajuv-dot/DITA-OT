@@ -196,7 +196,7 @@ PUBLIC "-//OASIS//ELEMENTS DITA Learning Domain//EN"
 
 
 <!ENTITY % lcQuestionContext2.content
-	  	"%lcQuestionBase2.content;"
+	  	"%lcQuestionContextBase2.content;"
 >
 <!ENTITY % lcQuestionContext2.attributes
 				"%univ-atts;
