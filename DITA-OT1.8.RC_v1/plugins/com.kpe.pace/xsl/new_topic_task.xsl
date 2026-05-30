@@ -4726,7 +4726,7 @@
                 	<xsl:choose><xsl:when test="lower-case($prod_vert) != 'sec'">
                         <xsl:for-each select="li">
                             <li style="{$list-line-spacing}">
-                            	<xsl:if test="@value"><xsl:attribute name="value"><xsl:value-of select="@value"/></xsl:attribute></xsl:if>
+                            	<xsl:if test="@value!=''"><xsl:attribute name="value"><xsl:value-of select="@value"/></xsl:attribute></xsl:if>
                                 <xsl:apply-templates mode="identity"/>
                             </li>
                         </xsl:for-each>
@@ -4741,7 +4741,7 @@
                 	<xsl:choose><xsl:when test="lower-case($prod_vert) != 'sec'">
                         <xsl:for-each select="li">
                             <li style="{$list-line-spacing}">
-                            	<xsl:if test="@value"><xsl:attribute name="value"><xsl:value-of select="@value"/></xsl:attribute></xsl:if>
+                                <xsl:if test="@value!=''"><xsl:attribute name="value"><xsl:value-of select="@value"/></xsl:attribute></xsl:if>
                                 <xsl:apply-templates mode="identity"/>
                             </li>
                         </xsl:for-each>
@@ -4756,7 +4756,7 @@
                 	<xsl:choose><xsl:when test="lower-case($prod_vert) != 'sec'">
                         <xsl:for-each select="li">
                             <li style="{$list-line-spacing}">
-                            	<xsl:if test="@value"><xsl:attribute name="value"><xsl:value-of select="@value"/></xsl:attribute></xsl:if>
+                                <xsl:if test="@value!=''"><xsl:attribute name="value"><xsl:value-of select="@value"/></xsl:attribute></xsl:if>
                                 <xsl:apply-templates mode="identity"/>
                             </li>
                         </xsl:for-each>
@@ -4770,7 +4770,7 @@
                 	<xsl:choose><xsl:when test="lower-case($prod_vert) != 'sec'">
                         <xsl:for-each select="li">
                             <li style="{$list-line-spacing}">
-                            	<xsl:if test="@value"><xsl:attribute name="value"><xsl:value-of select="@value"/></xsl:attribute></xsl:if>
+                                <xsl:if test="@value!=''"><xsl:attribute name="value"><xsl:value-of select="@value"/></xsl:attribute></xsl:if>
                                 <xsl:apply-templates mode="identity"/>
                             </li>
                         </xsl:for-each>

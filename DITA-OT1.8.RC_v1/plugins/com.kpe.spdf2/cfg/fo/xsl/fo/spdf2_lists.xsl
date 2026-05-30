@@ -277,9 +277,19 @@ See the accompanying license.txt file for applicable licenses.
 
     <!--ol test-->
     <xsl:template match="*[contains(@class, ' topic/ol ')]/*[contains(@class, ' topic/li ')]">
+        <xsl:variable name="spe-case-margin-left">
+            <xsl:choose>
+                <xsl:when test="parent::*[@outputclass='ol_dp_loweralpha']">
+                    <xsl:value-of select="'-7px'"/>
+                </xsl:when>
+                <xsl:when test="parent::*[@outputclass='ol_dp_num']">
+                    <xsl:value-of select="'-7px'"/>
+                </xsl:when>
+            </xsl:choose>
+        </xsl:variable>        
         <fo:list-item xsl:use-attribute-sets="ol.li">
-            <fo:list-item-label xsl:use-attribute-sets="ol.li__label">
-                <fo:block xsl:use-attribute-sets="ol.li__label__content">
+            <fo:list-item-label xsl:use-attribute-sets="ol.li__label">                
+                <fo:block xsl:use-attribute-sets="ol.li__label__content" margin-left="{$spe-case-margin-left}">
                     <fo:inline>
                         <xsl:call-template name="commonattributes"/>
                     </fo:inline>
@@ -309,51 +319,98 @@ See the accompanying license.txt file for applicable licenses.
                                     </xsl:when>
                                     <xsl:when
                                         test="parent::*[contains(@class, ' topic/ol ')]/parent::*[contains(@class, ' topic/li ')]/parent::*[contains(@class, ' topic/ol ')]/parent::*[contains(@class, ' topic/li ')]/parent::*[contains(@class, ' topic/ol ') and (@outputclass='ol_outline')]">
-                                        <xsl:number format="1."/>
+                                        <xsl:choose>
+                                            <xsl:when test="@value!=''">
+                                                <xsl:number format="1." value="@value"/>
+                                            </xsl:when>
+                                            <xsl:otherwise><xsl:number format="1."/></xsl:otherwise>
+                                        </xsl:choose>
                                     </xsl:when>
                                     <xsl:when
                                         test="parent::*[contains(@class, ' topic/ol ')]/parent::*[contains(@class, ' topic/li ')]/parent::*[contains(@class, ' topic/ol ') and (@outputclass='ol_outline')] ">
-                                        <xsl:number format="A."/>
+                                        <xsl:choose>
+                                            <xsl:when test="@value!=''">
+                                                <xsl:number format="A." value="@value"/>
+                                            </xsl:when>
+                                            <xsl:otherwise><xsl:number format="A."/></xsl:otherwise>
+                                        </xsl:choose>                                        
                                     </xsl:when>
 
 
                                     <xsl:when test="parent::*[@outputclass='ol_outline']">
-                                        <xsl:number format="I."/>
+                                        <xsl:choose>
+                                            <xsl:when test="@value!=''">
+                                                <xsl:number format="I." value="@value"/>
+                                            </xsl:when>
+                                            <xsl:otherwise><xsl:number format="I."/></xsl:otherwise>
+                                        </xsl:choose>
                                     </xsl:when>
 
                                     <xsl:when test="parent::*[@outputclass='ol_roman']">
-                                        <xsl:number format="I."/>
+                                        <xsl:choose>
+                                            <xsl:when test="@value!=''">
+                                                <xsl:number format="I." value="@value"/>
+                                            </xsl:when>
+                                            <xsl:otherwise><xsl:number format="I."/></xsl:otherwise>
+                                        </xsl:choose>
                                     </xsl:when>
                                     <xsl:when test="parent::*[@outputclass='ol_lowerroman']">
-                                        <xsl:number format="i."/>
+                                        <xsl:choose>
+                                            <xsl:when test="@value!=''">
+                                                <xsl:number format="i." value="@value"/>
+                                            </xsl:when>
+                                            <xsl:otherwise><xsl:number format="i."/></xsl:otherwise>
+                                        </xsl:choose>
                                     </xsl:when>
                                     <xsl:when test="parent::*[@outputclass='ol_alpha']">
                                         <fo:inline id="{@id}" baseline-shift="0pt">
-                                        	<xsl:number format="A."/>
+                                            <xsl:choose>
+                                                <xsl:when test="@value!=''">
+                                                    <xsl:number format="A." value="@value"/>
+                                                </xsl:when>
+                                                <xsl:otherwise><xsl:number format="A."/></xsl:otherwise>
+                                            </xsl:choose>
                                         </fo:inline>
                                     </xsl:when>
                                     <xsl:when test="parent::*[@outputclass='ol_loweralpha']">
-                                        <xsl:number format="a."/>
+                                        <xsl:choose>
+                                            <xsl:when test="@value!=''">
+                                                <xsl:number format="a." value="@value"/>
+                                            </xsl:when>
+                                            <xsl:otherwise><xsl:number format="a."/></xsl:otherwise>
+                                        </xsl:choose>
                                     </xsl:when>
-
-
-                                    <xsl:when
-                                        test="parent::*[contains(@class, ' topic/ol ')]/parent::*[contains(@class, ' topic/li ')]/parent::*[contains(@class, ' topic/ol ')]/parent::*[contains(@class, ' topic/li ')]/parent::*[contains(@class, ' topic/ol ')]">
-                                        <xsl:number format="i."/>
+                                    
+                                    <!-- [ARV: 30-05-2026] Updated for Insurance ISO language -->
+                                    <xsl:when test="parent::*[@outputclass='ol_dp_num']">
+                                        <xsl:choose>
+                                            <xsl:when test="@value!=''">
+                                                <xsl:number format="(1)" value="@value"/>
+                                            </xsl:when>
+                                            <xsl:otherwise><xsl:number format="(1)"/></xsl:otherwise>
+                                        </xsl:choose>
                                     </xsl:when>
-                                    <xsl:when
-                                        test="parent::*[contains(@class, ' topic/ol ')]/parent::*[contains(@class, ' topic/li ')]/parent::*[contains(@class, ' topic/ol ')]">
-                                        <xsl:number format="a."/>
+                                    <xsl:when test="parent::*[@outputclass='ol_dp_loweralpha']">
+                                        <xsl:choose>
+                                            <xsl:when test="@value!=''">
+                                                <xsl:number format="(a)" value="@value"/>
+                                            </xsl:when>
+                                            <xsl:otherwise><xsl:number format="(a)"/></xsl:otherwise>
+                                        </xsl:choose>
                                     </xsl:when>
-
 
                                     <xsl:otherwise>
-                                        <xsl:number format="1."></xsl:number>
+                                        <xsl:choose>
+                                            <xsl:when test="@value!=''">
+                                                <xsl:number format="1." value="@value"/>
+                                            </xsl:when>
+                                            <xsl:otherwise><xsl:number format="1."/></xsl:otherwise>
+                                        </xsl:choose>
                                     </xsl:otherwise>
                                 </xsl:choose>
                             </number>
                         </xsl:with-param>
-                    </xsl:call-template>
+                    </xsl:call-template>                    
                 </fo:block>
             </fo:list-item-label>
 
