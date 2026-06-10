@@ -164,6 +164,14 @@ See the accompanying license.txt file for applicable licenses.
                     </xsl:call-template>
                     
                 </xsl:when>
+                <xsl:when test="$OUTPUT_TYPE = 'testbank_sorted'">
+                    <!-- This has to be a special case. Short-circuit the standard topic processing to create the page-sequence. -->
+                    <xsl:call-template name="processTestBank_sorted">
+                        <xsl:with-param name="topics" select="/*[contains(@class,' bookmap/bookmap ')]/
+                            descendant::*[contains(@class,' kpe-assessmentOverview/kpe-assessmentOverview ')]"/>
+                    </xsl:call-template>
+                    
+                </xsl:when>
                 <xsl:otherwise>
                     <xsl:apply-templates select="/*[contains(@class,' bookmap/bookmap ')]/descendant-or-self::*[contains(@class,' kpe-assessmentOverview/kpe-assessmentOverview ') 
                         and descendant-or-self::*[contains(@class,' kpe-commonMeta-d/lmsCategory ') and @value='test_exam_primary']]"/>

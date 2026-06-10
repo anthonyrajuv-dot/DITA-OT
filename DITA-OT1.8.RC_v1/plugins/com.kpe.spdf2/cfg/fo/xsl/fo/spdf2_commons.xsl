@@ -5,6 +5,7 @@
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:dita2xslfo="http://dita-ot.sourceforge.net/ns/200910/dita2xslfo" xmlns:axf="http://www.antennahouse.com/names/XSL/Extensions" xmlns:opentopic="http://www.idiominc.com/opentopic" xmlns:utils="urn:utils" exclude-result-prefixes="xs utils" version="2.0">
     <xsl:import href="../function/resolve-topicprompt.xsl"/>    
+    <xsl:import href="../function/resolve-sortorder.xsl"/>    
     <xsl:param name="OUTPUT_TYPE" select="'course'"/>
 
     <xsl:output encoding="UTF-8" method="xml"/>
@@ -571,6 +572,148 @@
         </fo:page-sequence>
 
     </xsl:template>
+    
+    
+    
+    <!-- [ARV: 10-06-2026] added to sort questions in ascending order -->
+    <xsl:template name="processTestBank_sorted">
+        <xsl:param name="topics"/>
+        
+        <fo:page-sequence master-reference="final-exam-sequence" format="1" xsl:use-attribute-sets="__force__page__count">
+            <!--            <xsl:call-template name="insertColophonStaticContents"/>-->
+            <xsl:call-template name="insertBodyStaticContents"/>
+            <fo:flow flow-name="xsl-region-body">
+                <xsl:call-template name="commonattributes"/>
+                <fo:block xsl:use-attribute-sets="topic">
+                    <xsl:if test="not(ancestor::*[contains(@class, ' topic/topic ')])">
+                        <fo:marker marker-class-name="current-topic-number">
+                            <xsl:number format="1"/>
+                        </fo:marker>
+                        <fo:marker marker-class-name="current-header">
+                            <xsl:for-each select="child::*[contains(@class,' topic/title ')]">
+                                <xsl:apply-templates select="." mode="getTitle"/>
+                            </xsl:for-each>
+                        </fo:marker>
+                    </xsl:if>
+                    
+                    <fo:block xsl:use-attribute-sets="final.exam.title" text-align="left">
+                        <xsl:call-template name="pullPrologIndexTerms"/>
+                        <xsl:text>Testbank:  </xsl:text>
+                        <xsl:value-of select="$map/*[contains(@class,' bookmap/bookmeta ')]
+                            /*[contains(@class,' bookmap/bookid ')]
+                            /*[contains(@class,' bookmap/bookpartno ')]"/>
+                        <xsl:text> </xsl:text>
+                        <xsl:value-of select="$map/*[contains(@class,' bookmap/booktitle ')]
+                            /*[contains(@class,' bookmap/mainbooktitle ')]"/>
+                        <xsl:text> </xsl:text>
+                        <xsl:variable name="edition" select="$map/*[contains(@class,' bookmap/bookmeta ')]
+                            /*[contains(@class,' bookmap/bookid ')]
+                            /*[contains(@class,' bookmap/edition ')]"/>
+                        <xsl:choose>
+                            <xsl:when test="$edition != ''">
+                                <xsl:value-of select="concat('v',format-number($edition,'##.0'))"/>
+                            </xsl:when>
+                            <xsl:otherwise/>
+                        </xsl:choose>
+                        
+                        
+                        
+                        <!-- TODO: Get the remaining title information. -->
+                        <!--                            <xsl:for-each select="child::*[contains(@class,' topic/title ')]">
+                                <xsl:apply-templates select="." mode="getTitle"/>
+                            </xsl:for-each>-->
+                    </fo:block>
+                    
+                    <!--<xsl:call-template name="createMiniToc"/>-->
+                    
+                    <xsl:call-template name="processAllQuestionsBySortOrder"/>
+                </fo:block>
+            </fo:flow>
+        </fo:page-sequence>
+        
+    </xsl:template>
+    
+    
+    <xsl:template name="processAllQuestionsBySortOrder">
+
+        <xsl:for-each select="/*//*[contains(@class, ' kpe-question/kpe-question ')]">
+
+            <xsl:sort select="utils:get-question-sort-order(.)" data-type="number" order="ascending"/>
+            <xsl:sort select="count(preceding::*[contains(@class, ' kpe-question/kpe-question ')])" data-type="number" order="ascending"/>
+
+            <xsl:variable name="question" select="."/>
+
+            <xsl:variable name="sort-order" select="utils:get-question-sort-order($question)"/>
+
+            <xsl:variable name="question-topicref" select="utils:get-question-topicref($question)"/>
+
+            <xsl:variable name="assessment-topicref" select="$question-topicref/ancestor::*[contains(@class, ' map/topicref ')
+                and @type = 'kpe-assessmentOverview'][1]"/>
+
+            <xsl:variable name="topichead-topicref" select="$question-topicref/ancestor::*[contains(@class, ' mapgroup-d/topichead ')][1]"/>
+            <xsl:variable name="chapter-topicref" select="$question-topicref/ancestor::*[contains(@class, ' bookmap/chapter ')][1]"/>
+
+            <xsl:variable name="navtitle-q-tag" select="normalize-space((
+                $chapter-topicref/*[contains(@class, ' map/topicmeta ')]
+                /*[contains(@class, ' topic/navtitle ')],
+                $chapter-topicref/*[contains(@class, ' map/topicmeta ')]
+                /*[contains(@class, ' map/linktext ')]
+                )[normalize-space()][1]
+                )"/>
+
+            <xsl:variable name="topichead-topicref"
+                select="$question-topicref/ancestor::*[
+                contains(@class, ' mapgroup-d/topichead ')
+                ][1]"/>
+            
+            <xsl:variable name="topichead-q-tag"
+                select="normalize-space(
+                (
+                $topichead-topicref/@navtitle,
+                $topichead-topicref/*[contains(@class, ' map/topicmeta ')]
+                /*[contains(@class, ' topic/navtitle ')],
+                $topichead-topicref/*[contains(@class, ' map/topicmeta ')]
+                /*[contains(@class, ' map/linktext ')]
+                )[normalize-space()][1]
+                )"/>
+
+            <xsl:variable name="assessment-topicref"
+                select="$question-topicref/ancestor::*[
+                contains(@class, ' map/topicref ')
+                and @type = 'kpe-assessmentOverview'
+                ][1]"/>
+            
+            <xsl:variable name="kpe-assessmentOverview-title-q-tag"
+                select="normalize-space(
+                (
+                $assessment-topicref/*[contains(@class, ' map/topicmeta ')]
+                /*[contains(@class, ' topic/navtitle ')],
+                $assessment-topicref/*[contains(@class, ' map/topicmeta ')]
+                /*[contains(@class, ' map/linktext ')]
+                )[normalize-space()][1]
+                )"/>
+
+            <xsl:apply-templates select=".">
+                <xsl:with-param name="where_from" select="'from-processAllQuestionsBySortOrder'" tunnel="yes"/>
+
+                <!-- This is the displayed Question # in sorted order -->
+                <xsl:with-param name="question-number" select="position()" tunnel="yes"/>
+
+                <!-- This is the original map sortOrder value -->
+                <xsl:with-param name="sort-order" select="$sort-order" tunnel="yes"/>
+
+                <xsl:with-param name="navtitle-q-tag" select="$navtitle-q-tag" tunnel="yes"/>
+
+                <xsl:with-param name="topichead-q-tag" select="$topichead-q-tag" tunnel="yes"/>
+
+                <xsl:with-param name="kpe-assessmentOverview-title-q-tag"
+                    select="$kpe-assessmentOverview-title-q-tag" tunnel="yes"/>
+            </xsl:apply-templates>
+
+        </xsl:for-each>
+
+    </xsl:template>
+    
 
     <!-- [SP] Handle section, inserting page break, if outputclass="page". -->
     <xsl:template match="*[contains(@class,' topic/section ')]">
@@ -1626,20 +1769,61 @@
     </xsl:template>
 
     <!--GK100213 Customization for question numbering -->
-    <xsl:template match="*[contains(@class, ' learning2-d/lcQuestion2 ')]">
+    <xsl:template match="*[contains(@class, ' learning2-d/lcQuestion2 ')]">        
+        <!-- [ARV: 10-06-2026] added params for for testbank_sorted from 'processAllQuestionsBySortOrder' template -->
+        <xsl:param name="where_from" tunnel="yes"/>
+        <!-- This is the displayed Question # in sorted order -->
+        <xsl:param name="question-number" tunnel="yes"/>
+        <!-- This is the original map sortOrder value -->
+        <xsl:param name="sort-order" tunnel="yes"/>
+        <xsl:param name="navtitle-q-tag" tunnel="yes"/>
+        <xsl:param name="topichead-q-tag" tunnel="yes"/>
+        <xsl:param name="kpe-assessmentOverview-title-q-tag" tunnel="yes"/>
+        
+        
         <!-- [SP] If the paragraph is contained in a table entry or in a note, use much smaller space
                   around it. -->
         <xsl:comment>Handling learning2-d/lcQuestion2.</xsl:comment>
         <fo:block xsl:use-attribute-sets="lcQuestion2" id="{@id}">
             <xsl:call-template name="commonattributes"/>
-            <xsl:variable name="item_number" select="count(ancestor::*[contains(@class, ' kpe-question/kpe-question ')][1]/preceding-sibling::*[contains(@class, ' kpe-question/kpe-question ')])+1"/>
+            <xsl:variable name="item_number">
+                <xsl:choose>
+                    <xsl:when test="$where_from = 'from-processAllQuestionsBySortOrder'
+                        and string($sort-order) != ''">
+                        <xsl:value-of select="$sort-order"/>
+                    </xsl:when>
+                    <xsl:otherwise>                        
+                        <xsl:value-of select="count(ancestor::*[contains(@class, ' kpe-question/kpe-question ')][1]/preceding-sibling::*[contains(@class, ' kpe-question/kpe-question ')])+1"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:variable>
 
             <!-- [SP] 2015-01-16: There was a division between courses, final, and qbank on displaying QIDs.
                                   With LMS 3.0, that division has gone away: always display the QIDs.
                                   And show the original DITA file name.
             -->
+            <xsl:message>$where_from: <xsl:value-of select="$where_from"/></xsl:message>
             <fo:list-block space-after="6pt">
-                <fo:list-item>
+                <fo:list-item margin-bottom="12pt">
+                    <fo:list-item-label end-indent="0.5in">
+                        <xsl:if test="$where_from = 'from-processAllQuestionsBySortOrder' ">
+                            <fo:block font-size="9pt" color="darkgreen">
+                                <axf:form-field field-type="button" field-name="tooltip_1" 
+                                    field-description="Question Tag" 
+                                    width="180mm" height="8mm" background-color="transparent" 
+                                    field-button-face-down="">
+                                    <xsl:message>ARV: Tunnel reached here..</xsl:message>
+                                    <fo:inline font-weight="bold"><xsl:value-of select="'Tag: '"/></fo:inline>
+                                    <xsl:value-of select="concat($navtitle-q-tag,' ⃒ ')"/>
+                                    <xsl:value-of select="concat($topichead-q-tag,' ⃒ ')"/>
+                                    <xsl:value-of select="$kpe-assessmentOverview-title-q-tag"/>
+                                </axf:form-field>
+                            </fo:block>                            
+                        </xsl:if>
+                    </fo:list-item-label>
+                    <fo:list-item-body start-indent="2in">##</fo:list-item-body>
+                </fo:list-item>
+                <fo:list-item>                                        
                     <fo:list-item-label end-indent="2in">
                         <fo:block>
                             <xsl:value-of select="concat('QUESTION# ',$item_number)"/>
@@ -1804,19 +1988,49 @@
 	
 	<!-- ARV_26-03-2025 GMAT update -->
 	<xsl:template match="*[contains(@class, ' learning2-d/lcQuestionPrompt2 ')]">
-		<!-- [SP] If the paragraph is contained in a table entry or in a note, use much smaller space
+	    <!-- [ARV: 10-06-2026] added params for for testbank_sorted from 'processAllQuestionsBySortOrder' template -->
+	    <xsl:param name="where_from" tunnel="yes"/>
+	    <!-- This is the displayed Question # in sorted order -->
+	    <xsl:param name="question-number" tunnel="yes"/>
+	    <!-- This is the original map sortOrder value -->
+	    <xsl:param name="sort-order" tunnel="yes"/>
+	    <xsl:param name="navtitle-q-tag" tunnel="yes"/>
+	    <xsl:param name="topichead-q-tag" tunnel="yes"/>
+	    <xsl:param name="kpe-assessmentOverview-title-q-tag" tunnel="yes"/>
+	    
+	    <!-- [SP] If the paragraph is contained in a table entry or in a note, use much smaller space
                   around it. -->
 		<xsl:comment>Handling learning2-d/lcQuestionPrompt2.</xsl:comment>
 		<fo:block xsl:use-attribute-sets="lcQuestionPrompt2" id="{@id}">
 			<xsl:call-template name="commonattributes"/>
-			<xsl:variable name="item_number" select="count(ancestor::*[contains(@class, ' kpe-question/kpe-question ')][1]/preceding-sibling::*[contains(@class, ' kpe-question/kpe-question ')])+1"/>
+			<xsl:variable name="item_number">
+			    <xsl:choose>
+			        <xsl:when test="$where_from = 'from-processAllQuestionsBySortOrder'
+			            and string($sort-order) != ''">
+			            <xsl:value-of select="$sort-order"/>
+			        </xsl:when>
+			        <xsl:otherwise>                        
+			            <xsl:value-of select="count(ancestor::*[contains(@class, ' kpe-question/kpe-question ')][1]/preceding-sibling::*[contains(@class, ' kpe-question/kpe-question ')])+1"/>
+			        </xsl:otherwise>
+			    </xsl:choose>
+			</xsl:variable>
 			
 			<!-- [SP] 2015-01-16: There was a division between courses, final, and qbank on displaying QIDs.
                                   With LMS 3.0, that division has gone away: always display the QIDs.
                                   And show the original DITA file name.
             -->
 			<fo:list-block space-after="6pt">
-				<fo:list-item>
+			    <fo:list-item margin-bottom="12pt">
+			        <fo:list-item-label end-indent="0.5in">
+			            <xsl:if test="$where_from = 'from-processAllQuestionsBySortOrder' ">
+			                <fo:block font-size="9pt" color="darkgreen">
+			                    <xsl:value-of select="concat('Tag: ',$navtitle-q-tag, ' | ', $topichead-q-tag, ' | ' ,  $kpe-assessmentOverview-title-q-tag)"/>
+			                </fo:block>
+			            </xsl:if>
+			        </fo:list-item-label>
+			        <fo:list-item-body start-indent="2in">##</fo:list-item-body>
+			    </fo:list-item>
+			    <fo:list-item>				    
 					<fo:list-item-label end-indent="2in">
 						
 						<xsl:choose>
@@ -2009,6 +2223,17 @@
 
 	<!-- ARV_17-04-2025 GMAT update -->
     <xsl:template match="(*[contains(@class, ' learning2-d/lcTwoPartAnalysis ')]) | (*[contains(@class, ' learning2-d/lcMultiSourceReasoningMultiple ')]) | (*[contains(@class, ' learning2-d/lcMultiSourceReasoningSingle ')]) | (*[contains(@class, ' learning2-d/lcReadingComprehension ')]) | (*[contains(@class, ' learning2-d/lcTableAnalysis ')]) | (*[contains(@class, ' learning2-d/lcGraphicsInterpretation ')])">
+        <!-- [ARV: 10-06-2026] added params for for testbank_sorted from 'processAllQuestionsBySortOrder' template -->
+        <xsl:param name="where_from" tunnel="yes"/>
+        <!-- This is the displayed Question # in sorted order -->
+        <xsl:param name="question-number" tunnel="yes"/>
+        <!-- This is the original map sortOrder value -->
+        <xsl:param name="sort-order" tunnel="yes"/>
+        <xsl:param name="navtitle-q-tag" tunnel="yes"/>
+        <xsl:param name="topichead-q-tag" tunnel="yes"/>
+        <xsl:param name="kpe-assessmentOverview-title-q-tag" tunnel="yes"/>
+        
+        
 		<!-- [SP] If the paragraph is contained in a table entry or in a note, use much smaller space
                   around it. -->
 		<xsl:comment>Handling learning2-d/lcTwoPartAnalysis, learning2-d/lcMultiSourceReasoningMultiple, learning2-d/lcMultiSourceReasoningSingle, learning2-d/lcReadingComprehension, learning2-d/lcTableAnalysis, learning2-d/lcGraphicsInterpretation.</xsl:comment>
@@ -2017,14 +2242,34 @@
         
 		<fo:block xsl:use-attribute-sets="lcMultiSourceReasoningMultiple" id="{@id}">
 			<xsl:call-template name="commonattributes"/>
-			<xsl:variable name="item_number" select="count(ancestor::*[contains(@class, ' kpe-question/kpe-question ')][1]/preceding-sibling::*[contains(@class, ' kpe-question/kpe-question ')])+1"/>
+			<xsl:variable name="item_number">
+			    <xsl:choose>
+			        <xsl:when test="$where_from = 'from-processAllQuestionsBySortOrder'
+			            and string($sort-order) != ''">
+			            <xsl:value-of select="$sort-order"/>
+			        </xsl:when>
+			        <xsl:otherwise>                        
+			            <xsl:value-of select="count(ancestor::*[contains(@class, ' kpe-question/kpe-question ')][1]/preceding-sibling::*[contains(@class, ' kpe-question/kpe-question ')])+1"/>
+			        </xsl:otherwise>
+			    </xsl:choose>
+			</xsl:variable>
 			
 			<!-- [SP] 2015-01-16: There was a division between courses, final, and qbank on displaying QIDs.
                                   With LMS 3.0, that division has gone away: always display the QIDs.
                                   And show the original DITA file name.
             -->
 			<fo:list-block space-after="6pt">
-				<fo:list-item>
+			    <fo:list-item margin-bottom="12pt">
+			        <fo:list-item-label end-indent="0.5in">
+			            <xsl:if test="$where_from = 'from-processAllQuestionsBySortOrder' ">
+			                <fo:block font-size="9pt" color="darkgreen">
+			                    <xsl:value-of select="concat('Tag: ',$navtitle-q-tag, ' | ', $topichead-q-tag, ' | ' ,  $kpe-assessmentOverview-title-q-tag)"/>
+			                </fo:block>
+			            </xsl:if>
+			        </fo:list-item-label>
+			        <fo:list-item-body start-indent="2in">##</fo:list-item-body> 
+			    </fo:list-item>
+			    <fo:list-item>
 					<fo:list-item-label end-indent="2in">
 					    <xsl:if test="self::*[not(parent::lcPrompt2)]">
 						    <fo:block>
