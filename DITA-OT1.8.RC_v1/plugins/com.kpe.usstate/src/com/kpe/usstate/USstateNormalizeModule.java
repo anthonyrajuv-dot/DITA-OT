@@ -99,20 +99,15 @@ public class USstateNormalizeModule {
         System.out.println("USstateNormalizeModule: main state = " + mainStateNorm);
 
         // Iterate all files in the job
-        final Map<String, FileInfo> files = job.getFileInfo();
-        for (FileInfo fi : files.values()) {
-           int normalizedCount = 0;
+        int normalizedCount = 0;
 
-            // 1. Normalize all .dita and .ditamap files under Oxygen input temp folder
-            normalizedCount += normalizeTree(inputDir, mainStateNorm);
-
-            // 2. Normalize all .dita and .ditamap files under DITA-OT temp folder
-            // This may matter after debug-filter copies files into temp
-            normalizedCount += normalizeTree(tempDir, mainStateNorm);
-
-
-            System.out.println("USstateNormalizeModule: total normalized files = " + normalizedCount);
-        }
+        // Normalize all .dita and .ditamap files under Oxygen input temp folder
+        normalizedCount += normalizeTree(inputDir, mainStateNorm);
+        
+        // Normalize all .dita and .ditamap files under DITA-OT temp folder
+        normalizedCount += normalizeTree(tempDir, mainStateNorm);
+        
+        System.out.println("USstateNormalizeModule: total normalized files = " + normalizedCount);
     }
 
 private int normalizeTree(final File dir, final String mainState) throws Exception {
