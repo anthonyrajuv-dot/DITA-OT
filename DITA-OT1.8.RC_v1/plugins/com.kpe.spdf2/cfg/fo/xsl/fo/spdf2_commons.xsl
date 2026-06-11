@@ -598,7 +598,7 @@
                     
                     <fo:block xsl:use-attribute-sets="final.exam.title" text-align="left">
                         <xsl:call-template name="pullPrologIndexTerms"/>
-                        <xsl:text>Testbank:  </xsl:text>
+                        <xsl:text>QuestionBank:  </xsl:text>
                         <xsl:value-of select="$map/*[contains(@class,' bookmap/bookmeta ')]
                             /*[contains(@class,' bookmap/bookid ')]
                             /*[contains(@class,' bookmap/bookpartno ')]"/>
@@ -1805,23 +1805,18 @@
             <xsl:message>$where_from: <xsl:value-of select="$where_from"/></xsl:message>
             <fo:list-block space-after="6pt">
                 <fo:list-item margin-bottom="12pt">
-                    <fo:list-item-label end-indent="0.5in">
+                    <fo:list-item-label end-indent="2in">
                         <xsl:if test="$where_from = 'from-processAllQuestionsBySortOrder' ">
-                            <fo:block font-size="9pt" color="darkgreen">
-                                <axf:form-field field-type="button" field-name="tooltip_1" 
-                                    field-description="Question Tag" 
-                                    width="180mm" height="8mm" background-color="transparent" 
-                                    field-button-face-down="">
-                                    <xsl:message>ARV: Tunnel reached here..</xsl:message>
-                                    <fo:inline font-weight="bold"><xsl:value-of select="'Tag: '"/></fo:inline>
-                                    <xsl:value-of select="concat($navtitle-q-tag,' ⃒ ')"/>
-                                    <xsl:value-of select="concat($topichead-q-tag,' ⃒ ')"/>
-                                    <xsl:value-of select="$kpe-assessmentOverview-title-q-tag"/>
-                                </axf:form-field>
+                            <fo:block font-size="9pt" color="darkgreen" wrap-option="wrap">
+                                <xsl:message>ARV: Tunnel reached here..</xsl:message>
+                                <fo:inline font-weight="bold"><xsl:value-of select="'Tag: '"/></fo:inline>
+                                <xsl:value-of select="concat($navtitle-q-tag,' ⃒ ')"/>
+                                <xsl:value-of select="concat($topichead-q-tag,' ⃒ ')"/>
+                                <xsl:value-of select="$kpe-assessmentOverview-title-q-tag"/>
                             </fo:block>                            
                         </xsl:if>
                     </fo:list-item-label>
-                    <fo:list-item-body start-indent="2in">##</fo:list-item-body>
+                    <fo:list-item-body start-indent="2in"></fo:list-item-body>
                 </fo:list-item>
                 <fo:list-item>                                        
                     <fo:list-item-label end-indent="2in">
@@ -2021,14 +2016,18 @@
             -->
 			<fo:list-block space-after="6pt">
 			    <fo:list-item margin-bottom="12pt">
-			        <fo:list-item-label end-indent="0.5in">
+			        <fo:list-item-label end-indent="2in">
 			            <xsl:if test="$where_from = 'from-processAllQuestionsBySortOrder' ">
-			                <fo:block font-size="9pt" color="darkgreen">
-			                    <xsl:value-of select="concat('Tag: ',$navtitle-q-tag, ' | ', $topichead-q-tag, ' | ' ,  $kpe-assessmentOverview-title-q-tag)"/>
-			                </fo:block>
+			                <fo:block font-size="9pt" color="darkgreen" wrap-option="wrap">
+			                    <xsl:message>ARV: Tunnel reached here..</xsl:message>
+			                    <fo:inline font-weight="bold"><xsl:value-of select="'Tag: '"/></fo:inline>
+			                    <xsl:value-of select="concat($navtitle-q-tag,' ⃒ ')"/>
+			                    <xsl:value-of select="concat($topichead-q-tag,' ⃒ ')"/>
+			                    <xsl:value-of select="$kpe-assessmentOverview-title-q-tag"/>
+			                </fo:block>                            
 			            </xsl:if>
 			        </fo:list-item-label>
-			        <fo:list-item-body start-indent="2in">##</fo:list-item-body>
+			        <fo:list-item-body start-indent="2in"></fo:list-item-body>
 			    </fo:list-item>
 			    <fo:list-item>				    
 					<fo:list-item-label end-indent="2in">
@@ -2260,14 +2259,18 @@
             -->
 			<fo:list-block space-after="6pt">
 			    <fo:list-item margin-bottom="12pt">
-			        <fo:list-item-label end-indent="0.5in">
+			        <fo:list-item-label end-indent="2in">
 			            <xsl:if test="$where_from = 'from-processAllQuestionsBySortOrder' ">
-			                <fo:block font-size="9pt" color="darkgreen">
-			                    <xsl:value-of select="concat('Tag: ',$navtitle-q-tag, ' | ', $topichead-q-tag, ' | ' ,  $kpe-assessmentOverview-title-q-tag)"/>
-			                </fo:block>
+			                <fo:block font-size="9pt" color="darkgreen" wrap-option="wrap">
+			                    <xsl:message>ARV: Tunnel reached here..</xsl:message>
+			                    <fo:inline font-weight="bold"><xsl:value-of select="'Tag: '"/></fo:inline>
+			                    <xsl:value-of select="concat($navtitle-q-tag,' ⃒ ')"/>
+			                    <xsl:value-of select="concat($topichead-q-tag,' ⃒ ')"/>
+			                    <xsl:value-of select="$kpe-assessmentOverview-title-q-tag"/>
+			                </fo:block>                            
 			            </xsl:if>
 			        </fo:list-item-label>
-			        <fo:list-item-body start-indent="2in">##</fo:list-item-body> 
+			        <fo:list-item-body start-indent="2in"></fo:list-item-body>
 			    </fo:list-item>
 			    <fo:list-item>
 					<fo:list-item-label end-indent="2in">
