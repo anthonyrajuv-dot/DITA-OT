@@ -56,12 +56,9 @@ See the accompanying license.txt file for applicable licenses.
 
     <!-- Display the contents of an <sl> in two columns. -->
     <xsl:template name="use-two-columns">
-        <xsl:variable name="item_count"
-            select="ceiling(count(*[contains(@class, ' topic/sli ')]) div 2)"/>
-        <xsl:variable name="left-items"
-            select="*[contains(@class, ' topic/sli ')][position() &lt;= $item_count]"/>
-        <xsl:variable name="right-items"
-            select="*[contains(@class, ' topic/sli ')][position() &gt; $item_count]"/>
+        <xsl:variable name="item_count" select="ceiling(count(*[contains(@class, ' topic/sli ')]) div 2)"/>
+        <xsl:variable name="left-items" select="*[contains(@class, ' topic/sli ')][position() &lt;= $item_count]"/>
+        <xsl:variable name="right-items" select="*[contains(@class, ' topic/sli ')][position() &gt; $item_count]"/>
 
         <xsl:variable name="two-col-width" select="concat($column-width div 2,'pt')"/>
 
@@ -103,16 +100,12 @@ See the accompanying license.txt file for applicable licenses.
             <!-- Usually a block style doesn't use heads, so ignore dlhead. -->
             <xsl:choose>
                 <xsl:when test="contains(@otherprops,'sortable')">
-                    <xsl:apply-templates select="*[contains(@class, ' topic/dlentry ')]"
-                        mode="block">
-                        <xsl:sort
-                            select="opentopic-func:getSortString(normalize-space( opentopic-func:fetchValueableText(*[contains(@class, ' topic/dt ')]) ))"
-                            lang="{$locale}"/>
+                    <xsl:apply-templates select="*[contains(@class, ' topic/dlentry ')]" mode="block">
+                        <xsl:sort select="opentopic-func:getSortString(normalize-space( opentopic-func:fetchValueableText(*[contains(@class, ' topic/dt ')]) ))" lang="{$locale}"/>
                     </xsl:apply-templates>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:apply-templates select="*[contains(@class, ' topic/dlentry ')]"
-                        mode="block"/>
+                    <xsl:apply-templates select="*[contains(@class, ' topic/dlentry ')]" mode="block"/>
                 </xsl:otherwise>
             </xsl:choose>
         </fo:block>
@@ -274,8 +267,7 @@ See the accompanying license.txt file for applicable licenses.
 
         </fo:list-item>
     </xsl:template>
-
-    <!--ol test-->
+    
     <xsl:template match="*[contains(@class, ' topic/ol ')]/*[contains(@class, ' topic/li ')]">
         <xsl:variable name="spe-case-margin-left">
             <xsl:choose>

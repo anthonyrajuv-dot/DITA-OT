@@ -44,11 +44,14 @@
         </xsl:if>
         
          <!--Include file names for all files-->
-               <xsl:variable name="dita_file"
-                select="replace(translate(@xtrf, '\', '/'), '^.*/([^/]*.dita)$', '$1')"/>
-        <fo:block xsl:use-attribute-sets="p.object" text-align="left">
+        <xsl:variable name="dita_file" select="replace(translate(@xtrf, '\', '/'), '^.*/([^/]*.dita)$', '$1')"/>
+        
+        <xsl:if test="$dita_file != ''"><!-- [ARV:18-06-2026] Ignore if empty -->
+            <fo:block xsl:use-attribute-sets="p.object" text-align="left">
                 <xsl:value-of select="concat('[Filename: ', $dita_file, ']')"/>
             </fo:block>
+        </xsl:if>
+        
         <!-- [SP] 2015-01-16: For Qbank (testbank), use the navtitle in the map, rather than the title. -->
         <xsl:choose>
             <xsl:when

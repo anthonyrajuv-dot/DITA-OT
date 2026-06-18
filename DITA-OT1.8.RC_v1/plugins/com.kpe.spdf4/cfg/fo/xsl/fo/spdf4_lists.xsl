@@ -35,16 +35,14 @@ See the accompanying license.txt file for applicable licenses.
 <!-- Templates for <dl> are in tables.xsl -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:fo="http://www.w3.org/1999/XSL/Format"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema"         
-    xmlns:opentopic-func="http://www.idiominc.com/opentopic/exsl/function"    
-    version="2.0">
+    xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:xs="http://www.w3.org/2001/XMLSchema"         
+    xmlns:opentopic-func="http://www.idiominc.com/opentopic/exsl/function" version="2.0">
 
     <!-- [SP] Added test for <sl> with outputclass="twocol". -->
     <xsl:template match="*[contains(@class, ' topic/sl ')]">
         <xsl:choose>
             <xsl:when test="@outputclass='twocol'">
-               <xsl:call-template name="use-two-columns"/>                
+                <xsl:call-template name="use-two-columns"/>                
             </xsl:when>
             <xsl:otherwise>
                 <!-- Back to our regular programming. -->
@@ -70,18 +68,20 @@ See the accompanying license.txt file for applicable licenses.
             <fo:table-column column-width="{$two-col-width}"/>
             <fo:table-body>
                 <fo:table-row>
-                    <fo:table-cell> <!-- First column -->
+                    <fo:table-cell> 
+                        <!-- First column -->
                         <fo:list-block xsl:use-attribute-sets="sl">
                             <xsl:apply-templates select="$left-items"/> 
                         </fo:list-block>
                     </fo:table-cell>
-                    <fo:table-cell> <!-- Second column -->
+                    <fo:table-cell> 
+                        <!-- Second column -->
                         <fo:list-block xsl:use-attribute-sets="sl">
                             <xsl:apply-templates select="$right-items"/> 
                         </fo:list-block>
                     </fo:table-cell>
                 </fo:table-row>
-             </fo:table-body>
+            </fo:table-body>
         </fo:table>
     </xsl:template>
     
@@ -95,21 +95,21 @@ See the accompanying license.txt file for applicable licenses.
         
         <!--<xsl:choose>
             <xsl:when test="@outputclass = 'block'">-->
-                <fo:block xsl:use-attribute-sets="dl__block">
-                    <xsl:call-template name="commonattributes"/>
-                    <!-- Usually a block style doesn't use heads, so ignore dlhead. -->
-                    <xsl:choose>
-                        <xsl:when test="contains(@otherprops,'sortable')">
-                            <xsl:apply-templates select="*[contains(@class, ' topic/dlentry ')]" mode="block">
-                                <xsl:sort select="opentopic-func:getSortString(normalize-space( opentopic-func:fetchValueableText(*[contains(@class, ' topic/dt ')]) ))" lang="{$locale}"/>
-                            </xsl:apply-templates>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:apply-templates select="*[contains(@class, ' topic/dlentry ')]" mode="block"/>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                </fo:block>
-            <!--</xsl:when>
+        <fo:block xsl:use-attribute-sets="dl__block">
+            <xsl:call-template name="commonattributes"/>
+            <!-- Usually a block style doesn't use heads, so ignore dlhead. -->
+            <xsl:choose>
+                <xsl:when test="contains(@otherprops,'sortable')">
+                    <xsl:apply-templates select="*[contains(@class, ' topic/dlentry ')]" mode="block">
+                        <xsl:sort select="opentopic-func:getSortString(normalize-space( opentopic-func:fetchValueableText(*[contains(@class, ' topic/dt ')]) ))" lang="{$locale}"/>
+                    </xsl:apply-templates>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:apply-templates select="*[contains(@class, ' topic/dlentry ')]" mode="block"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </fo:block>
+        <!--</xsl:when>
             <xsl:otherwise>
                 <fo:table xsl:use-attribute-sets="dl">
                     <xsl:call-template name="commonattributes"/>
@@ -136,8 +136,8 @@ See the accompanying license.txt file for applicable licenses.
     <xsl:template match="*[contains(@class, ' topic/dlentry ')]" mode="block">
         <fo:block xsl:use-attribute-sets="dlentry__block">
             <xsl:call-template name="commonattributes"/>
-                <xsl:apply-templates select="*[contains(@class, ' topic/dt ')]" mode="block"/>
-                <xsl:apply-templates select="*[contains(@class, ' topic/dd ')]" mode="block"/>
+            <xsl:apply-templates select="*[contains(@class, ' topic/dt ')]" mode="block"/>
+            <xsl:apply-templates select="*[contains(@class, ' topic/dd ')]" mode="block"/>
         </fo:block>
     </xsl:template>
     
@@ -157,7 +157,8 @@ See the accompanying license.txt file for applicable licenses.
     <xsl:template match="*" mode="get-list-level" as="xs:integer">
         <xsl:value-of select="count(ancestor::*[contains(@class,' topic/ul ')])"/>
     </xsl:template>
-        
+    
+    <!-- [ARV:18-06-2026] Copied from spdf2 -->    
     <xsl:template match="*[contains(@class, ' topic/ul ')]/*[contains(@class, ' topic/li ')]">
         <fo:list-item xsl:use-attribute-sets="ul.li">
             <fo:list-item-label xsl:use-attribute-sets="ul.li__label">
@@ -169,28 +170,87 @@ See the accompanying license.txt file for applicable licenses.
                     <xsl:variable name="level" as="xs:integer">
                         <xsl:apply-templates select="." mode="get-list-level"/>
                     </xsl:variable>
+                    <xsl:variable name="list-default">
+                        <xsl:choose>
+                            <xsl:when test="parent::ul/parent::li/parent::ul[not(@outputclass)]"><xsl:text>bullet</xsl:text></xsl:when>
+                        </xsl:choose>
+                    </xsl:variable>
                     <xsl:choose>
-                        <xsl:when test="$level = 1">
-                            <!-- [SP] I think this was an error, the inline was an empty tag. 
-                                      Lift the bullet above the baseline.  -->
+                        <xsl:when test="parent::ul[@outputclass='ul_endash']">
+                            <!-- [ARV] Added for ndash list. -->
                             <fo:inline id="{@id}" baseline-shift="0pt">
                                 <xsl:call-template name="insertVariable">
-                                    <xsl:with-param name="theVariableID" select="'Unordered List bullet'"/>
+                                    <xsl:with-param name="theVariableID"
+                                        select="'Unordered List ndash'"/>
                                 </xsl:call-template>
                             </fo:inline>
                         </xsl:when>
-                        
-                        <xsl:when test="$level = 2">
+                        <xsl:when test="parent::ul[@outputclass='ul_opensquare']">
+                            <!-- [ARV] Added for ndash list. -->
                             <fo:inline id="{@id}" baseline-shift="0pt">
                                 <xsl:call-template name="insertVariable">
-                                    <xsl:with-param name="theVariableID" select="'Unordered List bullet level 2'"/>
+                                    <xsl:with-param name="theVariableID"
+                                        select="'Unordered List open-square'"/>
+                                </xsl:call-template>
+                            </fo:inline>
+                        </xsl:when>
+                        <xsl:when test="parent::ul[@outputclass='ul_square']">
+                            <!-- [ARV] Added for square list.  -->
+                            <fo:inline id="{@id}" baseline-shift="0pt">
+                                <xsl:call-template name="insertVariable">
+                                    <xsl:with-param name="theVariableID"
+                                        select="'Unordered List square'"/>
+                                </xsl:call-template>
+                            </fo:inline>
+                        </xsl:when>
+                        <xsl:when test="parent::ul[@outputclass='ul_circle']">
+                            <!-- [ARV] Added for circle list.  -->
+                            <fo:inline id="{@id}" baseline-shift="0pt">
+                                <xsl:call-template name="insertVariable">
+                                    <xsl:with-param name="theVariableID"
+                                        select="'Unordered List circle'"/>
                                 </xsl:call-template>
                             </fo:inline>
                         </xsl:when>
                         
                         <xsl:otherwise>
                             <!--[SP] Currently no third-level bullets defined.-->
-                            <xsl:message>SD_PDF ********** Used third-level bullet, but not defined. </xsl:message>
+                            <xsl:message>SD_PDF ********** Used third-level bullet, but not defined.</xsl:message>
+                            <xsl:choose>
+                                <xsl:when test="parent::ul/parent::li/parent::ul[@outputclass='ul_square' or @outputclass='ul_endash' or @outputclass='ul_circle' or @outputclass='ul_opensquare']">
+                                    <!-- [SP] I think this was an error, the inline was an empty tag. 
+                                      Lift the bullet above the baseline.  -->
+                                    <fo:inline id="{@id}" baseline-shift="0pt">
+                                        <xsl:call-template name="insertVariable">
+                                            <xsl:with-param name="theVariableID"
+                                                select="'Unordered List bullet'"/>
+                                        </xsl:call-template>
+                                    </fo:inline>
+                                </xsl:when>
+                                <xsl:when test="$level = 1">
+                                    <!-- [SP] I think this was an error, the inline was an empty tag. 
+                                      Lift the bullet above the baseline.  -->
+                                    <fo:inline id="{@id}" baseline-shift="0pt">
+                                        <xsl:call-template name="insertVariable">
+                                            <xsl:with-param name="theVariableID"
+                                                select="'Unordered List bullet'"/>
+                                        </xsl:call-template>
+                                    </fo:inline>
+                                </xsl:when>                        		
+                                <xsl:when test="$level = 2">
+                                    <fo:inline id="{@id}" baseline-shift="0pt">
+                                        <xsl:call-template name="insertVariable">
+                                            <xsl:with-param name="theVariableID"
+                                                select="'Unordered List bullet level 2'"/>
+                                        </xsl:call-template>
+                                    </fo:inline>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <!--[SP] Currently no third-level bullets defined.-->
+                                    <xsl:message>SD_PDF ********** Used third-level bullet, but not defined.
+                                    </xsl:message>
+                                </xsl:otherwise>
+                            </xsl:choose>
                         </xsl:otherwise>
                     </xsl:choose>
                     <!--                    <xsl:call-template name="insertVariable">
@@ -202,6 +262,154 @@ See the accompanying license.txt file for applicable licenses.
             
             <fo:list-item-body xsl:use-attribute-sets="ul.li__body">
                 <fo:block xsl:use-attribute-sets="ul.li__content">
+                    <xsl:apply-templates/>
+                </fo:block>
+            </fo:list-item-body>
+            
+        </fo:list-item>
+    </xsl:template>
+    
+    <!-- [ARV:18-06-2026] Copied from spdf2 -->
+    <xsl:template match="*[contains(@class, ' topic/ol ')]/*[contains(@class, ' topic/li ')]">
+        <xsl:variable name="spe-case-margin-left">
+            <xsl:choose>
+                <xsl:when test="parent::*[@outputclass='ol_dp_loweralpha']">
+                    <xsl:value-of select="'-7px'"/>
+                </xsl:when>
+                <xsl:when test="parent::*[@outputclass='ol_dp_num']">
+                    <xsl:value-of select="'-7px'"/>
+                </xsl:when>
+            </xsl:choose>
+        </xsl:variable>        
+        <fo:list-item xsl:use-attribute-sets="ol.li">
+            <fo:list-item-label xsl:use-attribute-sets="ol.li__label">                
+                <fo:block xsl:use-attribute-sets="ol.li__label__content" margin-left="{$spe-case-margin-left}">
+                    <fo:inline>
+                        <xsl:call-template name="commonattributes"/>
+                    </fo:inline>
+                    <xsl:call-template name="insertVariable">
+                        <xsl:with-param name="theVariableID" select="'Ordered List Number2'"/>
+                        <xsl:with-param name="theParameters">
+                            <number>
+                                <xsl:choose>
+                                    
+                                    
+                                    <!-- outputclasses-->
+                                    <xsl:when
+                                        test="parent::*[contains(@class, ' topic/ol ')]/parent::*[contains(@class, ' topic/li ')]/parent::*[contains(@class, ' topic/ol ')]/parent::*[contains(@class, ' topic/li ')]/parent::*[contains(@class, ' topic/ol ')]/parent::*[contains(@class, ' topic/li ')]/parent::*[contains(@class, ' topic/ol ')]/parent::*[contains(@class, ' topic/li ')]/parent::*[contains(@class, ' topic/ol ')]/parent::*[contains(@class, ' topic/li ')]/parent::*[contains(@class, ' topic/ol ')]/parent::*[contains(@class, ' topic/li ')]/parent::*[contains(@class, ' topic/ol ') and (@outputclass='ol_outline')]">
+                                        <xsl:number format="i)"/>
+                                    </xsl:when>
+                                    <xsl:when
+                                        test="parent::*[contains(@class, ' topic/ol ')]/parent::*[contains(@class, ' topic/li ')]/parent::*[contains(@class, ' topic/ol ')]/parent::*[contains(@class, ' topic/li ')]/parent::*[contains(@class, ' topic/ol ')]/parent::*[contains(@class, ' topic/li ')]/parent::*[contains(@class, ' topic/ol ')]/parent::*[contains(@class, ' topic/li ')]/parent::*[contains(@class, ' topic/ol ')]/parent::*[contains(@class, ' topic/li ')]/parent::*[contains(@class, ' topic/ol ') and (@outputclass='ol_outline')]">
+                                        <xsl:number format="(a)"/>
+                                    </xsl:when>
+                                    <xsl:when
+                                        test="parent::*[contains(@class, ' topic/ol ')]/parent::*[contains(@class, ' topic/li ')]/parent::*[contains(@class, ' topic/ol ')]/parent::*[contains(@class, ' topic/li ')]/parent::*[contains(@class, ' topic/ol ')]/parent::*[contains(@class, ' topic/li ')]/parent::*[contains(@class, ' topic/ol ')]/parent::*[contains(@class, ' topic/li ')]/parent::*[contains(@class, ' topic/ol ') and (@outputclass='ol_outline')]">
+                                        <xsl:number format="(1) "/>
+                                    </xsl:when>
+                                    <xsl:when
+                                        test="parent::*[contains(@class, ' topic/ol ')]/parent::*[contains(@class, ' topic/li ')]/parent::*[contains(@class, ' topic/ol ')]/parent::*[contains(@class, ' topic/li ')]/parent::*[contains(@class, ' topic/ol ')]/parent::*[contains(@class, ' topic/li ')]/parent::*[contains(@class, ' topic/ol ') and (@outputclass='ol_outline')]">
+                                        <xsl:number format="a)"/>
+                                    </xsl:when>
+                                    <xsl:when
+                                        test="parent::*[contains(@class, ' topic/ol ')]/parent::*[contains(@class, ' topic/li ')]/parent::*[contains(@class, ' topic/ol ')]/parent::*[contains(@class, ' topic/li ')]/parent::*[contains(@class, ' topic/ol ') and (@outputclass='ol_outline')]">
+                                        <xsl:choose>
+                                            <xsl:when test="@value!=''">
+                                                <xsl:number format="1." value="@value"/>
+                                            </xsl:when>
+                                            <xsl:otherwise><xsl:number format="1."/></xsl:otherwise>
+                                        </xsl:choose>
+                                    </xsl:when>
+                                    <xsl:when
+                                        test="parent::*[contains(@class, ' topic/ol ')]/parent::*[contains(@class, ' topic/li ')]/parent::*[contains(@class, ' topic/ol ') and (@outputclass='ol_outline')] ">
+                                        <xsl:choose>
+                                            <xsl:when test="@value!=''">
+                                                <xsl:number format="A." value="@value"/>
+                                            </xsl:when>
+                                            <xsl:otherwise><xsl:number format="A."/></xsl:otherwise>
+                                        </xsl:choose>                                        
+                                    </xsl:when>
+                                    
+                                    
+                                    <xsl:when test="parent::*[@outputclass='ol_outline']">
+                                        <xsl:choose>
+                                            <xsl:when test="@value!=''">
+                                                <xsl:number format="I." value="@value"/>
+                                            </xsl:when>
+                                            <xsl:otherwise><xsl:number format="I."/></xsl:otherwise>
+                                        </xsl:choose>
+                                    </xsl:when>
+                                    
+                                    <xsl:when test="parent::*[@outputclass='ol_roman']">
+                                        <xsl:choose>
+                                            <xsl:when test="@value!=''">
+                                                <xsl:number format="I." value="@value"/>
+                                            </xsl:when>
+                                            <xsl:otherwise><xsl:number format="I."/></xsl:otherwise>
+                                        </xsl:choose>
+                                    </xsl:when>
+                                    <xsl:when test="parent::*[@outputclass='ol_lowerroman']">
+                                        <xsl:choose>
+                                            <xsl:when test="@value!=''">
+                                                <xsl:number format="i." value="@value"/>
+                                            </xsl:when>
+                                            <xsl:otherwise><xsl:number format="i."/></xsl:otherwise>
+                                        </xsl:choose>
+                                    </xsl:when>
+                                    <xsl:when test="parent::*[@outputclass='ol_alpha']">
+                                        <fo:inline id="{@id}" baseline-shift="0pt">
+                                            <xsl:choose>
+                                                <xsl:when test="@value!=''">
+                                                    <xsl:number format="A." value="@value"/>
+                                                </xsl:when>
+                                                <xsl:otherwise><xsl:number format="A."/></xsl:otherwise>
+                                            </xsl:choose>
+                                        </fo:inline>
+                                    </xsl:when>
+                                    <xsl:when test="parent::*[@outputclass='ol_loweralpha']">
+                                        <xsl:choose>
+                                            <xsl:when test="@value!=''">
+                                                <xsl:number format="a." value="@value"/>
+                                            </xsl:when>
+                                            <xsl:otherwise><xsl:number format="a."/></xsl:otherwise>
+                                        </xsl:choose>
+                                    </xsl:when>
+                                    
+                                    <!-- [ARV: 30-05-2026] Updated for Insurance ISO language -->
+                                    <xsl:when test="parent::*[@outputclass='ol_dp_num']">
+                                        <xsl:choose>
+                                            <xsl:when test="@value!=''">
+                                                <xsl:number format="(1)" value="@value"/>
+                                            </xsl:when>
+                                            <xsl:otherwise><xsl:number format="(1)"/></xsl:otherwise>
+                                        </xsl:choose>
+                                    </xsl:when>
+                                    <xsl:when test="parent::*[@outputclass='ol_dp_loweralpha']">
+                                        <xsl:choose>
+                                            <xsl:when test="@value!=''">
+                                                <xsl:number format="(a)" value="@value"/>
+                                            </xsl:when>
+                                            <xsl:otherwise><xsl:number format="(a)"/></xsl:otherwise>
+                                        </xsl:choose>
+                                    </xsl:when>
+                                    
+                                    <xsl:otherwise>
+                                        <xsl:choose>
+                                            <xsl:when test="@value!=''">
+                                                <xsl:number format="1." value="@value"/>
+                                            </xsl:when>
+                                            <xsl:otherwise><xsl:number format="1."/></xsl:otherwise>
+                                        </xsl:choose>
+                                    </xsl:otherwise>
+                                </xsl:choose>
+                            </number>
+                        </xsl:with-param>
+                    </xsl:call-template>                    
+                </fo:block>
+            </fo:list-item-label>
+            
+            <fo:list-item-body xsl:use-attribute-sets="ol.li__body">
+                <fo:block xsl:use-attribute-sets="ol.li__content">
                     <xsl:apply-templates/>
                 </fo:block>
             </fo:list-item-body>
