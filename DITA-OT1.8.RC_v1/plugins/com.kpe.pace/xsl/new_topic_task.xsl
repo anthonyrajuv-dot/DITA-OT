@@ -613,7 +613,7 @@
 			
         <xsl:variable name="scoreWeightVal">
             <xsl:choose>
-                <xsl:when test="topicprompt and $kpe-quest-root[@questiontype!='PT']">
+                <xsl:when test="topicprompt and $kpe-quest-root[not(@questiontype='PT')]">
                     <xsl:message>[K:info] Integrated Question Set</xsl:message>
                     <xsl:value-of select="$scoreWeightIQS"/>
                 </xsl:when>
