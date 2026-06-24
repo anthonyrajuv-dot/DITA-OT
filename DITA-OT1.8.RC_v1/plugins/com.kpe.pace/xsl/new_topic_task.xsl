@@ -609,22 +609,24 @@
 		        <xsl:if test="$scoreWeight != '' "><xsl:value-of select="$t-weights[3]"/></xsl:if>
 		    </xsl:variable>
 			
+		<xsl:variable name="kpe-quest-root" select="document(@orig_href)/kpe-question"/>
+			
         <xsl:variable name="scoreWeightVal">
             <xsl:choose>
-                <xsl:when test="topicprompt">
+                <xsl:when test="topicprompt and $kpe-quest-root[@questiontype!='PT']">
                     <xsl:message>[K:info] Integrated Question Set</xsl:message>
                     <xsl:value-of select="$scoreWeightIQS"/>
                 </xsl:when>
-                <xsl:when test="document(@orig_href)/kpe-question[@questiontype='PT']">
+                <xsl:when test="$kpe-quest-root[@questiontype='PT']">
                     <xsl:message>[K:info] Performance Task Library</xsl:message>
                     <xsl:value-of select="$scoreWeightPT"/>
                 </xsl:when>
-                <xsl:when test="document(@orig_href)/kpe-question/kpe-questionBody/lcInteraction[lcSingleSelect2]">
-                    <xsl:message>[K:info] Multi Choice Quesiton</xsl:message>
+                <xsl:when test="$kpe-quest-root/kpe-questionBody/lcInteraction[lcSingleSelect2]">
+                    <xsl:message>[K:info] Multi Choice Question</xsl:message>
                     <xsl:value-of select="$scoreWeightMCQ"/>
                 </xsl:when>
-            	<xsl:when test="document(@orig_href)/kpe-question/kpe-questionBody/lcInteraction[lcMultipleSelect2]">
-                    <xsl:message>[K:info] Multi Correct Choice Quesiton</xsl:message>
+                <xsl:when test="$kpe-quest-root/kpe-questionBody/lcInteraction[lcMultipleSelect2]">
+            	    <xsl:message>[K:info] Multi Correct Choice Question</xsl:message>
                     <xsl:value-of select="$scoreWeightMCQ"/>
                 </xsl:when>
             </xsl:choose>
