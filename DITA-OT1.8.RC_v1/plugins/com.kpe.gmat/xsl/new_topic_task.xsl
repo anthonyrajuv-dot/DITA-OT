@@ -4839,11 +4839,13 @@
             <!--            <xsl:message>determining target for <xsl:value-of select="@href"/>.</xsl:message>-->
             <xsl:choose>
                 <xsl:when test="contains(.,'/assets/core_content/digital/')">
-                    <xsl:value-of select="replace(.,'^.*/assets/core_content/digital/','/assets/')"
-                    />
+                    <xsl:value-of select="replace(.,'^.*/assets/core_content/digital/','/assets/')"/>
                 </xsl:when>
                 <xsl:when test="contains(.,'/assets/digital/')">
                     <xsl:value-of select="replace(.,'^.*/assets/digital/','/assets/')"/>
+                </xsl:when>
+                <xsl:when test="contains(.,'/oxy_ex-3/assets/')">
+                    <xsl:value-of select="replace(.,'^.*/oxy_ex-3/assets/','/assets/')"/>
                 </xsl:when>
                 <xsl:when test="contains(.,'/assets/core_content/')">
                     <xsl:value-of select="replace(.,'^.*/assets/core_content/','/assets/')"/>
@@ -5541,11 +5543,13 @@
             <!--            <xsl:message>determining target for <xsl:value-of select="@href"/>.</xsl:message>-->
             <xsl:choose>
                 <xsl:when test="contains(.,'/assets/core_content/digital/')">
-                    <xsl:value-of select="replace(.,'^.*/assets/core_content/digital/','/assets/')"
-                    />
+                    <xsl:value-of select="replace(.,'^.*/assets/core_content/digital/','/assets/')"/>
                 </xsl:when>
                 <xsl:when test="contains(.,'/assets/digital/')">
                     <xsl:value-of select="replace(.,'^.*/assets/digital/','/assets/')"/>
+                </xsl:when>
+                <xsl:when test="contains(.,'/oxy_ex-3/assets/')">
+                    <xsl:value-of select="replace(.,'^.*/oxy_ex-3/assets/','/assets/')"/>
                 </xsl:when>
                 <xsl:when test="contains(.,'/assets/core_content/')">
                     <xsl:value-of select="replace(.,'^.*/assets/core_content/','/assets/')"/>

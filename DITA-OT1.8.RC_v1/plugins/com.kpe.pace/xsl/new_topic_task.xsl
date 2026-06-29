@@ -5042,6 +5042,7 @@
                 <xsl:apply-templates mode="identity"/>
             </xsl:when>
             <xsl:when test="$type='topic'">
+                <xsl:if test="contains(@href,'.pdf')"><xsl:message>[ARV: Test xref] <xsl:value-of select="@href"/></xsl:message></xsl:if>
                 <xref target="_blank">
                     <xsl:apply-templates select="@href|@scope|node()" mode="identity">
                         <xsl:with-param name="type" select="$type"/>
@@ -5162,11 +5163,13 @@
             <!--            <xsl:message>determining target for <xsl:value-of select="@href"/>.</xsl:message>-->
             <xsl:choose>
                 <xsl:when test="contains(.,'/assets/core_content/digital/')">
-                    <xsl:value-of select="replace(.,'^.*/assets/core_content/digital/','/assets/')"
-                    />
+                    <xsl:value-of select="replace(.,'^.*/assets/core_content/digital/','/assets/')"/>
                 </xsl:when>
                 <xsl:when test="contains(.,'/assets/digital/')">
                     <xsl:value-of select="replace(.,'^.*/assets/digital/','/assets/')"/>
+                </xsl:when>
+                <xsl:when test="contains(.,'/oxy_ex-3/assets/')">
+                    <xsl:value-of select="replace(.,'^.*/oxy_ex-3/assets/','/assets/')"/>
                 </xsl:when>
                 <xsl:when test="contains(.,'/assets/core_content/')">
                     <xsl:value-of select="replace(.,'^.*/assets/core_content/','/assets/')"/>
@@ -5537,7 +5540,7 @@
     </xsl:template>
     
     <!-- [MODIFIED TEMPLATE: PACE_table_body vignette] -->
-    <xsl:template match="entry" mode="PACE_table_body vignette">
+    <!--<xsl:template match="entry" mode="PACE_table_body vignette">
         <td>
             <xsl:if test="@align">
                 <xsl:attribute name="align">
@@ -5575,11 +5578,11 @@
             </xsl:if>
             
             <xsl:choose>
-                <!-- Darker Gray for section dividers -->
+                <!-\- Darker Gray for section dividers -\->
                 <xsl:when test="@outputclass = 'section-divider' or parent::row/@outputclass = 'section-divider'">
                     <xsl:attribute name="bgcolor">#d9d9d9</xsl:attribute>
                 </xsl:when>
-                <!-- Light Gray for standard shaded rows (Cats/Dogs) -->
+                <!-\- Light Gray for standard shaded rows (Cats/Dogs) -\->
                 <xsl:when test="@outputclass = 'shade-light' or parent::row/@outputclass = 'shade-light'">
                     <xsl:attribute name="bgcolor">#f2f2f2</xsl:attribute>
                 </xsl:when>
@@ -5590,7 +5593,7 @@
             
             <xsl:apply-templates mode="identity"/>
         </td>
-    </xsl:template>
+    </xsl:template>-->
 
 
     <xsl:template match="tbody" mode="PACE_table vignette">
@@ -5949,11 +5952,13 @@
             <!--            <xsl:message>determining target for <xsl:value-of select="@href"/>.</xsl:message>-->
             <xsl:choose>
                 <xsl:when test="contains(.,'/assets/core_content/digital/')">
-                    <xsl:value-of select="replace(.,'^.*/assets/core_content/digital/','/assets/')"
-                    />
+                    <xsl:value-of select="replace(.,'^.*/assets/core_content/digital/','/assets/')"/>
                 </xsl:when>
                 <xsl:when test="contains(.,'/assets/digital/')">
                     <xsl:value-of select="replace(.,'^.*/assets/digital/','/assets/')"/>
+                </xsl:when>
+                <xsl:when test="contains(.,'/oxy_ex-3/assets/')">
+                    <xsl:value-of select="replace(.,'^.*/oxy_ex-3/assets/','/assets/')"/>
                 </xsl:when>
                 <xsl:when test="contains(.,'/assets/core_content/')">
                     <xsl:value-of select="replace(.,'^.*/assets/core_content/','/assets/')"/>
