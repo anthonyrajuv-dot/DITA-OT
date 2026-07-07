@@ -152,9 +152,15 @@
                                 number in the header, if it is desired.
                                 <xsl:number format="1"/>-->
                         <xsl:value-of select="$chapterNumber"/>
-                    </fo:marker>
+                    </fo:marker>                    
                     <fo:marker marker-class-name="current-header">
-                        <xsl:value-of select="$title"/>
+                        <xsl:choose>
+                            <xsl:when test="string-length($title) &gt; 60">
+                                <!--<xsl:value-of select="concat(substring($title,1,60),'...')"/>-->
+                                <fo:block font-size="7pt"><xsl:value-of select="$title"/></fo:block>
+                            </xsl:when>
+                            <xsl:otherwise><xsl:value-of select="$title"/></xsl:otherwise>
+                        </xsl:choose>                        
                         <!--<xsl:for-each select="child::*[contains(@class,' topic/title ')]">
                             <xsl:apply-templates select="." mode="getTitle"/>
                         </xsl:for-each>-->
