@@ -222,9 +222,10 @@ See the accompanying license.txt file for applicable licenses.
             <xsl:call-template name="applySpansAttrs"/>
             <xsl:call-template name="applyAlignAttrs"/>
             <xsl:call-template name="generateTableEntryBorder"/>
-            <xsl:if test="@outputclass = 'shade'">
+            <xsl:if test="@outputclass = 'shade' or parent::row[@outputclass = 'section-divider'] or @outputclass = 'section-divider'">
                 <xsl:attribute name="background-color">#cccccc</xsl:attribute>
             </xsl:if>
+            
             <!-- Set continuation marker on first cell of first row only. -->
             <xsl:if test="count(preceding-sibling::*[contains(@class, ' topic/entry ')]) = 0 and
                 count(parent::*/preceding-sibling::*[contains(@class, ' topic/row ')]) = 0">
