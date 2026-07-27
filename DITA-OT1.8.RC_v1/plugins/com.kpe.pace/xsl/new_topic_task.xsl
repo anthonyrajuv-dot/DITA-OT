@@ -4074,8 +4074,9 @@
     </xsl:template>
 	
 	<xsl:template match="navtitle" mode="#all">
-		<xsl:variable name="string_1" select="replace(.,'&amp;','&amp;#038;')"/>
-		<xsl:variable name="string_2" select="replace($string_1,'&lt;','&amp;#060;')"/>
+	    <!--[ARV: 21-01-2026] Commented out ampersand change-->
+		<!--<xsl:variable name="string_1" select="replace(.,'&amp;','&amp;#038;')"/>-->
+		<xsl:variable name="string_2" select="replace(.,'&lt;','&amp;#060;')"/>
 		<xsl:variable name="string_3" select="replace($string_2,'&gt;','&amp;#062;')"/>
 		<xsl:variable name="string_4" select="replace($string_3,'&#34;','&amp;#034;')"/>
 		<!--MW Commented out apostrophe change-->
@@ -4937,6 +4938,12 @@
     <!-- If there's a ph with no attributes, throw it away. -->
     <xsl:template match="ph" mode="identity vignette" priority="100">
         <xsl:choose>
+            <xsl:when test="@outputclass='text_alert'">
+                <!-- [ARV:25-07-2026] -->
+                <span style="color: #ff0000;">
+                    <xsl:apply-templates/>
+                </span>
+            </xsl:when>
             <xsl:when test="@outputclass='strike'">
                 <span style="text-decoration: line-through">
                     <xsl:apply-templates/>
@@ -4962,7 +4969,7 @@
                 <xsl:copy>
                     <xsl:apply-templates select="@*|node()" mode="identity"/>
                 </xsl:copy>
-            </xsl:when>
+            </xsl:when>            
             <xsl:otherwise>
                 <xsl:apply-templates select="@*|node()" mode="identity"/>
             </xsl:otherwise>
