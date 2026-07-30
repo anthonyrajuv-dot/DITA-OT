@@ -4507,6 +4507,16 @@
     </xsl:template>
 
 
+    <!-- [ARV:30-07-2026] For getting centered text in red color -->
+    <xsl:template match="p[@outputclass = 'text_alert_center']" mode="#all">
+        <p align="center">
+            <span style="color: #ff0000;">
+                <xsl:apply-templates/>
+            </span>            
+        </p>
+    </xsl:template>
+
+
 
     <!--PSB ADDED LOS PARA AND NOTE PROCESSING-->
     <xsl:template match="p[@outputclass = 'los']" mode="#all">
