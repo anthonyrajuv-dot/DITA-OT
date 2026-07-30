@@ -4026,13 +4026,25 @@
         <!--        <xsl:message>topic_pos is <xsl:value-of select="$topic_pos"/>.</xsl:message>
         <xsl:message>fn_offset is <xsl:value-of select="$fn_offset"/>.</xsl:message>
         
--->
+-->        
         <p>
-            <sup>
-                <xsl:value-of select="$topic_pos + $fn_offset"/>
-            </sup>
-            <xsl:apply-templates mode="identity"/>
+            <xsl:if test="not(@outputclass='no_num')">
+                <sup>
+                    <xsl:value-of select="$topic_pos + $fn_offset"/>
+                </sup>
+            </xsl:if>
+            <xsl:choose>
+                <xsl:when test="@outputclass='no_num'">
+                    <span style="font-size: 12px;">
+                        <xsl:apply-templates mode="identity"/>
+                    </span>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:apply-templates mode="identity"/>
+                </xsl:otherwise>
+            </xsl:choose>            
         </p>
+        
     </xsl:template>
 
     <xsl:template name="get_fn_offset">
@@ -5091,10 +5103,12 @@
         <xsl:variable name="fn_offset">
             <xsl:call-template name="get_fn_offset"/>
         </xsl:variable>
-
-        <sup>
-            <xsl:value-of select="$topic_pos + $fn_offset"/>
-        </sup>
+        
+        <xsl:if test="not(@outputclass='no_num')">
+            <sup>
+                <xsl:value-of select="$topic_pos + $fn_offset"/>
+            </sup>
+        </xsl:if>        
 
     </xsl:template>
 
