@@ -2544,12 +2544,30 @@
 	
 	
 	
-	<!-- [ARV 25/5/2025] Handle text-indent. -->	
+	<!-- [ARV 25/05/2025] Handle text-indent. -->	
 	<xsl:template match="*[contains(@class,' topic/p ') and @outputclass='text_indent']">
 		<xsl:comment>Handling outputclass="text_indent".</xsl:comment>
 		<fo:block text-indent="2.5em">
 			<xsl:apply-templates/>
 		</fo:block>		
+	</xsl:template>
+    
+    
+    <!-- [ARV 31/07/2026] Handle Paragraph align center. -->	
+    <xsl:template match="*[contains(@class,' topic/p ') and @outputclass='center']">
+        <xsl:comment>Handling outputclass="center".</xsl:comment>
+        <fo:block text-align="center">
+            <xsl:apply-templates/>
+        </fo:block>
+    </xsl:template>
+
+    
+    <!-- [ARV 31/07/2026] Handle Paragraph Red color text_alert_center. -->	
+    <xsl:template match="*[contains(@class,' topic/p ') and @outputclass='text_alert_center']">
+		<xsl:comment>Handling outputclass="text_alert_center".</xsl:comment>
+        <fo:block color="#ff0000" text-align="center">
+			<xsl:apply-templates/>
+		</fo:block>
 	</xsl:template>
 	
 
@@ -2630,6 +2648,14 @@
         </fo:inline>
     </xsl:template>
 
+    <!-- [ARV 31/07/2026] Handle Paragraph Red color text_alert. -->
+    <xsl:template match="*[contains(@class,' topic/ph ') and @outputclass='text_alert']">
+        <xsl:comment>Handling outputclass="text_alert".</xsl:comment>
+        <fo:inline color="#ff0000">
+            <xsl:apply-templates select="*|text()"/>
+        </fo:inline>
+    </xsl:template>
+
    
 
 
@@ -2700,10 +2726,13 @@
     </xsl:template>
 
 	<!-- ARV Added on 16-07-2025 -->
-	<xsl:template match="essaySection">
+	<xsl:template match="essaySection" priority="100">
 		<xsl:variable name="sectionDoc" select="document(@href)"/>
+	    <xsl:variable name="essaysec-position">
+	        <xsl:number count="essaySection"/>
+	    </xsl:variable>
 		
-		<fo:block color="darkblue" margin-bottom="10pt" font-size="12pt" text-decoration="underline" font-weight="bold">Section</fo:block>
+	    <fo:block color="darkblue" margin-bottom="10pt" font-size="12pt" text-decoration="underline" font-weight="bold">Section <xsl:value-of select="$essaysec-position"/></fo:block>
 		<!-- Pull the content from <issue> -->
 		<fo:block font-weight="bold">Issue:</fo:block>
 		<xsl:apply-templates select="$sectionDoc//issue"/>
@@ -2719,6 +2748,12 @@
 		<!-- Pull the content from <conclusion> -->
 		<fo:block font-weight="bold">Conclusion:</fo:block>
 		<xsl:apply-templates select="$sectionDoc//conclusion"/>
+
+	    <!-- Pull the point-value from inside <conclusion> -->
+	    <fo:block font-weight="bold" margin-bottom="15pt">Point Value:
+	        <xsl:apply-templates select="$sectionDoc//conclusion/p/pointValue/@value"/>
+	    </fo:block>
+	    
 	</xsl:template>
 	
 	
@@ -2820,7 +2855,7 @@
         </fo:inline>
         <fo:footnote>
             <xsl:choose>
-                <xsl:when test="not(@id)">
+                <xsl:when test="not(@id) and not(@outputclass='fn_no_num')">
                     <fo:inline xsl:use-attribute-sets="fn__callout">
                         <xsl:value-of select="$fn_number"/>
                     </fo:inline>
@@ -2836,16 +2871,26 @@
                     <fo:list-item>
                         <fo:list-item-label end-indent="label-end()">
                             <fo:block text-align="right">
-                                <fo:inline xsl:use-attribute-sets="fn__callout">
-                                    <xsl:value-of select="$fn_number"/>
-                                </fo:inline>
+                                <xsl:if test="not(@outputclass='fn_no_num')">
+                                    <fo:inline xsl:use-attribute-sets="fn__callout">
+                                        <xsl:value-of select="$fn_number"/>
+                                    </fo:inline>
+                                </xsl:if>
                             </fo:block>
                         </fo:list-item-label>
                         <fo:list-item-body start-indent="body-start()">
-                            <fo:block>
-                                <!--                                <xsl:value-of select="."/>-->
-                                <xsl:apply-templates/>
-                            </fo:block>
+                            <xsl:choose>
+                                <xsl:when test="@outputclass='fn_no_num'">
+                                    <fo:block font-size="8pt">
+                                        <xsl:apply-templates/>
+                                    </fo:block>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <fo:block>
+                                        <xsl:apply-templates/>
+                                    </fo:block>
+                                </xsl:otherwise>
+                            </xsl:choose>
                         </fo:list-item-body>
                     </fo:list-item>
                 </fo:list-block>

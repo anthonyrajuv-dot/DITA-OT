@@ -1322,9 +1322,8 @@ PUBLIC "-//OASIS//ELEMENTS DITA Common Elements//EN"
                         CDATA 
                                   #IMPLIED
               %univ-atts;
-              outputclass 
-                        CDATA 
-                                  #IMPLIED"
+              outputclass CDATA #IMPLIED
+              outputtype CDATA #IMPLIED"
 >
 <!ELEMENT ph    %ph.content;>
 <!ATTLIST ph    %ph.attributes;>

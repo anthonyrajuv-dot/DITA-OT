@@ -4028,13 +4028,13 @@
         
 -->        
         <p>
-            <xsl:if test="not(@outputclass='no_num')">
+            <xsl:if test="not(@outputclass='fn_no_num')">
                 <sup>
                     <xsl:value-of select="$topic_pos + $fn_offset"/>
                 </sup>
             </xsl:if>
             <xsl:choose>
-                <xsl:when test="@outputclass='no_num'">
+                <xsl:when test="@outputclass='fn_no_num'">
                     <span style="font-size: 12px;">
                         <xsl:apply-templates mode="identity"/>
                     </span>
@@ -4506,6 +4506,13 @@
         </p>
     </xsl:template>
 
+    <!-- [ARV]: Added for right alignment -->
+    <xsl:template match="p[@outputclass = 'right']" mode="#all">
+        <p align="right">
+            <xsl:apply-templates/>
+        </p>
+    </xsl:template>
+
 
     <!-- [ARV:30-07-2026] For getting centered text in red color -->
     <xsl:template match="p[@outputclass = 'text_alert_center']" mode="#all">
@@ -4856,6 +4863,34 @@
                         <xsl:otherwise><xsl:apply-templates mode="identity"/></xsl:otherwise>
                     </xsl:choose>
                 </xsl:when>
+                <xsl:when test="@outputclass = 'ol_dp_lowerroman'">
+                    <xsl:attribute name="style">
+                        <xsl:text>list-style-type: none;</xsl:text>
+                    </xsl:attribute>
+                    <xsl:choose><xsl:when test="lower-case($prod_vert) != 'null'">
+                        <xsl:for-each select="li">
+                            <xsl:variable name="anchor" select="(preceding-sibling::li[@value] | self::li[@value])[last()]" />
+                            
+                            <xsl:variable name="current-number">
+                                <xsl:choose>
+                                    <xsl:when test="$anchor">
+                                        <xsl:value-of select="number($anchor/@value) + (count(preceding-sibling::li) - count($anchor/preceding-sibling::li))"/>
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        <xsl:value-of select="position()"/>
+                                    </xsl:otherwise>
+                                </xsl:choose>
+                            </xsl:variable>
+                            
+                            <li style="{concat('margin-left: 1.5em;',$list-line-spacing)}">
+                                <span style="margin-left: -1.8em; padding-right: 0.6em;">(<xsl:number value="$current-number" format="i"/>)</span>&#32;
+                                <xsl:apply-templates mode="identity"/>
+                            </li>
+                        </xsl:for-each>
+                    </xsl:when>
+                        <xsl:otherwise><xsl:apply-templates mode="identity"/></xsl:otherwise>
+                    </xsl:choose>
+                </xsl:when>
                 <xsl:otherwise>
                 	<xsl:choose><xsl:when test="lower-case($prod_vert) != 'sec'">
                             <xsl:for-each select="li">
@@ -4973,6 +5008,15 @@
             </xsl:when>
             <xsl:when test="@outputclass='line_break'">
                 <br/>
+            </xsl:when>
+            <xsl:when test="@outputclass='h_line' and @outputtype='left_align'">
+                <hr style="width: 93%; text-align:left; margin-left:0;"/>
+            </xsl:when>
+            <xsl:when test="@outputclass='h_line' and @outputtype='center_align'">
+                <hr style="width: 94%;"/>
+            </xsl:when>
+            <xsl:when test="@outputclass='h_line' and @outputtype='right_align'">
+                <hr style="width: 93%; text-align:right; margin-right:0;"/>
             </xsl:when>
             <xsl:when test="@outputclass='los'">
                 <xsl:text> </xsl:text>
@@ -5114,7 +5158,7 @@
             <xsl:call-template name="get_fn_offset"/>
         </xsl:variable>
         
-        <xsl:if test="not(@outputclass='no_num')">
+        <xsl:if test="not(@outputclass='fn_no_num')">
             <sup>
                 <xsl:value-of select="$topic_pos + $fn_offset"/>
             </sup>
