@@ -53,6 +53,7 @@ See the accompanying license.txt file for applicable licenses.
     -->
     
     <xsl:param name="OUTPUT_TYPE" select="'course'"/>
+    <xsl:param name="QUES_OUTPUT_TYPE" select="'test_quiz_n_secondary'"/>
     
     <!-- [SP] Layout Masters and Metadata processing differs for FOP and AH.  
          Detect the pdfFormatter and use the correct order.
@@ -60,6 +61,7 @@ See the accompanying license.txt file for applicable licenses.
     <xsl:template match="/" name="rootTemplate">
         
         <xsl:message>OUTPUT_TYPE is <xsl:value-of select="$OUTPUT_TYPE"/>.</xsl:message>
+        <xsl:message>QUES_OUTPUT_TYPE is <xsl:value-of select="$QUES_OUTPUT_TYPE"/>.</xsl:message>
         <xsl:call-template name="validateTopicRefs"/>
         
         <fo:root xsl:use-attribute-sets="__fo__root">

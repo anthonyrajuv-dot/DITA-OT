@@ -6,6 +6,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:dita2xslfo="http://dita-ot.sourceforge.net/ns/200910/dita2xslfo" xmlns:axf="http://www.antennahouse.com/names/XSL/Extensions" xmlns:opentopic="http://www.idiominc.com/opentopic" xmlns:utils="urn:utils" exclude-result-prefixes="xs utils" version="2.0">
     <xsl:import href="../function/resolve-topicprompt.xsl"/>    
     <xsl:param name="OUTPUT_TYPE" select="'course'"/>
+    <xsl:param name="QUES_OUTPUT_TYPE" select="'exam_secondary'"/>
 
     <xsl:output encoding="UTF-8" method="xml"/>
 
@@ -1076,7 +1077,7 @@
                             <xsl:when test="contains(@class,' kpe-overview/kpe-overview ')">
                                 <!-- Do nothing -->
                             </xsl:when>
-                            <xsl:when test="contains(@class,' kpe-assessmentOverview/kpe-assessmentOverview ') and prolog/metadata/lmsCategory[@value='test_quiz']">
+                            <xsl:when test="not($QUES_OUTPUT_TYPE='test_quiz_n_secondary') and contains(@class,' kpe-assessmentOverview/kpe-assessmentOverview ') and prolog/metadata/lmsCategory[@value='test_quiz']">
                                 <!-- Do nothing -->
                             </xsl:when>
                             <xsl:otherwise>
