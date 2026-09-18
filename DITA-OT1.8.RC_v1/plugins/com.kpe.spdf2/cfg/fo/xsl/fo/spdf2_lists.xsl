@@ -382,6 +382,14 @@ See the accompanying license.txt file for applicable licenses.
                                             <xsl:otherwise><xsl:number format="(1)"/></xsl:otherwise>
                                         </xsl:choose>
                                     </xsl:when>
+                                    <xsl:when test="parent::*[@outputclass='ol_sp_num']">
+                                        <xsl:choose>
+                                            <xsl:when test="@value!=''">
+                                                <xsl:number format="1)" value="@value"/>
+                                            </xsl:when>
+                                            <xsl:otherwise><xsl:number format="1)"/></xsl:otherwise>
+                                        </xsl:choose>
+                                    </xsl:when>
                                     <xsl:when test="parent::*[@outputclass='ol_dp_loweralpha']">
                                         <xsl:choose>
                                             <xsl:when test="@value!=''">
